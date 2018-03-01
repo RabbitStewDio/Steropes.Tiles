@@ -16,19 +16,19 @@
 #begin UI/Metro/Fonts/Dialog.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:UI/Metro/Fonts/Dialog.spritefont
 
 #begin UI/Metro/Fonts/DialogBold.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:UI/Metro/Fonts/DialogBold.spritefont
 
 #begin UI/Metro/Fonts/DialogLight.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:UI/Metro/Fonts/DialogLight.spritefont
 
 #begin UI/Metro/CheckBoxSelectedOverlay.png
@@ -27982,6 +27982,6 @@
 #begin UI/Metro/Fonts/DialogSmall.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:UI/Metro/Fonts/DialogSmall.spritefont
 
