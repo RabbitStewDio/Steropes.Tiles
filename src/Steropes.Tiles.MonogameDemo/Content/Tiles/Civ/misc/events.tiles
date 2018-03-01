@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/events">
+    <grid name="main" x="0" y="0" width="15" height="20" border="0">
+      <tile x="0" y="0">
+        <tag>e_city_cantbuild</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>e_city_lost</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>e_city_love</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>e_city_disorder</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>e_city_famine</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>e_city_famine_feared</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>e_city_growth</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>e_city_may_soon_grow</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>e_city_aqueduct</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>e_city_aq_building</tag>
+      </tile>
+      <tile x="10" y="0">
+        <tag>e_city_normal</tag>
+      </tile>
+      <tile x="11" y="0">
+        <tag>e_city_nuked</tag>
+      </tile>
+      <tile x="12" y="0">
+        <tag>e_city_cma_release</tag>
+        <tag>e_worklist</tag>
+        <tag>e_city_radius_sq</tag>
+      </tile>
+      <tile x="13" y="0">
+        <tag>e_city_gran_throttle</tag>
+      </tile>
+      <tile x="14" y="0">
+        <tag>e_city_transfer</tag>
+      </tile>
+      <tile x="15" y="0">
+        <tag>e_city_build</tag>
+      </tile>
+      <tile x="16" y="0">
+        <tag>e_city_production_changed</tag>
+      </tile>
+      <tile x="17" y="0">
+        <tag>e_disaster</tag>
+      </tile>
+      <tile x="18" y="0">
+        <tag>e_city_plague</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>e_nuke</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>e_global_eco</tag>
+        <tag>e_log_fatal</tag>
+        <tag>e_chat_error</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>e_ai_debug</tag>
+        <tag>e_script</tag>
+        <tag>e_broadcast_report</tag>
+        <tag>e_report</tag>
+        <tag>e_chat_msg</tag>
+        <tag>e_log_error</tag>
+        <tag>e_deprecation_warning</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>e_hut_barb</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>e_hut_city</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>e_hut_gold</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>e_hut_barb_killed</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>e_hut_merc</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>e_hut_settler</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>e_hut_tech</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>e_hut_barb_city_near</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>e_my_diplomat_poison</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>e_my_diplomat_bribe</tag>
+        <tag>e_my_spy_steal_gold</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>e_my_diplomat_incite</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>e_my_diplomat_embassy</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>e_my_diplomat_failed</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>e_my_diplomat_sabotage</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>e_my_diplomat_theft</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>e_diplomatic_incident</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>e_my_diplomat_escape</tag>
+      </tile>
+      <tile x="9" y="3">
+        <tag>e_enemy_diplomat_poison</tag>
+      </tile>
+      <tile x="10" y="3">
+        <tag>e_enemy_diplomat_bribe</tag>
+        <tag>e_enemy_spy_steal_gold</tag>
+      </tile>
+      <tile x="11" y="3">
+        <tag>e_enemy_diplomat_incite</tag>
+      </tile>
+      <tile x="12" y="3">
+        <tag>e_enemy_diplomat_embassy</tag>
+      </tile>
+      <tile x="13" y="3">
+        <tag>e_enemy_diplomat_failed</tag>
+      </tile>
+      <tile x="14" y="3">
+        <tag>e_enemy_diplomat_sabotage</tag>
+      </tile>
+      <tile x="15" y="3">
+        <tag>e_enemy_diplomat_theft</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>e_unit_illegal_action</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>e_achievement</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>e_uprising</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>e_civil_war</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>e_anarchy</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>e_first_contact</tag>
+        <tag>e_new_government</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>e_low_on_funds</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>e_pollution</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>e_revolt_done</tag>
+      </tile>
+      <tile x="9" y="4">
+        <tag>e_revolt_start</tag>
+      </tile>
+      <tile x="10" y="4">
+        <tag>e_spaceship</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

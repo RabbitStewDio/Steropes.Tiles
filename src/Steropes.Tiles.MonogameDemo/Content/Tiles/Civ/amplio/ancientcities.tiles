@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/ancientcities">
+    <grid name="main" x="1" y="1" width="96" height="72" border="1">
+      <tile x="11" y="2">
+        <tag>city.asian_occupied_0</tag>
+        <tag>city.tropical_occupied_0</tag>
+        <tag>city.celtic_occupied_0</tag>
+        <tag>city.classical_occupied_0</tag>
+        <tag>city.babylonian_occupied_0</tag>
+      </tile>
+      <tile x="0" y="0">
+        <tag>city.asian_city_0</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>city.asian_city_1</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>city.asian_city_2</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>city.asian_city_3</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>city.asian_city_4</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>city.asian_wall_0</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>city.asian_wall_1</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>city.asian_wall_2</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>city.asian_wall_3</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>city.asian_wall_4</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>city.tropical_city_0</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>city.tropical_city_1</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>city.tropical_city_2</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>city.tropical_city_3</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>city.tropical_city_4</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>city.tropical_wall_0</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>city.tropical_wall_1</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>city.tropical_wall_2</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>city.tropical_wall_3</tag>
+      </tile>
+      <tile x="9" y="1">
+        <tag>city.tropical_wall_4</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>city.celtic_city_0</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>city.celtic_city_1</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>city.celtic_city_2</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>city.celtic_city_3</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>city.celtic_city_4</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>city.celtic_wall_0</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>city.celtic_wall_1</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>city.celtic_wall_2</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>city.celtic_wall_3</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>city.celtic_wall_4</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>city.classical_city_0</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>city.classical_city_1</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>city.classical_city_2</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>city.classical_city_3</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>city.classical_city_4</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>city.classical_wall_0</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>city.classical_wall_1</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>city.classical_wall_2</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>city.classical_wall_3</tag>
+      </tile>
+      <tile x="9" y="3">
+        <tag>city.classical_wall_4</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>city.babylonian_city_0</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>city.babylonian_city_1</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>city.babylonian_city_2</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>city.babylonian_city_3</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>city.babylonian_city_4</tag>
+      </tile>
+      <tile x="5" y="4">
+        <tag>city.babylonian_wall_0</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>city.babylonian_wall_1</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>city.babylonian_wall_2</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>city.babylonian_wall_3</tag>
+      </tile>
+      <tile x="9" y="4">
+        <tag>city.babylonian_wall_4</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

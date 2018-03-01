@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/governments">
+    <grid name="main" x="0" y="0" width="15" height="20" border="0">
+      <tile x="0" y="0">
+        <tag>gov.anarchy</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>gov.despotism</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>gov.monarchy</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>gov.communism</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>gov.fundamentalism</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>gov.republic</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>gov.democracy</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>gov.tribal</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>gov.federation</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

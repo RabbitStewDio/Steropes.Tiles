@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/ocean">
+    <grid name="main" x="0" y="0" width="96" height="48" border="0">
+      <tile x="8" y="8">
+        <tag>t.l0.cellgroup_d_d_d_d</tag>
+      </tile>
+      <tile x="7" y="8">
+        <tag>t.l0.cellgroup_s_d_d_d</tag>
+      </tile>
+      <tile x="6" y="8">
+        <tag>t.l0.cellgroup_l_d_d_d</tag>
+      </tile>
+      <tile x="5" y="8">
+        <tag>t.l0.cellgroup_d_d_d_s</tag>
+      </tile>
+      <tile x="4" y="8">
+        <tag>t.l0.cellgroup_s_d_d_s</tag>
+      </tile>
+      <tile x="3" y="8">
+        <tag>t.l0.cellgroup_l_d_d_s</tag>
+      </tile>
+      <tile x="2" y="8">
+        <tag>t.l0.cellgroup_d_d_d_l</tag>
+      </tile>
+      <tile x="1" y="8">
+        <tag>t.l0.cellgroup_s_d_d_l</tag>
+      </tile>
+      <tile x="0" y="8">
+        <tag>t.l0.cellgroup_l_d_d_l</tag>
+      </tile>
+      <tile x="8" y="7">
+        <tag>t.l0.cellgroup_d_s_d_d</tag>
+      </tile>
+      <tile x="7" y="7">
+        <tag>t.l0.cellgroup_s_s_d_d</tag>
+      </tile>
+      <tile x="6" y="7">
+        <tag>t.l0.cellgroup_l_s_d_d</tag>
+      </tile>
+      <tile x="5" y="7">
+        <tag>t.l0.cellgroup_d_s_d_s</tag>
+      </tile>
+      <tile x="4" y="7">
+        <tag>t.l0.cellgroup_s_s_d_s</tag>
+      </tile>
+      <tile x="3" y="7">
+        <tag>t.l0.cellgroup_l_s_d_s</tag>
+      </tile>
+      <tile x="2" y="7">
+        <tag>t.l0.cellgroup_d_s_d_l</tag>
+      </tile>
+      <tile x="1" y="7">
+        <tag>t.l0.cellgroup_s_s_d_l</tag>
+      </tile>
+      <tile x="0" y="7">
+        <tag>t.l0.cellgroup_l_s_d_l</tag>
+      </tile>
+      <tile x="8" y="6">
+        <tag>t.l0.cellgroup_d_l_d_d</tag>
+      </tile>
+      <tile x="7" y="6">
+        <tag>t.l0.cellgroup_s_l_d_d</tag>
+      </tile>
+      <tile x="6" y="6">
+        <tag>t.l0.cellgroup_l_l_d_d</tag>
+      </tile>
+      <tile x="5" y="6">
+        <tag>t.l0.cellgroup_d_l_d_s</tag>
+      </tile>
+      <tile x="4" y="6">
+        <tag>t.l0.cellgroup_s_l_d_s</tag>
+      </tile>
+      <tile x="3" y="6">
+        <tag>t.l0.cellgroup_l_l_d_s</tag>
+      </tile>
+      <tile x="2" y="6">
+        <tag>t.l0.cellgroup_d_l_d_l</tag>
+      </tile>
+      <tile x="1" y="6">
+        <tag>t.l0.cellgroup_s_l_d_l</tag>
+      </tile>
+      <tile x="0" y="6">
+        <tag>t.l0.cellgroup_l_l_d_l</tag>
+      </tile>
+      <tile x="8" y="5">
+        <tag>t.l0.cellgroup_d_d_s_d</tag>
+      </tile>
+      <tile x="7" y="5">
+        <tag>t.l0.cellgroup_s_d_s_d</tag>
+      </tile>
+      <tile x="6" y="5">
+        <tag>t.l0.cellgroup_l_d_s_d</tag>
+      </tile>
+      <tile x="5" y="5">
+        <tag>t.l0.cellgroup_d_d_s_s</tag>
+      </tile>
+      <tile x="4" y="5">
+        <tag>t.l0.cellgroup_s_d_s_s</tag>
+      </tile>
+      <tile x="3" y="5">
+        <tag>t.l0.cellgroup_l_d_s_s</tag>
+      </tile>
+      <tile x="2" y="5">
+        <tag>t.l0.cellgroup_d_d_s_l</tag>
+      </tile>
+      <tile x="1" y="5">
+        <tag>t.l0.cellgroup_s_d_s_l</tag>
+      </tile>
+      <tile x="0" y="5">
+        <tag>t.l0.cellgroup_l_d_s_l</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>t.l0.cellgroup_d_s_s_d</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>t.l0.cellgroup_s_s_s_d</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>t.l0.cellgroup_l_s_s_d</tag>
+      </tile>
+      <tile x="5" y="4">
+        <tag>t.l0.cellgroup_d_s_s_s</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>t.l0.cellgroup_s_s_s_s</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>t.l0.cellgroup_l_s_s_s</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>t.l0.cellgroup_d_s_s_l</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>t.l0.cellgroup_s_s_s_l</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>t.l0.cellgroup_l_s_s_l</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>t.l0.cellgroup_d_l_s_d</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>t.l0.cellgroup_s_l_s_d</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>t.l0.cellgroup_l_l_s_d</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>t.l0.cellgroup_d_l_s_s</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>t.l0.cellgroup_s_l_s_s</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>t.l0.cellgroup_l_l_s_s</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>t.l0.cellgroup_d_l_s_l</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>t.l0.cellgroup_s_l_s_l</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>t.l0.cellgroup_l_l_s_l</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>t.l0.cellgroup_d_d_l_d</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>t.l0.cellgroup_s_d_l_d</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>t.l0.cellgroup_l_d_l_d</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>t.l0.cellgroup_d_d_l_s</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>t.l0.cellgroup_s_d_l_s</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>t.l0.cellgroup_l_d_l_s</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>t.l0.cellgroup_d_d_l_l</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>t.l0.cellgroup_s_d_l_l</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>t.l0.cellgroup_l_d_l_l</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>t.l0.cellgroup_d_s_l_d</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>t.l0.cellgroup_s_s_l_d</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>t.l0.cellgroup_l_s_l_d</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>t.l0.cellgroup_d_s_l_s</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>t.l0.cellgroup_s_s_l_s</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>t.l0.cellgroup_l_s_l_s</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>t.l0.cellgroup_d_s_l_l</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>t.l0.cellgroup_s_s_l_l</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>t.l0.cellgroup_l_s_l_l</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>t.l0.cellgroup_d_l_l_d</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>t.l0.cellgroup_s_l_l_d</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>t.l0.cellgroup_l_l_l_d</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>t.l0.cellgroup_d_l_l_s</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>t.l0.cellgroup_s_l_l_s</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>t.l0.cellgroup_l_l_l_s</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>t.l0.cellgroup_d_l_l_l</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>t.l0.cellgroup_s_l_l_l</tag>
+      </tile>
+      <tile x="0" y="0">
+        <tag>t.l0.cellgroup_l_l_l_l</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/specialists">
+    <grid name="main" x="0" y="0" width="15" height="20" border="0">
+      <tile x="0" y="0">
+        <tag>specialist.elvis_0</tag>
+        <tag>specialist.entertainer_0</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>specialist.elvis_1</tag>
+        <tag>specialist.entertainer_1</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>specialist.scientist_0</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>specialist.scientist_1</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>specialist.taxman_0</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>specialist.taxman_1</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>specialist.worker_0</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>specialist.worker_1</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>specialist.farmer_0</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>specialist.farmer_1</tag>
+      </tile>
+      <tile x="10" y="0">
+        <tag>specialist.merchant_0</tag>
+      </tile>
+      <tile x="11" y="0">
+        <tag>specialist.merchant_1</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

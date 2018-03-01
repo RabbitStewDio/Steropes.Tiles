@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/tiles">
+    <grid name="main" x="0" y="0" width="96" height="48" border="0">
+      <tile x="18" y="0">
+        <tag>unit.auto_attack</tag>
+        <tag>unit.auto_settler</tag>
+      </tile>
+      <tile x="19" y="0">
+        <tag>unit.stack</tag>
+      </tile>
+      <tile x="17" y="1">
+        <tag>unit.loaded</tag>
+      </tile>
+      <tile x="18" y="1">
+        <tag>unit.connect</tag>
+      </tile>
+      <tile x="19" y="1">
+        <tag>unit.auto_explore</tag>
+      </tile>
+      <tile x="12" y="2">
+        <tag>unit.transform</tag>
+      </tile>
+      <tile x="13" y="2">
+        <tag>unit.sentry</tag>
+      </tile>
+      <tile x="14" y="2">
+        <tag>unit.goto</tag>
+      </tile>
+      <tile x="15" y="2">
+        <tag>unit.plant</tag>
+      </tile>
+      <tile x="16" y="2">
+        <tag>unit.pollution</tag>
+      </tile>
+      <tile x="17" y="2">
+        <tag>unit.road</tag>
+      </tile>
+      <tile x="18" y="2">
+        <tag>unit.irrigate</tag>
+      </tile>
+      <tile x="19" y="2">
+        <tag>unit.fortifying</tag>
+        <tag>unit.fortress</tag>
+      </tile>
+      <tile x="15" y="3">
+        <tag>unit.convert</tag>
+      </tile>
+      <tile x="16" y="3">
+        <tag>unit.airbase</tag>
+      </tile>
+      <tile x="17" y="3">
+        <tag>unit.pillage</tag>
+      </tile>
+      <tile x="18" y="3">
+        <tag>unit.fortified</tag>
+      </tile>
+      <tile x="19" y="3">
+        <tag>unit.fallout</tag>
+      </tile>
+      <tile x="19" y="4">
+        <tag>unit.patrol</tag>
+      </tile>
+      <tile x="0" y="7">
+        <tag>unit.hp_100</tag>
+      </tile>
+      <tile x="1" y="7">
+        <tag>unit.hp_90</tag>
+      </tile>
+      <tile x="2" y="7">
+        <tag>unit.hp_80</tag>
+      </tile>
+      <tile x="3" y="7">
+        <tag>unit.hp_70</tag>
+      </tile>
+      <tile x="4" y="7">
+        <tag>unit.hp_60</tag>
+      </tile>
+      <tile x="5" y="7">
+        <tag>unit.hp_50</tag>
+      </tile>
+      <tile x="6" y="7">
+        <tag>unit.hp_40</tag>
+      </tile>
+      <tile x="7" y="7">
+        <tag>unit.hp_30</tag>
+      </tile>
+      <tile x="8" y="7">
+        <tag>unit.hp_20</tag>
+      </tile>
+      <tile x="9" y="7">
+        <tag>unit.hp_10</tag>
+      </tile>
+      <tile x="10" y="7">
+        <tag>unit.hp_0</tag>
+      </tile>
+      <tile x="0" y="5">
+        <tag>city.size_0</tag>
+      </tile>
+      <tile x="1" y="5">
+        <tag>city.size_1</tag>
+      </tile>
+      <tile x="2" y="5">
+        <tag>city.size_2</tag>
+      </tile>
+      <tile x="3" y="5">
+        <tag>city.size_3</tag>
+      </tile>
+      <tile x="4" y="5">
+        <tag>city.size_4</tag>
+      </tile>
+      <tile x="5" y="5">
+        <tag>city.size_5</tag>
+      </tile>
+      <tile x="6" y="5">
+        <tag>city.size_6</tag>
+      </tile>
+      <tile x="7" y="5">
+        <tag>city.size_7</tag>
+      </tile>
+      <tile x="8" y="5">
+        <tag>city.size_8</tag>
+      </tile>
+      <tile x="9" y="5">
+        <tag>city.size_9</tag>
+      </tile>
+      <tile x="10" y="5">
+        <tag>city.size_00</tag>
+      </tile>
+      <tile x="11" y="5">
+        <tag>city.size_10</tag>
+      </tile>
+      <tile x="12" y="5">
+        <tag>city.size_20</tag>
+      </tile>
+      <tile x="13" y="5">
+        <tag>city.size_30</tag>
+      </tile>
+      <tile x="14" y="5">
+        <tag>city.size_40</tag>
+      </tile>
+      <tile x="15" y="5">
+        <tag>city.size_50</tag>
+      </tile>
+      <tile x="16" y="5">
+        <tag>city.size_60</tag>
+      </tile>
+      <tile x="17" y="5">
+        <tag>city.size_70</tag>
+      </tile>
+      <tile x="18" y="5">
+        <tag>city.size_80</tag>
+      </tile>
+      <tile x="19" y="5">
+        <tag>city.size_90</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>city.size_100</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>city.size_200</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>city.size_300</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>city.size_400</tag>
+      </tile>
+      <tile x="5" y="4">
+        <tag>city.size_500</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>city.size_600</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>city.size_700</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>city.size_800</tag>
+      </tile>
+      <tile x="9" y="4">
+        <tag>city.size_900</tag>
+      </tile>
+      <tile x="0" y="8">
+        <tag>city.t_food_0</tag>
+      </tile>
+      <tile x="1" y="8">
+        <tag>city.t_food_1</tag>
+      </tile>
+      <tile x="2" y="8">
+        <tag>city.t_food_2</tag>
+      </tile>
+      <tile x="3" y="8">
+        <tag>city.t_food_3</tag>
+      </tile>
+      <tile x="4" y="8">
+        <tag>city.t_food_4</tag>
+      </tile>
+      <tile x="5" y="8">
+        <tag>city.t_food_5</tag>
+      </tile>
+      <tile x="6" y="8">
+        <tag>city.t_food_6</tag>
+      </tile>
+      <tile x="7" y="8">
+        <tag>city.t_food_7</tag>
+      </tile>
+      <tile x="8" y="8">
+        <tag>city.t_food_8</tag>
+      </tile>
+      <tile x="9" y="8">
+        <tag>city.t_food_9</tag>
+      </tile>
+      <tile x="0" y="6">
+        <tag>city.t_shields_0</tag>
+      </tile>
+      <tile x="1" y="6">
+        <tag>city.t_shields_1</tag>
+      </tile>
+      <tile x="2" y="6">
+        <tag>city.t_shields_2</tag>
+      </tile>
+      <tile x="3" y="6">
+        <tag>city.t_shields_3</tag>
+      </tile>
+      <tile x="4" y="6">
+        <tag>city.t_shields_4</tag>
+      </tile>
+      <tile x="5" y="6">
+        <tag>city.t_shields_5</tag>
+      </tile>
+      <tile x="6" y="6">
+        <tag>city.t_shields_6</tag>
+      </tile>
+      <tile x="7" y="6">
+        <tag>city.t_shields_7</tag>
+      </tile>
+      <tile x="8" y="6">
+        <tag>city.t_shields_8</tag>
+      </tile>
+      <tile x="9" y="6">
+        <tag>city.t_shields_9</tag>
+      </tile>
+      <tile x="10" y="6">
+        <tag>city.t_trade_0</tag>
+      </tile>
+      <tile x="11" y="6">
+        <tag>city.t_trade_1</tag>
+      </tile>
+      <tile x="12" y="6">
+        <tag>city.t_trade_2</tag>
+      </tile>
+      <tile x="13" y="6">
+        <tag>city.t_trade_3</tag>
+      </tile>
+      <tile x="14" y="6">
+        <tag>city.t_trade_4</tag>
+      </tile>
+      <tile x="15" y="6">
+        <tag>city.t_trade_5</tag>
+      </tile>
+      <tile x="16" y="6">
+        <tag>city.t_trade_6</tag>
+      </tile>
+      <tile x="17" y="6">
+        <tag>city.t_trade_7</tag>
+      </tile>
+      <tile x="18" y="6">
+        <tag>city.t_trade_8</tag>
+      </tile>
+      <tile x="19" y="6">
+        <tag>city.t_trade_9</tag>
+      </tile>
+      <tile x="0" y="0">
+        <tag>explode.nuke_00</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>explode.nuke_01</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>explode.nuke_02</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>explode.nuke_10</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>explode.nuke_11</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>explode.nuke_12</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>explode.nuke_20</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>explode.nuke_21</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>explode.nuke_22</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

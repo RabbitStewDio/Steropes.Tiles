@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema id="style"
+    targetNamespace="http://www.steropes-ui.org/namespaces/tiles/1.0"
+    elementFormDefault="qualified"
+    xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+  <xsd:annotation>
+    <xsd:documentation>
+      This schema exists to provide auto-complete hints for XML editors.
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:complexType mixed="false" name="tileType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Defines a single tile. 
+        
+        Requires an 'x' and 'y' grid coordinate that references the
+        tile's position in the grid. This coordinate is not a pixel
+        coordinate!
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element type="xsd:string" name="tag"/>
+    </xsd:choice>
+    
+    <xsd:attribute type="xsd:string" name="name" use="optional"/>
+    <xsd:attribute name="x" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="y" type="xsd:unsignedInt" use="required"/>
+  </xsd:complexType>
+  
+  <xsd:complexType mixed="false" name="gridType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Defines a grid of tiles. The grid starts at the offset 'x' and 'y'.
+        Each tile contained in the grid has a default width and height of
+        'width' and 'height'. X, Y, Width and Height are required attributes.
+        
+        Each tile within the grid can be separated by a border (via the 
+        attribute 'border' or separately for each axis via 'border-x' and 
+        'border-y'). Border defaults to zero.
+        
+        The anchor point for each tile is defined via the 'anchor-x' and 
+        'anchor-y' coordinate. This is used to align tiles of different 
+        sizes to the common reference point. If no anchor point is given,
+        the anchor point will be located at the centre point of the tile
+        ('with/2' and 'height/2'). 
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="tile" type="tileType"/>
+    </xsd:choice>
+    <xsd:attribute type="xsd:string" name="name" use="required"/>
+    <xsd:attribute name="x" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="y" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="width" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="height" type="xsd:unsignedInt" use="required"/>
+    <xsd:attribute name="border" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="border-x" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="border-y" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="anchor-x" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="anchor-y" type="xsd:unsignedInt" use="optional"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="collectionType">
+    <xsd:annotation>
+      <xsd:documentation>
+        A collection defines all tiles that share a given underlying texture atlas.
+        If you use the include feature, you should probably define one file per 
+        directory with multiple collections or one file per texture atlas with 
+        one collection each.
+        
+        The id given will be used by the content loader to load the underlying texture
+        for the texture atlas. Note that this ID should be a relative path that is based
+        on the base path that was used to initiate the parsing.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="grid" type="gridType"/>
+    </xsd:choice>
+    <xsd:attribute type="xsd:string" name="id" use="required"/>
+  </xsd:complexType>
+  
+  <xsd:complexType mixed="false" name="includeType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Defines an include file. This file will be read as if it is part of the
+        parent document. All paths are resolved relative to the currently parsed 
+        document.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute type="xsd:string" name="file" use="required"/>
+  </xsd:complexType>
+
+  <xsd:simpleType name="tileTypeAttr">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Grid"/>
+      <xsd:enumeration value="Isometric"/>
+      <xsd:enumeration value="Hex"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="metaDataType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Put any management information in here. The parser does not care about your
+        metadata.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+    </xsd:sequence>
+    <xsd:anyAttribute processContents="lax"/>
+  </xsd:complexType>
+  
+  <xsd:complexType mixed="false" name="tilesType">
+    <xsd:annotation>
+      <xsd:documentation>
+        The tiles element is the root of all documents (regardless of whether the
+        document is included or the base document).
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="metadata" type="metaDataType"/>
+      <xsd:element name="include" type="includeType"/>
+      <xsd:element name="collection" type="collectionType"/>
+    </xsd:choice>
+    <xsd:attribute name="type" type="tileTypeAttr" use="optional" default="Grid"/>
+    <xsd:attribute name="width" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="height" type="xsd:unsignedInt" use="optional"/>
+  </xsd:complexType>
+
+  <xsd:element name="tileset" type="tilesType">
+    <xsd:annotation>
+      <xsd:documentation>
+        This is the only valid root element for styles. See "stylesType" for contents.
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+
+</xsd:schema>

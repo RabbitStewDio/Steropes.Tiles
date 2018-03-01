@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/cursors">
+    <grid name="main" x="1" y="1" width="32" height="32" border="0">
+      <tile x="0" y="0">
+        <tag>cursor.goto0</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>cursor.goto1</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>cursor.goto2</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>cursor.goto3</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>cursor.goto4</tag>
+      </tile>
+      <tile x="0" y="5">
+        <tag>cursor.goto5</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>cursor.patrol0</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>cursor.patrol1</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>cursor.patrol2</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>cursor.patrol3</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>cursor.patrol4</tag>
+      </tile>
+      <tile x="1" y="5">
+        <tag>cursor.patrol5</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>cursor.paradrop0</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>cursor.paradrop1</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>cursor.paradrop2</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>cursor.paradrop3</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>cursor.paradrop4</tag>
+      </tile>
+      <tile x="2" y="5">
+        <tag>cursor.paradrop5</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>cursor.nuke0</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>cursor.nuke1</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>cursor.nuke2</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>cursor.nuke3</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>cursor.nuke4</tag>
+      </tile>
+      <tile x="3" y="5">
+        <tag>cursor.nuke5</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>cursor.select0</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>cursor.select1</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>cursor.select2</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>cursor.select3</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>cursor.select4</tag>
+      </tile>
+      <tile x="4" y="5">
+        <tag>cursor.select5</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>cursor.invalid0</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>cursor.invalid1</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>cursor.invalid2</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>cursor.invalid3</tag>
+      </tile>
+      <tile x="5" y="4">
+        <tag>cursor.invalid4</tag>
+      </tile>
+      <tile x="5" y="5">
+        <tag>cursor.invalid5</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>cursor.attack0</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>cursor.attack1</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>cursor.attack2</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>cursor.attack3</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>cursor.attack4</tag>
+      </tile>
+      <tile x="6" y="5">
+        <tag>cursor.attack5</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>cursor.edit_paint0</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>cursor.edit_paint1</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>cursor.edit_paint2</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>cursor.edit_paint3</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>cursor.edit_paint4</tag>
+      </tile>
+      <tile x="7" y="5">
+        <tag>cursor.edit_paint5</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>cursor.edit_add0</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>cursor.edit_add1</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>cursor.edit_add2</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>cursor.edit_add3</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>cursor.edit_add4</tag>
+      </tile>
+      <tile x="8" y="5">
+        <tag>cursor.edit_add5</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>cursor.wait0</tag>
+      </tile>
+      <tile x="9" y="1">
+        <tag>cursor.wait1</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>cursor.wait2</tag>
+      </tile>
+      <tile x="9" y="3">
+        <tag>cursor.wait3</tag>
+      </tile>
+      <tile x="9" y="4">
+        <tag>cursor.wait4</tag>
+      </tile>
+      <tile x="9" y="5">
+        <tag>cursor.wait5</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

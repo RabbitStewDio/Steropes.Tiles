@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/techs">
+    <grid name="main" x="0" y="0" width="48" height="48" border="0">
+      <tile x="0" y="0">
+        <tag>a.advanced_flight</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>a.alphabet</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>a.amphibious_warfare</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>a.astronomy</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>a.atomic_theory</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>a.automobile</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>a.banking</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>a.bridge_building</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>a.bronze_working</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>a.ceremonial_burial</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>a.chemistry</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>a.chivalry</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>a.code_of_laws</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>a.combined_arms</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>a.combustion</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>a.communism</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>a.computers</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>a.conscription</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>a.construction</tag>
+      </tile>
+      <tile x="9" y="1">
+        <tag>a.currency</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>a.democracy</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>a.economics</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>a.electricity</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>a.electronics</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>a.engineering</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>a.espionage</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>a.explosives</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>a.feudalism</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>a.flight</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>a.fusion_power</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>a.genetic_engineering</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>a.guerilla_warfare</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>a.gunpowder</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>a.horseback_riding</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>a.industrialization</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>a.invention</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>a.iron_working</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>a.labor_union</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>a.laser</tag>
+      </tile>
+      <tile x="9" y="3">
+        <tag>a.leadership</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>a.literacy</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>a.machine_tools</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>a.magnetism</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>a.map_making</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>a.masonry</tag>
+      </tile>
+      <tile x="5" y="4">
+        <tag>a.mass_production</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>a.mathematics</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>a.medicine</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>a.metallurgy</tag>
+      </tile>
+      <tile x="9" y="4">
+        <tag>a.miniaturization</tag>
+      </tile>
+      <tile x="0" y="5">
+        <tag>a.mobile_warfare</tag>
+      </tile>
+      <tile x="1" y="5">
+        <tag>a.monarchy</tag>
+      </tile>
+      <tile x="2" y="5">
+        <tag>a.monotheism</tag>
+      </tile>
+      <tile x="3" y="5">
+        <tag>a.mysticism</tag>
+      </tile>
+      <tile x="4" y="5">
+        <tag>a.navigation</tag>
+      </tile>
+      <tile x="5" y="5">
+        <tag>a.nuclear_fission</tag>
+      </tile>
+      <tile x="6" y="5">
+        <tag>a.nuclear_power</tag>
+      </tile>
+      <tile x="7" y="5">
+        <tag>a.philosophy</tag>
+      </tile>
+      <tile x="8" y="5">
+        <tag>a.physics</tag>
+      </tile>
+      <tile x="9" y="5">
+        <tag>a.plastics</tag>
+      </tile>
+      <tile x="0" y="6">
+        <tag>a.polytheism</tag>
+      </tile>
+      <tile x="1" y="6">
+        <tag>a.pottery</tag>
+      </tile>
+      <tile x="2" y="6">
+        <tag>a.radio</tag>
+      </tile>
+      <tile x="3" y="6">
+        <tag>a.railroad</tag>
+      </tile>
+      <tile x="4" y="6">
+        <tag>a.recycling</tag>
+      </tile>
+      <tile x="5" y="6">
+        <tag>a.refining</tag>
+      </tile>
+      <tile x="6" y="6">
+        <tag>a.refrigeration</tag>
+      </tile>
+      <tile x="7" y="6">
+        <tag>a.robotics</tag>
+      </tile>
+      <tile x="8" y="6">
+        <tag>a.rocketry</tag>
+      </tile>
+      <tile x="9" y="6">
+        <tag>a.sanitation</tag>
+      </tile>
+      <tile x="0" y="7">
+        <tag>a.seafaring</tag>
+      </tile>
+      <tile x="1" y="7">
+        <tag>a.space_flight</tag>
+      </tile>
+      <tile x="2" y="7">
+        <tag>a.stealth</tag>
+      </tile>
+      <tile x="3" y="7">
+        <tag>a.steam_engine</tag>
+      </tile>
+      <tile x="4" y="7">
+        <tag>a.steel</tag>
+      </tile>
+      <tile x="5" y="7">
+        <tag>a.superconductors</tag>
+      </tile>
+      <tile x="6" y="7">
+        <tag>a.tactics</tag>
+      </tile>
+      <tile x="7" y="7">
+        <tag>a.the_corporation</tag>
+      </tile>
+      <tile x="8" y="7">
+        <tag>a.theology</tag>
+      </tile>
+      <tile x="9" y="7">
+        <tag>a.theory_of_gravity</tag>
+      </tile>
+      <tile x="0" y="8">
+        <tag>a.the_republic</tag>
+      </tile>
+      <tile x="1" y="8">
+        <tag>a.the_wheel</tag>
+      </tile>
+      <tile x="2" y="8">
+        <tag>a.trade</tag>
+      </tile>
+      <tile x="3" y="8">
+        <tag>a.university</tag>
+      </tile>
+      <tile x="4" y="8">
+        <tag>a.warrior_code</tag>
+      </tile>
+      <tile x="5" y="8">
+        <tag>a.writing</tag>
+      </tile>
+      <tile x="6" y="8">
+        <tag>a.environmentalism</tag>
+      </tile>
+      <tile x="7" y="8">
+        <tag>a.fundamentalism</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

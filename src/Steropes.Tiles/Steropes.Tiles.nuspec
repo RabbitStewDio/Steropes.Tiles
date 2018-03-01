@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>tmorgner</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright 2017</copyright>
+    <licenseUrl>https://raw.githubusercontent.com/RabbitStewDio/Steropes.Tiles/develop/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/RabbitStewDio/Steropes.Tiles</projectUrl>
+    <description>Steropes-Tiles is a tile rendering framework for Monogame. This package is the platform and
+    library agnostic core library.
+    
+    The library allows you to separate your game's backend code from the graphical rendering of the current game state.
+    It encapsulates the rendering into easy to use facades that control size and location of the
+    rendered content and allow you to build complex graphical scenes assembled from predefined tiles.
+    Steropes.Tiles supports isometric and grid tiles and ships with a large set of matching algorithms 
+    to create rich graphical representations of your game data.</description>
+    <summary>Steropes-Tiles is a tile rendering framework for Monogame.</summary>
+    <tags>MonoGame Tiles Game</tags>
+  </metadata>
+</package>

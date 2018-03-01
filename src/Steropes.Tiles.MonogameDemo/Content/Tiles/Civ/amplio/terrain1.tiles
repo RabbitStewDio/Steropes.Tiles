@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/terrain1">
+    <grid name="main" x="1" y="1" width="96" height="48" border="1">
+      <tile x="0" y="0">
+        <tag>t.l0.desert1</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>t.l0.plains1</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>t.l0.grassland1</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>t.l0.forest1</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>t.l0.hills1</tag>
+      </tile>
+      <tile x="0" y="5">
+        <tag>t.l0.mountains1</tag>
+      </tile>
+      <tile x="0" y="6">
+        <tag>t.l0.tundra1</tag>
+      </tile>
+      <tile x="0" y="7">
+        <tag>t.l0.arctic1</tag>
+        <tag>t.blend.arctic</tag>
+      </tile>
+      <tile x="0" y="8">
+        <tag>t.l0.swamp1</tag>
+      </tile>
+      <tile x="0" y="9">
+        <tag>t.l0.jungle1</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>ts.oasis</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>ts.oil</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>ts.buffalo</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>ts.wheat</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>ts.pheasant</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>ts.silk</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>ts.coal</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>ts.wine</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>ts.gold</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>ts.iron</tag>
+      </tile>
+      <tile x="2" y="5">
+        <tag>ts.tundra_game</tag>
+      </tile>
+      <tile x="4" y="5">
+        <tag>ts.furs</tag>
+      </tile>
+      <tile x="2" y="6">
+        <tag>ts.arctic_ivory</tag>
+      </tile>
+      <tile x="4" y="6">
+        <tag>ts.arctic_oil</tag>
+      </tile>
+      <tile x="2" y="7">
+        <tag>ts.peat</tag>
+      </tile>
+      <tile x="4" y="7">
+        <tag>ts.spice</tag>
+      </tile>
+      <tile x="2" y="8">
+        <tag>ts.gems</tag>
+      </tile>
+      <tile x="4" y="8">
+        <tag>ts.fruit</tag>
+      </tile>
+      <tile x="2" y="9">
+        <tag>ts.fish</tag>
+      </tile>
+      <tile x="4" y="9">
+        <tag>ts.whales</tag>
+      </tile>
+      <tile x="2" y="10">
+        <tag>ts.seals</tag>
+      </tile>
+      <tile x="4" y="10">
+        <tag>ts.forest_game</tag>
+      </tile>
+      <tile x="2" y="11">
+        <tag>ts.horses</tag>
+      </tile>
+      <tile x="4" y="11">
+        <tag>ts.grassland_resources</tag>
+        <tag>ts.river_resources</tag>
+      </tile>
+      <tile x="0" y="12">
+        <tag>road.road_isolated</tag>
+      </tile>
+      <tile x="1" y="12">
+        <tag>road.road_n</tag>
+      </tile>
+      <tile x="2" y="12">
+        <tag>road.road_ne</tag>
+      </tile>
+      <tile x="3" y="12">
+        <tag>road.road_e</tag>
+      </tile>
+      <tile x="4" y="12">
+        <tag>road.road_se</tag>
+      </tile>
+      <tile x="5" y="12">
+        <tag>road.road_s</tag>
+      </tile>
+      <tile x="6" y="12">
+        <tag>road.road_sw</tag>
+      </tile>
+      <tile x="7" y="12">
+        <tag>road.road_w</tag>
+      </tile>
+      <tile x="8" y="12">
+        <tag>road.road_nw</tag>
+      </tile>
+      <tile x="0" y="13">
+        <tag>road.rail_isolated</tag>
+      </tile>
+      <tile x="1" y="13">
+        <tag>road.rail_n</tag>
+      </tile>
+      <tile x="2" y="13">
+        <tag>road.rail_ne</tag>
+      </tile>
+      <tile x="3" y="13">
+        <tag>road.rail_e</tag>
+      </tile>
+      <tile x="4" y="13">
+        <tag>road.rail_se</tag>
+      </tile>
+      <tile x="5" y="13">
+        <tag>road.rail_s</tag>
+      </tile>
+      <tile x="6" y="13">
+        <tag>road.rail_sw</tag>
+      </tile>
+      <tile x="7" y="13">
+        <tag>road.rail_w</tag>
+      </tile>
+      <tile x="8" y="13">
+        <tag>road.rail_nw</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>tx.oil_mine</tag>
+        <tag>tx.oil_rig</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>tx.irrigation</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>tx.farmland</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>tx.mine</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>tx.pollution</tag>
+      </tile>
+      <tile x="6" y="5">
+        <tag>tx.village</tag>
+      </tile>
+      <tile x="6" y="6">
+        <tag>tx.fallout</tag>
+      </tile>
+      <tile x="0" y="15">
+        <tag>t.dither_tile</tag>
+        <tag>tx.darkness</tag>
+      </tile>
+      <tile x="2" y="15">
+        <tag>mask.tile</tag>
+        <tag>t.unknown1</tag>
+      </tile>
+      <tile x="3" y="15">
+        <tag>t.blend.coast</tag>
+        <tag>t.blend.lake</tag>
+      </tile>
+      <tile x="4" y="15">
+        <tag>user.attention</tag>
+      </tile>
+      <tile x="5" y="15">
+        <tag>tx.fog</tag>
+      </tile>
+      <tile x="7" y="14">
+        <tag>path.exhausted_mp</tag>
+      </tile>
+      <tile x="7" y="15">
+        <tag>path.normal</tag>
+      </tile>
+      <tile x="8" y="14">
+        <tag>path.step</tag>
+      </tile>
+      <tile x="8" y="15">
+        <tag>path.waypoint</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

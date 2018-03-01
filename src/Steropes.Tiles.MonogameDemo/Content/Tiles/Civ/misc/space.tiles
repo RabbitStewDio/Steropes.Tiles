@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/space">
+    <grid name="main" x="0" y="0" width="60" height="60" border="0">
+      <tile x="0" y="0">
+        <tag>spaceship.solar_panels</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>spaceship.life_support</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>spaceship.habitation</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>spaceship.structural</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>spaceship.fuel</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>spaceship.propulsion</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>spaceship.exhaust</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

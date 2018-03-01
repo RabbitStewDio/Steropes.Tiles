@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/grid">
+    <grid name="main" x="1" y="1" width="96" height="48" border="1">
+      <tile x="0" y="0">
+        <tag>grid.main.we</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>grid.main.ns</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>grid.city.we</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>grid.city.ns</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>grid.worked.we</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>grid.worked.ns</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>grid.unavailable</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>grid.nonnative</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>grid.selected.we</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>grid.selected.ns</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>grid.coastline.we</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>grid.coastline.ns</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>grid.borders.n</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>grid.borders.s</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>grid.borders.w</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>grid.borders.e</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

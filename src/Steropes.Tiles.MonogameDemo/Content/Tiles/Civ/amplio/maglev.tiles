@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/maglev">
+    <grid name="main" x="0" y="0" width="96" height="48" border="1">
+      <tile x="0" y="0">
+        <tag>road.maglev_isolated</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>road.maglev_n</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>road.maglev_ne</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>road.maglev_e</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>road.maglev_se</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>road.maglev_s</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>road.maglev_sw</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>road.maglev_w</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>road.maglev_nw</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

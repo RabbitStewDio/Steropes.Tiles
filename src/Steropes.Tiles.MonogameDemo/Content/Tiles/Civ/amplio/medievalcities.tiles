@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/medievalcities">
+    <grid name="main" x="1" y="1" width="96" height="72" border="1">
+      <tile x="11" y="2">
+        <tag>city.european_occupied_0</tag>
+        <tag>city.industrial_occupied_0</tag>
+      </tile>
+      <tile x="0" y="0">
+        <tag>city.european_city_0</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>city.european_city_1</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>city.european_city_2</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>city.european_city_3</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>city.european_city_4</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>city.european_wall_0</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>city.european_wall_1</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>city.european_wall_2</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>city.european_wall_3</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>city.european_wall_4</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>city.industrial_city_0</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>city.industrial_city_1</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>city.industrial_city_2</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>city.industrial_city_3</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>city.industrial_city_4</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>city.industrial_wall_0</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>city.industrial_wall_1</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>city.industrial_wall_2</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>city.industrial_wall_3</tag>
+      </tile>
+      <tile x="9" y="1">
+        <tag>city.industrial_wall_4</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>
