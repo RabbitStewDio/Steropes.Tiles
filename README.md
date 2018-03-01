@@ -20,6 +20,18 @@ long as the data can be queried in some sort of grid format
 * highly optimized
 * support for sprite layers and GUI integration
 
+## License
+
+Steropes.Tiles is licensed under the MIT license. However, the 
+Steropes.Tiles.Monogame.Demo module contains tilesets from the
+FreeCiv project. Therefore the source code itself is dual licensed
+under the MIT license (that means you can use this code freely in
+your own projects) and GPL 2.0 licensed (same license as FreeCiv).
+
+All the graphics contained in that module are solely licensed under
+the GPL 2.0 license to comply with the intent and spirit of the 
+FreeCiv project.
+
 ## Rendering process
 
 Steropes.Tiles assumes that maps are rendered in multiple layers. The 
