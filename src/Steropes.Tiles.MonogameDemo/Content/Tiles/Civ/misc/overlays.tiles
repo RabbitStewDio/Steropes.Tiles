@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/overlays">
+    <grid name="main" x="2" y="2" width="128" height="64" border="0">
+      <tile x="0" y="0">
+        <tag>colors.overlay_0</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>colors.overlay_1</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>colors.overlay_2</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>colors.overlay_3</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>mask.worked_tile</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>mask.unworked_tile</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

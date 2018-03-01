@@ -1,0 +1,54 @@
+<styles xmlns="http://www.steropes-ui.org/namespaces/style/1.0">
+  <style element="RootPane">
+    <property name="color">blue</property>
+    <property name="frame-texture">
+      <texture/>
+    </property>
+  </style>
+
+  <style element="*">
+    <conditions>
+      <class>opaque-root</class>
+    </conditions>
+    <property name="color">white</property>
+    <property name="frame-texture">
+      <texture>
+        <name>Metro/WhitePixel</name>
+      </texture>
+    </property>
+  </style>
+  
+  <style element="CityBarWidget">
+    <property name="color">white</property>
+    <property name="frame-texture">
+      <texture>
+        <name>Metro/WhitePixel</name>
+      </texture>
+    </property>
+    <property name="frame-overlay-color">#6F6F6F</property>
+    <property name="frame-overlay-texture">
+      <texture>
+        <name>Metro/Frame</name>
+        <corners>
+          <all>4</all>
+        </corners>
+      </texture>
+    </property>
+
+    <style direct-child="false" element="Label">
+      <property name="padding">
+        <insets>
+          <all>2</all>
+        </insets>
+      </property>
+      <property name="font">
+        <font>
+          <name>Metro/Fonts/DialogSmall</name>
+        </font>
+      </property>
+    </style>
+
+  </style>
+  
+  
+</styles>

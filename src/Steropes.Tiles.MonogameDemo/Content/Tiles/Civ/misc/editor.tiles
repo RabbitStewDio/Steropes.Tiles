@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/editor">
+    <grid name="main" x="1" y="1" width="30" height="30" border="0">
+      <tile x="0" y="1">
+        <tag>editor.erase_2</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>editor.brush</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>editor.startpos</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>editor.terrain_2</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>editor.terrain_resource</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>editor.terrain_special_1</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>editor.terrain_special_2</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>editor.terrain_special</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>editor.terrain_special_4</tag>
+      </tile>
+      <tile x="9" y="1">
+        <tag>editor.terrain_special_5</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>editor.military_base</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>editor.unit_1</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>editor.city</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>editor.vision</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>editor.territory</tag>
+        <tag>editor.road</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>editor.properties</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>editor.copypaste</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>editor.unit</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>editor.unit_3</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>editor.unit_4</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>editor.erase</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>editor.terrain</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>editor.fill</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>editor.tiles_1</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>editor.tiles_2</tag>
+      </tile>
+      <tile x="9" y="3">
+        <tag>editor.terrain_resource_2</tag>
+      </tile>
+    </grid>
+    <grid name="mini" x="1" y="125" width="16" height="16" border="0">
+      <tile x="0" y="0">
+        <tag>editor.mini_p</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>editor.mini_m</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>editor.mini_d</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>editor.mini_g</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>editor.mini_o</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>editor.mini_h</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>editor.mini_r</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>editor.mini_s</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>editor.mini_f</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>editor.mini_t</tag>
+      </tile>
+      <tile x="10" y="0">
+        <tag>editor.mini_j</tag>
+      </tile>
+      <tile x="11" y="0">
+        <tag>editor.mini_gl</tag>
+      </tile>
+      <tile x="12" y="0">
+        <tag>editor.mini_erase</tag>
+      </tile>
+      <tile x="13" y="0">
+        <tag>editor.mini_freeciv</tag>
+      </tile>
+    </grid>
+    <grid name="extra" x="1" y="142" width="30" height="30" border="0">
+      <tile x="0" y="0">
+        <tag>editor.draw_line</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>editor.fill_enclosed</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>editor.tiny_brush</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>editor.type_paint</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>editor.bitmap_to_map</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>editor.copy</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>editor.paste</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

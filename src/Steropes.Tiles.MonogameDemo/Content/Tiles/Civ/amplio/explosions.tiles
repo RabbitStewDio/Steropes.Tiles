@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/explosions">
+    <grid name="main" x="0" y="0" width="30" height="30" border="0">
+      <tile x="0" y="0">
+        <tag>explode.unit_0</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>explode.unit_1</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>explode.unit_2</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>explode.unit_3</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>explode.unit_4</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

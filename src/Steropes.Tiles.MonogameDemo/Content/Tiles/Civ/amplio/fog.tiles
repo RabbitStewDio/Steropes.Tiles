@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/fog">
+    <grid name="main" x="0" y="0" width="96" height="48" border="0">
+      <tile x="0" y="0">
+        <tag>t.fog_f_f_f_f</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>t.fog_f_f_f_k</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>t.fog_f_f_f_u</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>t.fog_f_f_k_f</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>t.fog_f_f_k_k</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>t.fog_f_f_k_u</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>t.fog_f_f_u_f</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>t.fog_f_f_u_k</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>t.fog_f_f_u_u</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>t.fog_f_k_f_f</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>t.fog_f_k_f_k</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>t.fog_f_k_f_u</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>t.fog_f_k_k_f</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>t.fog_f_k_k_k</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>t.fog_f_k_k_u</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>t.fog_f_k_u_f</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>t.fog_f_k_u_k</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>t.fog_f_k_u_u</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>t.fog_f_u_f_f</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>t.fog_f_u_f_k</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>t.fog_f_u_f_u</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>t.fog_f_u_k_f</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>t.fog_f_u_k_k</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>t.fog_f_u_k_u</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>t.fog_f_u_u_f</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>t.fog_f_u_u_k</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>t.fog_f_u_u_u</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>t.fog_k_f_f_f</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>t.fog_k_f_f_k</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>t.fog_k_f_f_u</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>t.fog_k_f_k_f</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>t.fog_k_f_k_k</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>t.fog_k_f_k_u</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>t.fog_k_f_u_f</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>t.fog_k_f_u_k</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>t.fog_k_f_u_u</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>t.fog_k_k_f_f</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>t.fog_k_k_f_k</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>t.fog_k_k_f_u</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>t.fog_k_k_k_f</tag>
+      </tile>
+      <tile x="5" y="4">
+        <tag>t.fog_k_k_k_u</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>t.fog_k_k_u_f</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>t.fog_k_k_u_k</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>t.fog_k_k_u_u</tag>
+      </tile>
+      <tile x="0" y="5">
+        <tag>t.fog_k_u_f_f</tag>
+      </tile>
+      <tile x="1" y="5">
+        <tag>t.fog_k_u_f_k</tag>
+      </tile>
+      <tile x="2" y="5">
+        <tag>t.fog_k_u_f_u</tag>
+      </tile>
+      <tile x="3" y="5">
+        <tag>t.fog_k_u_k_f</tag>
+      </tile>
+      <tile x="4" y="5">
+        <tag>t.fog_k_u_k_k</tag>
+      </tile>
+      <tile x="5" y="5">
+        <tag>t.fog_k_u_k_u</tag>
+      </tile>
+      <tile x="6" y="5">
+        <tag>t.fog_k_u_u_f</tag>
+      </tile>
+      <tile x="7" y="5">
+        <tag>t.fog_k_u_u_k</tag>
+      </tile>
+      <tile x="8" y="5">
+        <tag>t.fog_k_u_u_u</tag>
+      </tile>
+      <tile x="0" y="6">
+        <tag>t.fog_u_f_f_f</tag>
+      </tile>
+      <tile x="1" y="6">
+        <tag>t.fog_u_f_f_k</tag>
+      </tile>
+      <tile x="2" y="6">
+        <tag>t.fog_u_f_f_u</tag>
+      </tile>
+      <tile x="3" y="6">
+        <tag>t.fog_u_f_k_f</tag>
+      </tile>
+      <tile x="4" y="6">
+        <tag>t.fog_u_f_k_k</tag>
+      </tile>
+      <tile x="5" y="6">
+        <tag>t.fog_u_f_k_u</tag>
+      </tile>
+      <tile x="6" y="6">
+        <tag>t.fog_u_f_u_f</tag>
+      </tile>
+      <tile x="7" y="6">
+        <tag>t.fog_u_f_u_k</tag>
+      </tile>
+      <tile x="8" y="6">
+        <tag>t.fog_u_f_u_u</tag>
+      </tile>
+      <tile x="0" y="7">
+        <tag>t.fog_u_k_f_f</tag>
+      </tile>
+      <tile x="1" y="7">
+        <tag>t.fog_u_k_f_k</tag>
+      </tile>
+      <tile x="2" y="7">
+        <tag>t.fog_u_k_f_u</tag>
+      </tile>
+      <tile x="3" y="7">
+        <tag>t.fog_u_k_k_f</tag>
+      </tile>
+      <tile x="4" y="7">
+        <tag>t.fog_u_k_k_k</tag>
+      </tile>
+      <tile x="5" y="7">
+        <tag>t.fog_u_k_k_u</tag>
+      </tile>
+      <tile x="6" y="7">
+        <tag>t.fog_u_k_u_f</tag>
+      </tile>
+      <tile x="7" y="7">
+        <tag>t.fog_u_k_u_k</tag>
+      </tile>
+      <tile x="8" y="7">
+        <tag>t.fog_u_k_u_u</tag>
+      </tile>
+      <tile x="0" y="8">
+        <tag>t.fog_u_u_f_f</tag>
+      </tile>
+      <tile x="1" y="8">
+        <tag>t.fog_u_u_f_k</tag>
+      </tile>
+      <tile x="2" y="8">
+        <tag>t.fog_u_u_f_u</tag>
+      </tile>
+      <tile x="3" y="8">
+        <tag>t.fog_u_u_k_f</tag>
+      </tile>
+      <tile x="4" y="8">
+        <tag>t.fog_u_u_k_k</tag>
+      </tile>
+      <tile x="5" y="8">
+        <tag>t.fog_u_u_k_u</tag>
+      </tile>
+      <tile x="6" y="8">
+        <tag>t.fog_u_u_u_f</tag>
+      </tile>
+      <tile x="7" y="8">
+        <tag>t.fog_u_u_u_k</tag>
+      </tile>
+      <tile x="8" y="8">
+        <tag>t.fog_u_u_u_u</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

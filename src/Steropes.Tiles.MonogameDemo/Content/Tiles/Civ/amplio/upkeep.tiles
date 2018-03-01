@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/upkeep">
+    <grid name="main" x="1" y="1" width="96" height="19" border="1">
+      <tile x="0" y="0">
+        <tag>upkeep.shield</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>upkeep.shield2</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>upkeep.shield3</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>upkeep.shield4</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>upkeep.shield5</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>upkeep.shield6</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>upkeep.shield7</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>upkeep.shield8</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>upkeep.shield9</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>upkeep.shield10</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>upkeep.gold</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>upkeep.gold2</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>upkeep.gold3</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>upkeep.gold4</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>upkeep.gold5</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>upkeep.gold6</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>upkeep.gold7</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>upkeep.gold8</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>upkeep.gold9</tag>
+      </tile>
+      <tile x="9" y="1">
+        <tag>upkeep.gold10</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>upkeep.food</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>upkeep.food2</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>upkeep.food3</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>upkeep.food4</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>upkeep.food5</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>upkeep.food6</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>upkeep.food7</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>upkeep.food8</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>upkeep.food9</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>upkeep.food10</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>upkeep.unhappy</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>upkeep.unhappy2</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>upkeep.unhappy3</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>upkeep.unhappy4</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>upkeep.unhappy5</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>upkeep.unhappy6</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>upkeep.unhappy7</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>upkeep.unhappy8</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>upkeep.unhappy9</tag>
+      </tile>
+      <tile x="9" y="3">
+        <tag>upkeep.unhappy10</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

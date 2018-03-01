@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0" type="Isometric">
+  <collection id="amplio/nuke">
+    <grid name="main" x="0" y="0" width="180" height="176" border="0">
+      <tile x="0" y="0">
+        <tag>explode.nuke</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

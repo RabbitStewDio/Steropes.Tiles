@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="misc/treaty">
+    <grid name="main" x="0" y="0" width="30" height="30" border="0">
+      <tile x="0" y="0">
+        <tag>treaty.agree_thumb_up</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>treaty.disagree_thumb_down</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

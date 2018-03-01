@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/water">
+    <grid name="main" x="1" y="1" width="96" height="48" border="1">
+      <tile x="0" y="2">
+        <tag>road.river_s_n0e0s0w0</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>road.river_s_n0e0s0w1</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>road.river_s_n0e0s1w0</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>road.river_s_n0e0s1w1</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>road.river_s_n0e1s0w0</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>road.river_s_n0e1s0w1</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>road.river_s_n0e1s1w0</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>road.river_s_n0e1s1w1</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>road.river_s_n1e0s0w0</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>road.river_s_n1e0s0w1</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>road.river_s_n1e0s1w0</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>road.river_s_n1e0s1w1</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>road.river_s_n1e1s0w0</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>road.river_s_n1e1s0w1</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>road.river_s_n1e1s1w0</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>road.river_s_n1e1s1w1</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>road.river_outlet_n</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>road.river_outlet_e</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>road.river_outlet_s</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>road.river_outlet_w</tag>
+      </tile>
+    </grid>
+    <grid name="coasts" x="1" y="437" width="48" height="24" border="1" anchor-x="24" anchor-y="12">
+      <tile x="0" y="0">
+        <tag>t.l1.coast_cell_u_w_w_w</tag>
+        <tag>t.l1.floor_cell_u_w_w_w</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>t.l1.coast_cell_u_i_w_w</tag>
+        <tag>t.l1.floor_cell_u_i_w_w</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>t.l1.coast_cell_u_w_i_w</tag>
+        <tag>t.l1.floor_cell_u_w_i_w</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>t.l1.coast_cell_u_i_i_w</tag>
+        <tag>t.l1.floor_cell_u_i_i_w</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>t.l1.coast_cell_u_w_w_i</tag>
+        <tag>t.l1.floor_cell_u_w_w_i</tag>
+      </tile>
+      <tile x="10" y="0">
+        <tag>t.l1.coast_cell_u_i_w_i</tag>
+        <tag>t.l1.floor_cell_u_i_w_i</tag>
+      </tile>
+      <tile x="12" y="0">
+        <tag>t.l1.coast_cell_u_w_i_i</tag>
+        <tag>t.l1.floor_cell_u_w_i_i</tag>
+      </tile>
+      <tile x="14" y="0">
+        <tag>t.l1.coast_cell_u_i_i_i</tag>
+        <tag>t.l1.floor_cell_u_i_i_i</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>t.l1.coast_cell_d_w_w_w</tag>
+        <tag>t.l1.floor_cell_d_w_w_w</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>t.l1.coast_cell_d_i_w_w</tag>
+        <tag>t.l1.floor_cell_d_i_w_w</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>t.l1.coast_cell_d_w_i_w</tag>
+        <tag>t.l1.floor_cell_d_w_i_w</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>t.l1.coast_cell_d_i_i_w</tag>
+        <tag>t.l1.floor_cell_d_i_i_w</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>t.l1.coast_cell_d_w_w_i</tag>
+        <tag>t.l1.floor_cell_d_w_w_i</tag>
+      </tile>
+      <tile x="10" y="1">
+        <tag>t.l1.coast_cell_d_i_w_i</tag>
+        <tag>t.l1.floor_cell_d_i_w_i</tag>
+      </tile>
+      <tile x="12" y="1">
+        <tag>t.l1.coast_cell_d_w_i_i</tag>
+        <tag>t.l1.floor_cell_d_w_i_i</tag>
+      </tile>
+      <tile x="14" y="1">
+        <tag>t.l1.coast_cell_d_i_i_i</tag>
+        <tag>t.l1.floor_cell_d_i_i_i</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>t.l1.coast_cell_l_w_w_w</tag>
+        <tag>t.l1.floor_cell_l_w_w_w</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>t.l1.coast_cell_l_i_w_w</tag>
+        <tag>t.l1.floor_cell_l_i_w_w</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>t.l1.coast_cell_l_w_i_w</tag>
+        <tag>t.l1.floor_cell_l_w_i_w</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>t.l1.coast_cell_l_i_i_w</tag>
+        <tag>t.l1.floor_cell_l_i_i_w</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>t.l1.coast_cell_l_w_w_i</tag>
+        <tag>t.l1.floor_cell_l_w_w_i</tag>
+      </tile>
+      <tile x="10" y="2">
+        <tag>t.l1.coast_cell_l_i_w_i</tag>
+        <tag>t.l1.floor_cell_l_i_w_i</tag>
+      </tile>
+      <tile x="12" y="2">
+        <tag>t.l1.coast_cell_l_w_i_i</tag>
+        <tag>t.l1.floor_cell_l_w_i_i</tag>
+      </tile>
+      <tile x="14" y="2">
+        <tag>t.l1.coast_cell_l_i_i_i</tag>
+        <tag>t.l1.floor_cell_l_i_i_i</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>t.l1.coast_cell_r_w_w_w</tag>
+        <tag>t.l1.floor_cell_r_w_w_w</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>t.l1.coast_cell_r_i_w_w</tag>
+        <tag>t.l1.floor_cell_r_i_w_w</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>t.l1.coast_cell_r_w_i_w</tag>
+        <tag>t.l1.floor_cell_r_w_i_w</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>t.l1.coast_cell_r_i_i_w</tag>
+        <tag>t.l1.floor_cell_r_i_i_w</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>t.l1.coast_cell_r_w_w_i</tag>
+        <tag>t.l1.floor_cell_r_w_w_i</tag>
+      </tile>
+      <tile x="11" y="2">
+        <tag>t.l1.coast_cell_r_i_w_i</tag>
+        <tag>t.l1.floor_cell_r_i_w_i</tag>
+      </tile>
+      <tile x="13" y="2">
+        <tag>t.l1.coast_cell_r_w_i_i</tag>
+        <tag>t.l1.floor_cell_r_w_i_i</tag>
+      </tile>
+      <tile x="15" y="2">
+        <tag>t.l1.coast_cell_r_i_i_i</tag>
+        <tag>t.l1.floor_cell_r_i_i_i</tag>
+      </tile>
+      <tile x="0" y="9">
+        <tag>t.l0.lake_cell_u_s_s_s</tag>
+      </tile>
+      <tile x="2" y="9">
+        <tag>t.l0.lake_cell_u_l_s_s</tag>
+      </tile>
+      <tile x="4" y="9">
+        <tag>t.l0.lake_cell_u_s_l_s</tag>
+      </tile>
+      <tile x="6" y="9">
+        <tag>t.l0.lake_cell_u_l_l_s</tag>
+      </tile>
+      <tile x="8" y="9">
+        <tag>t.l0.lake_cell_u_s_s_l</tag>
+      </tile>
+      <tile x="10" y="9">
+        <tag>t.l0.lake_cell_u_l_s_l</tag>
+      </tile>
+      <tile x="12" y="9">
+        <tag>t.l0.lake_cell_u_s_l_l</tag>
+      </tile>
+      <tile x="14" y="9">
+        <tag>t.l0.lake_cell_u_l_l_l</tag>
+      </tile>
+      <tile x="0" y="10">
+        <tag>t.l0.lake_cell_d_s_s_s</tag>
+      </tile>
+      <tile x="2" y="10">
+        <tag>t.l0.lake_cell_d_l_s_s</tag>
+      </tile>
+      <tile x="4" y="10">
+        <tag>t.l0.lake_cell_d_s_l_s</tag>
+      </tile>
+      <tile x="6" y="10">
+        <tag>t.l0.lake_cell_d_l_l_s</tag>
+      </tile>
+      <tile x="8" y="10">
+        <tag>t.l0.lake_cell_d_s_s_l</tag>
+      </tile>
+      <tile x="10" y="10">
+        <tag>t.l0.lake_cell_d_l_s_l</tag>
+      </tile>
+      <tile x="12" y="10">
+        <tag>t.l0.lake_cell_d_s_l_l</tag>
+      </tile>
+      <tile x="14" y="10">
+        <tag>t.l0.lake_cell_d_l_l_l</tag>
+      </tile>
+      <tile x="0" y="11">
+        <tag>t.l0.lake_cell_l_s_s_s</tag>
+      </tile>
+      <tile x="2" y="11">
+        <tag>t.l0.lake_cell_l_l_s_s</tag>
+      </tile>
+      <tile x="4" y="11">
+        <tag>t.l0.lake_cell_l_s_l_s</tag>
+      </tile>
+      <tile x="6" y="11">
+        <tag>t.l0.lake_cell_l_l_l_s</tag>
+      </tile>
+      <tile x="8" y="11">
+        <tag>t.l0.lake_cell_l_s_s_l</tag>
+      </tile>
+      <tile x="10" y="11">
+        <tag>t.l0.lake_cell_l_l_s_l</tag>
+      </tile>
+      <tile x="12" y="11">
+        <tag>t.l0.lake_cell_l_s_l_l</tag>
+      </tile>
+      <tile x="14" y="11">
+        <tag>t.l0.lake_cell_l_l_l_l</tag>
+      </tile>
+      <tile x="1" y="11">
+        <tag>t.l0.lake_cell_r_s_s_s</tag>
+      </tile>
+      <tile x="3" y="11">
+        <tag>t.l0.lake_cell_r_l_s_s</tag>
+      </tile>
+      <tile x="5" y="11">
+        <tag>t.l0.lake_cell_r_s_l_s</tag>
+      </tile>
+      <tile x="7" y="11">
+        <tag>t.l0.lake_cell_r_l_l_s</tag>
+      </tile>
+      <tile x="9" y="11">
+        <tag>t.l0.lake_cell_r_s_s_l</tag>
+      </tile>
+      <tile x="11" y="11">
+        <tag>t.l0.lake_cell_r_l_s_l</tag>
+      </tile>
+      <tile x="13" y="11">
+        <tag>t.l0.lake_cell_r_s_l_l</tag>
+      </tile>
+      <tile x="15" y="11">
+        <tag>t.l0.lake_cell_r_l_l_l</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

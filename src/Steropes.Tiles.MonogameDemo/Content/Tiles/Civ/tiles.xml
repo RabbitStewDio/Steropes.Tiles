@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0" 
+         width="96" height="48" type="Isometric">
+  <metadata>
+  </metadata>
+  <include file="amplio/ancientcities.tiles"/>
+  <include file="amplio/explosions.tiles"/>
+  <include file="amplio/fog.tiles"/>
+  <include file="amplio/grid.tiles"/>
+  <include file="amplio/maglev.tiles"/>
+  <include file="amplio/medievalcities.tiles"/>
+  <include file="amplio/moderncities.tiles"/>
+  <include file="amplio/nuke.tiles"/>
+  <include file="amplio/ocean.tiles"/>
+  <include file="amplio/select.tiles"/>
+  <include file="amplio/terrain1.tiles"/>
+  <include file="amplio/terrain2.tiles"/>
+  <include file="amplio/tiles.tiles"/>
+  <include file="amplio/units.tiles"/>
+  <include file="amplio/upkeep.tiles"/>
+  <include file="amplio/water.tiles"/>
+  <include file="misc/citybar.tiles"/>
+  <include file="misc/cursors.tiles"/>
+  <include file="misc/editor.tiles"/>
+  <include file="misc/events.tiles"/>
+  <include file="misc/governments.tiles"/>
+  <include file="misc/overlays.tiles"/>
+  <include file="misc/small.tiles"/>
+  <include file="misc/space.tiles"/>
+  <include file="misc/specialists.tiles"/>
+  <include file="misc/techs.tiles"/>
+  <include file="misc/treaty.tiles"/>
+</tileset>

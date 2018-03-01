@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tileset tile-width="54" tile-height="27">
+  <collection id="dg_iso32">
+    <grid x="0" y="0" width="54" height="48" anchor-x="27" anchor-y="34">
+      <tile x="0" y="0">
+        <id>gras-floor</id>
+        <tag>gras</tag>
+      </tile>
+      <tile x="1" y="4">
+        <id>stone-floor</id>
+        <tag>stone</tag>
+      </tile>
+      <tile x="0" y="5">
+        <name>wall, single wall and catch-all for dangling entries.</name>
+        <tag>wall_N0E0S0W0</tag>
+        <tag>wall_N1E0S0W0</tag>
+        <tag>wall_N0E1S0W0</tag>
+        <tag>wall_N0E0S1W0</tag>
+        <tag>wall_N0E0S0W1</tag>
+      </tile>
+      <tile x="1" y="5">
+        <name>wall, north to south</name>
+        <tag>wall_N1E0S1W0</tag>
+      </tile>
+      <tile x="2" y="5">
+        <name>wall, east to west</name>
+        <tag>wall_N0E1S0W1</tag>
+      </tile>
+      <tile x="3" y="5">
+        <name>wall, corner south west</name>
+        <tag>wall_N0E0S1W1</tag>
+      </tile>
+      <tile x="4" y="5">
+        <name>wall, corner north west</name>
+        <tag>wall_N1E0S0W1</tag>
+      </tile>
+      <tile x="5" y="5">
+        <name>wall, corner north east</name>
+        <tag>wall_N1E1S0W0</tag>
+      </tile>
+      <tile x="6" y="5">
+        <name>wall, corner south east</name>
+        <tag>wall_N0E1S1W0</tag>
+      </tile>
+      <tile x="7" y="5">
+        <name>wall, junction north, east and south</name>
+        <tag>wall_N1E1S1W0</tag>
+      </tile>
+      <tile x="8" y="5">
+        <name>wall, junction north, south west</name>
+        <tag>wall_N1E0S1W1</tag>
+      </tile>
+      <tile x="9" y="5">
+        <name>wall, junction north, east and west</name>
+        <tag>wall_N1E1S0W1</tag>
+      </tile>
+      <tile x="10" y="5">
+        <name>wall, junction east, south and west</name>
+        <tag>wall_N0E1S1W1</tag>
+      </tile>
+      <tile x="11" y="5">
+        <name>wall, junction all directions</name>
+        <tag>wall_N1E1S1W1</tag>
+      </tile>
+      <tile x="11" y="6">
+        <name>door-closed-ns</name>
+        <tag>door-closed_N1E0S1W0</tag>
+      </tile>
+      <tile x="12" y="6">
+        <name>door-closed-ew</name>
+        <tag>door-closed_N0E1S0W1</tag>
+      </tile>
+      <tile x="12" y="6">
+        <name>door-closed-fallback</name>
+        <tag>door-closed</tag>
+      </tile>
+      <tile x="13" y="6">
+        <name>door-open-ns</name>
+        <tag>door-open_N1E0S1W0</tag>
+      </tile>
+      <tile x="0" y="7">
+        <name>door-open-ew</name>
+        <tag>door-open_N0E1S0W1</tag>
+      </tile>
+      <tile x="0" y="7">
+        <name>door-open-fallback</name>
+        <tag>door-open</tag>
+      </tile>
+      <tile x="1" y="7">
+        <name>stairs-ns</name>
+        <tag>stairs_N1E0S1W0</tag>
+      </tile>
+      <tile x="2" y="7">
+        <name>stairs-ew</name>
+        <tag>stairs_N0E1S0W1</tag>
+      </tile>
+      <tile x="2" y="7">
+        <name>stairs-fallback</name>
+        <tag>stairs</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

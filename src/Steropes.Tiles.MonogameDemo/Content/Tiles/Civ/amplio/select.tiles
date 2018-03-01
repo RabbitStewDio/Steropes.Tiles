@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/select-alpha">
+    <grid name="main" x="0" y="0" width="96" height="48" border="0">
+      <tile x="0" y="0">
+        <tag>unit.select0</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>unit.select1</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>unit.select2</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>unit.select3</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

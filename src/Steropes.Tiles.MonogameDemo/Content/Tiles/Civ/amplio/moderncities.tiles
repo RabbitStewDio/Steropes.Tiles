@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/moderncities">
+    <grid name="main" x="1" y="1" width="96" height="72" border="1">
+      <tile x="2" y="1">
+        <tag>cd.city</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>cd.city_wall</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>cd.occupied</tag>
+        <tag>city.electricage_occupied_0</tag>
+        <tag>city.modern_occupied_0</tag>
+        <tag>city.postmodern_occupied_0</tag>
+      </tile>
+      <tile x="0" y="0">
+        <tag>city.disorder</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>base.airbase_mg</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>tx.airbase_full</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>base.outpost_fg</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>base.outpost_bg</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>base.buoy_mg</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>base.ruins_mg</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>base.airstrip_mg</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>base.fortress_fg</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>base.fortress_bg</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>city.electricage_city_0</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>city.electricage_city_1</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>city.electricage_city_2</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>city.electricage_city_3</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>city.electricage_city_4</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>city.electricage_wall_0</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>city.electricage_wall_1</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>city.electricage_wall_2</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>city.electricage_wall_3</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>city.electricage_wall_4</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>city.modern_city_0</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>city.modern_city_1</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>city.modern_city_2</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>city.modern_city_3</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>city.modern_city_4</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>city.modern_wall_0</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>city.modern_wall_1</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>city.modern_wall_2</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>city.modern_wall_3</tag>
+      </tile>
+      <tile x="9" y="3">
+        <tag>city.modern_wall_4</tag>
+      </tile>
+      <tile x="0" y="4">
+        <tag>city.postmodern_city_0</tag>
+      </tile>
+      <tile x="1" y="4">
+        <tag>city.postmodern_city_1</tag>
+      </tile>
+      <tile x="2" y="4">
+        <tag>city.postmodern_city_2</tag>
+      </tile>
+      <tile x="3" y="4">
+        <tag>city.postmodern_city_3</tag>
+      </tile>
+      <tile x="4" y="4">
+        <tag>city.postmodern_city_4</tag>
+      </tile>
+      <tile x="5" y="4">
+        <tag>city.postmodern_wall_0</tag>
+      </tile>
+      <tile x="6" y="4">
+        <tag>city.postmodern_wall_1</tag>
+      </tile>
+      <tile x="7" y="4">
+        <tag>city.postmodern_wall_2</tag>
+      </tile>
+      <tile x="8" y="4">
+        <tag>city.postmodern_wall_3</tag>
+      </tile>
+      <tile x="9" y="4">
+        <tag>city.postmodern_wall_4</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

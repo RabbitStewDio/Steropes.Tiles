@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset>
+  <collection id="amplio/units">
+    <grid name="main" x="0" y="0" width="64" height="48" border="0">
+      <tile x="0" y="0">
+        <tag>u.armor</tag>
+      </tile>
+      <tile x="1" y="0">
+        <tag>u.howitzer</tag>
+      </tile>
+      <tile x="2" y="0">
+        <tag>u.battleship</tag>
+      </tile>
+      <tile x="3" y="0">
+        <tag>u.bomber</tag>
+      </tile>
+      <tile x="4" y="0">
+        <tag>u.cannon</tag>
+      </tile>
+      <tile x="5" y="0">
+        <tag>u.caravan</tag>
+      </tile>
+      <tile x="6" y="0">
+        <tag>u.carrier</tag>
+      </tile>
+      <tile x="7" y="0">
+        <tag>u.catapult</tag>
+      </tile>
+      <tile x="8" y="0">
+        <tag>u.horsemen</tag>
+      </tile>
+      <tile x="9" y="0">
+        <tag>u.chariot</tag>
+      </tile>
+      <tile x="10" y="0">
+        <tag>u.cruiser</tag>
+      </tile>
+      <tile x="11" y="0">
+        <tag>u.diplomat</tag>
+      </tile>
+      <tile x="12" y="0">
+        <tag>u.fighter</tag>
+      </tile>
+      <tile x="13" y="0">
+        <tag>u.frigate</tag>
+      </tile>
+      <tile x="14" y="0">
+        <tag>u.ironclad</tag>
+      </tile>
+      <tile x="15" y="0">
+        <tag>u.knights</tag>
+      </tile>
+      <tile x="16" y="0">
+        <tag>u.legion</tag>
+      </tile>
+      <tile x="17" y="0">
+        <tag>u.mech_inf</tag>
+      </tile>
+      <tile x="18" y="0">
+        <tag>u.warriors</tag>
+      </tile>
+      <tile x="19" y="0">
+        <tag>u.musketeers</tag>
+      </tile>
+      <tile x="0" y="1">
+        <tag>u.nuclear</tag>
+      </tile>
+      <tile x="1" y="1">
+        <tag>u.phalanx</tag>
+      </tile>
+      <tile x="2" y="1">
+        <tag>u.riflemen</tag>
+      </tile>
+      <tile x="3" y="1">
+        <tag>u.caravel</tag>
+      </tile>
+      <tile x="4" y="1">
+        <tag>u.settlers</tag>
+      </tile>
+      <tile x="5" y="1">
+        <tag>u.submarine</tag>
+      </tile>
+      <tile x="6" y="1">
+        <tag>u.transport</tag>
+      </tile>
+      <tile x="7" y="1">
+        <tag>u.trireme</tag>
+      </tile>
+      <tile x="8" y="1">
+        <tag>u.archers</tag>
+      </tile>
+      <tile x="9" y="1">
+        <tag>u.cavalry</tag>
+      </tile>
+      <tile x="10" y="1">
+        <tag>u.cruise_missile</tag>
+      </tile>
+      <tile x="11" y="1">
+        <tag>u.destroyer</tag>
+      </tile>
+      <tile x="12" y="1">
+        <tag>u.dragoons</tag>
+      </tile>
+      <tile x="13" y="1">
+        <tag>u.explorer</tag>
+      </tile>
+      <tile x="14" y="1">
+        <tag>u.freight</tag>
+      </tile>
+      <tile x="15" y="1">
+        <tag>u.galleon</tag>
+      </tile>
+      <tile x="16" y="1">
+        <tag>u.partisan</tag>
+      </tile>
+      <tile x="17" y="1">
+        <tag>u.pikemen</tag>
+      </tile>
+      <tile x="0" y="2">
+        <tag>u.marines</tag>
+      </tile>
+      <tile x="1" y="2">
+        <tag>u.spy</tag>
+      </tile>
+      <tile x="2" y="2">
+        <tag>u.engineers</tag>
+      </tile>
+      <tile x="3" y="2">
+        <tag>u.artillery</tag>
+      </tile>
+      <tile x="4" y="2">
+        <tag>u.helicopter</tag>
+      </tile>
+      <tile x="5" y="2">
+        <tag>u.alpine_troops</tag>
+      </tile>
+      <tile x="6" y="2">
+        <tag>u.stealth_bomber</tag>
+      </tile>
+      <tile x="7" y="2">
+        <tag>u.stealth_fighter</tag>
+      </tile>
+      <tile x="8" y="2">
+        <tag>u.aegis_cruiser</tag>
+      </tile>
+      <tile x="9" y="2">
+        <tag>u.paratroopers</tag>
+      </tile>
+      <tile x="10" y="2">
+        <tag>u.elephants</tag>
+      </tile>
+      <tile x="11" y="2">
+        <tag>u.crusaders</tag>
+      </tile>
+      <tile x="12" y="2">
+        <tag>u.fanatics</tag>
+      </tile>
+      <tile x="13" y="2">
+        <tag>u.awacs</tag>
+      </tile>
+      <tile x="14" y="2">
+        <tag>u.worker</tag>
+      </tile>
+      <tile x="15" y="2">
+        <tag>u.leader</tag>
+      </tile>
+      <tile x="16" y="2">
+        <tag>u.barbarian_leader</tag>
+      </tile>
+      <tile x="17" y="2">
+        <tag>u.migrants</tag>
+      </tile>
+      <tile x="0" y="3">
+        <tag>unit.vet_1</tag>
+      </tile>
+      <tile x="1" y="3">
+        <tag>unit.vet_2</tag>
+      </tile>
+      <tile x="2" y="3">
+        <tag>unit.vet_3</tag>
+      </tile>
+      <tile x="3" y="3">
+        <tag>unit.vet_4</tag>
+      </tile>
+      <tile x="4" y="3">
+        <tag>unit.vet_5</tag>
+      </tile>
+      <tile x="5" y="3">
+        <tag>unit.vet_6</tag>
+      </tile>
+      <tile x="6" y="3">
+        <tag>unit.vet_7</tag>
+      </tile>
+      <tile x="7" y="3">
+        <tag>unit.vet_8</tag>
+      </tile>
+      <tile x="8" y="3">
+        <tag>unit.vet_9</tag>
+      </tile>
+      <tile x="11" y="3">
+        <tag>unit.lowfuel</tag>
+        <tag>unit.tired</tag>
+      </tile>
+    </grid>
+  </collection>
+</tileset>

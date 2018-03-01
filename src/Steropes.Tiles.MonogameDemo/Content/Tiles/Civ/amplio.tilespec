@@ -1,0 +1,259 @@
+
+[tilespec]
+
+; Format and options of this tilespec file:
+options = "+Freeciv-2.6-tilespec"
+
+; A simple name for the tileset specified by this file:
+name = "Amplio"
+priority = 20
+
+; There`s no separate versioning in tilesets part of main freeciv distribution
+;version = ""
+
+; Summary and full description of the tileset.
+summary = _("Older variant of the current default tileset, Amplio2")
+;description = ""
+
+; TODO: add more overall information fields on tiles, 
+; eg, authors, colors, etc.
+
+; Basic tile sizes:
+normal_tile_width  = 96
+normal_tile_height = 48
+small_tile_width   = 15
+small_tile_height  = 20
+
+; Basic tile style.
+type = "isometric"
+is_hex = FALSE
+
+; Blended fog
+fog_style      = "Darkness"
+darkness_style = "Corner"
+; Which terrain layer darkness is drawn top of (0-2)
+darkness_layer = 0
+
+; offset the flags by this amount when drawing units
+unit_flag_offset_x = 25
+unit_flag_offset_y = 16
+city_flag_offset_x = 2
+city_flag_offset_y = 9
+
+; offset the city occupied sprite by this amount
+occupied_offset_x = 0
+occupied_offset_y = 0
+
+; offset the units by this amount
+unit_offset_x = 19
+unit_offset_y = 18
+
+; offset of the normal activity icons
+activity_offset_x = 0
+activity_offset_y = 0
+
+; offset the cities by this amount
+city_offset_x = 0
+city_offset_y = 0
+
+; offset the city bar text by this amount (from the city tile origin)
+citybar_offset_y = 30
+
+; offset the tile label text by this amount
+tilelabel_offset_y = 15
+
+; offset the upkeep icons by this amount from the top of the unit itself.
+; The default is the normal tile height, which means that the upkeep icons
+; appear below the unit icon if the unit icons are equal to tile height
+; (typical in overhead tileset), or overlay lower part of the unit icon,
+; if unit icon is higher than tiles (typical in iso tilesets)
+;unit_upkeep_offset_y = 0
+
+; Like unit_upkeep_offset_y, but to be used in case there`s only small
+; space for the overall icon produced. Defaults to unit_upkeep_offset_y -
+; not having alternative layout.
+;unit_upkeep_small_offset_y = 0
+
+; Font size (points) to use to draw city names and productions:
+city_names_font_size = 10
+city_productions_font_size = 8
+
+; These are special because they get freed and reloaded
+; as required:
+main_intro_file    = "misc/intro"
+minimap_intro_file = "misc/radar"
+
+; Below, the graphics spec files; must be somewhere (anywhere) in 
+; the data path. Order may be important for color allocation on 
+; low-color systems, and if there are any duplicate tags (lattermost
+; tag is used).
+files =
+  "amplio/terrain1.spec",
+  "amplio/maglev.spec",
+  "amplio/terrain2.spec",
+  "amplio/ocean.spec",
+  "amplio/water.spec",
+  "amplio/tiles.spec",
+  "amplio/upkeep.spec",
+  "amplio/fog.spec",
+  "misc/small.spec",
+  "misc/events.spec",
+  "misc/governments.spec",
+  "misc/specialists.spec",
+  "amplio/units.spec",
+  "misc/flags.spec",
+  "misc/buildings-large.spec",
+  "misc/wonders-large.spec",
+  "misc/space.spec",
+  "misc/techs.spec",
+  "misc/treaty.spec",
+  "amplio/nuke.spec",
+  "amplio/explosions.spec",
+  "amplio/ancientcities.spec",
+  "amplio/medievalcities.spec",
+  "amplio/moderncities.spec",
+  "amplio/select.spec",
+  "amplio/grid.spec",
+  "misc/cursors.spec",
+  "misc/overlays.spec",
+  "misc/citybar.spec",
+  "misc/shields.spec",
+  "misc/editor.spec",
+  "misc/icons.spec"
+
+
+; Include color definitions
+*include "misc/colors.tilespec"
+
+; Terrain info - see README.graphics
+
+[layer0]
+match_types = "shallow", "deep", "land"
+
+[layer1]
+match_types = "forest", "hills", "mountains", "water", "ice"
+
+[layer2]
+match_types = "water", "ice"
+
+; Water graphics referenced by terrain.ruleset
+;
+[tile_lake]
+tag = "lake"
+blend_layer = 1
+num_layers = 1
+layer0_match_type = "shallow"
+layer0_match_with = "land"
+layer0_sprite_type = "corner"
+
+[tile_coast]
+tag = "coast"
+blend_layer = 1
+num_layers = 2
+layer0_match_type = "shallow"
+layer0_match_with = "deep", "land"
+layer0_sprite_type = "corner"
+layer1_match_type = "water"
+layer1_match_with = "ice"
+layer1_sprite_type = "corner"
+
+[tile_floor]
+tag = "floor"
+blend_layer = 0
+num_layers = 2
+layer0_match_type = "deep"
+layer0_match_with = "shallow", "land"
+layer0_sprite_type = "corner"
+layer1_match_type = "water"
+layer1_match_with = "ice"
+layer1_sprite_type = "corner"
+
+; Land graphics referenced by terrain.ruleset
+;
+[tile_arctic]
+tag = "arctic"
+; treated as water for ice cliffs
+blend_layer = 0
+num_layers = 3
+layer0_match_type = "shallow"
+layer1_match_type = "ice"
+layer2_match_type = "ice"
+
+[tile_desert]
+tag = "desert"
+blend_layer = 1
+num_layers = 1
+layer0_match_type = "land"
+
+[tile_forest]
+tag = "forest"
+blend_layer = 1
+num_layers = 2
+layer0_match_type = "land"
+layer1_match_type = "forest"
+layer1_match_with = "forest"
+
+[tile_grassland]
+tag = "grassland"
+blend_layer = 1
+num_layers = 1
+layer0_match_type = "land"
+
+[tile_hills]
+tag = "hills"
+blend_layer = 1
+num_layers = 2
+layer0_match_type = "land"
+layer1_match_type = "hills"
+layer1_match_with = "hills"
+
+[tile_jungle]
+tag = "jungle"
+blend_layer = 1
+num_layers = 1
+layer0_match_type = "land"
+
+[tile_mountains]
+tag = "mountains"
+blend_layer = 1
+num_layers = 2
+layer0_match_type = "land"
+layer1_match_type = "mountains"
+layer1_match_with = "mountains"
+
+[tile_plains]
+tag = "plains"
+blend_layer = 1
+num_layers = 1
+layer0_match_type = "land"
+
+[tile_swamp]
+tag = "swamp"
+blend_layer = 1
+num_layers = 1
+layer0_match_type = "land"
+
+[tile_tundra]
+tag = "tundra"
+blend_layer = 1
+num_layers = 1
+layer0_match_type = "land"
+
+[extras]
+styles =
+    { "name",          "style"
+      "road.road",     "RoadAllSeparate"
+      "road.rail",     "RoadAllSeparate"
+      "road.maglev",   "RoadAllSeparate"
+      "road.river",    "River"
+      "tx.irrigation", "Cardinals"
+      "tx.farmland",   "Cardinals"
+      "tx.mine",       "Single1"
+      "tx.oil_mine",   "Single1"
+      "tx.pollution",  "Single2"
+      "tx.fallout",    "Single2"
+      "tx.village",    "Single1"
+      "base.fortress", "3Layer"
+      "base.airbase",  "3Layer"
+      "base.ruins",    "3Layer"
+    }
