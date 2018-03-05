@@ -31,6 +31,7 @@ namespace Steropes.Tiles.Monogame.Tiles
                     params GridTileDefinition[] tiles)
     {
       Tiles = new List<GridTileDefinition>(tiles);
+      TilesGroups = new List<GridTileDefinition>();
       TileWidth = tileWidth;
       TileHeight = tileHeight;
       OffsetX = offsetX;
@@ -42,6 +43,7 @@ namespace Steropes.Tiles.Monogame.Tiles
     }
 
     public List<GridTileDefinition> Tiles { get; }
+    public List<GridTileDefinition> TilesGroups { get; }
     public int TileWidth { get; }
     public int TileHeight { get; }
     public int OffsetX { get; }

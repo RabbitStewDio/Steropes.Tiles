@@ -78,6 +78,8 @@
     <Compile Include="Tiles\ITexture.cs" />
     <Compile Include="Tiles\ITexturedTile.cs" />
     <Compile Include="Tiles\ITextureFile.cs" />
+    <Compile Include="Tiles\TexturePackLoaderException.cs" />
+    <Compile Include="Tiles\TextureParserExtensions.cs" />
     <Compile Include="Tiles\TileTexture.cs" />
     <Compile Include="Tiles\TexturePack.cs" />
     <Compile Include="Tiles\ITexturePack.cs" />

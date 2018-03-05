@@ -30,6 +30,59 @@
     <xsd:attribute name="y" type="xsd:unsignedInt" use="required"/>
   </xsd:complexType>
   
+  <xsd:simpleType name="matchTypeAttr">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="CardinalFlags"/>
+      <xsd:enumeration value="CardinalIndex"/>
+      <xsd:enumeration value="CellMap"/>
+      <xsd:enumeration value="Corner"/>
+      <xsd:enumeration value="Diagonal"/>
+      <xsd:enumeration value="NeighbourIndex"/>
+      <xsd:enumeration value="Basic"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType mixed="false" name="groupMetaDataType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Documents the metadata for a tile group. Right now this only
+        contains the matcher type, which allows the system to generate
+        the various tiles needed based on the built-in knowledge we
+        have about the existing tile matchers.
+        
+        In a future version this element can hold additional information
+        like tile-tag definitions and so on.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute type="xsd:string" name="pattern" use="optional"/>
+    <xsd:attribute type="xsd:string" name="match-type" use="optional" default="Basic"/>
+    <xsd:attribute type="xsd:unsignedInt" name="origin-x" use="required"/>
+    <xsd:attribute type="xsd:unsignedInt" name="origin-y" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType mixed="false" name="tileGroupType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Defines a tile group. A tile group is a logical grouping of
+        tiles so that related tiles within a group can be kept
+        together. 
+        
+        This is editor metadata and serves no other purpose than
+        to avoid having to present long lists of nearly identical
+        items and to group together tiles belonging to the same
+        matcher instance (for instance all mountain tiles and their
+        cardinal variants should probably form a logical group).
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="metadata" minOccurs="0" maxOccurs="1" type="groupMetaDataType"/>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="tile" type="tileType"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute type="xsd:string" name="name" use="optional"/>
+  </xsd:complexType>
+
   <xsd:complexType mixed="false" name="gridType">
     <xsd:annotation>
       <xsd:documentation>
@@ -50,6 +103,7 @@
     </xsd:annotation>
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="tile" type="tileType"/>
+      <xsd:element name="group" type="tileGroupType"/>
     </xsd:choice>
     <xsd:attribute type="xsd:string" name="name" use="required"/>
     <xsd:attribute name="x" type="xsd:unsignedInt" use="required"/>
