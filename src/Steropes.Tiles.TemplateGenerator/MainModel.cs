@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Steropes.Tiles.TemplateGenerator.Actions;
@@ -14,6 +13,7 @@ namespace Steropes.Tiles.TemplateGenerator
   public class MainModel: INotifyPropertyChanged
   {
     TextureFile content;
+    Bitmap previewBitmap;
 
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,6 +31,25 @@ namespace Steropes.Tiles.TemplateGenerator
       {
         if (Equals(value, content)) return;
         content = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public Bitmap PreviewBitmap
+    {
+      get
+      {
+        return previewBitmap;
+      }
+      set
+      {
+        if (Equals(value, previewBitmap))
+        {
+          return;
+        }
+
+        previewBitmap?.Dispose();
+        previewBitmap = value;
         OnPropertyChanged();
       }
     }

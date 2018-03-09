@@ -10,4 +10,12 @@
     Diagonal = 5, 
     NeighbourIndex = 6
   }
+
+  public static class MatcherTypeExtensions
+  {
+    public static bool CanAddTiles(this MatcherType m)
+    {
+      return m == MatcherType.Basic; 
+    }
+  }
 }

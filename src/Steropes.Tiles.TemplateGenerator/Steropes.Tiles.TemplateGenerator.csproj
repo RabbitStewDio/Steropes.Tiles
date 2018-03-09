@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Steropes.Tiles.TemplateGenerator</RootNamespace>
     <AssemblyName>Steropes.Tiles.TemplateGenerator</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,7 +32,31 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Steropes.Tiles.TemplateGenerator.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Design, Version=4.62.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\KryptonToolkitSuite462.4.62.554\lib\ComponentFactory.Krypton.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.62.536.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\KryptonToolkitSuite462.4.62.554\lib\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.62.535.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\KryptonToolkitSuite462.4.62.554\lib\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.62.535.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\KryptonToolkitSuite462.4.62.554\lib\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.62.554.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\KryptonToolkitSuite462.4.62.554\lib\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.62.536.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\KryptonToolkitSuite462.4.62.554\lib\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="PaletteDesigner, Version=4.62.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KryptonToolkitSuite462.4.62.554\lib\PaletteDesigner.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,7 +72,6 @@
   <ItemGroup>
     <Compile Include="Actions\AddCollectionCommand.cs" />
     <Compile Include="Actions\AddGridCommand.cs" />
-    <Compile Include="Actions\AddGroupsCommand.cs" />
     <Compile Include="Actions\AddTilesCommand.cs" />
     <Compile Include="Actions\CloseCommand.cs" />
     <Compile Include="Actions\Command.cs" />
@@ -56,8 +80,38 @@
     <Compile Include="Actions\ModelCommand.cs" />
     <Compile Include="Actions\NewCommand.cs" />
     <Compile Include="Actions\OpenCommand.cs" />
+    <Compile Include="Actions\PreviewCommand.cs" />
     <Compile Include="Actions\SaveException.cs" />
     <Compile Include="Actions\SaveCommand.cs" />
+    <Compile Include="Editors\BaseTextureElementEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editors\BaseTextureElementEditor.Designer.cs">
+      <DependentUpon>BaseTextureElementEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\DetailEditorCoordinator.cs" />
+    <Compile Include="Editors\InputExtensions.cs" />
+    <Compile Include="Editors\TextureCollectionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editors\TextureCollectionEditor.Designer.cs">
+      <DependentUpon>TextureCollectionEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TextureFileEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editors\TextureFileEditor.Designer.cs">
+      <DependentUpon>TextureFileEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TextureGridEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editors\TextureGridEditor.Designer.cs">
+      <DependentUpon>TextureGridEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\Validators.cs" />
+    <Compile Include="Layout\GridLayouter.cs" />
+    <Compile Include="Layout\LayoutNode.cs" />
     <Compile Include="MainModel.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -65,7 +119,8 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\ITextureTileParent.cs" />
+    <Compile Include="Model\FormattingInfo.cs" />
+    <Compile Include="Model\FormattingMetaData.cs" />
     <Compile Include="Model\MatcherType.cs" />
     <Compile Include="Model\MetaData.cs" />
     <Compile Include="Model\TextureCollection.cs" />
@@ -73,7 +128,6 @@
     <Compile Include="Model\TextureFileLoader.cs" />
     <Compile Include="Model\TextureFileWriter.cs" />
     <Compile Include="Model\TextureGrid.cs" />
-    <Compile Include="Model\TextureGroup.cs" />
     <Compile Include="Model\TexturePackLoaderException.cs" />
     <Compile Include="Model\TextureParserExtensions.cs" />
     <Compile Include="Model\TextureTile.cs" />
@@ -84,7 +138,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureTree\CollectionNode.cs" />
     <Compile Include="StructureTree\GridNode.cs" />
-    <Compile Include="StructureTree\GroupNode.cs" />
     <Compile Include="StructureTree\RootNode.cs" />
     <Compile Include="StructureTree\StructureTreeModel.cs" />
     <Compile Include="StructureTree\TileNode.cs" />
@@ -94,6 +147,18 @@
     <Compile Include="TileSetPropertiesDialog.Designer.cs">
       <DependentUpon>TileSetPropertiesDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Editors\BaseTextureElementEditor.resx">
+      <DependentUpon>BaseTextureElementEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TextureCollectionEditor.resx">
+      <DependentUpon>TextureCollectionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TextureFileEditor.resx">
+      <DependentUpon>TextureFileEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TextureGridEditor.resx">
+      <DependentUpon>TextureGridEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,10 +170,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TileSetPropertiesDialog.resx">
       <DependentUpon>TileSetPropertiesDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Icons\Add-Base.ase" />
+    <None Include="Icons\Add-Collection.ase" />
+    <None Include="Icons\Add-Grid.ase" />
+    <None Include="Icons\Add-Tile.ase" />
+    <None Include="Icons\New-Document.ase" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,6 +193,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\Add-Base.png" />
+    <Content Include="Icons\Add-Collection.png" />
+    <Content Include="Icons\Add-Grid.png" />
+    <Content Include="Icons\Add-Tile.png" />
+    <Content Include="Icons\New-Document.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

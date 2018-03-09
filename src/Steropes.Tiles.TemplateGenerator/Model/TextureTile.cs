@@ -8,7 +8,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
   public class TextureTile : INotifyPropertyChanged
   {
     public event PropertyChangedEventHandler PropertyChanged;
-    public ITextureTileParent Parent { get; set; }
+    public TextureGrid Parent { get; set; }
     public ObservableCollection<string> Tags { get; }
     int x;
     int y;

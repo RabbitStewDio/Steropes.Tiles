@@ -7,7 +7,7 @@ using Steropes.Tiles.TemplateGenerator.Annotations;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {
-  public class TextureFile : INotifyPropertyChanged
+  public class TextureFile : INotifyPropertyChanged, IFormattingInfoProvider
   {
     int height;
     bool modified;
@@ -20,11 +20,14 @@ namespace Steropes.Tiles.TemplateGenerator.Model
 
     public TextureFile()
     {
+      FormattingMetaData = new FormattingMetaData();
       properties = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
       Collections = new ObservableCollection<TextureCollection>();
       Collections.CollectionChanged += OnCollectionChanged;
       IncludeFiles = new ObservableCollection<string>();
     }
+
+    public FormattingMetaData FormattingMetaData { get; }
 
     public ObservableCollection<string> IncludeFiles { get; }
 

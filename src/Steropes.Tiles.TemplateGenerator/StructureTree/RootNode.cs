@@ -23,23 +23,22 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
 
     void UpdateNodes()
     {
-      foreach (var textureCollection in source.Collections)
-      {
-        Nodes.Add(new CollectionNode(textureCollection));
-      }
+      this.Resync(source.Collections, c => new CollectionNode(c));
     }
 
     void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-      this.Resync(source.Collections, c => new CollectionNode(c));
+      UpdateNodes();
     }
 
     void OnPropertyChange(object sender, PropertyChangedEventArgs e)
     {
+      this.TreeView?.BeginUpdate();
       if (e.PropertyName == nameof(TextureFile.Name))
       {
         Text = UpdateName();
       }
+      this.TreeView?.EndUpdate();
     }
 
     string UpdateName()

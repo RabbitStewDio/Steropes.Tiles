@@ -25,10 +25,6 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       {
         tile.Parent.Tiles.Remove(tile);
       }
-      foreach (var tile in selection.OfType<TextureGroup>())
-      {
-        tile.Parent.Groups.Remove(tile);
-      }
       foreach (var tile in selection.OfType<TextureGrid>())
       {
         tile.Parent.Grids.Remove(tile);

@@ -14,7 +14,7 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
 
     void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-      Enabled = Model.Content != null && Model.Selection.OfType<ITextureTileParent>().Any();
+      Enabled = Model.Content != null && Model.Selection.OfType<TextureGrid>().Any();
     }
 
     public override void OnActionPerformed(object source, EventArgs args)
@@ -24,7 +24,7 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
         return;
       }
 
-      var insertPoint = Model.Selection.OfType<ITextureTileParent>().Where(IsValidInsertPoint).FirstOrDefault();
+      var insertPoint = Model.Selection.OfType<TextureGrid>().Where(IsValidInsertPoint).FirstOrDefault();
       if (insertPoint == null)
       {
         return;
@@ -36,9 +36,9 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       Model.Selection.Add(textureTile);
     }
 
-    public bool IsValidInsertPoint(ITextureTileParent p)
+    public bool IsValidInsertPoint(TextureGrid p)
     {
-      if (p is TextureGroup g)
+      if (p is TextureGrid g)
       {
         return g.MatcherType == MatcherType.Basic;
       }

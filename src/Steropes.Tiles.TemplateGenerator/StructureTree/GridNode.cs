@@ -16,7 +16,6 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
     {
       this.source = collection ?? throw new ArgumentNullException();
       this.source.Tiles.CollectionChanged += OnCollectionChanged;
-      this.source.Groups.CollectionChanged += OnCollectionChanged;
       this.source.PropertyChanged += OnPropertyChange;
       this.Text = UpdateName();
       this.Tag = source;
@@ -26,7 +25,9 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
 
     void OnPropertyChange(object sender, PropertyChangedEventArgs e)
     {
+      TreeView?.BeginUpdate();
       Text = UpdateName();
+      TreeView?.EndUpdate();
     }
 
     string UpdateName()
@@ -36,56 +37,14 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
 
     void UpdateNodes()
     {
-      var data = new List<GroupOrTile>();
-      data.AddRange(source.Groups.Select(GroupOrTile.Wrap));
-      data.AddRange(source.Tiles.Select(GroupOrTile.Wrap));
-      this.Resync(data, c => c.Create());
+      this.Resync(source.Tiles, c => new TileNode(c));
+      
     }
 
     void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
       UpdateNodes();
     }
-
-    struct GroupOrTile
-    {
-      public TextureGroup TextureGroup { get; }
-      public TextureTile Tile { get; }
-
-      public GroupOrTile(TextureGroup textureGroup) : this()
-      {
-        this.TextureGroup = textureGroup ?? throw new ArgumentNullException(nameof(textureGroup));
-        this.Tile = null;
-      }
-
-      public GroupOrTile(TextureTile tile) : this()
-      {
-        this.Tile = tile ?? throw new ArgumentNullException(nameof(tile));
-        this.TextureGroup = null;
-      }
-
-      public TreeNode Create()
-      {
-        if (Tile != null)
-        {
-          return new TileNode(Tile);
-        }
-        if (TextureGroup != null)
-        {
-          return new GroupNode(TextureGroup);
-        }
-        return null;
-      }
-
-      public static GroupOrTile Wrap(TextureGroup g)
-      {
-        return new GroupOrTile(g);
-      }
-
-      public static GroupOrTile Wrap(TextureTile g)
-      {
-        return new GroupOrTile(g);
-      }
-    }
+    
   }
 }

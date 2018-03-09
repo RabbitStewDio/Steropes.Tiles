@@ -23,7 +23,9 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
 
     void OnPropertyChange(object sender, PropertyChangedEventArgs e)
     {
+      TreeView?.BeginUpdate();
       Text = UpdateName();
+      TreeView?.EndUpdate();
     }
 
     string UpdateName()
@@ -33,15 +35,12 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
 
     void UpdateNodes()
     {
-      foreach (var grid in collection.Grids)
-      {
-        Nodes.Add(new GridNode(grid));
-      }
+      this.Resync(collection.Grids, c => new GridNode(c));
     }
 
     void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-      this.Resync(collection.Grids, c => new GridNode(c));
+      UpdateNodes();
     }
   }
 }

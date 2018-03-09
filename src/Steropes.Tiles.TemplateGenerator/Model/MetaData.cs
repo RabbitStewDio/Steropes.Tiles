@@ -35,4 +35,9 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       return d;
     }
   }
+
+  public interface IFormattingInfoProvider
+  {
+    FormattingMetaData FormattingMetaData { get; }
+  }
 }

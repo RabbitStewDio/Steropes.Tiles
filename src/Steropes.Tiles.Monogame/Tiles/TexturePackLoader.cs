@@ -158,21 +158,20 @@ namespace Steropes.Tiles.Monogame.Tiles
     {
       var x = (int) grid.AttributeLocal("x");
       var y = (int) grid.AttributeLocal("y");
-      var width = (int)grid.AttributeLocal("width");
-      var height = (int)grid.AttributeLocal("height");
-      var border = (int?) grid.AttributeLocal("border");
-      var borderX = (int?) grid.AttributeLocal("border-x") ?? border ?? 0;
-      var borderY = (int?) grid.AttributeLocal("border-y") ?? border ?? 0;
+      var width = (int?)grid.AttributeLocal("cell-width")?? (int?) grid.AttributeLocal("width") ?? context.Width;
+      var height = (int?)grid.AttributeLocal("cell-height") ?? (int?) grid.AttributeLocal("height") ?? context.Height;
 
       var anchorX = (int?) grid.AttributeLocal("anchor-x") ?? width - (context.Width / 2);
       var anchorY = (int?) grid.AttributeLocal("anchor-y") ?? height - (context.Height / 2);
 
+      var border = (int?) grid.AttributeLocal("cell-spacing") ??(int?) grid.AttributeLocal("border") ?? 0;
+
       var tiles =
-        from e in grid.Descendants()
+        from e in grid.Elements()
         where e.Name.LocalName == "tile"
         select ParseTile(e);
 
-      return new TileGrid(width, height, x, y, anchorX, anchorY, borderX, borderY, tiles.ToArray());
+      return new TileGrid(width, height, x, y, anchorX, anchorY, border, border, tiles.ToArray());
     }
 
     static GridTileDefinition ParseTile(XElement tile)

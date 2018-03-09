@@ -2,7 +2,7 @@
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class NewCommand: Command
+  public class NewCommand : Command
   {
     readonly MainModel model;
     readonly TileSetPropertiesDialog propertiesDialog;
@@ -20,6 +20,8 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       {
         model.Content = c;
         model.Content.Modified = true;
+        model.Selection.Clear();
+        model.Selection.Add(c);
       }
     }
   }

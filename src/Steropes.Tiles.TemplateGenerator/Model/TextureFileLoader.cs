@@ -36,17 +36,25 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       return Read(document.Root, path);
     }
 
-    public static TextureFile Read(XElement root, string documentPath)
+    public static TextureFile Read(XElement root, string documentPath = null)
     {
+      var defaultName = "Unnamed";
+      if (documentPath != null)
+      {
+        defaultName = Path.GetFileNameWithoutExtension(Path.GetFileName(documentPath));
+      }
+
       var width = (int?) root.AttributeLocal("width") ?? 32;
       var height = (int?) root.AttributeLocal("height") ?? 32;
       var textureType = ParseTextureType(root, (string) root.AttributeLocal("type"), TileType.Grid);
 
       var directoryInfo = Directory.GetParent(documentPath);
       var basePath = directoryInfo.FullName;
-      var name = root.AttributeLocal("name")?.Value ?? "unnamed";
+      var name = root.AttributeLocal("name")?.Value ?? defaultName;
       var collections = ReadContent(root, new TexturePackLoaderContext(basePath, textureType, width, height));
       var includes = ParseIncludeFiles(root);
+
+      var metaData = root.ElementLocal("metadata");
 
       var file = new TextureFile
       {
@@ -54,15 +62,16 @@ namespace Steropes.Tiles.TemplateGenerator.Model
         Width = width,
         Height = height,
         TileType = textureType,
-        Properties = ParseMetaData(root.ElementLocal("metadata"))
+        Properties = ParseMetaDataProperties(metaData)
       };
 
       file.IncludeFiles.AddRange(includes);
       file.Collections.AddRange(collections);
+      ParseFormattingInfo(root, file.FormattingMetaData);
       return file;
     }
 
-    static IReadOnlyDictionary<string, string> ParseMetaData(XElement e)
+    static IReadOnlyDictionary<string, string> ParseMetaDataProperties(XElement e)
     {
       var dictionary = new Dictionary<string, string>();
       if (e == null)
@@ -70,8 +79,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
         return new ReadOnlyDictionary<string, string>(dictionary);
       }
 
-      var properties = e.Elements()
-          .Where(el => el.Name.LocalName == "property");
+      var properties = e.Elements().Where(el => el.Name.LocalName == "property");
       foreach (var property in properties)
       {
         string value = (string) property;
@@ -83,8 +91,28 @@ namespace Steropes.Tiles.TemplateGenerator.Model
 
         dictionary[key] = value;
       }
+
       return new ReadOnlyDictionary<string, string>(dictionary);
     }
+
+    static void ParseFormattingInfo(XElement e, FormattingMetaData target)
+    {
+      var metaData = e.ElementLocal("metadata");
+      if (metaData == null)
+      {
+        return;
+      }
+
+      target.Title = (string) metaData.AttributeLocal("title") ?? target.Title;
+      target.TextColor = metaData.AttributeLocal("text-color").AsColor() ?? target.TextColor;
+      target.BorderColor = metaData.AttributeLocal("border-color").AsColor() ?? target.BorderColor;
+      target.BackgroundColor = metaData.AttributeLocal("background-color").AsColor() ?? target.BackgroundColor;
+
+      target.Margin = (int?) metaData.AttributeLocal("margin") ?? target.Margin;
+      target.Padding = (int?) metaData.AttributeLocal("padding") ?? target.Padding;
+      target.Border = (int?) metaData.AttributeLocal("border") ?? target.Border;
+    }
+
 
     static IEnumerable<TextureCollection> ReadContent(XElement root, TexturePackLoaderContext context)
     {
@@ -108,6 +136,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       var retval = new TextureCollection();
       retval.Id = id;
       retval.Grids.AddRange(grids);
+      ParseFormattingInfo(root, retval.FormattingMetaData);
       return retval;
     }
 
@@ -116,69 +145,45 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       var name = (string) grid.AttributeLocal("name") ?? "Unnamed Grid";
       var x = (int) grid.AttributeLocal("x");
       var y = (int) grid.AttributeLocal("y");
-      var width = (int) grid.AttributeLocal("width");
-      var height = (int) grid.AttributeLocal("height");
-      var border = (int?) grid.AttributeLocal("border");
-      var borderX = (int?) grid.AttributeLocal("border-x") ?? border ?? 0;
-      var borderY = (int?) grid.AttributeLocal("border-y") ?? border ?? 0;
+      var width = (int?) grid.AttributeLocal("cell-width") ?? (int?) grid.AttributeLocal("width") ?? context.Width;
+      var height = (int?) grid.AttributeLocal("cell-height") ?? (int?) grid.AttributeLocal("height") ?? context.Height;
+      var border = (int?) grid.AttributeLocal("cell-spacing") ?? (int?) grid.AttributeLocal("border") ?? 0;
 
-      var anchorX = (int?) grid.AttributeLocal("anchor-x") ?? width - (context.Width / 2);
-      var anchorY = (int?) grid.AttributeLocal("anchor-y") ?? height - (context.Height / 2);
+      var anchorX = (int?) grid.AttributeLocal("anchor-x");
+      var anchorY = (int?) grid.AttributeLocal("anchor-y");
 
       var gridValue = new TextureGrid
       {
         Name = name,
         X = x,
         Y = y,
-        Width = width,
-        Height = height,
-        BorderX = borderX,
-        BorderY = borderY,
+        CellWidth = width,
+        CellHeight = height,
         AnchorX = anchorX,
-        AnchorY = anchorY
+        AnchorY = anchorY,
+        CellSpacing = border
       };
+
+      var metadata = grid.ElementLocal("metadata");
+      if (metadata != null)
+      {
+        gridValue.MatcherType = ParseMatchType(metadata, (string) metadata.AttributeLocal("match-type"), MatcherType.Basic);
+        gridValue.Pattern = (string) metadata.AttributeLocal("pattern");
+
+        gridValue.Width = (int?) metadata.AttributeLocal("grid-width");
+        gridValue.Height = (int?) metadata.AttributeLocal("grid-height");
+        gridValue.CellMapElements = (int?) metadata.AttributeLocal("cell-map-elements") ?? 0;
+      }
 
       var tiles =
         from e in grid.Elements()
         where e.Name.LocalName == "tile"
         select ReadTiles(e);
-
-      var groups =
-        from e in grid.Elements()
-        where e.Name.LocalName == "group"
-        select ReadGroup(e);
 
       gridValue.Tiles.AddRange(tiles);
-      gridValue.Groups.AddRange(groups);
+      ParseFormattingInfo(grid, gridValue.FormattingMetaData);
 
       return gridValue;
-    }
-
-    public static TextureGroup ReadGroup(XElement groupElement)
-    {
-      var name = (string) groupElement.ElementLocal("name") ?? "Unnamed Group";
-
-      var tiles =
-        from e in groupElement.Elements()
-        where e.Name.LocalName == "tile"
-        select ReadTiles(e);
-
-      var metadata = groupElement.ElementLocal("metadata");
-      var matchType = ParseMatchType(metadata, (string) metadata.AttributeLocal("match-type"), MatcherType.Basic);
-      var pattern = (string) metadata.AttributeLocal("pattern");
-      var originX = (int?) metadata.AttributeLocal("origin-x") ?? 0;
-      var originY = (int?) metadata.AttributeLocal("origin-y") ?? 0;
-
-      var g = new TextureGroup
-      {
-        Name = name,
-        MatcherType = matchType,
-        Pattern = pattern,
-        X = originX,
-        Y = originY
-      };
-      g.Tiles.AddRange(tiles);
-      return g;
     }
 
     static MatcherType ParseMatchType(XElement lineInfo, string t, MatcherType? defaultValue = null)
@@ -250,5 +255,6 @@ namespace Steropes.Tiles.TemplateGenerator.Model
 
       return result;
     }
+
   }
 }

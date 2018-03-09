@@ -3,9 +3,13 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 using Steropes.Tiles.TemplateGenerator.Actions;
+using Steropes.Tiles.TemplateGenerator.Annotations;
+using Steropes.Tiles.TemplateGenerator.Editors;
 using Steropes.Tiles.TemplateGenerator.StructureTree;
 
+// ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 namespace Steropes.Tiles.TemplateGenerator
 {
   public partial class MainWindow : Form
@@ -19,14 +23,22 @@ namespace Steropes.Tiles.TemplateGenerator
 
     readonly AddCollectionCommand addCollectionCommand;
     readonly AddGridCommand addGridCommand;
-    readonly AddGroupsCommand addGroupsCommand;
     readonly AddTilesCommand addTilesCommand;
+
+    readonly LayoutCollectionCommand layoutCollectionCommand;
+    readonly PreviewCommand previewCommand;
 
     readonly MainModel model;
     readonly TileSetPropertiesDialog tileSetProperties;
+    [UsedImplicitly] readonly DetailEditorCoordinator editorCoordinator;
+
+    readonly KryptonManager manager;
 
     public MainWindow()
     {
+      manager = new KryptonManager();
+      manager.GlobalPaletteMode = PaletteModeManager.ProfessionalSystem;
+
       model = new MainModel();
       model.PropertyChanged += OnModelChange;
 
@@ -35,8 +47,11 @@ namespace Steropes.Tiles.TemplateGenerator
 
       InitializeComponent();
 
+      editorCoordinator = new DetailEditorCoordinator(selectedContentPane, model);
+
       newCommand = new NewCommand(model, tileSetProperties);
       newCommand.Install(newMenuItem);
+      newCommand.Install(newFileToolButton);
 
       openCommand = new OpenCommand(model);
       openCommand.Install(openMenuItem);
@@ -52,18 +67,27 @@ namespace Steropes.Tiles.TemplateGenerator
 
       deleteCommnad = new DeleteCommnad(model);
       deleteCommnad.Install(deleteMenuItem);
+      deleteCommnad.Install(removeItemToolButton);
 
       addGridCommand = new AddGridCommand(model);
       addGridCommand.Install(addGridMenuItem);
+      addGridCommand.Install(addGridToolButton);
 
       addCollectionCommand = new AddCollectionCommand(model);
       addCollectionCommand.Install(addCollectionMenuItem);
+      addCollectionCommand.Install(addCollectionToolButton);
 
       addTilesCommand = new AddTilesCommand(model);
       addTilesCommand.Install(addTileMenuItem);
+      addTilesCommand.Install(addTileToolButton);
 
-      addGroupsCommand = new AddGroupsCommand(model);
-      addGroupsCommand.Install(addGroupMenuItem);
+      previewCommand = new PreviewCommand(model);
+      previewCommand.Install(previewMenuItem);
+      previewCommand.Install(previewToolButton);
+
+      layoutCollectionCommand = new LayoutCollectionCommand(model);
+      layoutCollectionCommand.Install(arrangeMenuItem);
+      layoutCollectionCommand.Install(arrangeToolButton);
 
       recentSubMenu.Enabled = false;
 
@@ -153,6 +177,12 @@ namespace Steropes.Tiles.TemplateGenerator
 
         structureTree.ResumeLayout();
       }
+
+      if (e.PropertyName == nameof(MainModel.PreviewBitmap))
+      {
+        Console.WriteLine("Updated preview image");
+        previewPicture.Image = model.PreviewBitmap;
+      }
     }
 
     void OnClosing(object sender, CancelEventArgs e)
@@ -163,7 +193,7 @@ namespace Steropes.Tiles.TemplateGenerator
       }
     }
 
-    void OnExit(object sender, System.EventArgs e)
+    void OnExit(object sender, EventArgs e)
     {
       this.Close();
     }

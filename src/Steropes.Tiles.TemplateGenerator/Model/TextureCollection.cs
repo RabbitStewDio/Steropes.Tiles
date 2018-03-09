@@ -6,7 +6,7 @@ using Steropes.Tiles.TemplateGenerator.Annotations;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {
-  public class TextureCollection : INotifyPropertyChanged
+  public class TextureCollection : INotifyPropertyChanged, IFormattingInfoProvider
   {
     string id;
 
@@ -15,7 +15,10 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       Parent = parent;
       Grids = new ObservableCollection<TextureGrid>();
       Grids.CollectionChanged += OnCollectionChanged;
+      FormattingMetaData = new FormattingMetaData();
     }
+
+    public FormattingMetaData FormattingMetaData { get; }
 
     public ObservableCollection<TextureGrid> Grids { get; }
 

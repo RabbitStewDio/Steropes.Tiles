@@ -6,28 +6,77 @@ using Steropes.Tiles.TemplateGenerator.Annotations;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {
-  public class TextureGrid : INotifyPropertyChanged, ITextureTileParent
+  public class TextureGrid : INotifyPropertyChanged, IFormattingInfoProvider
   {
-    int anchorX;
-    int anchorY;
-    int borderX;
-    int borderY;
-    int height;
+    int? anchorX;
+    int? anchorY;
 
-    string name;
-    int width;
     int x;
     int y;
+    int? width;
+    int? height;
+
+    int cellWidth;
+    int cellHeight;
+    int cellSpacing;
+
+    MatcherType matcherType;
+    string pattern;
+    string name;
+    int cellMapElements;
 
     public TextureGrid()
     {
-      Groups = new ObservableCollection<TextureGroup>();
-      Groups.CollectionChanged += OnGroupsChanged;
       Tiles = new ObservableCollection<TextureTile>();
       Tiles.CollectionChanged += OnTilesChanged;
+      FormattingMetaData = new FormattingMetaData();
     }
 
-    public ObservableCollection<TextureGroup> Groups { get; }
+    public FormattingMetaData FormattingMetaData { get; }
+
+    public int CellSpacing
+    {
+      get { return cellSpacing; }
+      set
+      {
+        if (value == cellSpacing) return;
+        cellSpacing = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int CellMapElements
+    {
+      get { return cellMapElements; }
+      set
+      {
+        if (value == cellMapElements) return;
+        cellMapElements = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public MatcherType MatcherType
+    {
+      get { return matcherType; }
+      set
+      {
+        if (value == matcherType) return;
+        matcherType = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public string Pattern
+    {
+      get { return pattern; }
+      set
+      {
+        if (value == pattern) return;
+        pattern = value;
+        OnPropertyChanged();
+      }
+    }
 
     public string Name
     {
@@ -74,7 +123,29 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
-    public int Width
+    public int CellWidth
+    {
+      get { return cellWidth; }
+      set
+      {
+        if (value == cellWidth) return;
+        cellWidth = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int CellHeight
+    {
+      get { return cellHeight; }
+      set
+      {
+        if (value == cellHeight) return;
+        cellHeight = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int? Width
     {
       get { return width; }
       set
@@ -89,7 +160,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
-    public int Height
+    public int? Height
     {
       get { return height; }
       set
@@ -104,37 +175,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
-    public int BorderX
-    {
-      get { return borderX; }
-      set
-      {
-        if (value == borderX)
-        {
-          return;
-        }
-
-        borderX = value;
-        OnPropertyChanged();
-      }
-    }
-
-    public int BorderY
-    {
-      get { return borderY; }
-      set
-      {
-        if (value == borderY)
-        {
-          return;
-        }
-
-        borderY = value;
-        OnPropertyChanged();
-      }
-    }
-
-    public int AnchorX
+    public int? AnchorX
     {
       get { return anchorX; }
       set
@@ -149,7 +190,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
-    public int AnchorY
+    public int? AnchorY
     {
       get { return anchorY; }
       set
@@ -164,29 +205,10 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
+
     public TextureCollection Parent { get; set; }
     public event PropertyChangedEventHandler PropertyChanged;
     public ObservableCollection<TextureTile> Tiles { get; }
-
-    void OnGroupsChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-      if (e.OldItems != null)
-      {
-        foreach (TextureGroup item in e.OldItems)
-        {
-          item.Parent = null;
-        }
-      }
-
-      if (e.NewItems != null)
-      {
-        foreach (TextureGroup item in e.NewItems)
-        {
-          item.Parent?.Groups.Remove(item);
-          item.Parent = this;
-        }
-      }
-    }
 
     void OnTilesChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
