@@ -91,9 +91,18 @@ namespace Steropes.Tiles.TemplateGenerator
 
       recentSubMenu.Enabled = false;
 
+      structureTree.KeyUp += OnStructureTreeKeyPress;
       structureTree.AfterSelect += OnTreeSelectionChanged;
       model.Selection.CollectionChanged += OnSelectionChanged;
       this.Closing += OnClosing;
+    }
+
+    void OnStructureTreeKeyPress(object sender, KeyEventArgs e)
+    {
+      if (e.KeyCode == Keys.Delete && deleteCommnad.Enabled)
+      {
+        deleteCommnad.OnActionPerformed(this, EventArgs.Empty);
+      }
     }
 
     bool processingSelectionSync;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
@@ -15,7 +16,15 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
 
     public override void OnActionPerformed(object source, EventArgs args)
     {
-      var c = propertiesDialog.PerformEdit(model.Content);
+      var content = new TextureFile
+      {
+        Width = model.Content?.Width ?? model.Preferences.DefaultWidth,
+        Height = model.Content?.Height ?? model.Preferences.DefaultWidth,
+        TileType = model.Content?.TileType ?? model.Preferences.DefaultTileType,
+        Name = model.Content?.Name ?? "New Tile Set"
+      };
+
+      var c = propertiesDialog.PerformEdit(content);
       if (c != null)
       {
         model.Content = c;

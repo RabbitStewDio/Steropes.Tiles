@@ -70,6 +70,16 @@ namespace Steropes.Tiles.Matcher.Sprites
       }
     }
 
+    public override string ToString()
+    {
+      string AsFlag(bool b)
+      {
+        return b ? "1" : "0";
+      }
+
+      return $"{Pos}:{AsFlag(M0)}{AsFlag(M1)}{AsFlag(M2)}";
+    }
+
     public static CornerTileSelectionKey ValueOf(Direction pos, bool m0, bool m1, bool m2)
     {
       int index = 0;

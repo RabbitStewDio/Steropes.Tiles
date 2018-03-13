@@ -41,6 +41,9 @@
       this.addCollectionToolButton = new System.Windows.Forms.ToolStripButton();
       this.addGridToolButton = new System.Windows.Forms.ToolStripButton();
       this.addTileToolButton = new System.Windows.Forms.ToolStripButton();
+      this.arrangeToolButton = new System.Windows.Forms.ToolStripButton();
+      this.previewToolButton = new System.Windows.Forms.ToolStripButton();
+      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.removeItemToolButton = new System.Windows.Forms.ToolStripButton();
       this.panel1 = new System.Windows.Forms.Panel();
       this.contentSplitter = new System.Windows.Forms.SplitContainer();
@@ -62,9 +65,6 @@
       this.addCollectionMenuItem = new System.Windows.Forms.MenuItem();
       this.addGridMenuItem = new System.Windows.Forms.MenuItem();
       this.addTileMenuItem = new System.Windows.Forms.MenuItem();
-      this.arrangeToolButton = new System.Windows.Forms.ToolStripButton();
-      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-      this.previewToolButton = new System.Windows.Forms.ToolStripButton();
       this.separator2 = new System.Windows.Forms.MenuItem();
       this.arrangeMenuItem = new System.Windows.Forms.MenuItem();
       this.previewMenuItem = new System.Windows.Forms.MenuItem();
@@ -207,6 +207,29 @@
       this.addTileToolButton.Name = "addTileToolButton";
       this.addTileToolButton.Size = new System.Drawing.Size(23, 22);
       this.addTileToolButton.Text = "Add Tile ..";
+      // 
+      // arrangeToolButton
+      // 
+      this.arrangeToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.arrangeToolButton.Image = ((System.Drawing.Image)(resources.GetObject("arrangeToolButton.Image")));
+      this.arrangeToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.arrangeToolButton.Name = "arrangeToolButton";
+      this.arrangeToolButton.Size = new System.Drawing.Size(23, 22);
+      this.arrangeToolButton.Text = "Arrange Grids";
+      // 
+      // previewToolButton
+      // 
+      this.previewToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.previewToolButton.Image = ((System.Drawing.Image)(resources.GetObject("previewToolButton.Image")));
+      this.previewToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.previewToolButton.Name = "previewToolButton";
+      this.previewToolButton.Size = new System.Drawing.Size(23, 22);
+      this.previewToolButton.Text = "Preview ";
+      // 
+      // toolStripSeparator3
+      // 
+      this.toolStripSeparator3.Name = "toolStripSeparator3";
+      this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
       // 
       // removeItemToolButton
       // 
@@ -371,29 +394,6 @@
       // 
       this.addTileMenuItem.Index = 5;
       this.addTileMenuItem.Text = "Add Tile";
-      // 
-      // arrangeToolButton
-      // 
-      this.arrangeToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.arrangeToolButton.Image = ((System.Drawing.Image)(resources.GetObject("arrangeToolButton.Image")));
-      this.arrangeToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.arrangeToolButton.Name = "arrangeToolButton";
-      this.arrangeToolButton.Size = new System.Drawing.Size(23, 22);
-      this.arrangeToolButton.Text = "toolStripButton1";
-      // 
-      // toolStripSeparator3
-      // 
-      this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-      // 
-      // previewToolButton
-      // 
-      this.previewToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.previewToolButton.Image = ((System.Drawing.Image)(resources.GetObject("previewToolButton.Image")));
-      this.previewToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.previewToolButton.Name = "previewToolButton";
-      this.previewToolButton.Size = new System.Drawing.Size(23, 22);
-      this.previewToolButton.Text = "toolStripButton1";
       // 
       // separator2
       // 

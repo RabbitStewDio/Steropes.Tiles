@@ -11,6 +11,23 @@
     </xsd:documentation>
   </xsd:annotation>
 
+  <xsd:complexType mixed="false" name="tileMetaDataType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Metadata for tiles. Auto-Generated tiles will have the 'auto-generated'
+        property set to true. These tiles will be deleted and regenerated whenever 
+        a layout or preview operation runs. Tiles with that flag are not editable
+        by the user.
+        
+        The selector hint attribute is used by the generator and preview code
+        to provide additional hints in the output to make it easier for the 
+        artists to know what tile they are working on.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute type="xsd:string" name="selector-hint" use="optional"/>
+    <xsd:attribute type="xsd:boolean" name="auto-generated" use="optional"/>
+  </xsd:complexType>
+
   <xsd:complexType mixed="false" name="tileType">
     <xsd:annotation>
       <xsd:documentation>
@@ -21,9 +38,12 @@
         coordinate!
       </xsd:documentation>
     </xsd:annotation>
-    <xsd:choice maxOccurs="unbounded" minOccurs="0">
-      <xsd:element type="xsd:string" name="tag"/>
-    </xsd:choice>
+    <xsd:sequence>
+      <xsd:element name="metadata" type="tileMetaDataType" minOccurs="0" maxOccurs="1"/>
+      <xsd:choice maxOccurs="unbounded" minOccurs="0">
+        <xsd:element type="xsd:string" name="tag"/>
+      </xsd:choice>
+    </xsd:sequence>
     
     <xsd:attribute type="xsd:string" name="name" use="optional"/>
     <xsd:attribute name="x" type="xsd:unsignedInt" use="required"/>
@@ -61,11 +81,16 @@
         
         Grid-Width and Grid-Height are only needed for "Basic" grids.
         All other grid types use a fixed layout at all times.
+        
+        Cell map elements is a space separated list of tag suffixes.
+        Keep these short, but unique, for instance use the first
+        character of the name of the condition you are matching.
       </xsd:documentation>
     </xsd:annotation>
     <xsd:attribute type="xsd:string" name="title" use="optional"/>
     <xsd:attribute type="xsd:string" name="pattern" use="optional"/>
     <xsd:attribute type="xsd:string" name="match-type" use="optional" default="Basic"/>
+    <xsd:attribute type="xsd:string" name="cell-map-elements" use="optional"/>
 
     <xsd:attribute type="xsd:string" name="text-color" use="optional"/>
     <xsd:attribute type="xsd:string" name="border-color" use="optional"/>
@@ -104,6 +129,14 @@
         Width and height defines a cell-width and cell-height (the size
         of each texture contained in the grid. This can be larger or 
         smaller than the standard tile-size defined in the root element.
+        
+        If no cell-width or cell-height is defined explicitly here, then
+        the system will use a sensible default value. If 'half-cell-hint'
+        is set to true, we'll assume a 'corner' match system and thus the
+        cell-size will be equal to a quarter of tile size. If there is
+        no half-cell-hint or the hint is set to false, we will assume 
+        a standard cell size that is equal to the tile-size defined on
+        the root element.
       </xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
@@ -120,6 +153,7 @@
     <xsd:attribute name="cell-spacing" type="xsd:unsignedInt" use="optional"/>
     <xsd:attribute name="anchor-x" type="xsd:unsignedInt" use="optional"/>
     <xsd:attribute name="anchor-y" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="half-cell-hint" type="xsd:boolean" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="collectionMetaDataType">

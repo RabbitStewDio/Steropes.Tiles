@@ -86,6 +86,7 @@
     <Compile Include="Matcher\Registry\ITileRegistryEx.cs" />
     <Compile Include="Matcher\Registry\MultiTileRegistry.cs" />
     <Compile Include="Matcher\Registry\NeighbourIndexTileRegistry.cs" />
+    <Compile Include="Matcher\Registry\NeighbourMatchPosition.cs" />
     <Compile Include="Matcher\Registry\TileRegistryTracing.cs" />
     <Compile Include="Matcher\Registry\TileTagEntries.cs" />
     <Compile Include="Matcher\Sprites\BaseTileSelector.cs" />

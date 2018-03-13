@@ -128,6 +128,7 @@
       // typeTypeBox
       // 
       this.typeTypeBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.typeTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.typeTypeBox.FormattingEnabled = true;
       this.typeTypeBox.Location = new System.Drawing.Point(123, 29);
       this.typeTypeBox.Name = "typeTypeBox";

@@ -76,7 +76,7 @@
     <Compile Include="Actions\CloseCommand.cs" />
     <Compile Include="Actions\Command.cs" />
     <Compile Include="Actions\DeleteCommnad.cs" />
-    <Compile Include="Actions\EditCommand.cs" />
+    <Compile Include="Actions\LayoutCollectionCommand.cs" />
     <Compile Include="Actions\ModelCommand.cs" />
     <Compile Include="Actions\NewCommand.cs" />
     <Compile Include="Actions\OpenCommand.cs" />
@@ -90,6 +90,7 @@
       <DependentUpon>BaseTextureElementEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\DetailEditorCoordinator.cs" />
+    <Compile Include="Editors\IDetailEditor.cs" />
     <Compile Include="Editors\InputExtensions.cs" />
     <Compile Include="Editors\TextureCollectionEditor.cs">
       <SubType>UserControl</SubType>
@@ -109,9 +110,23 @@
     <Compile Include="Editors\TextureGridEditor.Designer.cs">
       <DependentUpon>TextureGridEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\TextureTileEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editors\TextureTileEditor.Designer.cs">
+      <DependentUpon>TextureTileEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\Validators.cs" />
+    <Compile Include="GeneratorPreferences.cs" />
+    <Compile Include="Layout\GridGenerator.cs" />
     <Compile Include="Layout\GridLayouter.cs" />
+    <Compile Include="Layout\GridProducer.cs" />
+    <Compile Include="Layout\GridTilePainter.cs" />
+    <Compile Include="Layout\IsoTilePainter.cs" />
+    <Compile Include="Layout\ITilePainter.cs" />
     <Compile Include="Layout\LayoutNode.cs" />
+    <Compile Include="Layout\TilePainterBase.cs" />
+    <Compile Include="Layout\TilePainterExtensions.cs" />
     <Compile Include="MainModel.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -159,6 +174,9 @@
     <EmbeddedResource Include="Editors\TextureGridEditor.resx">
       <DependentUpon>TextureGridEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TextureTileEditor.resx">
+      <DependentUpon>TextureTileEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +218,12 @@
     <Content Include="Icons\Add-Grid.png" />
     <Content Include="Icons\Add-Tile.png" />
     <Content Include="Icons\New-Document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Steropes.Tiles\Steropes.Tiles.csproj">
+      <Project>{7d3a110c-44c9-4007-82c2-d6578f7402c6}</Project>
+      <Name>Steropes.Tiles</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

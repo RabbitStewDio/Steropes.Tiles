@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormattingTest.cs" />
     <Compile Include="GameRenderingConfigTest.cs" />
     <Compile Include="Navigation\GridNavigationTest.cs" />
     <Compile Include="Navigation\IsoDiamondNavigationTest.cs" />

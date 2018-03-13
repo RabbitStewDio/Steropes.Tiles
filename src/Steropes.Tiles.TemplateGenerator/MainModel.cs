@@ -20,7 +20,10 @@ namespace Steropes.Tiles.TemplateGenerator
     public MainModel()
     {
       Selection = new ObservableCollection<object>();
+      Preferences = new GeneratorPreferences();
     }
+
+    public GeneratorPreferences Preferences { get; }
 
     public ObservableCollection<object> Selection { get; }
 

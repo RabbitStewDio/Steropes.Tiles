@@ -40,12 +40,14 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
     [Test]
     public void ValidateTextureFileProperties()
     {
-      TextureFile f = new TextureFile();
-      f.Properties = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>
+      TextureFile f = new TextureFile
       {
-        {"pname1", "pvalue1"},
-        {"pname2", "pvalue2"}
-      });
+        Properties = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>
+        {
+          {"pname1", "pvalue1"},
+          {"pname2", "pvalue2"}
+        })
+      };
       var root = TextureFileWriter.GenerateRoot(f);
       var md = root.Element(Namespace + "metadata");
       md.HasAttributes.Should().Be(false);
@@ -118,8 +120,8 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
       root.Should().HaveAttribute("name", "");
       root.Should().HaveAttribute("x", "0");
       root.Should().HaveAttribute("y", "0");
-      root.Should().HaveAttribute("cell-width", "0");
-      root.Should().HaveAttribute("cell-height", "0");
+      root.Attribute("cell-width").Should().BeNull();
+      root.Attribute("cell-height").Should().BeNull();
       root.Should().HaveElement(Namespace + "metadata");
     }
 
@@ -143,7 +145,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
     [Test]
     public void ValidateTextureTile()
     {
-      var tt = new TextureTile();
+      var tt = new TextureTile(false);
       var root = TextureFileWriter.GenerateTile(tt);
 
       root.Name.Should().Be(Namespace + "tile");
@@ -154,7 +156,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
     [Test]
     public void ValidateTextureTileSingleTag()
     {
-      var tt = new TextureTile();
+      var tt = new TextureTile(false);
       tt.Tags.Add("tag1");
       var root = TextureFileWriter.GenerateTile(tt);
 
@@ -167,7 +169,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
     [Test]
     public void ValidateTextureTileMultipleTags()
     {
-      var tt = new TextureTile();
+      var tt = new TextureTile(false);
       tt.Tags.Add("tag1");
       tt.Tags.Add("tag2");
       var root = TextureFileWriter.GenerateTile(tt);

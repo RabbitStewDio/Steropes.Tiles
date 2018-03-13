@@ -68,6 +68,11 @@ namespace Steropes.Tiles.Matcher.Sprites
       }
     }
 
+    public override string ToString()
+    {
+      return Convert.ToString(LinearIndex, 2);
+    }
+
     public static CardinalTileSelectorKey ValueOf(bool north, bool east, bool south, bool west)
     {
       int index = 0;

@@ -52,11 +52,11 @@
       this.anchorXBox = new System.Windows.Forms.NumericUpDown();
       this.anchorYLabel = new System.Windows.Forms.Label();
       this.anchorYBox = new System.Windows.Forms.NumericUpDown();
-      this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.cellMapElementLabel = new System.Windows.Forms.Label();
-      this.cellMapElementBox = new System.Windows.Forms.NumericUpDown();
+      this.cellMapElementBox = new System.Windows.Forms.TextBox();
       this.cellSpacingLabel = new System.Windows.Forms.Label();
       this.cellSpacingBox = new System.Windows.Forms.NumericUpDown();
+      this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.layoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.xBox)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.yBox)).BeginInit();
@@ -66,9 +66,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.cellHeightBox)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.anchorXBox)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.anchorYBox)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.cellMapElementBox)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.cellSpacingBox)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
       this.SuspendLayout();
       // 
       // layoutPanel
@@ -77,7 +76,7 @@
       this.layoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.layoutPanel.ColumnCount = 3;
       this.layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-      this.layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.layoutPanel.Controls.Add(this.nameLabel, 0, 0);
       this.layoutPanel.Controls.Add(this.nameTextBox, 1, 0);
@@ -157,6 +156,7 @@
       // matchTypeBox
       // 
       this.matchTypeBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.matchTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.matchTypeBox.FormattingEnabled = true;
       this.matchTypeBox.Location = new System.Drawing.Point(123, 29);
       this.matchTypeBox.Name = "matchTypeBox";
@@ -365,10 +365,6 @@
       this.anchorYBox.Size = new System.Drawing.Size(121, 20);
       this.anchorYBox.TabIndex = 21;
       // 
-      // errorProvider
-      // 
-      this.errorProvider.ContainerControl = this;
-      // 
       // cellMapElementLabel
       // 
       this.cellMapElementLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -385,7 +381,7 @@
       this.cellMapElementBox.Location = new System.Drawing.Point(123, 290);
       this.cellMapElementBox.Name = "cellMapElementBox";
       this.cellMapElementBox.Size = new System.Drawing.Size(121, 20);
-      this.cellMapElementBox.TabIndex = 23;
+      this.cellMapElementBox.TabIndex = 26;
       // 
       // cellSpacingLabel
       // 
@@ -404,6 +400,10 @@
       this.cellSpacingBox.Name = "cellSpacingBox";
       this.cellSpacingBox.Size = new System.Drawing.Size(121, 20);
       this.cellSpacingBox.TabIndex = 25;
+      // 
+      // errorProvider
+      // 
+      this.errorProvider.ContainerControl = this;
       // 
       // TextureGridEditor
       // 
@@ -424,9 +424,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.cellHeightBox)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.anchorXBox)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.anchorYBox)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.cellMapElementBox)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.cellSpacingBox)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -458,9 +457,9 @@
     private System.Windows.Forms.Label anchorYLabel;
     private System.Windows.Forms.NumericUpDown anchorYBox;
     private System.Windows.Forms.ErrorProvider errorProvider;
-    private System.Windows.Forms.Label cellMapElementLabel;
-    private System.Windows.Forms.NumericUpDown cellMapElementBox;
     private System.Windows.Forms.Label cellSpacingLabel;
     private System.Windows.Forms.NumericUpDown cellSpacingBox;
+    private System.Windows.Forms.Label cellMapElementLabel;
+    private System.Windows.Forms.TextBox cellMapElementBox;
   }
 }

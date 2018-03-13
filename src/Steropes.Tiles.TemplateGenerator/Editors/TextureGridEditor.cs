@@ -39,8 +39,9 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
           .WithErrorCondition(Validators.LessThan(1), "Anchor-X offset must be a positive number"),
         anchorYBox.CreateValidator().ForProvider(errorProvider)
           .WithErrorCondition(Validators.LessThan(1), "Anchor-Y offset must be a positive number"),
-        cellMapElementBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "Cell Map element count must be a positive number"),
+        cellMapElementBox.CreateValidator().ForProvider(errorProvider),
+        cellSpacingBox.CreateValidator().ForProvider(errorProvider)
+          .WithErrorCondition(Validators.LessThan(1), "Cell Spacing must be a positive number")
       };
 
       validator.InputReceived += OnInputReceived;
@@ -103,7 +104,7 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
           nameTextBox.Text = data.Name;
           patternBox.Text = data.Pattern;
           matchTypeBox.SelectedItem = data.MatcherType;
-          cellMapElementBox.Value = data.CellMapElements;
+          cellMapElementBox.Text = data.CellMapElements;
         }
       }
       finally
@@ -123,17 +124,17 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       data.Height = (int?) heightBox.GetValue();
       data.X = (int) xBox.Value;
       data.Y = (int) yBox.Value;
-      data.CellWidth = (int) cellWidthBox.Value;
-      data.CellHeight = (int) cellHeightBox.Value;
+      data.CellWidth = (int?) cellWidthBox.GetValue();
+      data.CellHeight = (int?) cellHeightBox.GetValue();
       data.AnchorX = (int?) anchorXBox.GetValue();
       data.AnchorX = (int?) anchorYBox.GetValue();
-      data.CellMapElements = (int) cellMapElementBox.Value;
+      data.CellMapElements = cellMapElementBox.Text;
       data.CellSpacing = (int) cellSpacingBox.Value;
       data.Name = nameTextBox.Text;
       data.Pattern = patternBox.Text;
-      if (matchTypeBox.SelectedValue != null)
+      if (matchTypeBox.SelectedItem != null)
       {
-        data.MatcherType = (MatcherType) matchTypeBox.SelectedValue;
+        data.MatcherType = (MatcherType) matchTypeBox.SelectedItem;
       }
       return data;
     }

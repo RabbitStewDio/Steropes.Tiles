@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Steropes.Tiles.TemplateGenerator.Model;
@@ -18,8 +19,11 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
     public void Draw(Graphics graphics)
     {
+      Debug.WriteLine("Start Grid ({0}), Offset: {1}, Size: {2}", grid.Name, Offset, Size);
+
       if (!string.IsNullOrEmpty(grid.FormattingMetaData.Title))
       {
+        Debug.WriteLine(" Title: {0}", grid.FormattingMetaData.Title);
         var contentSize = ComputeContentSize();
         var textSize = ComputeTextSize();
         var contentOffset = ContentOffset;
@@ -39,6 +43,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         DrawTile(graphics, tile);
       }
 
+      Debug.WriteLine(" Title: {0}", grid.FormattingMetaData.Title);
       if ((grid.FormattingMetaData.Border ?? 1) > 0)
       {
         var borderPen = new Pen(grid.FormattingMetaData.BorderColor ?? Color.Gainsboro);
@@ -50,30 +55,23 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
     void DrawTile(Graphics g, TextureTile tile)
     {
       var border = grid.CellSpacing;
-      var x = tile.X * (grid.CellWidth + border);
-      var y = tile.Y * (grid.CellHeight + border);
+      var cw = grid.EffectiveCellSize;
+      var x = tile.X * (cw.Width + border);
+      var y = tile.Y * (cw.Height + border);
 
-      DrawTemplateTile(g, ContentOffset.X + x, ContentOffset.Y + y);
-    }
-
-    void DrawTemplateTile(Graphics g, int x, int y)
-    {
-      var pen = new Pen(grid.FormattingMetaData.BackgroundColor ?? Color.Green);
-      if (grid?.Parent?.Parent?.TileType == TileType.Isometric)
+      var ap = grid.ComputeEffectiveAnchorPoint(tile);
+      var g2 = g.BeginContainer();
+      try
       {
-        var width = grid.CellWidth;
-        var height = grid.CellHeight;
-        g.DrawLine(pen, x, y + height / 2, x + width / 2, y);
-        g.DrawLine(pen, x + width, y + height / 2, x + width / 2, y);
-        g.DrawLine(pen, x, y + height / 2, x + width / 2, y + height);
-        g.DrawLine(pen, x + width, y + height / 2, x + width / 2, y + height);
+        g.TranslateTransform(ContentOffset.X + x + ap.X, ContentOffset.Y + y + ap.Y);
+        var painter = grid.CreateTilePainter();
+        painter.Draw(g, tile);
       }
-      else
+      finally
       {
-        g.DrawRectangle(pen, x, y, grid.CellWidth, grid.CellHeight);
+        g.EndContainer(g2);
       }
 
-      pen.Dispose();
     }
 
     Point ComputeRequiredTiles()
@@ -116,7 +114,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         {
           // depends on the number of choices ...
           // we assume uniform choices for all 4 neighbour slots.
-          var cellMapCount = Math.Max(1, grid.CellMapElements);
+          var cellMapCount = Math.Max(1, grid.EffectiveCellMapElements.Count);
           var tileCount = Math.Pow(cellMapCount, 4);
           var width = (int) Math.Ceiling(Math.Sqrt(tileCount));
           var height = (int) Math.Ceiling(tileCount / width);
@@ -151,8 +149,9 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       var maxX = tileCount.X;
       var maxY = tileCount.Y;
 
-      var pixelWidth = grid.CellWidth * maxX;
-      var pixelHeight = grid.CellHeight * maxY;
+      var cs = grid.EffectiveCellSize;
+      var pixelWidth = cs.Width * maxX;
+      var pixelHeight = cs.Height * maxY;
 
       var paddedWidth = Math.Max(0, maxX - 1) * grid.CellSpacing;
       var paddedHeight = Math.Max(0, maxY - 1) * grid.CellSpacing;

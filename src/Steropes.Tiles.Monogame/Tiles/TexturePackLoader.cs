@@ -156,13 +156,17 @@ namespace Steropes.Tiles.Monogame.Tiles
 
     static TileGrid ParseGrid(XElement grid, TexturePackLoaderContext context)
     {
+      var halfCell = (bool?) grid.Attribute("half-cell-hint") ?? false;
+      var defaultWidth = halfCell ? context.Width / 2 : context.Width;
+      var defaultHeight = halfCell ? context.Height / 2 : context.Height;
+
       var x = (int) grid.AttributeLocal("x");
       var y = (int) grid.AttributeLocal("y");
-      var width = (int?)grid.AttributeLocal("cell-width")?? (int?) grid.AttributeLocal("width") ?? context.Width;
-      var height = (int?)grid.AttributeLocal("cell-height") ?? (int?) grid.AttributeLocal("height") ?? context.Height;
+      var width = (int?)grid.AttributeLocal("cell-width")?? (int?) grid.AttributeLocal("width") ?? defaultWidth;
+      var height = (int?)grid.AttributeLocal("cell-height") ?? (int?) grid.AttributeLocal("height") ?? defaultHeight;
 
-      var anchorX = (int?) grid.AttributeLocal("anchor-x") ?? width - (context.Width / 2);
-      var anchorY = (int?) grid.AttributeLocal("anchor-y") ?? height - (context.Height / 2);
+      var anchorX = (int?) grid.AttributeLocal("anchor-x") ?? width / 2;
+      var anchorY = (int?) grid.AttributeLocal("anchor-y") ?? height - defaultHeight / 2;
 
       var border = (int?) grid.AttributeLocal("cell-spacing") ??(int?) grid.AttributeLocal("border") ?? 0;
 

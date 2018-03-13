@@ -2,6 +2,7 @@
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Matcher.Sprites;
+using Steropes.Tiles.Matcher.TileTags;
 using Steropes.Tiles.Monogame.Tiles;
 
 namespace Steropes.Tiles.MonogameDemo.GameData.Dungeon
@@ -152,7 +153,21 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Dungeon
 
     static string FormatName(string tag, CardinalFlags key)
     {
-      return $"{tag}_{CardinalTileRegistry.Format(key.AsCardinalKey())}";
+      return $"{tag}_{Format(key.AsCardinalKey())}";
     }
+
+    static string Format(CardinalTileSelectorKey k, 
+                                ITileTagEntrySelectionFactory<bool> formatProvider = null,
+                                string format = null)
+    {
+      formatProvider = formatProvider ?? TileTagEntries.CreateFlagTagEntries();
+      format = format ?? "n{0}e{1}s{2}w{3}";
+      var n = formatProvider.Lookup(k.North).Tag;
+      var e = formatProvider.Lookup(k.East).Tag;
+      var s = formatProvider.Lookup(k.South).Tag;
+      var w = formatProvider.Lookup(k.West).Tag;
+      return string.Format(format, n, e, s, w);
+    }
+
   }
 }

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Specialized;
-using System.Linq;
-using Steropes.Tiles.TemplateGenerator.Model;
+using Steropes.Tiles.TemplateGenerator.Layout;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class AddGridCommand : ModelCommand
+  public class LayoutCollectionCommand: ModelCommand
   {
-    int counter;
-
-    public AddGridCommand(MainModel model) : base(model)
+    public LayoutCollectionCommand(MainModel model): base(model)
     {
       Model.Selection.CollectionChanged += OnSelectionChanged;
     }
@@ -32,11 +29,11 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
         return;
       }
 
-      counter += 1;
-      var textureGrid = new TextureGrid() { Name = $"Grid {counter}"};
-      insertPoint.Grids.Add(textureGrid);
-      Model.Selection.Clear();
-      Model.Selection.Add(textureGrid);
+      var gen = new GridGenerator();
+      gen.Regenerate(insertPoint);
+
+      var producer = new GridLayouter();
+      producer.ArrangeGrids(insertPoint);
     }
   }
 }

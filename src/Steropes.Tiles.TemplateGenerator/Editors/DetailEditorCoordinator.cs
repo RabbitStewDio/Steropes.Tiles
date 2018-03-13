@@ -21,22 +21,19 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       this.model = model ?? throw new ArgumentNullException();
       this.model.Selection.CollectionChanged += OnSelectionChanged;
 
-      var splitter = new SplitContainer
+      var splitter = new Panel
       {
-        Orientation = Orientation.Horizontal,
         Dock = DockStyle.Fill,
         AutoSize = true,
       };
       
       metaDataEditor = new BaseTextureElementEditor
       {
-        Dock = DockStyle.Fill,
+        Dock = DockStyle.Top,
         AutoSize = true,
         AutoSizeMode = AutoSizeMode.GrowAndShrink
       };
       metaDataEditor.InputReceived += OnMetaDataInputReceived;
-
-      splitter.Panel2.Controls.Add(metaDataEditor);
 
       this.targetPanel.Controls.Add(splitter);
 
@@ -44,7 +41,8 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       {
         new ConditionalPanelHolder<TextureFile>(new TextureFileEditor()), 
         new ConditionalPanelHolder<TextureCollection>(new TextureCollectionEditor()),
-        new ConditionalPanelHolder<TextureGrid>(new TextureGridEditor())
+        new ConditionalPanelHolder<TextureGrid>(new TextureGridEditor()),
+        new ConditionalPanelHolder<TextureTile>(new TextureTileEditor())
       };
 
       foreach (var handler in this.handlers)
@@ -52,10 +50,12 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         var c = handler.EditorControl;
         if (c != null)
         {
-          c.Dock = DockStyle.Fill;
-          splitter.Panel1.Controls.Add(c);
+          c.Dock = DockStyle.Top;
+          splitter.Controls.Add(c);
         }
       }
+
+      splitter.Controls.Add(metaDataEditor);
 
       UpdateSelection();
     }
@@ -141,16 +141,5 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         }
       }
     }
-  }
-
-  public interface IDetailEditor<T>
-  {
-    bool Valid { get; }
-    bool Visible { get; set; }
-    void ApplyFrom(T data);
-    T ApplyTo(T data);
-
-    event EventHandler InputReceived;
-
   }
 }

@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Steropes.Tiles.TemplateGenerator.Annotations;
 
@@ -16,14 +19,14 @@ namespace Steropes.Tiles.TemplateGenerator.Model
     int? width;
     int? height;
 
-    int cellWidth;
-    int cellHeight;
+    int? cellWidth;
+    int? cellHeight;
     int cellSpacing;
 
     MatcherType matcherType;
     string pattern;
     string name;
-    int cellMapElements;
+    string cellMapElements;
 
     public TextureGrid()
     {
@@ -45,7 +48,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
-    public int CellMapElements
+    public string CellMapElements
     {
       get { return cellMapElements; }
       set
@@ -72,6 +75,11 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       get { return pattern; }
       set
       {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+          value = null;
+        }
+
         if (value == pattern) return;
         pattern = value;
         OnPropertyChanged();
@@ -83,6 +91,11 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       get { return name; }
       set
       {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+          value = null;
+        }
+
         if (value == name)
         {
           return;
@@ -123,7 +136,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
-    public int CellWidth
+    public int? CellWidth
     {
       get { return cellWidth; }
       set
@@ -134,7 +147,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
-    public int CellHeight
+    public int? CellHeight
     {
       get { return cellHeight; }
       set
@@ -205,6 +218,73 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
+    public List<string> EffectiveCellMapElements
+    {
+      get
+      {
+        if (string.IsNullOrWhiteSpace(CellMapElements))
+        {
+          return new List<string>();
+        }
+
+        return CellMapElements.Split(null).Distinct().ToList();
+      }
+    }
+    
+
+    /// <summary>
+    ///  Returns the effective tile size, that is the standardized 
+    /// space a tile consumes on screen. Tiles can be larger than
+    /// that to overlap with neighbouring cells if needed, which is
+    /// measured as EffectiveCellSize.
+    /// </summary>
+    public Size EffectiveTileSize
+    {
+      get
+      {
+        var retval = new Size();
+        var parent = Parent?.Parent;
+        if (parent != null)
+        {
+          retval.Width = parent.Width;
+          retval.Height = parent.Height;
+        }
+        if (matcherType == MatcherType.Corner)
+        {
+          retval.Width /= 2;
+          retval.Height /= 2;
+        }
+
+        return retval;
+      }
+    }
+
+    public Size EffectiveCellSize
+    {
+      get
+      {
+        var retval = EffectiveTileSize;
+        retval.Width = cellWidth ?? retval.Width;
+        retval.Height = cellHeight ?? retval.Height;
+        return retval;
+      }
+    }
+
+    /// <summary>
+    ///  The effective anchor point, if not defined otherwise
+    ///  will be aligned to the bottom edge of the graphic and
+    ///  centred horizontally.
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <returns></returns>
+    public Point ComputeEffectiveAnchorPoint(TextureTile tile)
+    {
+      var tileSize = EffectiveTileSize;
+      var size = EffectiveCellSize;
+      var anchorPointX = tile.AnchorX ?? AnchorX ?? size.Width / 2;
+      var anchorPointY = tile.AnchorY ?? AnchorY ?? size.Height - tileSize.Height / 2;
+      return new Point(anchorPointX, anchorPointY);
+    }
 
     public TextureCollection Parent { get; set; }
     public event PropertyChangedEventHandler PropertyChanged;

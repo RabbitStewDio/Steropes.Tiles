@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Steropes.Tiles.Matcher.TileTags;
 using Steropes.Tiles.Navigation;
 
@@ -6,6 +7,8 @@ namespace Steropes.Tiles.Matcher.Registry
 {
   public class CardinalIndexTileRegistry<TRenderTile> : ITileRegistryEx<CardinalIndex, TRenderTile>
   {
+    const string DefaultFormat = "{0}_{1}";
+
     readonly ITileRegistry<TRenderTile> baseRegistry;
     readonly ITileTagEntrySelectionFactory<CardinalIndex> suffixMapping;
     readonly string format;
@@ -14,7 +17,7 @@ namespace Steropes.Tiles.Matcher.Registry
                                      ITileTagEntrySelectionFactory<CardinalIndex> suffixMapping,
                                      string format = null)
     {
-      this.format = format ?? "{0}_{1}";
+      this.format = format ?? DefaultFormat;
       this.baseRegistry = baseRegistry ?? throw new ArgumentNullException();
       this.suffixMapping = suffixMapping ?? throw new ArgumentNullException();
       if (suffixMapping.Count != 4)
@@ -42,6 +45,15 @@ namespace Steropes.Tiles.Matcher.Registry
     public bool TryFind(string tag, CardinalIndex selector, out TRenderTile tile)
     {
       return baseRegistry.TryFind(string.Format(format, tag, suffixMapping.Lookup(selector).Tag), out tile);
+    }
+
+    public IEnumerable<string> GenerateNames(string tag)
+    {
+      var tags = suffixMapping.ToSelectionArray();
+      foreach (var selection in tags)
+      {
+        yield return string.Format(format, tag, selection.Tag);
+      }
     }
   }
 }

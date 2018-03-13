@@ -1,4 +1,6 @@
-﻿using Steropes.Tiles.Matcher.Sprites;
+﻿using System;
+using System.Collections.Generic;
+using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Matcher.TileTags;
 
 namespace Steropes.Tiles.Matcher.Registry
@@ -6,20 +8,35 @@ namespace Steropes.Tiles.Matcher.Registry
   public class CornerTileRegistry<TRenderTile> : ITileRegistryEx<CornerTileSelectionKey, TRenderTile>
   {
     readonly ITileRegistry<TRenderTile> baseRegistry;
-    readonly string format;
     readonly string[] suffixMapping;
+
+    [Obsolete]
+    public CornerTileRegistry(ITileRegistry<TRenderTile> baseRegistry,
+                              ITileTagEntrySelectionFactory<bool> booleanFormats,
+                              ITileTagEntrySelectionFactory<Direction> directions,
+                              string suffixFormat,
+                              string format): this(baseRegistry, booleanFormats, directions, 
+                                                          ProduceCombinedFormatString(suffixFormat, format))
+    {
+    }
+
+    static string ProduceCombinedFormatString(string tagFormat = null,
+                                              string format = null)
+    {
+      var formatString = tagFormat ?? "{0}{1}{2}{3}";
+      var secondLevel = format ?? "{0}_{1}";
+      return string.Format(secondLevel, "{{0}}", formatString);
+    }
 
     public CornerTileRegistry(ITileRegistry<TRenderTile> baseRegistry,
                               ITileTagEntrySelectionFactory<bool> booleanFormats = null,
                               ITileTagEntrySelectionFactory<Direction> directions = null,
-                              string suffixFormat = null,
                               string format = null)
     {
       this.baseRegistry = baseRegistry;
-      this.format = format ?? "{0}_{1}";
       this.suffixMapping = GenerateSuffixes(booleanFormats ?? TileTagEntries.CreateFlagTagEntries(),
                                             directions ?? TileTagEntries.CreateDirectionTagEntries(),
-                                            suffixFormat ?? "{0}{1}{2}{3}");
+                                            format ?? "{{0}}_{0}{1}{2}{3}");
     }
 
     string[] GenerateSuffixes(ITileTagEntrySelectionFactory<bool> booleanFormats,
@@ -43,12 +60,14 @@ namespace Steropes.Tiles.Matcher.Registry
 
     public TRenderTile Find(string tag, CornerTileSelectionKey selector)
     {
-      return baseRegistry.Find(string.Format(format, tag, suffixMapping[selector.LinearIndex]));
+      var format = suffixMapping[selector.LinearIndex];
+      return baseRegistry.Find(string.Format(format, tag));
     }
 
     public bool TryFind(string tag, CornerTileSelectionKey selector, out TRenderTile tile)
     {
-      return baseRegistry.TryFind(string.Format(format, tag, suffixMapping[selector.LinearIndex]), out tile);
+      var format = suffixMapping[selector.LinearIndex];
+      return baseRegistry.TryFind(string.Format(format, tag), out tile);
     }
   }
 }

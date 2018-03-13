@@ -35,6 +35,70 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       }
     }
 
+    protected TextureFile SelectedFile
+    {
+      get
+      {
+        foreach (var s in Model.Selection)
+        {
+          if (s is TextureFile c)
+          {
+            return c;
+          }
+        }
+
+        return SelectedCollection?.Parent;
+      }
+    }
+
+    protected TextureCollection SelectedCollection
+    {
+      get
+      {
+        foreach (var s in Model.Selection)
+        {
+          if (s is TextureCollection c)
+          {
+            return c;
+          }
+        }
+
+        return SelectedGrid?.Parent;
+      }
+    }
+
+    protected TextureGrid SelectedGrid
+    {
+      get
+      {
+        foreach (var s in Model.Selection)
+        {
+          if (s is TextureGrid c)
+          {
+            return c;
+          }
+        }
+
+        return SelectedTile?.Parent;
+      }
+    }
+
+    protected TextureTile SelectedTile
+    {
+      get
+      {
+        foreach (var s in Model.Selection)
+        {
+          if (s is TextureTile c)
+          {
+            return c;
+          }
+        }
+
+        return null;
+      }
+    }
+
     protected virtual void NotifyContentChanged(TextureFile old, TextureFile textureFile)
     {
       Enabled = Model.Content != null;
