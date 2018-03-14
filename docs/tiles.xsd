@@ -51,14 +51,21 @@
   </xsd:complexType>
   
   <xsd:simpleType name="matchTypeAttr">
+    <xsd:annotation>
+      <xsd:documentation>
+        This list here is not exhaustive and simply defines the types the
+        design time tool can understand. As this is metadata content it
+        will be ignored at runtime.
+      </xsd:documentation>
+    </xsd:annotation>
     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Basic"/>
       <xsd:enumeration value="CardinalFlags"/>
       <xsd:enumeration value="CardinalIndex"/>
       <xsd:enumeration value="CellMap"/>
       <xsd:enumeration value="Corner"/>
-      <xsd:enumeration value="Diagonal"/>
+      <xsd:enumeration value="DiagonalFlags"/>
       <xsd:enumeration value="NeighbourIndex"/>
-      <xsd:enumeration value="Basic"/>
     </xsd:restriction>
   </xsd:simpleType>
 

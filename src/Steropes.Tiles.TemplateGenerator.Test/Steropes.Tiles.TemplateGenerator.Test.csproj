@@ -76,8 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GridGeneratorTest.cs" />
+    <Compile Include="GridLayoutTest.cs" />
+    <Compile Include="Model\LayoutNodeTest.cs" />
     <Compile Include="Model\TileFileLoaderTest.cs" />
     <Compile Include="Model\TileFileWriterTest.cs" />
+    <Compile Include="Model\WinFormsTest.cs" />
     <Compile Include="Properties\StaticAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,15 +6,22 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Layout
 {
-  class LayoutNode
+  public class LayoutNode
   {
+    readonly GeneratorPreferences prefs;
     readonly TextureGrid grid;
 
-    public LayoutNode(TextureGrid grid)
+    public LayoutNode(GeneratorPreferences prefs, TextureGrid grid)
     {
+      this.prefs = prefs;
       this.grid = grid ?? throw new ArgumentNullException(nameof(grid));
       this.Margin = grid.FormattingMetaData.Margin ?? 0;
       this.Size = ComputeSize();
+    }
+
+    public TextureGrid Grid
+    {
+      get { return grid; }
     }
 
     public void Draw(Graphics graphics)
@@ -64,7 +71,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       try
       {
         g.TranslateTransform(ContentOffset.X + x + ap.X, ContentOffset.Y + y + ap.Y);
-        var painter = grid.CreateTilePainter();
+        var painter = grid.CreateTilePainter(prefs);
         painter.Draw(g, tile);
       }
       finally
@@ -74,80 +81,16 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
     }
 
-    Point ComputeRequiredTiles()
+    Size ComputeRequiredTiles()
     {
-      switch (grid.MatcherType)
-      {
-        case MatcherType.Basic:
-        {
-          return CountBasicTiles();
-        }
-        case MatcherType.CardinalFlags:
-        {
-          // 16 for all directions, 
-          // plus one isolated tile.
-          return new Point(9, 2);
-        }
-        case MatcherType.CardinalIndex:
-        {
-          // 4, one for each direction
-          return new Point(2, 2);
-        }
-        case MatcherType.Diagonal:
-        {
-          // 4, one for each direction
-          return new Point(2, 2);
-        }
-        case MatcherType.NeighbourIndex:
-        {
-          // 8, one for each direction including diagonals
-          return new Point(3, 3);
-        }
-        case MatcherType.Corner:
-        {
-          // 3 corner neighbour cells that either match or don't match, 
-          // therefore 2^3 = 8 combinations
-          // we have 4 corners, therefore 4 * 8 combinations.
-          return new Point(8, 4);
-        }
-        case MatcherType.CellMap:
-        {
-          // depends on the number of choices ...
-          // we assume uniform choices for all 4 neighbour slots.
-          var cellMapCount = Math.Max(1, grid.EffectiveCellMapElements.Count);
-          var tileCount = Math.Pow(cellMapCount, 4);
-          var width = (int) Math.Ceiling(Math.Sqrt(tileCount));
-          var height = (int) Math.Ceiling(tileCount / width);
-          return new Point(width, height);
-        }
-        default:
-        {
-          throw new ArgumentException();
-        }
-      }
+      return MatchTypeStrategyFactory.StrategyFor(grid.MatcherType).GetTileArea(grid);
     }
-
-    Point CountBasicTiles()
-    {
-      var maxX = 0;
-      var maxY = 0;
-
-      foreach (var textureTile in grid.Tiles)
-      {
-        maxX = Math.Max(Math.Max(0, textureTile.X), maxX);
-        maxY = Math.Max(Math.Max(0, textureTile.Y), maxY);
-      }
-
-      maxX += 1;
-      maxY += 1;
-      return new Point(maxX, maxY);
-    }
-
+    
     Size ComputeContentSize()
     {
       var tileCount = ComputeRequiredTiles();
-      var maxX = tileCount.X;
-      var maxY = tileCount.Y;
+      var maxX = tileCount.Width;
+      var maxY = tileCount.Height;
 
       var cs = grid.EffectiveCellSize;
       var pixelWidth = cs.Width * maxX;

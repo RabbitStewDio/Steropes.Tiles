@@ -5,16 +5,16 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class DeleteCommnad : ModelCommand
+  public sealed class DeleteCommnad : ModelCommand
   {
     public DeleteCommnad(MainModel model) : base(model)
     {
-      Model.Selection.CollectionChanged += OnSelectionChanged;
+      Enabled = RefreshEnabled();
     }
 
-    void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    protected override bool RefreshEnabled()
     {
-      Enabled = Model.Selection.Count > 0;
+      return base.RefreshEnabled() && Model.Selection.Count > 0;
     }
 
     public override void OnActionPerformed(object source, EventArgs args)

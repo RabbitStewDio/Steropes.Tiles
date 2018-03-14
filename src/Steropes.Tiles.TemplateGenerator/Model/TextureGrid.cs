@@ -28,8 +28,9 @@ namespace Steropes.Tiles.TemplateGenerator.Model
     string name;
     string cellMapElements;
 
-    public TextureGrid()
+    public TextureGrid(TextureCollection parent = null)
     {
+      Parent = parent;
       Tiles = new ObservableCollection<TextureTile>();
       Tiles.CollectionChanged += OnTilesChanged;
       FormattingMetaData = new FormattingMetaData();
@@ -105,6 +106,8 @@ namespace Steropes.Tiles.TemplateGenerator.Model
         OnPropertyChanged();
       }
     }
+
+    public Point Position => new Point(X, Y);
 
     public int X
     {

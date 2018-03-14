@@ -67,6 +67,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
 
       file.IncludeFiles.AddRange(includes);
       file.Collections.AddRange(collections);
+      file.SourcePath = documentPath;
       ParseFormattingInfo(root, file.FormattingMetaData);
       return file;
     }

@@ -51,7 +51,7 @@ namespace Steropes.Tiles.Matcher.Registry
         var m0 = booleanFormats.Lookup(key.M0).Tag;
         var m1 = booleanFormats.Lookup(key.M1).Tag;
         var m2 = booleanFormats.Lookup(key.M2).Tag;
-        var p = directions.Lookup(key.Pos);
+        var p = directions.Lookup(key.Pos).Tag;
         retval[i] = string.Format(suffixFormat, p, m0, m1, m2);
       }
 

@@ -187,6 +187,15 @@ namespace Steropes.Tiles.TemplateGenerator
         structureTree.ResumeLayout();
       }
 
+      if (model.Content?.SourcePath != null)
+      {
+        Text = "Tile Generator - " + model.Content.SourcePath;
+      }
+      else
+      {
+        Text = "Tile Generator";
+      }
+
       if (e.PropertyName == nameof(MainModel.PreviewBitmap))
       {
         Console.WriteLine("Updated preview image");

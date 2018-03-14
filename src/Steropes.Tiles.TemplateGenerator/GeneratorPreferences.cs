@@ -12,6 +12,9 @@ namespace Steropes.Tiles.TemplateGenerator
     TileType defaultTileType;
     int defaultWidth;
     int defaultHeight;
+    Color defaultTileHighlightColor;
+    Color defaultTileColor;
+    Color defaultTextColor;
     public event PropertyChangedEventHandler PropertyChanged;
 
     public GeneratorPreferences()
@@ -30,6 +33,44 @@ namespace Steropes.Tiles.TemplateGenerator
       DefaultTileType = TileType.Isometric;
       DefaultWidth = 96;
       DefaultHeight = 48;
+      
+      DefaultBorderColor = Color.DarkGray;
+      DefaultTileColor = Color.DarkGray;
+      DefaultTileHighlightColor = Color.DimGray;
+      DefaultTextColor = Color.Black;
+    }
+
+    public Color DefaultTileHighlightColor
+    {
+      get { return defaultTileHighlightColor; }
+      set
+      {
+        if (value.Equals(defaultTileHighlightColor)) return;
+        defaultTileHighlightColor = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public Color DefaultTileColor
+    {
+      get { return defaultTileColor; }
+      set
+      {
+        if (value.Equals(defaultTileColor)) return;
+        defaultTileColor = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public Color DefaultTextColor
+    {
+      get { return defaultTextColor; }
+      set
+      {
+        if (value.Equals(defaultTextColor)) return;
+        defaultTextColor = value;
+        OnPropertyChanged();
+      }
     }
 
     public int DefaultWidth
@@ -68,6 +109,7 @@ namespace Steropes.Tiles.TemplateGenerator
     public ObservableCollection<string> RecentFiles { get; }
 
     public ObservableCollection<Color> TileColors { get; }
+    public Color DefaultBorderColor { get; set; }
 
     [NotifyPropertyChangedInvocator]
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

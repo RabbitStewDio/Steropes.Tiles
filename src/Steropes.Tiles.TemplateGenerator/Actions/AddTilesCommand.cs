@@ -5,16 +5,16 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class AddTilesCommand : ModelCommand
+  public sealed class AddTilesCommand : ModelCommand
   {
     public AddTilesCommand(MainModel model) : base(model)
     {
-      Model.Selection.CollectionChanged += OnSelectionChanged;
+      Enabled = RefreshEnabled();
     }
 
-    void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    protected override bool RefreshEnabled()
     {
-      Enabled = SelectedGrid != null;
+      return base.RefreshEnabled() && SelectedCollection != null;
     }
 
     public override void OnActionPerformed(object source, EventArgs args)

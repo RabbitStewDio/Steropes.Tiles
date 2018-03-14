@@ -25,13 +25,13 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       {
         tagsBox.CreateValidator().ForProvider(errorProvider),
         gridXBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "X Offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "X Offset must be a positive number"),
         gridXBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "Y Offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "Y Offset must be a positive number"),
         anchorXBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "X Offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "X Offset must be a positive number"),
         anchorYBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "Y Offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "Y Offset must be a positive number"),
       };
       validator.InputReceived += OnInputReceived;
     }

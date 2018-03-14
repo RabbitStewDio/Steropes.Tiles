@@ -70,7 +70,11 @@ namespace Steropes.Tiles.Matcher.Sprites
 
     public override string ToString()
     {
-      return Convert.ToString(LinearIndex, 2);
+      string FlagToString(bool flag)
+      {
+        return flag ? "1" : "0";
+      }
+      return $"{FlagToString(North)}{FlagToString(East)}{FlagToString(South)}{FlagToString(West)}";
     }
 
     public static CardinalTileSelectorKey ValueOf(bool north, bool east, bool south, bool west)

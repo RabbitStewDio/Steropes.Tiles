@@ -4,13 +4,14 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class SaveCommand: ModelCommand
+  public sealed class SaveCommand: ModelCommand
   {
     readonly bool alwaysAsk;
 
     public SaveCommand(MainModel model, bool alwaysAsk): base(model)
     {
       this.alwaysAsk = alwaysAsk;
+      Enabled = RefreshEnabled();
     }
 
     string QueryFile(string oldPath)

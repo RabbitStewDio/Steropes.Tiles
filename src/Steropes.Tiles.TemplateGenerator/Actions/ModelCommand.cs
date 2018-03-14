@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using Steropes.Tiles.TemplateGenerator.Model;
 
@@ -13,7 +14,12 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       this.Model = model ?? throw new ArgumentNullException(nameof(model));
 
       this.Model.PropertyChanged += OnContentChanged;
-      Enabled = model.Content != null;
+      this.Model.Selection.CollectionChanged += OnSelectionChanged;
+    }
+
+    void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+      Enabled = RefreshEnabled();
     }
 
     public MainModel Model { get; }
@@ -101,7 +107,12 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
 
     protected virtual void NotifyContentChanged(TextureFile old, TextureFile textureFile)
     {
-      Enabled = Model.Content != null;
+      Enabled = RefreshEnabled();
+    }
+
+    protected virtual bool RefreshEnabled()
+    {
+      return Model.Content != null;
     }
 
     void OnContentChanged(object sender, PropertyChangedEventArgs e)

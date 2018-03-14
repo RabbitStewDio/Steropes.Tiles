@@ -4,16 +4,16 @@ using Steropes.Tiles.TemplateGenerator.Layout;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class LayoutCollectionCommand: ModelCommand
+  public sealed class LayoutCollectionCommand: ModelCommand
   {
     public LayoutCollectionCommand(MainModel model): base(model)
     {
-      Model.Selection.CollectionChanged += OnSelectionChanged;
+      Enabled = RefreshEnabled();
     }
 
-    void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    protected override bool RefreshEnabled()
     {
-      Enabled = SelectedCollection != null;
+      return base.RefreshEnabled() && SelectedCollection != null;
     }
 
     public override void OnActionPerformed(object source, EventArgs args)
@@ -32,7 +32,7 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       var gen = new GridGenerator();
       gen.Regenerate(insertPoint);
 
-      var producer = new GridLayouter();
+      var producer = new GridLayouter(Model.Preferences);
       producer.ArrangeGrids(insertPoint);
     }
   }

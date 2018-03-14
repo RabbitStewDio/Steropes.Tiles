@@ -7,7 +7,7 @@
     CardinalIndex = 2, 
     CellMap = 3, 
     Corner = 4, 
-    Diagonal = 5, 
+    DiagonalFlags = 5, 
     NeighbourIndex = 6
   }
 

@@ -23,10 +23,11 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         nameTextBox.CreateValidator().ForProvider(errorProvider),
         matchTypeBox.CreateValidator().ForProvider(errorProvider),
         patternBox.CreateValidator().ForProvider(errorProvider),
+
         xBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "X Offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "X Offset must be a positive number"),
         yBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "X Offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "X Offset must be a positive number"),
         widthBox.CreateValidator().ForProvider(errorProvider)
           .WithErrorCondition(Validators.LessThan(1), "Grid Width must be a positive number"),
         heightBox.CreateValidator().ForProvider(errorProvider)
@@ -36,12 +37,12 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         cellHeightBox.CreateValidator().ForProvider(errorProvider)
           .WithErrorCondition(Validators.LessThan(1), "Cell Height must be a positive number"),
         anchorXBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "Anchor-X offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "Anchor-X offset must be a positive number"),
         anchorYBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "Anchor-Y offset must be a positive number"),
+          .WithErrorCondition(Validators.LessThan(0), "Anchor-Y offset must be a positive number"),
         cellMapElementBox.CreateValidator().ForProvider(errorProvider),
         cellSpacingBox.CreateValidator().ForProvider(errorProvider)
-          .WithErrorCondition(Validators.LessThan(1), "Cell Spacing must be a positive number")
+          .WithErrorCondition(Validators.LessThan(0), "Cell Spacing must be a positive number")
       };
 
       validator.InputReceived += OnInputReceived;

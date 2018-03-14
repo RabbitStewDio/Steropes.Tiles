@@ -6,17 +6,17 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 {
   public static class TilePainterExtensions
   {
-    public static ITilePainter CreateTilePainter(this TextureGrid grid)
+    public static ITilePainter CreateTilePainter(this TextureGrid grid, GeneratorPreferences prefs)
     {
       var t = grid.Parent?.Parent?.TileType ?? TileType.Grid;
       switch (t)
       {
         case TileType.Grid:
-          return new GridTilePainter(grid);
+          return new GridTilePainter(prefs, grid);
         case TileType.Isometric:
-          return new IsoTilePainter(grid);
+          return new IsoTilePainter(prefs, grid);
         case TileType.Hex:
-          return new GridTilePainter(grid); // todo
+          return new GridTilePainter(prefs, grid); // todo Hex is not really supported here or in the base library for now.
         default:
           throw new ArgumentOutOfRangeException();
       }

@@ -30,10 +30,17 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
     {
       if (!text.HasValue)
       {
+        n.Value = 0;
         n.Text = "";
       }
       else
       {
+        // NumericUpDown does not necessarily recognize that a changed value
+        // should trigger a refresh of the display text. This forces a refresh
+        // by cycling the current value through two separate states before 
+        // setting the value. Ugly, but heck, its WinForms ..
+        n.Value = n.Minimum;
+        n.Value = n.Maximum;
         n.Value = Clamp(text.Value, n.Minimum, n.Maximum);
       }
     }

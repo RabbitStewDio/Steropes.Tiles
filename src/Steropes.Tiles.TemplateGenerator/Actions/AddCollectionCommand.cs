@@ -3,12 +3,13 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class AddCollectionCommand : ModelCommand
+  public sealed class AddCollectionCommand : ModelCommand
   {
     int counter;
 
     public AddCollectionCommand(MainModel model) : base(model)
     {
+      Enabled = RefreshEnabled();
     }
 
     public override void OnActionPerformed(object source, EventArgs args)

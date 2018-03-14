@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Linq;
 using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class AddGridCommand : ModelCommand
+  public sealed class AddGridCommand : ModelCommand
   {
     int counter;
 
     public AddGridCommand(MainModel model) : base(model)
     {
-      Model.Selection.CollectionChanged += OnSelectionChanged;
+      Enabled = RefreshEnabled();
     }
 
-    void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    protected override bool RefreshEnabled()
     {
-      Enabled = SelectedCollection != null;
+      return base.RefreshEnabled() && SelectedCollection != null;
     }
 
     public override void OnActionPerformed(object source, EventArgs args)
@@ -33,7 +31,7 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       }
 
       counter += 1;
-      var textureGrid = new TextureGrid() { Name = $"Grid {counter}"};
+      var textureGrid = new TextureGrid() { Name = $"grid-{counter}"};
       insertPoint.Grids.Add(textureGrid);
       Model.Selection.Clear();
       Model.Selection.Add(textureGrid);

@@ -97,13 +97,13 @@ namespace Steropes.Tiles.Matcher.Sprites
       int index = 0;
 
       index += a.Index * card;
-      card *= a.Cardinality;
+      card *= Math.Max(1, a.Cardinality);
 
       index += b.Index * card;
-      card *= b.Cardinality;
+      card *= Math.Max(1, b.Cardinality);
 
       index += c.Index * card;
-      card *= c.Cardinality;
+      card *= Math.Max(1, c.Cardinality);
 
       index += d.Index * card;
       return index;
