@@ -81,6 +81,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         var contentSize = node.ContentSize;
         var textOffset = new Point(0, contentSize.Height + prefs.TextSpacing);
         var textArea = new Rectangle(textOffset, node.TextAreaSize);
+        textArea.Width += 1;
 
         using (var brush = new SolidBrush(grid.FormattingMetaData.TextColor ?? Color.Black))
         {

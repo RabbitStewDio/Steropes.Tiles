@@ -62,7 +62,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
     void DrawCornerMap(Graphics g, TextureTile t)
     {
-      var hint = (t.SelectorHint ?? "").PadLeft(6);
+      var hint = (t.SelectorHint ?? "").PadLeft(5);
 
       void IfFlagSet(int pos, Action a)
       {
@@ -86,7 +86,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.NorthEast));
         IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.East));
       }
-      else if (direction == 'B')
+      else if (direction == 'D')
       {
         IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.East));
         IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.SouthEast));

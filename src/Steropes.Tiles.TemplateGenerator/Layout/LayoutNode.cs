@@ -54,9 +54,9 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         return new Size();
       }
 
-      return TextRenderer.MeasureText(title, 
-                                             prefs.DefaultFont, 
-                                             new Size(contentSize.Width, int.MaxValue));
+      return TextRenderer.MeasureText(title,
+                                      prefs.DefaultFont,
+                                      new Size(contentSize.Width, int.MaxValue));
     }
 
     public Size TextAreaSize { get; }
@@ -68,8 +68,9 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       {
         textSizeWithSpacing += prefs.TextSpacing;
       }
+
       var s = new Size(Math.Max(contentSize.Width, labelSize.Width),
-                                contentSize.Height + textSizeWithSpacing);
+                       contentSize.Height + textSizeWithSpacing);
 
       var border = grid.FormattingMetaData.Border ?? 0;
       var padding = grid.FormattingMetaData.Padding ?? 0;

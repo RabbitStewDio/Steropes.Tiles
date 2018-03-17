@@ -23,6 +23,7 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       {
         Dock = DockStyle.Fill,
         AutoSize = true,
+        AutoScroll = true
       };
       
       textureGridElementEditor = new TextureGridElementEditor
