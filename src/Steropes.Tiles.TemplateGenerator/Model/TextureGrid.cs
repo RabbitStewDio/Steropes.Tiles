@@ -9,6 +9,42 @@ using Steropes.Tiles.TemplateGenerator.Annotations;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {
+  public class TextureTileFormattingMetaData: INotifyPropertyChanged
+  {
+    Color? tileOutlineColor;
+    Color? tileHighlightColor;
+
+    public Color? TileOutlineColor
+    {
+      get { return tileOutlineColor; }
+      set
+      {
+        if (value.Equals(tileOutlineColor)) return;
+        tileOutlineColor = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public Color? TileHighlightColor
+    {
+      get { return tileHighlightColor; }
+      set
+      {
+        if (value.Equals(tileHighlightColor)) return;
+        tileHighlightColor = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    [Tiles.Properties.NotifyPropertyChangedInvocator]
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+  }
+
   public class TextureGrid : INotifyPropertyChanged, IFormattingInfoProvider
   {
     int? anchorX;
@@ -34,8 +70,10 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       Tiles = new ObservableCollection<TextureTile>();
       Tiles.CollectionChanged += OnTilesChanged;
       FormattingMetaData = new FormattingMetaData();
+      TextureTileFormattingMetaData = new TextureTileFormattingMetaData();
     }
 
+    public TextureTileFormattingMetaData TextureTileFormattingMetaData { get; }
     public FormattingMetaData FormattingMetaData { get; }
 
     public int CellSpacing

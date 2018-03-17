@@ -9,15 +9,13 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
 {
   public class DetailEditorCoordinator
   {
-    readonly Panel targetPanel;
     readonly MainModel model;
     readonly List<IConditionalPanelHolder> handlers;
     readonly BaseTextureElementEditor metaDataEditor;
+    readonly TextureGridElementEditor textureGridElementEditor;
 
     public DetailEditorCoordinator(Panel targetPanel, MainModel model)
     {
-      this.targetPanel = targetPanel ?? throw new ArgumentNullException(nameof(targetPanel));
-
       this.model = model ?? throw new ArgumentNullException();
       this.model.Selection.CollectionChanged += OnSelectionChanged;
 
@@ -27,6 +25,15 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         AutoSize = true,
       };
       
+      textureGridElementEditor = new TextureGridElementEditor
+      {
+        Dock = DockStyle.Top,
+        AutoSize = true,
+        AutoSizeMode = AutoSizeMode.GrowAndShrink
+      };
+      textureGridElementEditor.InputReceived += OnTextureGridInputReceived;
+      splitter.Controls.Add(textureGridElementEditor);
+
       metaDataEditor = new BaseTextureElementEditor
       {
         Dock = DockStyle.Top,
@@ -34,8 +41,9 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         AutoSizeMode = AutoSizeMode.GrowAndShrink
       };
       metaDataEditor.InputReceived += OnMetaDataInputReceived;
+      splitter.Controls.Add(metaDataEditor);
 
-      this.targetPanel.Controls.Add(splitter);
+      targetPanel.Controls.Add(splitter);
 
       this.handlers = new List<IConditionalPanelHolder>
       {
@@ -55,9 +63,17 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         }
       }
 
-      splitter.Controls.Add(metaDataEditor);
 
       UpdateSelection();
+    }
+
+    void OnTextureGridInputReceived(object sender, EventArgs e)
+    {
+      var selection = model.Selection.OfType<TextureGrid>().FirstOrDefault();
+      if (selection != null)
+      {
+        textureGridElementEditor.ApplyTo(selection.TextureTileFormattingMetaData);
+      }
     }
 
     void OnMetaDataInputReceived(object sender, EventArgs e)
@@ -92,7 +108,17 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       {
         metaDataEditor.Visible = false;
       }
-      
+
+      if (selection is TextureGrid g)
+      {
+        textureGridElementEditor.ApplyFrom(g.TextureTileFormattingMetaData);
+        textureGridElementEditor.Visible = true;
+      }
+      else
+      {
+        textureGridElementEditor.Visible = false;
+      }
+
     }
 
     interface IConditionalPanelHolder

@@ -29,12 +29,14 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       }
 
       Debug.WriteLine("Producing new preview ({0},{1}) with {2} elements.", width, height, grids.Count);
-      var b = new Bitmap(width + 1, height + 1, PixelFormat.Format32bppArgb);
+      var b = new Bitmap(width, height, PixelFormat.Format32bppArgb);
       var graphics = Graphics.FromImage(b);
       foreach (var node in grids)
       {
-        node.Draw(graphics);
+        var painter = new GridPainter(prefs, node);
+        painter.Draw(graphics);
       }
+
       graphics.Dispose();
       return b;
     }

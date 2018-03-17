@@ -75,44 +75,44 @@
       // 
       // nameLabel
       // 
+      this.nameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.nameLabel.AutoSize = true;
-      this.nameLabel.Dock = System.Windows.Forms.DockStyle.Left;
-      this.nameLabel.Location = new System.Drawing.Point(3, 0);
+      this.nameLabel.Location = new System.Drawing.Point(3, 6);
       this.nameLabel.Name = "nameLabel";
-      this.nameLabel.Size = new System.Drawing.Size(35, 26);
+      this.nameLabel.Size = new System.Drawing.Size(35, 13);
       this.nameLabel.TabIndex = 0;
       this.nameLabel.Text = "Name";
       this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // tileTypeLabel
       // 
+      this.tileTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.tileTypeLabel.AutoSize = true;
-      this.tileTypeLabel.Dock = System.Windows.Forms.DockStyle.Left;
-      this.tileTypeLabel.Location = new System.Drawing.Point(3, 26);
+      this.tileTypeLabel.Location = new System.Drawing.Point(3, 33);
       this.tileTypeLabel.Name = "tileTypeLabel";
-      this.tileTypeLabel.Size = new System.Drawing.Size(51, 27);
+      this.tileTypeLabel.Size = new System.Drawing.Size(51, 13);
       this.tileTypeLabel.TabIndex = 1;
       this.tileTypeLabel.Text = "Tile Type";
       this.tileTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // widthLabel
       // 
+      this.widthLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.widthLabel.AutoSize = true;
-      this.widthLabel.Dock = System.Windows.Forms.DockStyle.Left;
-      this.widthLabel.Location = new System.Drawing.Point(3, 53);
+      this.widthLabel.Location = new System.Drawing.Point(3, 59);
       this.widthLabel.Name = "widthLabel";
-      this.widthLabel.Size = new System.Drawing.Size(35, 26);
+      this.widthLabel.Size = new System.Drawing.Size(35, 13);
       this.widthLabel.TabIndex = 2;
       this.widthLabel.Text = "Width";
       this.widthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // heightLabel
       // 
+      this.heightLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.heightLabel.AutoSize = true;
-      this.heightLabel.Dock = System.Windows.Forms.DockStyle.Left;
-      this.heightLabel.Location = new System.Drawing.Point(3, 79);
+      this.heightLabel.Location = new System.Drawing.Point(3, 85);
       this.heightLabel.Name = "heightLabel";
-      this.heightLabel.Size = new System.Drawing.Size(38, 26);
+      this.heightLabel.Size = new System.Drawing.Size(38, 13);
       this.heightLabel.TabIndex = 3;
       this.heightLabel.Text = "Height";
       this.heightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

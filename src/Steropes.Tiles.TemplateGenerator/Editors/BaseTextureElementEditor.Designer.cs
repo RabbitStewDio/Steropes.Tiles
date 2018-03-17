@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.layoutPanel = new System.Windows.Forms.TableLayoutPanel();
       this.marginLabel = new System.Windows.Forms.Label();
       this.paddingLabel = new System.Windows.Forms.Label();
@@ -43,10 +44,12 @@
       this.textColorInput = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
       this.backgroundInput = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
       this.titleInput = new System.Windows.Forms.TextBox();
+      this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.layoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.marginInput)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.paddingInput)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.borderInput)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
       this.SuspendLayout();
       // 
       // layoutPanel
@@ -218,6 +221,10 @@
       this.titleInput.Size = new System.Drawing.Size(169, 20);
       this.titleInput.TabIndex = 13;
       // 
+      // errorProvider
+      // 
+      this.errorProvider.ContainerControl = this;
+      // 
       // BaseTextureElementEditor
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,6 +238,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.marginInput)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.paddingInput)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.borderInput)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -253,5 +261,6 @@
     private ComponentFactory.Krypton.Toolkit.KryptonColorButton textColorInput;
     private ComponentFactory.Krypton.Toolkit.KryptonColorButton backgroundInput;
     private System.Windows.Forms.TextBox titleInput;
+    private System.Windows.Forms.ErrorProvider errorProvider;
   }
 }

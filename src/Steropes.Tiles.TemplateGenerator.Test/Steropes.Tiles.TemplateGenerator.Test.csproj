@@ -82,6 +82,8 @@
     <Compile Include="Model\TileFileLoaderTest.cs" />
     <Compile Include="Model\TileFileWriterTest.cs" />
     <Compile Include="Model\WinFormsTest.cs" />
+    <Compile Include="Painter\ColorComparison.cs" />
+    <Compile Include="Painter\GridPainterTest.cs" />
     <Compile Include="Properties\StaticAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +91,10 @@
     <ProjectReference Include="..\Steropes.Tiles.TemplateGenerator\Steropes.Tiles.TemplateGenerator.csproj">
       <Project>{10447d9c-a944-43d9-b73c-d1bef7e9c9d6}</Project>
       <Name>Steropes.Tiles.TemplateGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Steropes.Tiles\Steropes.Tiles.csproj">
+      <Project>{7D3A110C-44C9-4007-82C2-D6578F7402C6}</Project>
+      <Name>Steropes.Tiles</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

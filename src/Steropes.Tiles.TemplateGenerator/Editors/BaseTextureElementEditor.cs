@@ -7,34 +7,35 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
 {
   public partial class BaseTextureElementEditor : UserControl, IDetailEditor<FormattingMetaData>
   {
+    protected FormValidator Validator { get; }
     public event EventHandler InputReceived;
-    bool applyingData;
 
     public BaseTextureElementEditor()
     {
       InitializeComponent();
-      marginInput.TextChanged += NotifyInputReceived;
-      borderInput.TextChanged += NotifyInputReceived;
-      paddingInput.TextChanged += NotifyInputReceived;
-      
-      borderColorInput.SelectedColorChanged += NotifyInputReceived;
-      backgroundInput.SelectedColorChanged += NotifyInputReceived;
-      textColorInput.SelectedColorChanged += NotifyInputReceived;
 
-      titleInput.TextChanged += NotifyInputReceived;
+      Validator = new FormValidator
+      {
+        marginInput.CreateValidator().ForProvider(errorProvider)
+          .WithErrorCondition(Validators.LessThan(0), "Margin must be a positive number"),
+        borderInput.CreateValidator().ForProvider(errorProvider)          
+          .WithErrorCondition(Validators.LessThan(0), "Border must be a positive number"),
+        paddingInput.CreateValidator().ForProvider(errorProvider)
+          .WithErrorCondition(Validators.LessThan(0), "Padding must be a positive number"),
+        
+        backgroundInput.CreateValidator().ForProvider(errorProvider),
+        borderColorInput.CreateValidator().ForProvider(errorProvider),
+        textColorInput.CreateValidator().ForProvider(errorProvider),
 
-      Valid = true;
+        titleInput.CreateValidator().ForProvider(errorProvider)
+      };
+      Validator.InputReceived += NotifyInputReceived;
     }
 
-    public bool Valid { get; }
+    public bool Valid => Validator.Valid;
 
-    void NotifyInputReceived(object source, EventArgs arg)
+    protected void NotifyInputReceived(object source, EventArgs arg)
     {
-      if (applyingData)
-      {
-        return;
-      }
-
       InputReceived?.Invoke(this, EventArgs.Empty);
     }
 
@@ -42,7 +43,7 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
     {
       try
       {
-        applyingData = true;
+        Validator.SuspendValidation();
 
         if (data == null)
         {
@@ -69,7 +70,7 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       }
       finally
       {
-        applyingData = false;
+        Validator.ResumeValidation();
       }
     }
 

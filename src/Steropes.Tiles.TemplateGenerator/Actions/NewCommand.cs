@@ -19,7 +19,7 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       var content = new TextureFile
       {
         Width = model.Content?.Width ?? model.Preferences.DefaultWidth,
-        Height = model.Content?.Height ?? model.Preferences.DefaultWidth,
+        Height = model.Content?.Height ?? model.Preferences.DefaultHeight,
         TileType = model.Content?.TileType ?? model.Preferences.DefaultTileType,
         Name = model.Content?.Name ?? "New Tile Set"
       };

@@ -12,9 +12,11 @@ namespace Steropes.Tiles.TemplateGenerator
     TileType defaultTileType;
     int defaultWidth;
     int defaultHeight;
+    int textSpacing;
     Color defaultTileHighlightColor;
     Color defaultTileColor;
     Color defaultTextColor;
+    Font defaultFont;
     public event PropertyChangedEventHandler PropertyChanged;
 
     public GeneratorPreferences()
@@ -38,6 +40,30 @@ namespace Steropes.Tiles.TemplateGenerator
       DefaultTileColor = Color.DarkGray;
       DefaultTileHighlightColor = Color.DimGray;
       DefaultTextColor = Color.Black;
+      TextSpacing = 5;
+      DefaultFont = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Regular);
+    }
+
+    public Font DefaultFont
+    {
+      get { return defaultFont; }
+      set
+      {
+        if (Equals(value, defaultFont)) return;
+        defaultFont = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int TextSpacing
+    {
+      get { return textSpacing; }
+      set
+      {
+        if (value == textSpacing) return;
+        textSpacing = value;
+        OnPropertyChanged();
+      }
     }
 
     public Color DefaultTileHighlightColor

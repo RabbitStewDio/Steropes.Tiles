@@ -35,6 +35,30 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       formValidator.ValidationStateChanged += OnValidationStateChanged;
     }
 
+    bool IsNotCorrectSize()
+    {
+      var w = (int) widthBox.Value;
+      var h = (int) heightBox.Value;
+      if (w % 8 == 0 && h % 8 == 0)
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    bool IsIrregularShape()
+    {
+      if (TileType.Isometric.Equals(typeTypeBox.SelectedItem))
+      {
+        var w = (int) widthBox.Value;
+        var h = (int) heightBox.Value;
+        return w != h * 2;
+      }
+
+      return false;
+    }
+
     void OnValidationStateChanged(object sender, EventArgs e)
     {
       ValidationStateChanged?.Invoke(this, EventArgs.Empty);

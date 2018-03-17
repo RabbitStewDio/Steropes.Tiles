@@ -16,29 +16,32 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       Grid = grid ?? throw new ArgumentNullException(nameof(grid));
     }
 
-
+    public Rectangle GetTileArea(TextureTile tile)
+    {
+      var tileSize = Grid.EffectiveTileSize;
+      return new Rectangle(0, 0, tileSize.Width, tileSize.Height);
+    }
 
     public TextureGrid Grid { get; }
 
     public abstract void Draw(Graphics g, TextureTile tile);
 
-    protected void DrawCellFrame(Graphics g)
+    protected void DrawCellFrame(Graphics g, TextureTile tile)
     {
       var bg = Grid.FormattingMetaData.BackgroundColor;
       if (bg != null)
       {
-        var size = Grid.EffectiveCellSize;
-        var pen = new Pen(bg.Value);
-        g.DrawRectangle(pen, new Rectangle(size.Width / 2, size.Height / 2, size.Width, size.Height));
+        var pen = new SolidBrush(bg.Value);
+        g.FillRectangle(pen, GetTileArea(tile));
         pen.Dispose();
       }
     }
 
-    protected virtual void DrawIndexedDirection(Graphics g, NeighbourIndex idx)
+    protected virtual void DrawIndexedDirection(Graphics g, TextureTile tile, NeighbourIndex idx)
     {
     }
 
-    protected virtual void DrawSubCell(Graphics g, Direction direction, Color c)
+    protected virtual void DrawSubCell(Graphics g, TextureTile tile, Direction direction, Color c)
     {
     }
 
@@ -52,7 +55,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
             colorIndex < Preferences.TileColors.Count)
         {
           var c = Preferences.TileColors[colorIndex];
-          DrawSubCell(g, (Direction) i, c);
+          DrawSubCell(g, t, (Direction) i, c);
         }
       }
     }
@@ -73,27 +76,27 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       var direction = hint[0];
       if (direction == 'U')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, NeighbourIndex.West));
-        IfFlagSet(3, () => DrawIndexedDirection(g, NeighbourIndex.NorthWest));
-        IfFlagSet(4, () => DrawIndexedDirection(g, NeighbourIndex.North));
+        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.West));
+        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.NorthWest));
+        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.North));
       }
       else if (direction == 'L')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, NeighbourIndex.North));
-        IfFlagSet(3, () => DrawIndexedDirection(g, NeighbourIndex.NorthEast));
-        IfFlagSet(4, () => DrawIndexedDirection(g, NeighbourIndex.East));
+        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.North));
+        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.NorthEast));
+        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.East));
       }
       else if (direction == 'B')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, NeighbourIndex.East));
-        IfFlagSet(3, () => DrawIndexedDirection(g, NeighbourIndex.SouthEast));
-        IfFlagSet(4, () => DrawIndexedDirection(g, NeighbourIndex.South));
+        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.East));
+        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.SouthEast));
+        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.South));
       }
       else if (direction == 'R')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, NeighbourIndex.South));
-        IfFlagSet(3, () => DrawIndexedDirection(g, NeighbourIndex.SouthWest));
-        IfFlagSet(4, () => DrawIndexedDirection(g, NeighbourIndex.West));
+        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.South));
+        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.SouthWest));
+        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.West));
       }
     }
 
@@ -140,10 +143,10 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         }
       }
 
-      IfFlagSet(CardinalIndex.North, () => DrawIndexedDirection(g, NeighbourIndex.North));
-      IfFlagSet(CardinalIndex.East, () => DrawIndexedDirection(g, NeighbourIndex.East));
-      IfFlagSet(CardinalIndex.South, () => DrawIndexedDirection(g, NeighbourIndex.South));
-      IfFlagSet(CardinalIndex.West, () => DrawIndexedDirection(g, NeighbourIndex.West));
+      IfFlagSet(CardinalIndex.North, () => DrawIndexedDirection(g, t, NeighbourIndex.North));
+      IfFlagSet(CardinalIndex.East, () => DrawIndexedDirection(g, t, NeighbourIndex.East));
+      IfFlagSet(CardinalIndex.South, () => DrawIndexedDirection(g, t, NeighbourIndex.South));
+      IfFlagSet(CardinalIndex.West, () => DrawIndexedDirection(g, t, NeighbourIndex.West));
     }
 
     void DrawDiagonalFlagHint(Graphics g, TextureTile t)
@@ -159,10 +162,10 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         }
       }
 
-      IfFlagSet(DiagonalIndex.NorthWest, () => DrawIndexedDirection(g, NeighbourIndex.NorthWest));
-      IfFlagSet(DiagonalIndex.NorthEast, () => DrawIndexedDirection(g, NeighbourIndex.NorthEast));
-      IfFlagSet(DiagonalIndex.SouthEast, () => DrawIndexedDirection(g, NeighbourIndex.SouthEast));
-      IfFlagSet(DiagonalIndex.SouthWest, () => DrawIndexedDirection(g, NeighbourIndex.SouthWest));
+      IfFlagSet(DiagonalIndex.NorthWest, () => DrawIndexedDirection(g, t, NeighbourIndex.NorthWest));
+      IfFlagSet(DiagonalIndex.NorthEast, () => DrawIndexedDirection(g, t, NeighbourIndex.NorthEast));
+      IfFlagSet(DiagonalIndex.SouthEast, () => DrawIndexedDirection(g, t, NeighbourIndex.SouthEast));
+      IfFlagSet(DiagonalIndex.SouthWest, () => DrawIndexedDirection(g, t, NeighbourIndex.SouthWest));
     }
 
     void DrawIndexedDirectionHint(Graphics g, TextureTile t)
@@ -172,7 +175,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       // ignores the "isolated" tile. 
       if (Enum.TryParse(text, out NeighbourIndex idx))
       {
-        DrawIndexedDirection(g, idx);
+        DrawIndexedDirection(g, t, idx);
       }
     }
   }

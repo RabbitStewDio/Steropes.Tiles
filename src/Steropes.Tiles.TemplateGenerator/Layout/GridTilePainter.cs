@@ -14,32 +14,39 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
     public override void Draw(Graphics g, TextureTile tile)
     {
-      DrawCellFrame(g);
+      DrawCellFrame(g, tile);
       
-      var pen = new Pen(Grid.FormattingMetaData.BorderColor ?? Preferences.DefaultTileColor);
-
-      var tileSize = Grid.EffectiveTileSize;
-      var width2 = tileSize.Width / 2;
-      var height2 = tileSize.Height / 2;
+      var pen = new Pen(Grid.TextureTileFormattingMetaData.TileOutlineColor ?? Preferences.DefaultTileColor);
       
       // to be pixel perfect, the rectangle size must be reduced by one so that the
       // line is drawing within the tile area.
-      g.DrawRectangle(pen, -width2, -height2, tileSize.Width - 1, tileSize.Height - 1);
+      g.DrawRectangle(pen, GetTileArea(tile));
 
       pen.Dispose();
 
       DrawSelectorHint(g, tile);
     }
 
-    protected override void DrawIndexedDirection(Graphics g,NeighbourIndex idx)
+    public Rectangle GetTileHighlightArea(TextureTile tile)
+    {
+      var rect = GetTileArea(tile);
+      rect.X += 2;
+      rect.Y += 2;
+      rect.Width -= 4;
+      rect.Height -= 4;
+      return rect;
+    }
+
+    protected override void DrawIndexedDirection(Graphics g, TextureTile tile, NeighbourIndex idx)
     {
       var points = new List<Point>();
 
-      var tileSize = Grid.EffectiveTileSize;
-      var left = -tileSize.Width / 2 + 2;
-      var top = -tileSize.Height / 2 + 2;
-      var right = tileSize.Width / 2 - 3;
-      var bottom = tileSize.Height / 2 - 3;
+      var rect = GetTileHighlightArea(tile);
+      
+      var left = rect.Left;
+      var top = rect.Top;
+      var right = rect.Right;
+      var bottom = rect.Bottom;
 
       switch (idx)
       {
@@ -83,14 +90,9 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
           throw new ArgumentOutOfRangeException(nameof(idx), idx, null);
       }
 
-      var pen = new Pen(Grid.FormattingMetaData.TextColor ?? Preferences.DefaultTileHighlightColor);
+      var pen = new Pen(Grid.TextureTileFormattingMetaData.TileHighlightColor ?? Preferences.DefaultTileHighlightColor);
 
-      for (int pidx = 1; pidx < points.Count; pidx += 1)
-      {
-        var p1 = points[pidx - 1];
-        var p2 = points[pidx];
-        g.DrawLine(pen, p1, p2);
-      }
+      g.DrawLines(pen, points.ToArray());
 
       pen.Dispose();
     }

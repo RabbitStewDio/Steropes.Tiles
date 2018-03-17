@@ -16,79 +16,21 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       this.prefs = prefs;
       this.grid = grid ?? throw new ArgumentNullException(nameof(grid));
       this.Margin = grid.FormattingMetaData.Margin ?? 0;
-      this.Size = ComputeSize();
+      this.ContentSize = ComputeContentSize();
+      this.TextAreaSize = ComputeTextSize(ContentSize);
+      this.Size = ComputeGridSize(TextAreaSize, ContentSize);
     }
+
+    public Size ContentSize { get; }
 
     public TextureGrid Grid
     {
       get { return grid; }
     }
 
-    public void Draw(Graphics graphics)
-    {
-      Debug.WriteLine("Start Grid ({0}), Offset: {1}, Size: {2}", grid.Name, Offset, Size);
-
-      if (!string.IsNullOrEmpty(grid.FormattingMetaData.Title))
-      {
-        Debug.WriteLine(" Title: {0}", grid.FormattingMetaData.Title);
-        var contentSize = ComputeContentSize();
-        var textSize = ComputeTextSize();
-        var contentOffset = ContentOffset;
-        var textOffset = new Point(contentOffset.X, contentOffset.Y + contentSize.Height + TextSpacing);
-
-        var brush = new SolidBrush(grid.FormattingMetaData.TextColor ?? Color.Black);
-        var pen = new Pen(brush);
-        graphics.DrawLine(pen, textOffset, new Point(textOffset.X + contentSize.Width, textOffset.Y));
-        graphics.DrawString(grid.FormattingMetaData.Title, TextFont, brush, new Rectangle(textOffset, textSize));
-
-        pen.Dispose();
-        brush.Dispose();
-      }
-
-      foreach (var tile in grid.Tiles)
-      {
-        DrawTile(graphics, tile);
-      }
-
-      Debug.WriteLine(" Title: {0}", grid.FormattingMetaData.Title);
-      if ((grid.FormattingMetaData.Border ?? 1) > 0)
-      {
-        var borderPen = new Pen(grid.FormattingMetaData.BorderColor ?? Color.Gainsboro);
-        graphics.DrawRectangle(borderPen, new Rectangle(Offset, Size));
-        borderPen.Dispose();
-      }
-    }
-
-    void DrawTile(Graphics g, TextureTile tile)
-    {
-      var border = grid.CellSpacing;
-      var cw = grid.EffectiveCellSize;
-      var x = tile.X * (cw.Width + border);
-      var y = tile.Y * (cw.Height + border);
-
-      var ap = grid.ComputeEffectiveAnchorPoint(tile);
-      var g2 = g.BeginContainer();
-      try
-      {
-        g.TranslateTransform(ContentOffset.X + x + ap.X, ContentOffset.Y + y + ap.Y);
-        var painter = grid.CreateTilePainter(prefs);
-        painter.Draw(g, tile);
-      }
-      finally
-      {
-        g.EndContainer(g2);
-      }
-
-    }
-
-    Size ComputeRequiredTiles()
-    {
-      return MatchTypeStrategyFactory.StrategyFor(grid.MatcherType).GetTileArea(grid);
-    }
-    
     Size ComputeContentSize()
     {
-      var tileCount = ComputeRequiredTiles();
+      var tileCount = MatchTypeStrategyFactory.StrategyFor(grid.MatcherType).GetTileArea(grid);
       var maxX = tileCount.Width;
       var maxY = tileCount.Height;
 
@@ -102,46 +44,35 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       return new Size(pixelWidth + paddedWidth, pixelHeight + paddedHeight);
     }
 
-    int TextSpacing => 5;
+    public int TextSpacing => 5;
 
-    Size ComputeTextSize()
+    Size ComputeTextSize(Size contentSize)
     {
-      if (string.IsNullOrEmpty(grid.FormattingMetaData.Title))
+      var title = grid.FormattingMetaData.Title;
+      if (string.IsNullOrEmpty(title))
       {
         return new Size();
       }
 
-      Size contentSize = ComputeContentSize();
-      // maximum two lines of text ..
-      var result =  TextRenderer.MeasureText(grid.FormattingMetaData.Title, TextFont,
-                                      new Size(contentSize.Width, int.MaxValue));
-      result.Height += TextSpacing;
-      return result;
+      return TextRenderer.MeasureText(title, 
+                                             prefs.DefaultFont, 
+                                             new Size(contentSize.Width, int.MaxValue));
     }
 
-    Font TextFont => new Font(FontFamily.GenericSansSerif, 12, FontStyle.Regular);
+    public Size TextAreaSize { get; }
 
-    Point ContentOffset
+    Size ComputeGridSize(Size labelSize, Size contentSize)
     {
-      get
+      var textSizeWithSpacing = labelSize.Height;
+      if (textSizeWithSpacing > 0)
       {
-        var border = grid.FormattingMetaData.Border ?? 0;
-        var padding = grid.FormattingMetaData.Padding ?? 0;
-        return new Point(Offset.X + border + padding,
-                         Offset.Y + border + padding);
+        textSizeWithSpacing += prefs.TextSpacing;
       }
-    }
+      var s = new Size(Math.Max(contentSize.Width, labelSize.Width),
+                                contentSize.Height + textSizeWithSpacing);
 
-    Size ComputeSize()
-    {
       var border = grid.FormattingMetaData.Border ?? 0;
       var padding = grid.FormattingMetaData.Padding ?? 0;
-
-      var contentSize = ComputeContentSize();
-      var labelSize = ComputeTextSize();
-
-      var s = new Size(Math.Max(contentSize.Width, labelSize.Width),
-                       contentSize.Height + labelSize.Height);
       s.Width += 2 * border;
       s.Width += 2 * padding;
       s.Height += 2 * border;

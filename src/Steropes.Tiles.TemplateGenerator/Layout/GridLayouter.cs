@@ -225,41 +225,6 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       {
         Console.WriteLine("Done Insert " + c);
       }
-
-      // Create a balanced tree by simply counting the number 
-      // of children in each branch. The insertion is sorted
-      // by size so this should create an evenly distributed
-      // layout.
-      if (left.childCount > bottom.childCount)
-      {
-        if (bottom.Insert(size, c))
-        {
-          childCount += 1;
-          return true;
-        }
-
-        if (left.Insert(size, c))
-        {
-          childCount += 1;
-          return true;
-        }
-      }
-      else
-      {
-        if (left.Insert(size, c))
-        {
-          childCount += 1;
-          return true;
-        }
-
-        if (bottom.Insert(size, c))
-        {
-          childCount += 1;
-          return true;
-        }
-      }
-
-      return false;
     }
 
 
