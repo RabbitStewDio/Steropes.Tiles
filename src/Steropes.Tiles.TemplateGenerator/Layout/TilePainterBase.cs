@@ -28,7 +28,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
     protected void DrawCellFrame(Graphics g, TextureTile tile)
     {
-      var bg = Grid.FormattingMetaData.BackgroundColor;
+      var bg = Grid.FormattingMetaData.BackgroundColor ?? Preferences.DefaultBackgroundColor;
       if (bg != null)
       {
         var pen = new SolidBrush(bg.Value);
@@ -60,6 +60,16 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       }
     }
 
+    protected static int Lerp(int left, int right, int quarterFraction)
+    {
+      return left + (right - left) * quarterFraction / 4;
+    }
+
+    protected static Rectangle FromEdges(int left, int top, int right, int bottom)
+    {
+      return new Rectangle(left, top, right - left, bottom - top);
+    }
+
     void DrawCornerMap(Graphics g, TextureTile t)
     {
       var hint = (t.SelectorHint ?? "").PadLeft(5);
@@ -73,30 +83,31 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         }
       }
 
+      var highlightColor = t.Parent?.TextureTileFormattingMetaData?.TileHighlightColor ?? Preferences.DefaultTileHighlightColor;
       var direction = hint[0];
       if (direction == 'U')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.West));
-        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.NorthWest));
-        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.North));
+        IfFlagSet(2, () => DrawSubCell(g, t, Direction.Left, highlightColor));
+        IfFlagSet(3, () => DrawSubCell(g, t, Direction.Up, highlightColor));
+        IfFlagSet(4, () => DrawSubCell(g, t, Direction.Right, highlightColor));
       }
       else if (direction == 'L')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.North));
-        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.NorthEast));
-        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.East));
+        IfFlagSet(2, () => DrawSubCell(g, t, Direction.Up, highlightColor));
+        IfFlagSet(3, () => DrawSubCell(g, t, Direction.Right, highlightColor));
+        IfFlagSet(4, () => DrawSubCell(g, t, Direction.Down, highlightColor));
       }
       else if (direction == 'D')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.East));
-        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.SouthEast));
-        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.South));
+        IfFlagSet(2, () => DrawSubCell(g, t, Direction.Right, highlightColor));
+        IfFlagSet(3, () => DrawSubCell(g, t, Direction.Down, highlightColor));
+        IfFlagSet(4, () => DrawSubCell(g, t, Direction.Left, highlightColor));
       }
       else if (direction == 'R')
       {
-        IfFlagSet(2, () => DrawIndexedDirection(g, t, NeighbourIndex.South));
-        IfFlagSet(3, () => DrawIndexedDirection(g, t, NeighbourIndex.SouthWest));
-        IfFlagSet(4, () => DrawIndexedDirection(g, t, NeighbourIndex.West));
+        IfFlagSet(2, () => DrawSubCell(g, t, Direction.Down, highlightColor));
+        IfFlagSet(3, () => DrawSubCell(g, t, Direction.Left, highlightColor));
+        IfFlagSet(4, () => DrawSubCell(g, t, Direction.Up, highlightColor));
       }
     }
 

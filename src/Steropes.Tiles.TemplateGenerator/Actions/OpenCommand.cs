@@ -4,16 +4,31 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
+  public class OpenRecentFileCommand : OpenCommand
+  {
+    readonly string name;
+
+    public OpenRecentFileCommand(MainModel model, string name) : base(model)
+    {
+      this.name = name;
+    }
+
+    protected override string QueryFile()
+    {
+      return name;
+    }
+  }
+
   public class OpenCommand : Command
   {
-    MainModel model;
+    readonly MainModel model;
 
     public OpenCommand(MainModel model)
     {
       this.model = model ?? throw new ArgumentNullException(nameof(model));
     }
 
-    string QueryFile()
+    protected virtual string QueryFile()
     {
       var dialog = new OpenFileDialog();
       dialog.Filter = "Tile Set Files|*.tiles;*.xml|All files (*.*)|*.*";
@@ -43,6 +58,8 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       {
         var doc = TextureFileLoader.Read(file);
         model.Content = doc;
+        model.Preferences.AddRecentFile(file);
+        
       }
       catch (Exception e)
       {

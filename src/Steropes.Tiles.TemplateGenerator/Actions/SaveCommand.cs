@@ -84,6 +84,7 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
         var document = TextureFileWriter.GenerateXml(Model.Content);
         document.Save(file);
         Model.Content.Modified = false;
+        Model.Preferences.AddRecentFile(file);
       }
       catch (Exception e)
       {

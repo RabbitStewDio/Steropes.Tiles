@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
@@ -21,6 +22,21 @@ namespace Steropes.Tiles.TemplateGenerator
     {
       Selection = new ObservableCollection<object>();
       Preferences = new GeneratorPreferences();
+      Preferences.PropertyChanged += OnSettingsChanged;
+
+      try
+      {
+        new GeneratorPreferencesLoader(Preferences).Load();
+      }
+      catch (Exception e)
+      {
+        Debug.WriteLine("Failed to load settings: " + e);
+      }
+    }
+
+    void OnSettingsChanged(object sender, EventArgs e)
+    {
+      SaveSettings();
     }
 
     public GeneratorPreferences Preferences { get; }
@@ -101,6 +117,19 @@ namespace Steropes.Tiles.TemplateGenerator
       }
 
       return true;
+    }
+
+    void SaveSettings()
+    {
+      try
+      {
+        new GeneratorPreferencesWriter(Preferences).Save();
+      }
+      catch (Exception e)
+      {
+        // ignored ..
+        Debug.WriteLine("Failed to save settings: " + e);
+      }
     }
   }
 }

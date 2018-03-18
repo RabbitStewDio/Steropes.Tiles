@@ -5,7 +5,9 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
+using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {
@@ -36,6 +38,11 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       return AsColor((string) attr);
     }
 
+    public static Color? AsColor(this XElement element)
+    {
+      return AsColor(element.Value);
+    }
+
     public static Color? AsColor(this string attr)
     {
       if (attr == null)
@@ -44,7 +51,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
 
       var name = attr;
-      if (knownColors.TryGetValue(name, out Color c))
+      if (knownColors.TryGetValue(name, out var c))
       {
         return c;
       }
@@ -59,6 +66,35 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       }
     }
 
+    public static TileType ParseTextureType(IXmlLineInfo lineInfo, string t, TileType? defaultValue = null)
+    {
+      return t.ParseEnumStrict(lineInfo, defaultValue) ?? throw new XmlParseException("Attribute value missing", lineInfo);;
+    }
+
+    public static T? ParseEnumStrict<T>(this string t, IXmlLineInfo lineInfo, T? defaultValue = null) where T : struct
+    {
+      if (string.IsNullOrEmpty(t))
+      {
+        return defaultValue;
+      }
+
+      if (!Enum.TryParse(t, out T result))
+      {
+        throw new XmlParseException("Attribute value is invalid.", lineInfo);
+      }
+
+      return result;
+    }
+
+    public static T? ParseEnumLenient<T>(this string t, T? defaultValue = null) where T : struct
+    {
+      if (string.IsNullOrEmpty(t))
+      {
+        return defaultValue;
+      }
+
+      return Enum.TryParse(t, out T result) ? result : defaultValue;
+    }
 
     public static string AsText(this Color? cn)
     {
@@ -66,9 +102,12 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       {
         return null;
       }
-
       var c = cn.Value;
+      return AsText(c);
+    }
 
+    public static string AsText(this Color c)
+    {
       bool ColorEquals(KeyValuePair<string,Color> kv)
       {
         var c2 = kv.Value;

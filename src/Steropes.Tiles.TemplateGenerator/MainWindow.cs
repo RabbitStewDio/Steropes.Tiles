@@ -18,8 +18,8 @@ namespace Steropes.Tiles.TemplateGenerator
     readonly OpenCommand openCommand;
     readonly SaveCommand saveCommand;
     readonly SaveCommand saveAsCommand;
-    readonly CloseCommand closeCommand;
     readonly DeleteCommnad deleteCommnad;
+    readonly ExportCommand exportCommand;
 
     readonly AddCollectionCommand addCollectionCommand;
     readonly AddGridCommand addGridCommand;
@@ -55,15 +55,18 @@ namespace Steropes.Tiles.TemplateGenerator
 
       openCommand = new OpenCommand(model);
       openCommand.Install(openMenuItem);
+      openCommand.Install(openFileToolButton);
 
       saveCommand = new SaveCommand(model, false);
       saveCommand.Install(saveMenuItem);
+      saveCommand.Install(saveFileToolButton);
 
       saveAsCommand = new SaveCommand(model, true);
       saveAsCommand.Install(saveAsMenuItem);
 
-      closeCommand = new CloseCommand(model);
-      closeCommand.Install(closeMenuItem);
+      exportCommand = new ExportCommand(model);
+      exportCommand.Install(exportMenuItem);
+      exportCommand.Install(exportToolButton);
 
       deleteCommnad = new DeleteCommnad(model);
       deleteCommnad.Install(deleteMenuItem);
@@ -94,6 +97,9 @@ namespace Steropes.Tiles.TemplateGenerator
       structureTree.KeyUp += OnStructureTreeKeyPress;
       structureTree.AfterSelect += OnTreeSelectionChanged;
       model.Selection.CollectionChanged += OnSelectionChanged;
+      model.Preferences.RecentFiles.CollectionChanged += (s, a) => RebuildRecentFilesMenu();
+
+      RebuildRecentFilesMenu();
       this.Closing += OnClosing;
     }
 
@@ -218,7 +224,25 @@ namespace Steropes.Tiles.TemplateGenerator
 
     bool AttemptExit()
     {
-      return true;
+      return model.QueryShouldClose();
+    }
+
+    void RebuildRecentFilesMenu()
+    {
+      recentSubMenu.MenuItems.Clear();
+      foreach (var file in model.Preferences.RecentFiles)
+      {
+        var mi = recentSubMenu.MenuItems.Add(file);
+        new OpenRecentFileCommand(model, file).Install(mi);
+      }
+
+      recentSubMenu.Enabled = recentSubMenu.MenuItems.Count > 0;
+    }
+
+    void OnAboutClick(object sender, EventArgs e)
+    {
+      var a = new AboutBox();
+      a.ShowDialog();
     }
   }
 }

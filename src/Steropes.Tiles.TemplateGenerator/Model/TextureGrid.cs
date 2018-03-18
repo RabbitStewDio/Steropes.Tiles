@@ -67,7 +67,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
     public TextureGrid(TextureCollection parent = null)
     {
       Parent = parent;
-      Tiles = new ObservableCollection<TextureTile>();
+      Tiles = new BulkChangeObservableCollection<TextureTile>();
       Tiles.CollectionChanged += OnTilesChanged;
       FormattingMetaData = new FormattingMetaData();
       TextureTileFormattingMetaData = new TextureTileFormattingMetaData();
@@ -329,7 +329,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
 
     public TextureCollection Parent { get; set; }
     public event PropertyChangedEventHandler PropertyChanged;
-    public ObservableCollection<TextureTile> Tiles { get; }
+    public BulkChangeObservableCollection<TextureTile> Tiles { get; }
 
     void OnTilesChanged(object sender, NotifyCollectionChangedEventArgs e)
     {

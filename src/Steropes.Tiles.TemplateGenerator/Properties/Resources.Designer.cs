@@ -63,9 +63,9 @@ namespace Steropes.Tiles.TemplateGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Add_Collection {
+        internal static System.Drawing.Bitmap AddCollection {
             get {
-                object obj = ResourceManager.GetObject("Add-Collection", resourceCulture);
+                object obj = ResourceManager.GetObject("AddCollection", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Steropes.Tiles.TemplateGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Add_Grid {
+        internal static System.Drawing.Bitmap AddGrid {
             get {
-                object obj = ResourceManager.GetObject("Add-Grid", resourceCulture);
+                object obj = ResourceManager.GetObject("AddGrid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Steropes.Tiles.TemplateGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Add_Tile {
+        internal static System.Drawing.Bitmap AddTile {
             get {
-                object obj = ResourceManager.GetObject("Add-Tile", resourceCulture);
+                object obj = ResourceManager.GetObject("AddTile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,79 @@ namespace Steropes.Tiles.TemplateGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap New_Document {
+        internal static System.Drawing.Bitmap Categorize_48px {
             get {
-                object obj = ResourceManager.GetObject("New-Document", resourceCulture);
+                object obj = ResourceManager.GetObject("Categorize_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CodePen_48px {
+            get {
+                object obj = ResourceManager.GetObject("CodePen_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Export_48px {
+            get {
+                object obj = ResourceManager.GetObject("Export_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NewDocument {
+            get {
+                object obj = ResourceManager.GetObject("NewDocument", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Open_48px {
+            get {
+                object obj = ResourceManager.GetObject("Open_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PreviewPane_48px {
+            get {
+                object obj = ResourceManager.GetObject("PreviewPane_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RemoveImage_48px {
+            get {
+                object obj = ResourceManager.GetObject("RemoveImage_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Save_48px {
+            get {
+                object obj = ResourceManager.GetObject("Save_48px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

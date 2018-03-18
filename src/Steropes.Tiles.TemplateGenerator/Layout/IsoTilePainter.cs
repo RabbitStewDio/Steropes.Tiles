@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
+using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.TemplateGenerator.Model;
 
@@ -47,7 +48,6 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         g.DrawLine(pen, baseShape.Top, shape.Top);
         g.DrawLine(pen, baseShape.Bottom, shape.Bottom);
       }
-
     }
 
     static bool IsStandardIsoTile(Rectangle rect)
@@ -58,6 +58,58 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       }
 
       return (rect.Width == rect.Height * 2);
+    }
+
+    protected override void DrawSubCell(Graphics g, TextureTile tile, Direction direction, Color c)
+    {
+      var baseArea = GetTileArea(tile);
+      var tileArea = GetSubTileAreaForDirection(direction, baseArea);
+      using (var pen = new Pen(c))
+      {
+        CreateShape(tileArea).Draw(g, pen);
+      }
+    }
+
+    Rectangle GetSubTileAreaForDirection(Direction direction, Rectangle baseArea)
+    {
+      Rectangle tileArea;
+      var centerX = Lerp(baseArea.Left, baseArea.Right, 2);
+      var centerY = Lerp(baseArea.Top, baseArea.Bottom, 2);
+      switch (direction)
+      {
+        case Direction.Up:
+        {
+          var left = Lerp(baseArea.Left, baseArea.Right, 1);
+          var right = Lerp(baseArea.Left, baseArea.Right, 3);
+          tileArea = FromEdges(left, baseArea.Top, right, centerY);
+          break;
+        }
+        case Direction.Left:
+        {
+          var top = Lerp(baseArea.Top, baseArea.Bottom, 1);
+          var bottom = Lerp(baseArea.Top, baseArea.Bottom, 3);
+          tileArea = FromEdges(baseArea.Left, top, centerX, bottom);
+          break;
+        }
+        case Direction.Down:
+        {
+          var left = Lerp(baseArea.Left, baseArea.Right, 1);
+          var right = Lerp(baseArea.Left, baseArea.Right, 3);
+          tileArea = FromEdges(left, centerY, right, baseArea.Bottom);
+          break;
+        }
+        case Direction.Right:
+        {
+          var top = Lerp(baseArea.Top, baseArea.Bottom, 1);
+          var bottom = Lerp(baseArea.Top, baseArea.Bottom, 3);
+          tileArea = FromEdges(centerX, top, baseArea.Right, bottom);
+          break;
+        }
+        default:
+          throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+      }
+
+      return tileArea;
     }
 
     public static IShape CreateShape(Rectangle rect)

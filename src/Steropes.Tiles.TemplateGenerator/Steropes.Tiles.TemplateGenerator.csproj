@@ -70,12 +70,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Actions\AddCollectionCommand.cs" />
     <Compile Include="Actions\AddGridCommand.cs" />
     <Compile Include="Actions\AddTilesCommand.cs" />
     <Compile Include="Actions\CloseCommand.cs" />
     <Compile Include="Actions\Command.cs" />
     <Compile Include="Actions\DeleteCommnad.cs" />
+    <Compile Include="Actions\ExportCommand.cs" />
     <Compile Include="Actions\LayoutCollectionCommand.cs" />
     <Compile Include="Actions\ModelCommand.cs" />
     <Compile Include="Actions\NewCommand.cs" />
@@ -155,7 +162,7 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\FormattingInfo.cs" />
+    <Compile Include="Model\BulkChangeObservableCollection.cs" />
     <Compile Include="Model\FormattingMetaData.cs" />
     <Compile Include="Model\MatcherType.cs" />
     <Compile Include="Model\MetaData.cs" />
@@ -164,7 +171,7 @@
     <Compile Include="Model\TextureFileLoader.cs" />
     <Compile Include="Model\TextureFileWriter.cs" />
     <Compile Include="Model\TextureGrid.cs" />
-    <Compile Include="Model\TexturePackLoaderException.cs" />
+    <Compile Include="Model\XmlParseException.cs" />
     <Compile Include="Model\TextureParserExtensions.cs" />
     <Compile Include="Model\TextureTile.cs" />
     <Compile Include="Model\TileType.cs" />
@@ -183,6 +190,9 @@
     <Compile Include="TileSetPropertiesDialog.Designer.cs">
       <DependentUpon>TileSetPropertiesDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\BaseTextureElementEditor.resx">
       <DependentUpon>BaseTextureElementEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +251,13 @@
     <Content Include="Icons\Add-Collection.png" />
     <Content Include="Icons\Add-Grid.png" />
     <Content Include="Icons\Add-Tile.png" />
+    <None Include="Icons\Remove Image_48px.png" />
+    <None Include="Icons\Save_48px.png" />
+    <None Include="Icons\Preview Pane_48px.png" />
+    <None Include="Icons\Open_48px.png" />
+    <None Include="Icons\Categorize_48px.png" />
+    <None Include="Icons\CodePen_48px.png" />
+    <None Include="Icons\Export_48px.png" />
     <Content Include="Icons\New-Document.png" />
   </ItemGroup>
   <ItemGroup>

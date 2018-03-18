@@ -72,8 +72,6 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
 
     public static void Resync<T>(this TreeNode self, IEnumerable<T> data, Func<T, TreeNode> producer)
     {
-      Console.WriteLine("Resync tree node from " + self.Tag);
-
       self.TreeView?.SuspendLayout();
       self.TreeView?.BeginUpdate();
       var nodes = new Dictionary<object, TreeNode>();
@@ -84,8 +82,6 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
           nodes[node.Tag] = node;
         }
       }
-
-      Console.WriteLine(" old node count: " + nodes.Count);
 
       self.Nodes.Clear();
       foreach (var collection in data)
@@ -104,8 +100,6 @@ namespace Steropes.Tiles.TemplateGenerator.StructureTree
         }
       }
 
-      Console.WriteLine(" new node count: " + self.Nodes.Count);
-      
       self.TreeView?.EndUpdate();
       self.TreeView?.ResumeLayout(true);
 

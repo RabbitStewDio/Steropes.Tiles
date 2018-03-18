@@ -6,7 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Steropes.Tiles.TemplateGenerator")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(@"This program is part of the Steropes.Tiles project and is licensed under the terms of the MIT license. Please visit https://github.com/RabbitStewDio/Steropes.Tiles for updates.
+
+Steropes.Tiles Template Generator contains icons provided by Icons8 under called Creative Commons Attribution-NoDerivs 3.0 Unported license. 
+https://icons8.com/")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Steropes.Tiles.TemplateGenerator")]

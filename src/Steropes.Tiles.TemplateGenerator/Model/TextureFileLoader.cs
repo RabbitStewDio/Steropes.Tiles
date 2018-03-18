@@ -46,7 +46,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
 
       var width = (int?) root.AttributeLocal("width") ?? 32;
       var height = (int?) root.AttributeLocal("height") ?? 32;
-      var textureType = ParseTextureType(root, (string) root.AttributeLocal("type"), TileType.Grid);
+      var textureType = TextureParserExtensions.ParseTextureType(root, (string) root.AttributeLocal("type"), TileType.Grid);
 
       var directoryInfo = Directory.GetParent(documentPath);
       var basePath = directoryInfo.FullName;
@@ -191,12 +191,12 @@ namespace Steropes.Tiles.TemplateGenerator.Model
     {
       if (string.IsNullOrEmpty(t))
       {
-        return defaultValue ?? throw new TexturePackLoaderException("Match type missing", lineInfo);
+        return defaultValue ?? throw new XmlParseException("Match type missing", lineInfo);
       }
 
       if (!Enum.TryParse(t, out MatcherType result))
       {
-        throw new TexturePackLoaderException("Match type invalid.", lineInfo);
+        throw new XmlParseException("Match type invalid.", lineInfo);
       }
 
       return result;
@@ -252,20 +252,6 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       return includes.ToList();
     }
 
-    static TileType ParseTextureType(IXmlLineInfo lineInfo, string t, TileType? defaultValue = null)
-    {
-      if (string.IsNullOrEmpty(t))
-      {
-        return defaultValue ?? throw new TexturePackLoaderException("Texture type missing", lineInfo);
-      }
-
-      if (!Enum.TryParse(t, out TileType result))
-      {
-        throw new TexturePackLoaderException("Texture type invalid.", lineInfo);
-      }
-
-      return result;
-    }
 
   }
 }
