@@ -31,27 +31,6 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
 
     public bool Valid => validator.Valid;
 
-    string ComputeBasePath(TextureCollection source)
-    {
-      try
-      {
-        var path = source.Parent?.SourcePath;
-        if (path != null)
-        {
-          var p = Path.GetFullPath(path);
-          return Directory.GetParent(p)?.FullName ?? "";
-        }
-
-        return "";
-      }
-      catch (IOException e)
-      {
-        // yeah, ugly, but this stuff above can fail for a myriad of reasons,
-        // not all of them sane.
-        return "";
-      }
-    }
-
     public void ApplyFrom(TextureCollection source)
     {
       try
@@ -66,7 +45,7 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
         else
         {
           this.fileNameBox.Text = source.Id;
-          this.basePath = ComputeBasePath(source);
+          this.basePath = source.Parent?.BasePath ?? "";
         }
 
       }
@@ -119,11 +98,7 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
 
       try
       {
-        var fp = Path.GetFullPath(path);
-        if (fp.StartsWith(basePath))
-        {
-          fp = fp.Substring(basePath.Length);
-        }
+        var fp = MakeRelative(path);
 
         fp = Path.GetFileNameWithoutExtension(fp);
         fileNameBox.Text = fp;
@@ -132,6 +107,17 @@ namespace Steropes.Tiles.TemplateGenerator.Editors
       {
         // ignored ..
       }
+    }
+
+    string MakeRelative(string path)
+    {
+      var fp = Path.GetFullPath(path);
+      if (fp.StartsWith(basePath))
+      {
+        fp = fp.Substring(basePath.Length);
+      }
+
+      return fp;
     }
   }
 }

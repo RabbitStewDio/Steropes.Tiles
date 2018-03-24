@@ -25,6 +25,13 @@ namespace Steropes.Tiles.TemplateGenerator
     Color defaultBorderColor;
     Color? defaultBackgroundColor;
     public event PropertyChangedEventHandler PropertyChanged;
+    int? defaultGridBorder;
+    int? defaultGridMargin;
+    int? defaultGridPadding;
+    int? defaultCollectionBorder;
+    int? defaultCollectionMargin;
+    int? defaultCollectionPadding;
+    int? defaultCellPadding;
 
     public GeneratorPreferences()
     {
@@ -52,6 +59,91 @@ namespace Steropes.Tiles.TemplateGenerator
       DefaultTextColor = Color.Black;
       TextSpacing = 5;
       DefaultFont = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Regular);
+
+      DefaultCellPadding = 1;
+      DefaultCollectionBorder = 1;
+      DefaultCollectionMargin = 1;
+      DefaultCollectionPadding = 2;
+      DefaultGridBorder = 1;
+      DefaultGridMargin = 1;
+      DefaultGridPadding = 2;
+    }
+
+    public int? DefaultCellPadding
+    {
+      get { return defaultCellPadding; }
+      set
+      {
+        if (value == defaultCellPadding) return;
+        defaultCellPadding = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int? DefaultGridBorder
+    {
+      get { return defaultGridBorder; }
+      set
+      {
+        if (value == defaultGridBorder) return;
+        defaultGridBorder = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int? DefaultGridMargin
+    {
+      get { return defaultGridMargin; }
+      set
+      {
+        if (value == defaultGridMargin) return;
+        defaultGridMargin = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int? DefaultGridPadding
+    {
+      get { return defaultGridPadding; }
+      set
+      {
+        if (value == defaultGridPadding) return;
+        defaultGridPadding = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int? DefaultCollectionBorder
+    {
+      get { return defaultCollectionBorder; }
+      set
+      {
+        if (value == defaultCollectionBorder) return;
+        defaultCollectionBorder = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int? DefaultCollectionMargin
+    {
+      get { return defaultCollectionMargin; }
+      set
+      {
+        if (value == defaultCollectionMargin) return;
+        defaultCollectionMargin = value;
+        OnPropertyChanged();
+      }
+    }
+
+    public int? DefaultCollectionPadding
+    {
+      get { return defaultCollectionPadding; }
+      set
+      {
+        if (value == defaultCollectionPadding) return;
+        defaultCollectionPadding = value;
+        OnPropertyChanged();
+      }
     }
 
     public Font DefaultFont

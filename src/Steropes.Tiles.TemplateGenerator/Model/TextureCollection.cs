@@ -9,6 +9,7 @@ namespace Steropes.Tiles.TemplateGenerator.Model
   public class TextureCollection : INotifyPropertyChanged, IFormattingInfoProvider
   {
     string id;
+    string lastExportLocation;
 
     public TextureCollection(TextureFile parent = null)
     {
@@ -16,6 +17,17 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       Grids = new ObservableCollection<TextureGrid>();
       Grids.CollectionChanged += OnCollectionChanged;
       FormattingMetaData = new FormattingMetaData();
+    }
+
+    public string LastExportLocation
+    {
+      get { return lastExportLocation; }
+      set
+      {
+        if (value == lastExportLocation) return;
+        lastExportLocation = value;
+        OnPropertyChanged();
+      }
     }
 
     public FormattingMetaData FormattingMetaData { get; }

@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<tileset width="96" height="48" type="Isometric" xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0">
+  <metadata padding="2">
+    <property name="last-saved">2018-03-24T14:56:19.2839005Z</property>
+    <property name="last-exported">2018-03-24T14:42:01.7982034Z</property>
+  </metadata>
+  <collection id="Terrain/terrain">
+    <grid name="basics" x="0" y="0" half-cell-hint="false" cell-spacing="2">
+      <metadata border-color="#4f6128" border="1" padding="2" margin="0" grid-width="3" grid-height="3" matcher-type="Basic" />
+      <tile x="0" y="0" tag="terrain.stone">
+        <metadata auto-generated="false" />
+      </tile>
+      <tile x="1" y="0" tag="terrain.wood">
+        <metadata auto-generated="false" />
+      </tile>
+    </grid>
+    <metadata title="Terrain Tiles" border-color="#0c0c0c" border="1" padding="2" margin="1" last-export-location="" />
+  </collection>
+  <collection id="Terrain/walls">
+    <grid name="basics" x="880" y="0" half-cell-hint="false" cell-spacing="2" cell-height="120">
+      <metadata title="Solid Walls" border="1" padding="2" margin="1" grid-width="2" grid-height="2" matcher-type="Basic" />
+      <tile x="0" y="0" tag="wall.rock">
+        <metadata auto-generated="false" />
+      </tile>
+    </grid>
+    <grid name="walls.thick" x="0" y="0" half-cell-hint="false" cell-spacing="2" cell-height="120">
+      <metadata title="Wall vs Solid vs Empty" border="1" padding="2" margin="1" cell-map-elements="w s e" matcher-type="CellMap" />
+      <tile x="0" y="0" tag="walls.thick_w_w_w_w">
+        <metadata selector-hint="0,0,0,0" auto-generated="true" />
+      </tile>
+      <tile x="1" y="0" tag="walls.thick_s_w_w_w">
+        <metadata selector-hint="1,0,0,0" auto-generated="true" />
+      </tile>
+      <tile x="2" y="0" tag="walls.thick_e_w_w_w">
+        <metadata selector-hint="2,0,0,0" auto-generated="true" />
+      </tile>
+      <tile x="3" y="0" tag="walls.thick_w_s_w_w">
+        <metadata selector-hint="0,1,0,0" auto-generated="true" />
+      </tile>
+      <tile x="4" y="0" tag="walls.thick_s_s_w_w">
+        <metadata selector-hint="1,1,0,0" auto-generated="true" />
+      </tile>
+      <tile x="5" y="0" tag="walls.thick_e_s_w_w">
+        <metadata selector-hint="2,1,0,0" auto-generated="true" />
+      </tile>
+      <tile x="6" y="0" tag="walls.thick_w_e_w_w">
+        <metadata selector-hint="0,2,0,0" auto-generated="true" />
+      </tile>
+      <tile x="7" y="0" tag="walls.thick_s_e_w_w">
+        <metadata selector-hint="1,2,0,0" auto-generated="true" />
+      </tile>
+      <tile x="8" y="0" tag="walls.thick_e_e_w_w">
+        <metadata selector-hint="2,2,0,0" auto-generated="true" />
+      </tile>
+      <tile x="0" y="1" tag="walls.thick_w_w_s_w">
+        <metadata selector-hint="0,0,1,0" auto-generated="true" />
+      </tile>
+      <tile x="1" y="1" tag="walls.thick_s_w_s_w">
+        <metadata selector-hint="1,0,1,0" auto-generated="true" />
+      </tile>
+      <tile x="2" y="1" tag="walls.thick_e_w_s_w">
+        <metadata selector-hint="2,0,1,0" auto-generated="true" />
+      </tile>
+      <tile x="3" y="1" tag="walls.thick_w_s_s_w">
+        <metadata selector-hint="0,1,1,0" auto-generated="true" />
+      </tile>
+      <tile x="4" y="1" tag="walls.thick_s_s_s_w">
+        <metadata selector-hint="1,1,1,0" auto-generated="true" />
+      </tile>
+      <tile x="5" y="1" tag="walls.thick_e_s_s_w">
+        <metadata selector-hint="2,1,1,0" auto-generated="true" />
+      </tile>
+      <tile x="6" y="1" tag="walls.thick_w_e_s_w">
+        <metadata selector-hint="0,2,1,0" auto-generated="true" />
+      </tile>
+      <tile x="7" y="1" tag="walls.thick_s_e_s_w">
+        <metadata selector-hint="1,2,1,0" auto-generated="true" />
+      </tile>
+      <tile x="8" y="1" tag="walls.thick_e_e_s_w">
+        <metadata selector-hint="2,2,1,0" auto-generated="true" />
+      </tile>
+      <tile x="0" y="2" tag="walls.thick_w_w_e_w">
+        <metadata selector-hint="0,0,2,0" auto-generated="true" />
+      </tile>
+      <tile x="1" y="2" tag="walls.thick_s_w_e_w">
+        <metadata selector-hint="1,0,2,0" auto-generated="true" />
+      </tile>
+      <tile x="2" y="2" tag="walls.thick_e_w_e_w">
+        <metadata selector-hint="2,0,2,0" auto-generated="true" />
+      </tile>
+      <tile x="3" y="2" tag="walls.thick_w_s_e_w">
+        <metadata selector-hint="0,1,2,0" auto-generated="true" />
+      </tile>
+      <tile x="4" y="2" tag="walls.thick_s_s_e_w">
+        <metadata selector-hint="1,1,2,0" auto-generated="true" />
+      </tile>
+      <tile x="5" y="2" tag="walls.thick_e_s_e_w">
+        <metadata selector-hint="2,1,2,0" auto-generated="true" />
+      </tile>
+      <tile x="6" y="2" tag="walls.thick_w_e_e_w">
+        <metadata selector-hint="0,2,2,0" auto-generated="true" />
+      </tile>
+      <tile x="7" y="2" tag="walls.thick_s_e_e_w">
+        <metadata selector-hint="1,2,2,0" auto-generated="true" />
+      </tile>
+      <tile x="8" y="2" tag="walls.thick_e_e_e_w">
+        <metadata selector-hint="2,2,2,0" auto-generated="true" />
+      </tile>
+      <tile x="0" y="3" tag="walls.thick_w_w_w_s">
+        <metadata selector-hint="0,0,0,1" auto-generated="true" />
+      </tile>
+      <tile x="1" y="3" tag="walls.thick_s_w_w_s">
+        <metadata selector-hint="1,0,0,1" auto-generated="true" />
+      </tile>
+      <tile x="2" y="3" tag="walls.thick_e_w_w_s">
+        <metadata selector-hint="2,0,0,1" auto-generated="true" />
+      </tile>
+      <tile x="3" y="3" tag="walls.thick_w_s_w_s">
+        <metadata selector-hint="0,1,0,1" auto-generated="true" />
+      </tile>
+      <tile x="4" y="3" tag="walls.thick_s_s_w_s">
+        <metadata selector-hint="1,1,0,1" auto-generated="true" />
+      </tile>
+      <tile x="5" y="3" tag="walls.thick_e_s_w_s">
+        <metadata selector-hint="2,1,0,1" auto-generated="true" />
+      </tile>
+      <tile x="6" y="3" tag="walls.thick_w_e_w_s">
+        <metadata selector-hint="0,2,0,1" auto-generated="true" />
+      </tile>
+      <tile x="7" y="3" tag="walls.thick_s_e_w_s">
+        <metadata selector-hint="1,2,0,1" auto-generated="true" />
+      </tile>
+      <tile x="8" y="3" tag="walls.thick_e_e_w_s">
+        <metadata selector-hint="2,2,0,1" auto-generated="true" />
+      </tile>
+      <tile x="0" y="4" tag="walls.thick_w_w_s_s">
+        <metadata selector-hint="0,0,1,1" auto-generated="true" />
+      </tile>
+      <tile x="1" y="4" tag="walls.thick_s_w_s_s">
+        <metadata selector-hint="1,0,1,1" auto-generated="true" />
+      </tile>
+      <tile x="2" y="4" tag="walls.thick_e_w_s_s">
+        <metadata selector-hint="2,0,1,1" auto-generated="true" />
+      </tile>
+      <tile x="3" y="4" tag="walls.thick_w_s_s_s">
+        <metadata selector-hint="0,1,1,1" auto-generated="true" />
+      </tile>
+      <tile x="4" y="4" tag="walls.thick_s_s_s_s">
+        <metadata selector-hint="1,1,1,1" auto-generated="true" />
+      </tile>
+      <tile x="5" y="4" tag="walls.thick_e_s_s_s">
+        <metadata selector-hint="2,1,1,1" auto-generated="true" />
+      </tile>
+      <tile x="6" y="4" tag="walls.thick_w_e_s_s">
+        <metadata selector-hint="0,2,1,1" auto-generated="true" />
+      </tile>
+      <tile x="7" y="4" tag="walls.thick_s_e_s_s">
+        <metadata selector-hint="1,2,1,1" auto-generated="true" />
+      </tile>
+      <tile x="8" y="4" tag="walls.thick_e_e_s_s">
+        <metadata selector-hint="2,2,1,1" auto-generated="true" />
+      </tile>
+      <tile x="0" y="5" tag="walls.thick_w_w_e_s">
+        <metadata selector-hint="0,0,2,1" auto-generated="true" />
+      </tile>
+      <tile x="1" y="5" tag="walls.thick_s_w_e_s">
+        <metadata selector-hint="1,0,2,1" auto-generated="true" />
+      </tile>
+      <tile x="2" y="5" tag="walls.thick_e_w_e_s">
+        <metadata selector-hint="2,0,2,1" auto-generated="true" />
+      </tile>
+      <tile x="3" y="5" tag="walls.thick_w_s_e_s">
+        <metadata selector-hint="0,1,2,1" auto-generated="true" />
+      </tile>
+      <tile x="4" y="5" tag="walls.thick_s_s_e_s">
+        <metadata selector-hint="1,1,2,1" auto-generated="true" />
+      </tile>
+      <tile x="5" y="5" tag="walls.thick_e_s_e_s">
+        <metadata selector-hint="2,1,2,1" auto-generated="true" />
+      </tile>
+      <tile x="6" y="5" tag="walls.thick_w_e_e_s">
+        <metadata selector-hint="0,2,2,1" auto-generated="true" />
+      </tile>
+      <tile x="7" y="5" tag="walls.thick_s_e_e_s">
+        <metadata selector-hint="1,2,2,1" auto-generated="true" />
+      </tile>
+      <tile x="8" y="5" tag="walls.thick_e_e_e_s">
+        <metadata selector-hint="2,2,2,1" auto-generated="true" />
+      </tile>
+      <tile x="0" y="6" tag="walls.thick_w_w_w_e">
+        <metadata selector-hint="0,0,0,2" auto-generated="true" />
+      </tile>
+      <tile x="1" y="6" tag="walls.thick_s_w_w_e">
+        <metadata selector-hint="1,0,0,2" auto-generated="true" />
+      </tile>
+      <tile x="2" y="6" tag="walls.thick_e_w_w_e">
+        <metadata selector-hint="2,0,0,2" auto-generated="true" />
+      </tile>
+      <tile x="3" y="6" tag="walls.thick_w_s_w_e">
+        <metadata selector-hint="0,1,0,2" auto-generated="true" />
+      </tile>
+      <tile x="4" y="6" tag="walls.thick_s_s_w_e">
+        <metadata selector-hint="1,1,0,2" auto-generated="true" />
+      </tile>
+      <tile x="5" y="6" tag="walls.thick_e_s_w_e">
+        <metadata selector-hint="2,1,0,2" auto-generated="true" />
+      </tile>
+      <tile x="6" y="6" tag="walls.thick_w_e_w_e">
+        <metadata selector-hint="0,2,0,2" auto-generated="true" />
+      </tile>
+      <tile x="7" y="6" tag="walls.thick_s_e_w_e">
+        <metadata selector-hint="1,2,0,2" auto-generated="true" />
+      </tile>
+      <tile x="8" y="6" tag="walls.thick_e_e_w_e">
+        <metadata selector-hint="2,2,0,2" auto-generated="true" />
+      </tile>
+      <tile x="0" y="7" tag="walls.thick_w_w_s_e">
+        <metadata selector-hint="0,0,1,2" auto-generated="true" />
+      </tile>
+      <tile x="1" y="7" tag="walls.thick_s_w_s_e">
+        <metadata selector-hint="1,0,1,2" auto-generated="true" />
+      </tile>
+      <tile x="2" y="7" tag="walls.thick_e_w_s_e">
+        <metadata selector-hint="2,0,1,2" auto-generated="true" />
+      </tile>
+      <tile x="3" y="7" tag="walls.thick_w_s_s_e">
+        <metadata selector-hint="0,1,1,2" auto-generated="true" />
+      </tile>
+      <tile x="4" y="7" tag="walls.thick_s_s_s_e">
+        <metadata selector-hint="1,1,1,2" auto-generated="true" />
+      </tile>
+      <tile x="5" y="7" tag="walls.thick_e_s_s_e">
+        <metadata selector-hint="2,1,1,2" auto-generated="true" />
+      </tile>
+      <tile x="6" y="7" tag="walls.thick_w_e_s_e">
+        <metadata selector-hint="0,2,1,2" auto-generated="true" />
+      </tile>
+      <tile x="7" y="7" tag="walls.thick_s_e_s_e">
+        <metadata selector-hint="1,2,1,2" auto-generated="true" />
+      </tile>
+      <tile x="8" y="7" tag="walls.thick_e_e_s_e">
+        <metadata selector-hint="2,2,1,2" auto-generated="true" />
+      </tile>
+      <tile x="0" y="8" tag="walls.thick_w_w_e_e">
+        <metadata selector-hint="0,0,2,2" auto-generated="true" />
+      </tile>
+      <tile x="1" y="8" tag="walls.thick_s_w_e_e">
+        <metadata selector-hint="1,0,2,2" auto-generated="true" />
+      </tile>
+      <tile x="2" y="8" tag="walls.thick_e_w_e_e">
+        <metadata selector-hint="2,0,2,2" auto-generated="true" />
+      </tile>
+      <tile x="3" y="8" tag="walls.thick_w_s_e_e">
+        <metadata selector-hint="0,1,2,2" auto-generated="true" />
+      </tile>
+      <tile x="4" y="8" tag="walls.thick_s_s_e_e">
+        <metadata selector-hint="1,1,2,2" auto-generated="true" />
+      </tile>
+      <tile x="5" y="8" tag="walls.thick_e_s_e_e">
+        <metadata selector-hint="2,1,2,2" auto-generated="true" />
+      </tile>
+      <tile x="6" y="8" tag="walls.thick_w_e_e_e">
+        <metadata selector-hint="0,2,2,2" auto-generated="true" />
+      </tile>
+      <tile x="7" y="8" tag="walls.thick_s_e_e_e">
+        <metadata selector-hint="1,2,2,2" auto-generated="true" />
+      </tile>
+      <tile x="8" y="8" tag="walls.thick_e_e_e_e">
+        <metadata selector-hint="2,2,2,2" auto-generated="true" />
+      </tile>
+    </grid>
+    <metadata border="1" padding="2" margin="1" last-export-location="walls-template.png" />
+  </collection>
+</tileset>

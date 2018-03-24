@@ -138,6 +138,9 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       retval.Id = id;
       retval.Grids.AddRange(grids);
       ParseFormattingInfo(root, retval.FormattingMetaData);
+
+      var lastExportLocation = (string) root.ElementLocal("metadata")?.Attribute("last-export-location");
+      retval.LastExportLocation = lastExportLocation;
       return retval;
     }
 

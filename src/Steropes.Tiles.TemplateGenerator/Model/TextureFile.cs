@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using Steropes.Tiles.TemplateGenerator.Annotations;
 
@@ -87,7 +89,6 @@ namespace Steropes.Tiles.TemplateGenerator.Model
         {
           return;
         }
-
         sourcePath = value;
         OnPropertyChanged();
       }
@@ -158,6 +159,52 @@ namespace Steropes.Tiles.TemplateGenerator.Model
           item.Parent = this;
         }
       }
+    }
+
+    public string BasePath
+    {
+      get
+      {
+        try
+        {
+          var path = SourcePath;
+          if (path != null)
+          {
+            var p = Path.GetFullPath(path);
+            var retval = Directory.GetParent(p)?.FullName;
+            if (!string.IsNullOrEmpty(retval))
+            {
+              if (retval.EndsWith("" + Path.DirectorySeparatorChar) || 
+                  retval.EndsWith("" + Path.AltDirectorySeparatorChar))
+              {
+                return retval;
+              }
+
+              return retval + Path.DirectorySeparatorChar;
+            }
+          }
+
+          return "";
+        }
+        catch (IOException)
+        {
+          // yeah, ugly, but this stuff above can fail for a myriad of reasons,
+          // not all of them sane.
+          return "";
+        }
+      }
+    }
+
+    public string MakeRelative(string path)
+    {
+      var fp = Path.GetFullPath(path);
+      var basePath = BasePath;
+      if (fp.StartsWith(basePath))
+      {
+        fp = fp.Substring(basePath.Length);
+      }
+
+      return fp;
     }
 
     [NotifyPropertyChangedInvocator]

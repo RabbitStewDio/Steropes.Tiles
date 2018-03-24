@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using Steropes.Tiles.TemplateGenerator.Model;
 
@@ -54,9 +55,14 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         return new Size();
       }
 
-      return TextRenderer.MeasureText(title,
-                                      prefs.DefaultFont,
-                                      new Size(contentSize.Width, int.MaxValue));
+      using (var b = new Bitmap(1, 1, PixelFormat.Format32bppArgb))
+      using (var g = Graphics.FromImage(b))
+      {
+        var rval = g.MeasureString(title,
+                                   prefs.DefaultFont,
+                                   new Size(contentSize.Width, int.MaxValue));
+        return new Size((int) Math.Ceiling(rval.Width), (int) Math.Ceiling(rval.Height));
+      }
     }
 
     public Size TextAreaSize { get; }

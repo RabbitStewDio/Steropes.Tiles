@@ -31,7 +31,13 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       }
 
       counter += 1;
-      var textureGrid = new TextureGrid() { Name = $"grid-{counter}"};
+      var textureGrid = new TextureGrid()
+      {
+        Name = $"grid-{counter}",
+      };
+      textureGrid.FormattingMetaData.Border = Model.Preferences.DefaultGridBorder;
+      textureGrid.FormattingMetaData.Padding = Model.Preferences.DefaultGridPadding;
+      textureGrid.FormattingMetaData.Margin = Model.Preferences.DefaultGridMargin;
       insertPoint.Grids.Add(textureGrid);
       Model.Selection.Clear();
       Model.Selection.Add(textureGrid);

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steropes.Tiles.TemplateGene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steropes.Tiles.TemplateGenerator.Test", "Steropes.Tiles.TemplateGenerator.Test\Steropes.Tiles.TemplateGenerator.Test.csproj", "{8825123C-7883-42BD-8E6E-CDBB47C503EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steropes.Tiles.Monogame.Test", "Steropes.Tiles.Monogame.Test\Steropes.Tiles.Monogame.Test.csproj", "{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,8 +70,9 @@ Global
 		{671062E4-61BB-4619-A237-56296E49791D}.Release|x86.ActiveCfg = Release|x86
 		{671062E4-61BB-4619-A237-56296E49791D}.Release|x86.Build.0 = Release|x86
 		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Debug|x86.ActiveCfg = Debug|x86
-		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Debug|x86.Build.0 = Debug|x86
+		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Debug|x86.Build.0 = Debug|Any CPU
 		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Release|x86.ActiveCfg = Release|x86
 		{F0062E42-3EDB-469F-9130-9FCEFF136970}.Release|x86.Build.0 = Release|x86
@@ -89,6 +92,14 @@ Global
 		{8825123C-7883-42BD-8E6E-CDBB47C503EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8825123C-7883-42BD-8E6E-CDBB47C503EC}.Release|x86.ActiveCfg = Release|Any CPU
 		{8825123C-7883-42BD-8E6E-CDBB47C503EC}.Release|x86.Build.0 = Release|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Debug|x86.Build.0 = Debug|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Release|x86.ActiveCfg = Release|Any CPU
+		{828D0C3B-0E5A-4AEC-9F74-B044C760FD35}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

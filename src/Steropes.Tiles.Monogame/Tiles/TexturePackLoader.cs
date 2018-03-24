@@ -184,7 +184,7 @@ namespace Steropes.Tiles.Monogame.Tiles
       var y = (int)tile.AttributeLocal("y");
       var anchorX = (int?)tile.AttributeLocal("anchor-x");
       var anchorY = (int?)tile.AttributeLocal("anchor-y");
-      var name = (string) tile.ElementLocal("name");
+      var name = (string) tile.AttributeLocal("tag") ?? (string) tile.AttributeLocal("name");
 
       var tags = 
         from e in tile.Elements()

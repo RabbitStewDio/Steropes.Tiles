@@ -74,16 +74,23 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       }
 
       file = QueryFile(file);
-      PerformSave(file);
+      if (!string.IsNullOrEmpty(file))
+      {
+        PerformSave(file);
+      }
     }
 
     void PerformSave(string file)
     {
       try
       {
+        Model.Content.Properties = Model.Content.Properties
+          .Updated("last-saved", DateTime.UtcNow.ToString("o"));
+        
         var document = TextureFileWriter.GenerateXml(Model.Content);
         document.Save(file);
         Model.Content.Modified = false;
+        Model.Content.SourcePath = file;
         Model.Preferences.AddRecentFile(file);
       }
       catch (Exception e)

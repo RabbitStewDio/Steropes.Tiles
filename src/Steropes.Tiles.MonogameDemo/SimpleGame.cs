@@ -100,6 +100,8 @@ namespace Steropes.Tiles.MonogameDemo
       stateManager.SwitchState(stateManager.States["start"]);
       Components.Add(stateManager);
 
+
+
     }
     
     protected override bool BeginDraw()

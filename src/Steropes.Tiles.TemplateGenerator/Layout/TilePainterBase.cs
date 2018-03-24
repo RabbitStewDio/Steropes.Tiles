@@ -19,7 +19,11 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
     public Rectangle GetTileArea(TextureTile tile)
     {
       var tileSize = Grid.EffectiveTileSize;
-      return new Rectangle(0, 0, tileSize.Width, tileSize.Height);
+      var anchor = tile.Parent.ComputeEffectiveAnchorPoint(tile);
+      return new Rectangle(anchor.X - tileSize.Width / 2, 
+                           anchor.Y - tileSize.Height / 2, 
+                           tileSize.Width, 
+                           tileSize.Height);
     }
 
     public TextureGrid Grid { get; }

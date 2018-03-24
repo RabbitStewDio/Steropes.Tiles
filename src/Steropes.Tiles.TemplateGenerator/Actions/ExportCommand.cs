@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 using Steropes.Tiles.TemplateGenerator.Layout;
+using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public sealed class ExportCommand: ModelCommand
+  public sealed class ExportCommand : ModelCommand
   {
     public ExportCommand(MainModel model) : base(model)
     {
@@ -34,14 +36,35 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
       gen.Regenerate(insertPoint);
 
       var producer = new GridCollectionPainter(Model.Preferences);
-      var bitmap = producer.Produce(insertPoint);
-
-      var fname = QueryFile(null);
-      if (fname != null)
+      using (var bitmap = producer.Produce(insertPoint))
       {
-        bitmap.Save(fname, ImageFormat.Png);
+        var fname = QueryFile(MakeAbsolute(insertPoint.LastExportLocation));
+        if (!string.IsNullOrEmpty(fname))
+        {
+          insertPoint.LastExportLocation = Model.Content.MakeRelative(fname);
+          Model.Content.Properties = Model.Content.Properties
+            .Updated("last-exported", DateTime.UtcNow.ToString("o"));
+
+          bitmap.Save(fname, ImageFormat.Png);
+        }
+      }
+    }
+
+    string MakeAbsolute(string path)
+    {
+      if (path == null)
+      {
+        return null;
       }
 
+      if (string.IsNullOrEmpty(Model.Content.BasePath))
+      {
+        return path;
+      }
+
+      var retval = Path.Combine(Model.Content.BasePath, path);
+      Console.WriteLine("Combined: " + retval);
+      return retval;
     }
 
     string QueryFile(string oldPath)
@@ -55,6 +78,7 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
         AddExtension = true,
         DereferenceLinks = true
       };
+
       if (oldPath != null)
       {
         dialog.FileName = oldPath;
@@ -67,6 +91,5 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
 
       return null;
     }
-
   }
 }

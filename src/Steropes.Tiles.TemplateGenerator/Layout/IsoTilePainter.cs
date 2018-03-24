@@ -41,12 +41,11 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
       using (var pen = new Pen(Grid.TextureTileFormattingMetaData.TileOutlineColor ?? Preferences.DefaultTileColor))
       {
-        var shape = CreateShape(new Rectangle(rect.X, rect.Y + extraSpace, rect.Width, rect.Height));
+        var shape = CreateShape(new Rectangle(rect.X, rect.Y - extraSpace, rect.Width, rect.Height));
         shape.Draw(g, pen);
 
         g.DrawLine(pen, baseShape.Left, shape.Left);
         g.DrawLine(pen, baseShape.Right, shape.Right);
-        g.DrawLine(pen, baseShape.Top, shape.Top);
         g.DrawLine(pen, baseShape.Bottom, shape.Bottom);
       }
     }

@@ -178,6 +178,7 @@
       </xsd:documentation>
     </xsd:annotation>
     <xsd:attribute type="xsd:string" name="title" use="optional"/>
+    <xsd:attribute type="xsd:string" name="last-export-location" use="optional"/>
 
     <xsd:attribute type="xsd:string" name="text-color" use="optional"/>
     <xsd:attribute type="xsd:string" name="border-color" use="optional"/>

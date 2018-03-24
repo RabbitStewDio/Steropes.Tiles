@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Steropes.Tiles.TemplateGenerator.Actions;
@@ -131,5 +132,7 @@ namespace Steropes.Tiles.TemplateGenerator
         Debug.WriteLine("Failed to save settings: " + e);
       }
     }
+
+
   }
 }

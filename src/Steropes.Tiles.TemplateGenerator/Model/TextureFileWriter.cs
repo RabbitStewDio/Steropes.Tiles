@@ -66,7 +66,9 @@ namespace Steropes.Tiles.TemplateGenerator.Model
       var collectionElement = new XElement(Namespace + "collection");
       collectionElement.Add(new XAttribute("id", textureCollection.Id ?? ""));
       collectionElement.AddRange(textureCollection.Grids.Select(GenerateGrid));
-      collectionElement.Add(GenerateMetaData(textureCollection.FormattingMetaData));
+      var metaData = GenerateMetaData(textureCollection.FormattingMetaData);
+      metaData.Add(new XAttribute("last-export-location", textureCollection.LastExportLocation ?? ""));
+      collectionElement.Add(metaData);
       return collectionElement;
     }
 

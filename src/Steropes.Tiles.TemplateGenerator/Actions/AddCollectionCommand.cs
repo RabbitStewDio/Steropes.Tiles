@@ -25,6 +25,10 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
         Id = $"path\\imageFile{counter}"
       };
 
+      c.FormattingMetaData.Border = Model.Preferences.DefaultCollectionBorder;
+      c.FormattingMetaData.Padding = Model.Preferences.DefaultCollectionPadding;
+      c.FormattingMetaData.Margin = Model.Preferences.DefaultCollectionMargin;
+
       Model.Content.Collections.Add(c);
       Model.Selection.Clear();
       Model.Selection.Add(c);
