@@ -70,6 +70,24 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       return new Rectangle(left, top, right - left, bottom - top);
     }
 
+    protected void DrawAnchor(Graphics g, TextureTile t)
+    {
+      var anchor = t.Parent.ComputeEffectiveAnchorPoint(t);
+      var highlightColor = t.Parent?.TextureTileFormattingMetaData?.TileHighlightColor ?? Preferences.DefaultTileHighlightColor;
+      using (var pen = new Pen(highlightColor))
+      {
+        // centre point
+        using (var b = new SolidBrush(highlightColor))
+        {
+          g.FillRectangle(b, anchor.X, anchor.Y, 1, 1);
+        }
+        g.DrawLine(pen, anchor.X - 4, anchor.Y, anchor.X - 2, anchor.Y);
+        g.DrawLine(pen, anchor.X + 4, anchor.Y, anchor.X + 2, anchor.Y);
+        g.DrawLine(pen, anchor.X, anchor.Y - 2, anchor.X, anchor.Y - 4);
+        g.DrawLine(pen, anchor.X, anchor.Y + 2, anchor.X, anchor.Y + 4);
+      }
+    }
+
     void DrawCornerMap(Graphics g, TextureTile t)
     {
       var hint = (t.SelectorHint ?? "").PadLeft(5);

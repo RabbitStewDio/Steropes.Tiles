@@ -26,6 +26,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
       pen.Dispose();
 
       DrawSelectorHint(g, tile);
+      DrawAnchor(g, tile);
     }
 
     public Rectangle GetTileHighlightArea(TextureTile tile)

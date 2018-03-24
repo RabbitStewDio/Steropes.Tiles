@@ -38,6 +38,7 @@
       this.newFileToolButton = new System.Windows.Forms.ToolStripButton();
       this.openFileToolButton = new System.Windows.Forms.ToolStripButton();
       this.saveFileToolButton = new System.Windows.Forms.ToolStripButton();
+      this.exportToolButton = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.addCollectionToolButton = new System.Windows.Forms.ToolStripButton();
       this.addGridToolButton = new System.Windows.Forms.ToolStripButton();
@@ -57,6 +58,7 @@
       this.recentSubMenu = new System.Windows.Forms.MenuItem();
       this.saveMenuItem = new System.Windows.Forms.MenuItem();
       this.saveAsMenuItem = new System.Windows.Forms.MenuItem();
+      this.exportMenuItem = new System.Windows.Forms.MenuItem();
       this.exitMenuItem = new System.Windows.Forms.MenuItem();
       this.editMenu = new System.Windows.Forms.MenuItem();
       this.deleteMenuItem = new System.Windows.Forms.MenuItem();
@@ -71,8 +73,6 @@
       this.preferencesMenuItem = new System.Windows.Forms.MenuItem();
       this.menuItem1 = new System.Windows.Forms.MenuItem();
       this.menuItem2 = new System.Windows.Forms.MenuItem();
-      this.exportToolButton = new System.Windows.Forms.ToolStripButton();
-      this.exportMenuItem = new System.Windows.Forms.MenuItem();
       fileMenuSeparator = new System.Windows.Forms.MenuItem();
       toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       ((System.ComponentModel.ISupportInitialize)(this.rootContainer)).BeginInit();
@@ -169,7 +169,7 @@
             this.removeItemToolButton});
       this.toolStrip1.Location = new System.Drawing.Point(3, 0);
       this.toolStrip1.Name = "toolStrip1";
-      this.toolStrip1.Size = new System.Drawing.Size(279, 25);
+      this.toolStrip1.Size = new System.Drawing.Size(251, 25);
       this.toolStrip1.TabIndex = 0;
       this.toolStrip1.Text = "Text";
       // 
@@ -199,6 +199,15 @@
       this.saveFileToolButton.Name = "saveFileToolButton";
       this.saveFileToolButton.Size = new System.Drawing.Size(23, 22);
       this.saveFileToolButton.Text = "Save File";
+      // 
+      // exportToolButton
+      // 
+      this.exportToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.exportToolButton.Image = global::Steropes.Tiles.TemplateGenerator.Properties.Resources.Export_48px;
+      this.exportToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.exportToolButton.Name = "exportToolButton";
+      this.exportToolButton.Size = new System.Drawing.Size(23, 22);
+      this.exportToolButton.Text = "Export";
       // 
       // toolStripSeparator2
       // 
@@ -364,6 +373,11 @@
       this.saveAsMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftS;
       this.saveAsMenuItem.Text = "Save &As ...";
       // 
+      // exportMenuItem
+      // 
+      this.exportMenuItem.Index = 5;
+      this.exportMenuItem.Text = "Export";
+      // 
       // exitMenuItem
       // 
       this.exitMenuItem.Index = 7;
@@ -454,20 +468,6 @@
       this.menuItem2.Index = 0;
       this.menuItem2.Text = "About";
       this.menuItem2.Click += new System.EventHandler(this.OnAboutClick);
-      // 
-      // exportToolButton
-      // 
-      this.exportToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.exportToolButton.Image = global::Steropes.Tiles.TemplateGenerator.Properties.Resources.Export_48px;
-      this.exportToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.exportToolButton.Name = "exportToolButton";
-      this.exportToolButton.Size = new System.Drawing.Size(23, 22);
-      this.exportToolButton.Text = "Export";
-      // 
-      // exportMenuItem
-      // 
-      this.exportMenuItem.Index = 5;
-      this.exportMenuItem.Text = "Export";
       // 
       // MainWindow
       // 

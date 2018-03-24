@@ -230,7 +230,7 @@ namespace Steropes.Tiles.TemplateGenerator
     void RebuildRecentFilesMenu()
     {
       recentSubMenu.MenuItems.Clear();
-      foreach (var file in model.Preferences.RecentFiles)
+      foreach (var file in model.Preferences.RecentFiles.Reverse())
       {
         var mi = recentSubMenu.MenuItems.Add(file);
         new OpenRecentFileCommand(model, file).Install(mi);

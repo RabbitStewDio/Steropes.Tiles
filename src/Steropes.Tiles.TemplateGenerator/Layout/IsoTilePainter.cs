@@ -25,6 +25,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
       DrawHeightIndicator(g, tile);
       DrawSelectorHint(g, tile);
+      DrawAnchor(g, tile);
     }
 
     void DrawHeightIndicator(Graphics g, TextureTile tile)
