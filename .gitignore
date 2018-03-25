@@ -254,3 +254,5 @@ ModelManifest.xml
 build-artefacts/
 
 .idea/
+/src/Steropes.Tiles.MonogameDemo/Content/Tiles/Civ/amplio/sample.tiles
+/src/Steropes.Tiles.MonogameDemo/Content/Tiles/Civ/amplio/sample-grid.tiles

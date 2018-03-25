@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<tileset width="96" height="48" type="Isometric" xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0">
+  <metadata />
+  <collection id="path\imageFile1">
+    <grid name="grid-1" x="0" y="0" half-cell-hint="false" cell-spacing="0">
+      <metadata background-color="#548dd4" border-color="#e36c09" border="1" padding="1" margin="1" matcher-type="Basic" />
+      <tile x="0" y="0">
+        <metadata auto-generated="false" />
+      </tile>
+    </grid>
+    <metadata />
+  </collection>
+</tileset>

@@ -101,33 +101,37 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
       agg.Add(CreateSettlementLayer());
       agg.Add(CreateFogOfWar());
 
-      foreach (var tm in agg)
-      {
-        if (tm.Cachable && EnableCache)
-        {
-          var cache =
-            PlotOperations.FromContext(RenderingConfig).Create(tm.Matcher)
-              .WithCache()
-              .ForViewport()
-              .WithRenderer(CreateBaseRenderer<Nothing>())
-              .Build();
-          tm.CacheControl(cache);
-          r.AddLayer(cache);
-        }
-        else
-        {
-          var po = PlotOperations.FromContext(RenderingConfig)
-            .Create(tm.Matcher)
-            .ForViewport()
-            .WithRenderer(CreateBaseRenderer<Nothing>())
-            .Build();
-          r.AddLayer(po);
-        }
-      }
-
+      r.AddLayers(EnableCache ? agg.Select(CreateFromMatchControl) : agg.Select(CreateNonCachedFromMatchControl));
       r.AddLayer(CreateCityBarRenderer(g));
 
       return r;
+    }
+
+    IPlotOperation CreateFromMatchControl(TileMatchControl tm)
+    {
+      if (tm.Cachable)
+      {
+        var cache =
+          PlotOperations.FromContext(RenderingConfig).Create(tm.Matcher)
+            .WithCache()
+            .ForViewport()
+            .WithRenderer(CreateBaseRenderer<Nothing>())
+            .Build();
+        tm.CacheControl(cache);
+        return cache;
+      }
+
+      return CreateNonCachedFromMatchControl(tm);
+    }
+
+    IPlotOperation CreateNonCachedFromMatchControl(TileMatchControl tm)
+    {
+      var po = PlotOperations.FromContext(RenderingConfig)
+        .Create(tm.Matcher)
+        .ForViewport()
+        .WithRenderer(CreateBaseRenderer<Nothing>())
+        .Build();
+      return po;
     }
 
     IPlotOperation CreateCityBarRenderer(Group parent)
@@ -148,7 +152,7 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
         return true;
       }
 
-      var settlementMatcher = 
+      var settlementMatcher =
         new DirectMappingTileMatcher<byte, ISettlement, Nothing>((x, y) => map[x, y].City, CityMapper);
 
       return PlotOperations.FromContext(RenderingConfig)
@@ -500,25 +504,6 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
                                                            TileRegistry, rd.Tag);
     }
 
-    struct TileMatchControl
-    {
-      public bool Cachable { get; }
-      public ITileMatcher<ITexturedTile, Nothing> Matcher { get; }
-      public Action<IPlotOperation> CacheControl { get; }
-
-      public TileMatchControl(ITileMatcher<ITexturedTile, Nothing> matcher,
-                              Action<IPlotOperation> cacheControl)
-      {
-        Matcher = matcher ?? throw new ArgumentNullException(nameof(matcher));
-        Cachable = true;
-        CacheControl = cacheControl ?? throw new ArgumentNullException(nameof(cacheControl));
-      }
-
-      public static void CacheControlNoOp(IPlotOperation op)
-      {
-      }
-    }
-
     class FogCellMatcher : ICellMatcher
     {
       readonly IFogMap map;
@@ -624,5 +609,12 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
     }
 
     #endregion
+
+    class TileMatchControl : TileMatchControl<ITexturedTile, Nothing>
+    {
+      public TileMatchControl(ITileMatcher<ITexturedTile, Nothing> matcher, Action<IPlotOperation> cacheControl = null) : base(matcher, cacheControl)
+      {
+      }
+    }
   }
 }

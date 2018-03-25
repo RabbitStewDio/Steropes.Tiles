@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Matcher.TileTags;
@@ -9,17 +10,30 @@ namespace Steropes.Tiles.Matcher.Registry
   {
     readonly ITileRegistry<TRenderTile> baseRegistry;
     readonly string[] suffixMapping;
-    readonly string format;
+
+    [Obsolete]
+    public DiagonalTileRegistry(ITileRegistry<TRenderTile> baseRegistry,
+                                ITileTagEntrySelectionFactory<bool> tags,
+                                string tagFormat,
+                                string format): this(baseRegistry, tags, ProduceCombinedFormatString(tagFormat, format))
+    {
+    }
+
+    static string ProduceCombinedFormatString(string tagFormat = null,
+                                              string format = null)
+    {
+      var formatString = tagFormat ?? "nw{0}ne{1}se{2}sw{3}";
+      var secondLevel = format ?? "{0}_{1}";
+      return string.Format(secondLevel, "{{0}}", formatString);
+    }
 
     public DiagonalTileRegistry(ITileRegistry<TRenderTile> baseRegistry,
                                 ITileTagEntrySelectionFactory<bool> tags = null,
-                                string tagFormat = null,
-                                string format = null)
+                                string tagFormat = null)
     {
       this.baseRegistry = baseRegistry ?? throw new ArgumentNullException(nameof(baseRegistry));
       var tagProvider = tags ?? TileTagEntries.CreateFlagTagEntries();
-      var formatString = tagFormat ?? "nw{0}ne{1}se{2}sw{3}";
-      this.format = format ?? "{0}_{1}";
+      var formatString = tagFormat ?? "{{0}}_nw{0}ne{1}se{2}sw{3}";
       this.suffixMapping = DiagonalTileSelectionKey.Values.Select(e => Format(e, tagProvider, formatString)).ToArray();
     }
 
@@ -36,12 +50,14 @@ namespace Steropes.Tiles.Matcher.Registry
 
     public TRenderTile Find(string tag, DiagonalTileSelectionKey selector)
     {
-      return baseRegistry.Find(string.Format(format, tag, suffixMapping[selector.LinearIndex]));
+      var format = suffixMapping[selector.LinearIndex];
+      return baseRegistry.Find(string.Format(format, tag));
     }
 
     public bool TryFind(string tag, DiagonalTileSelectionKey selector, out TRenderTile tile)
     {
-      return baseRegistry.TryFind(string.Format(format, tag, suffixMapping[selector.LinearIndex]), out tile);
+      var format = suffixMapping[selector.LinearIndex];
+      return baseRegistry.TryFind(string.Format(format, tag), out tile);
     }
   }
 }

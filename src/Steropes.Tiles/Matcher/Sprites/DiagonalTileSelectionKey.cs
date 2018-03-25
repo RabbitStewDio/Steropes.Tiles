@@ -118,6 +118,19 @@ namespace Steropes.Tiles.Matcher.Sprites
       return !Equals(left, right);
     }
 
+    /// <summary>
+    ///  Produces a binary string of the pattern "{nw}{ne}{se}{sw}"
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString()
+    {
+      string FlagToString(bool flag)
+      {
+        return flag ? "1" : "0";
+      }
+      return $"{FlagToString(NorthWest)}{FlagToString(NorthEast)}{FlagToString(SouthEast)}{FlagToString(SouthWest)}";
+    }
+
     public static DiagonalTileSelectionKey ValueOf(bool north, bool east, bool south, bool west)
     {
       var index = 0;

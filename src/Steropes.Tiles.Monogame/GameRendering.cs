@@ -8,6 +8,7 @@ using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Plotter;
 using Steropes.Tiles.Plotter.Operations;
+using Steropes.Tiles.Plotter.Operations.Builder;
 using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.Monogame
@@ -193,5 +194,6 @@ namespace Steropes.Tiles.Monogame
     {
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
   }
 }

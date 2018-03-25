@@ -21,6 +21,14 @@ namespace Steropes.Tiles.Navigation
     West = 3,
   }
 
+  public enum DiagonalIndex
+  {
+    NorthWest = 0,
+    NorthEast = 1,
+    SouthEast = 2,
+    SouthWest = 3,
+  }
+
   public enum NeighbourIndex
   {
     North = 0,

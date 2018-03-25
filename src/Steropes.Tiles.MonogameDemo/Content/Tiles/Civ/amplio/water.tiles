@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<tileset>
+<tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0" 
+         width="96" height="48" type="Isometric">
   <collection id="amplio/water">
     <grid name="main" x="1" y="1" width="96" height="48" border="1">
       <tile x="0" y="2">

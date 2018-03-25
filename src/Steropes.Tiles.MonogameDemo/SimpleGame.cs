@@ -12,6 +12,7 @@ using Steropes.UI.Components.Window;
 using Steropes.UI.Input;
 using Steropes.UI.Platform;
 using Steropes.UI.State;
+using Steropes.UI.Util;
 using Steropes.UI.Widgets.Container;
 using Insets = Steropes.Tiles.DataStructures.Insets;
 using XnaPoint = Microsoft.Xna.Framework.Point;
@@ -100,6 +101,7 @@ namespace Steropes.Tiles.MonogameDemo
       stateManager.SwitchState(stateManager.States["start"]);
       Components.Add(stateManager);
 
+      this.CenterOnScreen();
     }
     
     protected override bool BeginDraw()

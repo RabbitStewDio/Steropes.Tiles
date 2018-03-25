@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Xml.Linq;
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.Monogame.Tiles
 {
@@ -13,7 +11,6 @@ namespace Steropes.Tiles.Monogame.Tiles
   {
     class TexturePackLoaderContext
     {
-      public TexturePackLoaderContext Parent { get; }
       public string BasePath { get; }
       public TextureType TextureType { get; }
       public int Width { get; }
@@ -35,6 +32,11 @@ namespace Steropes.Tiles.Monogame.Tiles
 
     public static ITexturePack Read(string path)
     {
+      if (path == null)
+      {
+        throw new ArgumentNullException(nameof(path));
+      }
+
       return Read(XDocument.Load(path).Root, path, new HashSet<string>());
     }
 
@@ -45,6 +47,15 @@ namespace Steropes.Tiles.Monogame.Tiles
 
     public static ITexturePack Read(XElement root, string documentPath, HashSet<string> path)
     {
+      if (documentPath == null)
+      {
+        throw new ArgumentNullException(nameof(documentPath));
+      }
+
+      if (path == null)
+      {
+        throw new ArgumentNullException(nameof(path));
+      }
 
       if (root == null)
       {
@@ -53,8 +64,8 @@ namespace Steropes.Tiles.Monogame.Tiles
 
       path.Add(documentPath);
 
-      var width = (int?) root.AttributeLocal("width") ?? throw new Exception("Texture pack requires width");
-      var height = (int?) root.AttributeLocal("height") ?? throw new Exception("Texture pack requires height");
+      var width = (int?) root.AttributeLocal("width") ?? throw new TexturePackLoaderException("Texture pack requires width", root);
+      var height = (int?) root.AttributeLocal("height") ?? throw new TexturePackLoaderException("Texture pack requires height", root);
       var textureType = ParseTextureType((string)root.AttributeLocal("type"));
 
       var directoryInfo = Directory.GetParent(documentPath);
@@ -72,7 +83,7 @@ namespace Steropes.Tiles.Monogame.Tiles
       }
       if (!Enum.TryParse(t, out TextureType result))
       {
-        throw new Exception("Texture type invalid.");
+        throw new TexturePackLoaderException("Texture type invalid.");
       }
       return result;
     }
@@ -97,7 +108,7 @@ namespace Steropes.Tiles.Monogame.Tiles
       var targetPath = CombinePath(context.BasePath, file);
       if (path.Contains(targetPath))
       {
-        throw new Exception($"Circular reference in include files or duplicate include while evaluating path {targetPath}");
+        throw new TexturePackLoaderException($"Circular reference in include files or duplicate include while evaluating path {targetPath}", includeDirective);
       }
 
       path.Add(targetPath);
@@ -112,7 +123,7 @@ namespace Steropes.Tiles.Monogame.Tiles
 
       if (textureType != context.TextureType)
       {
-        throw new TexturePackLoaderException($"Include file '{targetPath}' is using a '{textureType}' tile type.");
+        throw new TexturePackLoaderException($"Include file '{targetPath}' is using a '{textureType}' tile type.", includeDirective);
       }
       return ReadContent(root, context.Create(basePath, width, height), path);
     }
@@ -159,32 +170,35 @@ namespace Steropes.Tiles.Monogame.Tiles
 
     static TileGrid ParseGrid(XElement grid, TexturePackLoaderContext context)
     {
+      var halfCell = (bool?) grid.Attribute("half-cell-hint") ?? false;
+      var defaultWidth = halfCell ? context.Width / 2 : context.Width;
+      var defaultHeight = halfCell ? context.Height / 2 : context.Height;
+
       var x = (int) grid.AttributeLocal("x");
       var y = (int) grid.AttributeLocal("y");
-      var width = (int)grid.AttributeLocal("width");
-      var height = (int)grid.AttributeLocal("height");
-      var border = (int?) grid.AttributeLocal("border");
-      var borderX = (int?) grid.AttributeLocal("border-x") ?? border ?? 0;
-      var borderY = (int?) grid.AttributeLocal("border-y") ?? border ?? 0;
+      var width = (int?)grid.AttributeLocal("cell-width")?? (int?) grid.AttributeLocal("width") ?? defaultWidth;
+      var height = (int?)grid.AttributeLocal("cell-height") ?? (int?) grid.AttributeLocal("height") ?? defaultHeight;
 
-      var anchorX = (int?) grid.AttributeLocal("anchor-x") ?? width - (context.Width / 2);
-      var anchorY = (int?) grid.AttributeLocal("anchor-y") ?? height - (context.Height / 2);
+      var anchorX = (int?) grid.AttributeLocal("anchor-x") ?? width / 2;
+      var anchorY = (int?) grid.AttributeLocal("anchor-y") ?? height - defaultHeight / 2;
+
+      var border = (int?) grid.AttributeLocal("cell-spacing") ??(int?) grid.AttributeLocal("border") ?? 0;
 
       var tiles =
         from e in grid.Elements()
         where e.Name.LocalName == "tile"
         select ParseTile(e);
 
-      return new TileGrid(width, height, x, y, anchorX, anchorY, borderX, borderY, tiles.ToArray());
+      return new TileGrid(width, height, x, y, anchorX, anchorY, border, border, tiles.ToArray());
     }
 
     static GridTileDefinition ParseTile(XElement tile)
     {
-      var x = (int)tile.AttributeLocal("x");
-      var y = (int)tile.AttributeLocal("y");
+      var x = (int?)tile.AttributeLocal("x") ?? throw new TexturePackLoaderException("Mandatory attribute x is missing", tile);
+      var y = (int?)tile.AttributeLocal("y") ?? throw new TexturePackLoaderException("Mandatory attribute y is missing", tile);
       var anchorX = (int?)tile.AttributeLocal("anchor-x");
       var anchorY = (int?)tile.AttributeLocal("anchor-y");
-      var name = (string) tile.ElementLocal("name");
+      var name = (string) tile.AttributeLocal("tag") ?? (string) tile.AttributeLocal("name");
 
       var tags = 
         from e in tile.Elements()
@@ -196,43 +210,12 @@ namespace Steropes.Tiles.Monogame.Tiles
       {
         tagsAsList.Add(name);
       }
+
+      if (tagsAsList.Count == 0)
+      {
+        throw new TexturePackLoaderException("Tiles must have at least one tag name");
+      }
       return new GridTileDefinition(name, x, y, anchorX, anchorY, tagsAsList.ToArray());
-    }
-  }
-
-  public class TexturePackLoaderException : IOException
-  {
-    public TexturePackLoaderException()
-    {
-    }
-
-    public TexturePackLoaderException(string message) : base(message)
-    {
-    }
-
-    public TexturePackLoaderException(string message, int hresult) : base(message, hresult)
-    {
-    }
-
-    public TexturePackLoaderException(string message, Exception innerException) : base(message, innerException)
-    {
-    }
-
-    protected TexturePackLoaderException([NotNull] SerializationInfo info, StreamingContext context) : base(info, context)
-    {
-    }
-  }
-  
-  public static class TextureParserExtensions
-  {
-    public static XElement ElementLocal(this XElement e, string localName)
-    {
-      return e.Elements().FirstOrDefault(ex => ex.Name.LocalName == localName);
-    }
-
-    public static XAttribute AttributeLocal(this XElement e, string localName)
-    {
-      return e.Attributes().FirstOrDefault(ex => ex.Name.LocalName == localName);
     }
   }
 }

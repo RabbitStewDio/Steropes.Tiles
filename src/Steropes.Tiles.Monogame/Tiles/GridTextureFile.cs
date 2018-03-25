@@ -38,7 +38,7 @@ namespace Steropes.Tiles.Monogame.Tiles
           var tileY = grid.OffsetY + tile.GridY * (height + grid.BorderY);
           var anchor = new Vector2(tile.AnchorX ?? grid.AnchorX, tile.AnchorY ?? grid.AnchorY);
           var bounds = new Rectangle(tileX, tileY, width, height);
-          var boundedTexture = new TileTexture(Name, texture, bounds);
+          var boundedTexture = new TileTexture(Name, texture.Tex2D, bounds);
           foreach (var tileTag in tile.Tags)
           {
             yield return new TexturedTile(tileTag, boundedTexture, anchor);

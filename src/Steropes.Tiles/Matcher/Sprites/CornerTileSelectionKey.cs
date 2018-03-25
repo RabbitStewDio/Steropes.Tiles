@@ -17,7 +17,10 @@ namespace Steropes.Tiles.Matcher.Sprites
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return M0 == other.M0 && M1 == other.M1 && M2 == other.M2 && Pos == other.Pos;
+      return M0 == other.M0 && 
+             M1 == other.M1 && 
+             M2 == other.M2 && 
+             Pos == other.Pos;
     }
 
     public override bool Equals(object obj)
@@ -66,8 +69,21 @@ namespace Steropes.Tiles.Matcher.Sprites
         index += M0 ? 1 : 0;
         index += M1 ? 2 : 0;
         index += M2 ? 4 : 0;
-        return index * (int)Pos;
+        index += (int)Pos * 8;
+        return index;
       }
+    }
+
+    public override string ToString()
+    {
+      string AsFlag(bool b)
+      {
+        return b ? "1" : "0";
+      }
+
+      // either U,L,B or R. 
+      var p = Pos.ToString()[0];
+      return $"{p}:{AsFlag(M0)}{AsFlag(M1)}{AsFlag(M2)}";
     }
 
     public static CornerTileSelectionKey ValueOf(Direction pos, bool m0, bool m1, bool m2)
@@ -76,7 +92,7 @@ namespace Steropes.Tiles.Matcher.Sprites
       index += m0 ? 1 : 0;
       index += m1 ? 2 : 0;
       index += m2 ? 4 : 0;
-      index *= (int)pos;
+      index += (int)pos * 8;
       return values[index];
     }
 
