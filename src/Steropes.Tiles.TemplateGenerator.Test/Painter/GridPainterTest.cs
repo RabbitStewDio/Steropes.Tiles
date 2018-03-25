@@ -183,25 +183,31 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
 
       grid.Parent.Parent.Width = 7;
       grid.Parent.Parent.Height = 5;
-
+      grid.CellWidth = 10;
+      grid.CellHeight = 10;
       var btmp = p.Produce(grid.Parent);
 
       var asText = Print(btmp);
       Console.WriteLine(asText);
 
-      btmp.Width.Should().Be(14 + 5);
-      btmp.Height.Should().Be(5 + 4);
+      btmp.Width.Should().Be(20 + 5);
+      btmp.Height.Should().Be(10 + 4);
 
       var goldenSample =
-        "ccccccccccccccccccc\n" +
-        "c.................c\n" +
-        "c.###d###.###d###.c\n" +
-        "c.#dd#dd#.#dd#dd#.c\n" +
-        "c.d#####d.d#####d.c\n" +
-        "c.#dd#dd#.#dd#dd#.c\n" +
-        "c.###d###.###d###.c\n" +
-        "c.................c\n" +
-        "ccccccccccccccccccc\n";
+        "ccccccccccccccccccccccccc\n" +
+        "c.......................c\n" +
+        "c.....d..........d......c\n" +
+        "c...dd.dd......dd.dd....c\n" +
+        "c..d.....d....d.....d...c\n" +
+        "c..ddd.ddd....ddd.ddd...c\n" +
+        "c..d..d..d....d..d..d...c\n" +
+        "c..d##d##d....d##d##d...c\n" +
+        "c..ddddddd....ddddddd...c\n" +
+        "c..d##d##d....d##d##d...c\n" +
+        "c..#ddddd#....#ddddd#...c\n" +
+        "c..###d###....###d###...c\n" +
+        "c.......................c\n" +
+        "ccccccccccccccccccccccccc\n";
 
       asText.Should().Be(goldenSample);
     }

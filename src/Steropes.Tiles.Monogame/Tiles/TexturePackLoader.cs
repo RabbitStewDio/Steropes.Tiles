@@ -32,6 +32,11 @@ namespace Steropes.Tiles.Monogame.Tiles
 
     public static ITexturePack Read(string path)
     {
+      if (path == null)
+      {
+        throw new ArgumentNullException(nameof(path));
+      }
+
       return Read(XDocument.Load(path).Root, path, new HashSet<string>());
     }
 
@@ -42,6 +47,15 @@ namespace Steropes.Tiles.Monogame.Tiles
 
     public static ITexturePack Read(XElement root, string documentPath, HashSet<string> path)
     {
+      if (documentPath == null)
+      {
+        throw new ArgumentNullException(nameof(documentPath));
+      }
+
+      if (path == null)
+      {
+        throw new ArgumentNullException(nameof(path));
+      }
 
       if (root == null)
       {
@@ -180,8 +194,8 @@ namespace Steropes.Tiles.Monogame.Tiles
 
     static GridTileDefinition ParseTile(XElement tile)
     {
-      var x = (int)tile.AttributeLocal("x");
-      var y = (int)tile.AttributeLocal("y");
+      var x = (int?)tile.AttributeLocal("x") ?? throw new TexturePackLoaderException("Mandatory attribute x is missing", tile);
+      var y = (int?)tile.AttributeLocal("y") ?? throw new TexturePackLoaderException("Mandatory attribute y is missing", tile);
       var anchorX = (int?)tile.AttributeLocal("anchor-x");
       var anchorY = (int?)tile.AttributeLocal("anchor-y");
       var name = (string) tile.AttributeLocal("tag") ?? (string) tile.AttributeLocal("name");
@@ -195,6 +209,11 @@ namespace Steropes.Tiles.Monogame.Tiles
       if (name != null && tagsAsList.Count == 0)
       {
         tagsAsList.Add(name);
+      }
+
+      if (tagsAsList.Count == 0)
+      {
+        throw new TexturePackLoaderException("Tiles must have at least one tag name");
       }
       return new GridTileDefinition(name, x, y, anchorX, anchorY, tagsAsList.ToArray());
     }

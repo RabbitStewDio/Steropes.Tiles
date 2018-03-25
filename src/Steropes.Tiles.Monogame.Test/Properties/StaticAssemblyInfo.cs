@@ -7,11 +7,11 @@ using NUnit.Framework;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Steropes.Tiles.TemplateGenerator.Test")]
+[assembly: AssemblyTitle("Steropes.Tiles.Monogame.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Steropes.Tiles.TemplateGenerator.Test")]
+[assembly: AssemblyProduct("Steropes.Tiles.Monogame.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -22,5 +22,6 @@ using NUnit.Framework;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8825123c-7883-42bd-8e6e-cdbb47c503ec")]
+[assembly: Guid("828d0c3b-0e5a-4aec-9f74-b044c760fd35")]
+
 [assembly:Apartment(ApartmentState.STA)]

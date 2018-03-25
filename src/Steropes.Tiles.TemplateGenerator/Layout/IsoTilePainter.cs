@@ -32,7 +32,10 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
     {
       var rect = GetTileArea(tile);
       var extraSpace = rect.Y;
-      if (extraSpace == 0)
+      // Only draw the extra height if the resulting box would be 
+      // sufficiently large. Otherwise the upper and lower shape
+      // just meld together into a ugly blob.
+      if (extraSpace < 5)
       {
         return;
       }

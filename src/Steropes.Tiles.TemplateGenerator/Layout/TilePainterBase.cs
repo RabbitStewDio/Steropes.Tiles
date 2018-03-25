@@ -20,8 +20,8 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
     {
       var tileSize = Grid.EffectiveTileSize;
       var anchor = tile.Parent.ComputeEffectiveAnchorPoint(tile);
-      return new Rectangle(anchor.X - tileSize.Width / 2, 
-                           anchor.Y - tileSize.Height / 2, 
+      return new Rectangle(anchor.X - (int) Math.Ceiling(tileSize.Width / 2f), 
+                           anchor.Y - (int) Math.Ceiling(tileSize.Height / 2f), 
                            tileSize.Width, 
                            tileSize.Height);
     }
@@ -76,6 +76,13 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
 
     protected void DrawAnchor(Graphics g, TextureTile t)
     {
+      var size = t.Parent.ComputeTileDimension();
+      if (size.Width < 32 || size.Height < 32)
+      {
+        // There is no point in drawing an anchor if the tile is so small ..
+        return;
+      }
+
       var anchor = t.Parent.ComputeEffectiveAnchorPoint(t);
       var highlightColor = t.Parent?.TextureTileFormattingMetaData?.TileHighlightColor ?? Preferences.DefaultTileHighlightColor;
       using (var pen = new Pen(highlightColor))
@@ -85,6 +92,7 @@ namespace Steropes.Tiles.TemplateGenerator.Layout
         {
           g.FillRectangle(b, anchor.X, anchor.Y, 1, 1);
         }
+
         g.DrawLine(pen, anchor.X - 4, anchor.Y, anchor.X - 2, anchor.Y);
         g.DrawLine(pen, anchor.X + 4, anchor.Y, anchor.X + 2, anchor.Y);
         g.DrawLine(pen, anchor.X, anchor.Y - 2, anchor.X, anchor.Y - 4);
