@@ -1,154 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7D3A110C-44C9-4007-82C2-D6578F7402C6}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Steropes.Tiles</RootNamespace>
-    <AssemblyName>Steropes.Tiles</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+
+  <ItemGroup Condition="'$(MSBuildToolsVersion)' == '4.0'">
+    <PackageReference Include="NsDepCop" Version="1.10.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="DataStructures\BatchBuffer.cs" />
-    <Compile Include="DataStructures\DoubleDimension.cs" />
-    <Compile Include="DataStructures\IntInsets.cs" />
-    <Compile Include="DataStructures\Range.cs" />
-    <Compile Include="DataStructures\Rect.cs" />
-    <Compile Include="DataStructures\TupleKey.cs" />
-    <Compile Include="DataStructures\ViewportCoordinates.cs" />
-    <Compile Include="GameRenderingConfig.cs" />
-    <Compile Include="IRendererControl.cs" />
-    <Compile Include="IViewportControl.cs" />
-    <Compile Include="Matcher\AggregateTileMatcher.cs" />
-    <Compile Include="Matcher\BitVectorMatcher.cs" />
-    <Compile Include="Matcher\CollectionTileMatcher.cs" />
-    <Compile Include="Matcher\DirectMappingTileMatcher.cs" />
-    <Compile Include="Matcher\DistinctTileMatcher.cs" />
-    <Compile Include="Matcher\FilteringTileMatcher.cs" />
-    <Compile Include="Matcher\ITileMatcher.cs" />
-    <Compile Include="Matcher\ITileResultCollector.cs" />
-    <Compile Include="Matcher\MapLookupTable.cs" />
-    <Compile Include="Matcher\MapQuery.cs" />
-    <Compile Include="Matcher\NoOpTileMatcher.cs" />
-    <Compile Include="Matcher\Registry\BasicTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\CardinalFlags.cs" />
-    <Compile Include="Matcher\Registry\CardinalIndexTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\CardinalTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\CellMapTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\CornerTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\DiagonalTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\Direction.cs" />
-    <Compile Include="Matcher\Registry\ITileRegistryEx.cs" />
-    <Compile Include="Matcher\Registry\MultiTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\NeighbourIndexTileRegistry.cs" />
-    <Compile Include="Matcher\Registry\NeighbourMatchPosition.cs" />
-    <Compile Include="Matcher\Registry\TileRegistryTracing.cs" />
-    <Compile Include="Matcher\Registry\TileTagEntries.cs" />
-    <Compile Include="Matcher\Sprites\BaseTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\BasicTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\BlendNeighboursSelector.cs" />
-    <Compile Include="Matcher\Sprites\CardinalTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\CardinalTileSelectorKey.cs" />
-    <Compile Include="Matcher\Registry\DirectionExtensions.cs" />
-    <Compile Include="Matcher\TileTags\TileTagEntrySelectionFactory.cs" />
-    <Compile Include="Matcher\Sprites\CellMatcher.cs" />
-    <Compile Include="Matcher\Sprites\CornerCellSelector.cs" />
-    <Compile Include="Matcher\TileTags\ITileTagEntrySelection.cs" />
-    <Compile Include="Matcher\Sprites\CellMapTileSelectorKey.cs" />
-    <Compile Include="Matcher\Sprites\CellMapTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\CornerTileSelectionKey.cs" />
-    <Compile Include="Matcher\Sprites\CornerTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\DiagonalTileSelectionKey.cs" />
-    <Compile Include="Matcher\Sprites\DiagonalTileSelector.cs" />
-    <Compile Include="Matcher\GridMatcher.cs" />
-    <Compile Include="Matcher\Sprites\RiverOutletTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\RoadCornerTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\RoadParityTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\SeparateNeighbourTileSelector.cs" />
-    <Compile Include="Matcher\Sprites\SequenceTileSelector.cs" />
-    <Compile Include="Matcher\TileTags\ITileTagEntrySelectionFactory.cs" />
-    <Compile Include="Matcher\TileTags\TileTagEntrySelectionFactoryExtensions.cs" />
-    <Compile Include="Matcher\TransformingTileMatcher.cs" />
-    <Compile Include="Matcher\TransformingTileMatcherBase.cs" />
-    <Compile Include="Navigation\GridDirection.cs" />
-    <Compile Include="Navigation\GridNavigator.cs" />
-    <Compile Include="Navigation\GridNavigation.cs" />
-    <Compile Include="Navigation\HexDirection.cs" />
-    <Compile Include="Navigation\IMapNavigator.cs" />
-    <Compile Include="Navigation\IsoDiamondGridNavigator.cs" />
-    <Compile Include="Navigation\IsoStaggeredGridNavigator.cs" />
-    <Compile Include="Navigation\LimitedRangeNavigator.cs" />
-    <Compile Include="Navigation\MapCoordinate.cs" />
-    <Compile Include="Navigation\RotationGridNavigator.cs" />
-    <Compile Include="Navigation\WrapAroundNavigator.cs" />
-    <Compile Include="DataStructures\IntDimension.cs" />
-    <Compile Include="DataStructures\Insets.cs" />
-    <Compile Include="Plotter\Operations\Builder\AfterCachePlotOperationFactory.cs" />
-    <Compile Include="Plotter\Operations\Builder\CachablePlotOperationFactory.cs" />
-    <Compile Include="Plotter\Operations\Builder\IPlotOperationFactory.cs" />
-    <Compile Include="Plotter\Operations\Builder\PlotOperationFactory.cs" />
-    <Compile Include="Plotter\Operations\CachingPlotOperation.cs" />
-    <Compile Include="Plotter\Operations\GridDictionary.cs" />
-    <Compile Include="Plotter\Operations\Builder\PlotOperations.cs" />
-    <Compile Include="RendererControl.cs" />
-    <Compile Include="Renderer\Graphics\BatchedSpriteRenderer.cs" />
-    <Compile Include="Renderer\IMapViewport.cs" />
-    <Compile Include="Plotter\Operations\BatchedPlotOperation.cs" />
-    <Compile Include="Plotter\Operations\ContextConverterPlotOperation.cs" />
-    <Compile Include="Plotter\Operations\IPlotOperation.cs" />
-    <Compile Include="Plotter\IPlotter.cs" />
-    <Compile Include="Plotter\Matrix3.cs" />
-    <Compile Include="Plotter\Operations\PlotOperation.cs" />
-    <Compile Include="Plotter\Operations\RendererAdapter.cs" />
-    <Compile Include="Renderer\MapViewportExtensions.cs" />
-    <Compile Include="Renderer\TransformingMapViewport.cs" />
-    <Compile Include="Renderer\MapViewportBaseCalculations.cs" />
-    <Compile Include="RenderType.cs" />
-    <Compile Include="Plotter\ScreenCoordinateMapping.cs" />
-    <Compile Include="DataStructures\DoublePoint.cs" />
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Properties\StaticAssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataStructures\IntRect.cs" />
-    <Compile Include="Renderer\Graphics\BatchedPositionedSpriteRenderer.cs" />
-    <Compile Include="Renderer\IRenderCallback.cs" />
-    <Compile Include="Plotter\RenderOrder.cs" />
-    <Compile Include="Renderer\MapViewport.cs" />
-    <Compile Include="Matcher\Sprites\SpritePosition.cs" />
-    <Compile Include="Matcher\Registry\ITileRegistry.cs" />
-    <Compile Include="Renderer\ViewportRenderer.cs" />
-    <Compile Include="Plotter\GridPlotter.cs" />
-    <Compile Include="DataStructures\Nothing.cs" />
-    <Compile Include="RenderLayer.cs" />
-    <Compile Include="RenderTypeExtensions.cs" />
-    <Compile Include="TracingUtil.cs" />
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
