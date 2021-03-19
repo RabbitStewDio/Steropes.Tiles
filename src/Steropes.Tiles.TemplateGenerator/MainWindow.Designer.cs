@@ -1,4 +1,6 @@
-﻿namespace Steropes.Tiles.TemplateGenerator
+﻿using System.Windows.Forms;
+
+namespace Steropes.Tiles.TemplateGenerator
 {
   partial class MainWindow
   {
@@ -29,7 +31,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.MenuItem fileMenuSeparator;
+      System.Windows.Forms.ToolStripSeparator fileMenuSeparator;
       System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
       this.rootContainer = new System.Windows.Forms.SplitContainer();
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
@@ -51,29 +53,29 @@
       this.contentSplitter = new System.Windows.Forms.SplitContainer();
       this.selectedContentPane = new System.Windows.Forms.Panel();
       this.previewPicture = new System.Windows.Forms.PictureBox();
-      this.menuBar = new System.Windows.Forms.MainMenu(this.components);
-      this.fileMenu = new System.Windows.Forms.MenuItem();
-      this.newMenuItem = new System.Windows.Forms.MenuItem();
-      this.openMenuItem = new System.Windows.Forms.MenuItem();
-      this.recentSubMenu = new System.Windows.Forms.MenuItem();
-      this.saveMenuItem = new System.Windows.Forms.MenuItem();
-      this.saveAsMenuItem = new System.Windows.Forms.MenuItem();
-      this.exportMenuItem = new System.Windows.Forms.MenuItem();
-      this.exitMenuItem = new System.Windows.Forms.MenuItem();
-      this.editMenu = new System.Windows.Forms.MenuItem();
-      this.deleteMenuItem = new System.Windows.Forms.MenuItem();
-      this.editSeparator = new System.Windows.Forms.MenuItem();
-      this.addCollectionMenuItem = new System.Windows.Forms.MenuItem();
-      this.addGridMenuItem = new System.Windows.Forms.MenuItem();
-      this.addTileMenuItem = new System.Windows.Forms.MenuItem();
-      this.separator2 = new System.Windows.Forms.MenuItem();
-      this.arrangeMenuItem = new System.Windows.Forms.MenuItem();
-      this.previewMenuItem = new System.Windows.Forms.MenuItem();
-      this.separator3 = new System.Windows.Forms.MenuItem();
-      this.preferencesMenuItem = new System.Windows.Forms.MenuItem();
-      this.menuItem1 = new System.Windows.Forms.MenuItem();
-      this.menuItem2 = new System.Windows.Forms.MenuItem();
-      fileMenuSeparator = new System.Windows.Forms.MenuItem();
+      this.menuBar = new System.Windows.Forms.MenuStrip();
+      this.fileMenu = new System.Windows.Forms.ToolStripMenuItem ();
+      this.newMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.recentSubMenu = new System.Windows.Forms.ToolStripMenuItem ();
+      this.saveMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.saveAsMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.exportMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.editMenu = new System.Windows.Forms.ToolStripMenuItem ();
+      this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.editSeparator = new System.Windows.Forms.ToolStripSeparator ();
+      this.addCollectionMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.addGridMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.addTileMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.separator2 = new System.Windows.Forms.ToolStripSeparator();
+      this.arrangeMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.previewMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.separator3 = new System.Windows.Forms.ToolStripSeparator ();
+      this.preferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      this.menuItem1 = new System.Windows.Forms.ToolStripMenuItem ();
+      this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+      fileMenuSeparator = new System.Windows.Forms.ToolStripSeparator();
       toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       ((System.ComponentModel.ISupportInitialize)(this.rootContainer)).BeginInit();
       this.rootContainer.Panel1.SuspendLayout();
@@ -93,7 +95,6 @@
       // 
       // fileMenuSeparator
       // 
-      fileMenuSeparator.Index = 6;
       fileMenuSeparator.Text = "-";
       // 
       // toolStripSeparator1
@@ -325,15 +326,14 @@
       // 
       // menuBar
       // 
-      this.menuBar.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+      this.menuBar.Items.AddRange(new ToolStripItem[] {
             this.fileMenu,
             this.editMenu,
             this.menuItem1});
       // 
       // fileMenu
       // 
-      this.fileMenu.Index = 0;
-      this.fileMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+      this.fileMenu.DropDownItems.AddRange(new ToolStripItem[] {
             this.newMenuItem,
             this.openMenuItem,
             this.recentSubMenu,
@@ -346,48 +346,40 @@
       // 
       // newMenuItem
       // 
-      this.newMenuItem.Index = 0;
-      this.newMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
+      this.newMenuItem.ShortcutKeys = Keys.Control | Keys.N;
       this.newMenuItem.Text = "&New ...";
       // 
       // openMenuItem
       // 
-      this.openMenuItem.Index = 1;
-      this.openMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
+      this.openMenuItem.ShortcutKeys = Keys.Control | Keys.O;
       this.openMenuItem.Text = "&Open ...";
       // 
       // recentSubMenu
       // 
-      this.recentSubMenu.Index = 2;
       this.recentSubMenu.Text = "&Recent";
       // 
       // saveMenuItem
       // 
-      this.saveMenuItem.Index = 3;
-      this.saveMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
+      this.saveMenuItem.ShortcutKeys = Keys.Control | Keys.S;
       this.saveMenuItem.Text = "&Save";
       // 
       // saveAsMenuItem
       // 
-      this.saveAsMenuItem.Index = 4;
-      this.saveAsMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftS;
+      this.saveAsMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.O;
       this.saveAsMenuItem.Text = "Save &As ...";
       // 
       // exportMenuItem
       // 
-      this.exportMenuItem.Index = 5;
       this.exportMenuItem.Text = "Export";
       // 
       // exitMenuItem
       // 
-      this.exitMenuItem.Index = 7;
       this.exitMenuItem.Text = "E&xit";
       this.exitMenuItem.Click += new System.EventHandler(this.OnExit);
       // 
       // editMenu
       // 
-      this.editMenu.Index = 1;
-      this.editMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+      this.editMenu.DropDownItems.AddRange(new ToolStripItem[] {
             this.deleteMenuItem,
             this.editSeparator,
             this.addCollectionMenuItem,
@@ -402,72 +394,59 @@
       // 
       // deleteMenuItem
       // 
-      this.deleteMenuItem.Index = 0;
-      this.deleteMenuItem.Shortcut = System.Windows.Forms.Shortcut.Del;
+      this.deleteMenuItem.ShortcutKeys = Keys.Delete;
       this.deleteMenuItem.Text = "Delete Item";
       // 
       // editSeparator
       // 
-      this.editSeparator.Index = 1;
       this.editSeparator.Text = "-";
       // 
       // addCollectionMenuItem
       // 
-      this.addCollectionMenuItem.Index = 2;
-      this.addCollectionMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl1;
+      this.addCollectionMenuItem.ShortcutKeys = Keys.Control | Keys.D1;
       this.addCollectionMenuItem.Text = "Add Collection";
       // 
       // addGridMenuItem
       // 
-      this.addGridMenuItem.Index = 3;
-      this.addGridMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl2;
+      this.addGridMenuItem.ShortcutKeys = Keys.Control | Keys.D2;
       this.addGridMenuItem.Text = "Add Grid";
       // 
       // addTileMenuItem
       // 
-      this.addTileMenuItem.Index = 4;
-      this.addTileMenuItem.Shortcut = System.Windows.Forms.Shortcut.Ctrl3;
+      this.addTileMenuItem.ShortcutKeys = Keys.Control | Keys.D3;
       this.addTileMenuItem.Text = "Add Tile";
       // 
       // separator2
       // 
-      this.separator2.Index = 5;
       this.separator2.Text = "-";
       // 
       // arrangeMenuItem
       // 
-      this.arrangeMenuItem.Index = 6;
-      this.arrangeMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlL;
+      this.arrangeMenuItem.ShortcutKeys = Keys.Control | Keys.L;
       this.arrangeMenuItem.Text = "Arrange";
       // 
       // previewMenuItem
       // 
-      this.previewMenuItem.Index = 7;
-      this.previewMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlP;
+      this.previewMenuItem.ShortcutKeys = Keys.Control | Keys.P;
       this.previewMenuItem.Text = "Preview";
       // 
       // separator3
       // 
-      this.separator3.Index = 8;
       this.separator3.Text = "-";
       // 
       // preferencesMenuItem
       // 
-      this.preferencesMenuItem.Index = 9;
       this.preferencesMenuItem.Text = "Preferences";
       // 
       // menuItem1
       // 
-      this.menuItem1.Index = 2;
-      this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem2});
+      this.menuItem1.DropDownItems.Add(this.aboutMenuItem);
       this.menuItem1.Text = "?";
       // 
       // menuItem2
       // 
-      this.menuItem2.Index = 0;
-      this.menuItem2.Text = "About";
-      this.menuItem2.Click += new System.EventHandler(this.OnAboutClick);
+      this.aboutMenuItem.Text = "About";
+      this.aboutMenuItem.Click += new System.EventHandler(this.OnAboutClick);
       // 
       // MainWindow
       // 
@@ -475,7 +454,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(946, 537);
       this.Controls.Add(this.rootContainer);
-      this.Menu = this.menuBar;
+      this.MainMenuStrip = this.menuBar;
       this.MinimumSize = new System.Drawing.Size(600, 400);
       this.Name = "MainWindow";
       this.Text = "Tile Generator";
@@ -509,21 +488,21 @@
     private System.Windows.Forms.ToolStrip toolStrip1;
     private System.Windows.Forms.ToolStripButton addCollectionToolButton;
     private System.Windows.Forms.ToolStripButton addGridToolButton;
-    private System.Windows.Forms.MainMenu menuBar;
-    private System.Windows.Forms.MenuItem fileMenu;
-    private System.Windows.Forms.MenuItem openMenuItem;
-    private System.Windows.Forms.MenuItem recentSubMenu;
-    private System.Windows.Forms.MenuItem saveMenuItem;
-    private System.Windows.Forms.MenuItem saveAsMenuItem;
-    private System.Windows.Forms.MenuItem exitMenuItem;
-    private System.Windows.Forms.MenuItem editMenu;
-    private System.Windows.Forms.MenuItem deleteMenuItem;
-    private System.Windows.Forms.MenuItem editSeparator;
-    private System.Windows.Forms.MenuItem addCollectionMenuItem;
-    private System.Windows.Forms.MenuItem addGridMenuItem;
-    private System.Windows.Forms.MenuItem addTileMenuItem;
+    private System.Windows.Forms.MenuStrip menuBar;
+    private System.Windows.Forms.ToolStripMenuItem fileMenu;
+    private System.Windows.Forms.ToolStripMenuItem openMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem recentSubMenu;
+    private System.Windows.Forms.ToolStripMenuItem saveMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem saveAsMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem editMenu;
+    private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+    private System.Windows.Forms.ToolStripSeparator editSeparator;
+    private System.Windows.Forms.ToolStripMenuItem addCollectionMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem addGridMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem addTileMenuItem;
     private System.Windows.Forms.SplitContainer contentSplitter;
-    private System.Windows.Forms.MenuItem newMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem newMenuItem;
     private System.Windows.Forms.ToolStripButton addTileToolButton;
     private System.Windows.Forms.ToolStripButton removeItemToolButton;
     private System.Windows.Forms.PictureBox previewPicture;
@@ -534,17 +513,17 @@
     private System.Windows.Forms.ToolStripButton arrangeToolButton;
     private System.Windows.Forms.ToolStripButton previewToolButton;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-    private System.Windows.Forms.MenuItem separator2;
-    private System.Windows.Forms.MenuItem arrangeMenuItem;
-    private System.Windows.Forms.MenuItem previewMenuItem;
-    private System.Windows.Forms.MenuItem separator3;
-    private System.Windows.Forms.MenuItem preferencesMenuItem;
+    private System.Windows.Forms.ToolStripSeparator separator2;
+    private System.Windows.Forms.ToolStripMenuItem arrangeMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem previewMenuItem;
+    private System.Windows.Forms.ToolStripSeparator separator3;
+    private System.Windows.Forms.ToolStripMenuItem preferencesMenuItem;
     private System.Windows.Forms.ToolStripButton openFileToolButton;
     private System.Windows.Forms.ToolStripButton saveFileToolButton;
-    private System.Windows.Forms.MenuItem menuItem1;
-    private System.Windows.Forms.MenuItem menuItem2;
+    private System.Windows.Forms.ToolStripMenuItem menuItem1;
+    private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
     private System.Windows.Forms.ToolStripButton exportToolButton;
-    private System.Windows.Forms.MenuItem exportMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem exportMenuItem;
   }
 }
 

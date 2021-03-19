@@ -1,11 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <Compile Update="MainWindow.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Update="AboutBox.cs">
-            <SubType>Form</SubType>
-        </Compile>
-    </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+    <PackageReference Include="Krypton.Toolkit" Version="5.550.2103" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Steropes.Tiles\Steropes.Tiles.csproj" />
+  </ItemGroup>
 </Project>

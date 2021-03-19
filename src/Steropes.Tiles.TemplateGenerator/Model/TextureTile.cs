@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using JetBrains.Annotations;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Steropes.Tiles.TemplateGenerator.Annotations;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {

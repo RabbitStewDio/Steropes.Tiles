@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
+﻿using JetBrains.Annotations;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles
 {

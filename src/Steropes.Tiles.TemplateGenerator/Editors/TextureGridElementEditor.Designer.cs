@@ -31,9 +31,9 @@
       this.components = new System.ComponentModel.Container();
       this.layoutPanel = new System.Windows.Forms.TableLayoutPanel();
       this.outlineColorLabel = new System.Windows.Forms.Label();
-      this.outlineColorBox = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
+      this.outlineColorBox = new Krypton.Toolkit.KryptonColorButton();
       this.highlightColorLabel = new System.Windows.Forms.Label();
-      this.highlightColorBox = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
+      this.highlightColorBox = new Krypton.Toolkit.KryptonColorButton();
       this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.layoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -122,9 +122,9 @@
 
     private System.Windows.Forms.TableLayoutPanel layoutPanel;
     private System.Windows.Forms.Label outlineColorLabel;
-    private ComponentFactory.Krypton.Toolkit.KryptonColorButton outlineColorBox;
+    private Krypton.Toolkit.KryptonColorButton outlineColorBox;
     private System.Windows.Forms.Label highlightColorLabel;
-    private ComponentFactory.Krypton.Toolkit.KryptonColorButton highlightColorBox;
+    private Krypton.Toolkit.KryptonColorButton highlightColorBox;
     private System.Windows.Forms.ErrorProvider errorProvider;
   }
 }

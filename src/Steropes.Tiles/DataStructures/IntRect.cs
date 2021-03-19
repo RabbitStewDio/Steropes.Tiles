@@ -1,5 +1,5 @@
-﻿using System;
-using Steropes.Tiles.Properties;
+﻿using JetBrains.Annotations;
+using System;
 
 namespace Steropes.Tiles.DataStructures
 {

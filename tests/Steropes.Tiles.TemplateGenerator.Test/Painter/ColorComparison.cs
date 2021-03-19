@@ -14,7 +14,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
         Subject = subject;
       }
 
-      protected override string Context => "color";
+      protected override string Identifier => "color";
 
       public AndConstraint<ColorAssertions> BeSameColor(Color other, string because = "", params object[] becauseArgs)
       {

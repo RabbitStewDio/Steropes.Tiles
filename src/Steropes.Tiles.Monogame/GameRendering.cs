@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +9,6 @@ using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Plotter;
 using Steropes.Tiles.Plotter.Operations;
-using Steropes.Tiles.Plotter.Operations.Builder;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.Monogame
 {

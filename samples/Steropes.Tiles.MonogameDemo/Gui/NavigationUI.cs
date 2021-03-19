@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -6,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Monogame;
 using Steropes.Tiles.Navigation;
-using Steropes.Tiles.Properties;
 using Steropes.UI;
 using Steropes.UI.Components;
 using Steropes.UI.Input.KeyboardInput;

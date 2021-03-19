@@ -1,8 +1,8 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.Monogame.Tiles
 {

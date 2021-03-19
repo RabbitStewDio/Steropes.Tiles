@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {

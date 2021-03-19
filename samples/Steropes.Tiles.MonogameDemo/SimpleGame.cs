@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Monogame;
 using Steropes.Tiles.Monogame.Tiles;
 using Steropes.Tiles.MonogameDemo.GameData.Dungeon;
@@ -15,6 +14,7 @@ using Steropes.UI.State;
 using Steropes.UI.Util;
 using Steropes.UI.Widgets.Container;
 using Insets = Steropes.Tiles.DataStructures.Insets;
+using Range = Steropes.Tiles.DataStructures.Range;
 using XnaPoint = Microsoft.Xna.Framework.Point;
 
 namespace Steropes.Tiles.MonogameDemo

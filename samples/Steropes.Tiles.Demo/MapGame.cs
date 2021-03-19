@@ -43,7 +43,7 @@ namespace Steropes.Tiles.Demo
       var map = TerrainMap.CreateMap(terrainTypes);
 
       var renderType = RenderType.Grid;
-      var navigator = GridNavigation.CreateNavigator(renderType);
+      var navigator = new LimitedRangeNavigator<GridDirection>(GridNavigation.CreateNavigator(renderType), map.Width, map.Height);
 
       var desert = new TextTile("Desert", '.', ConsoleColor.DarkYellow);
       var tileRegistry = new BasicTileRegistry<TextTile>(desert)

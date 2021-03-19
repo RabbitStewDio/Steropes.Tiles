@@ -1,8 +1,8 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using Steropes.Tiles.TemplateGenerator.Annotations;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
@@ -36,27 +36,6 @@ namespace Steropes.Tiles.TemplateGenerator.Actions
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    public void Install(MenuItem menuItem)
-    {
-      void UpdateState(object sender, PropertyChangedEventArgs e)
-      {
-        menuItem.Enabled = Enabled;
-      }
-
-      void OnDispose(object sender, EventArgs args)
-      {
-        // click handler is taken care of by emptying out the event handlers (this is done in the form component).
-        menuItem.Disposed -= OnDispose;
-        PropertyChanged -= UpdateState;
-      }
-
-      PropertyChanged += UpdateState;
-      menuItem.Click += OnActionPerformed;
-      menuItem.Disposed += OnDispose;
-
-      menuItem.Enabled = Enabled;
     }
 
     public void Install(Button menuItem)

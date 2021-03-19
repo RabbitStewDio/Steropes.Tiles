@@ -40,9 +40,9 @@
       this.marginInput = new System.Windows.Forms.NumericUpDown();
       this.paddingInput = new System.Windows.Forms.NumericUpDown();
       this.borderInput = new System.Windows.Forms.NumericUpDown();
-      this.borderColorInput = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
-      this.textColorInput = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
-      this.backgroundInput = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
+      this.borderColorInput = new Krypton.Toolkit.KryptonColorButton();
+      this.textColorInput = new Krypton.Toolkit.KryptonColorButton();
+      this.backgroundInput = new Krypton.Toolkit.KryptonColorButton();
       this.titleInput = new System.Windows.Forms.TextBox();
       this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.layoutPanel.SuspendLayout();
@@ -257,9 +257,9 @@
     private System.Windows.Forms.NumericUpDown marginInput;
     private System.Windows.Forms.NumericUpDown paddingInput;
     private System.Windows.Forms.NumericUpDown borderInput;
-    private ComponentFactory.Krypton.Toolkit.KryptonColorButton borderColorInput;
-    private ComponentFactory.Krypton.Toolkit.KryptonColorButton textColorInput;
-    private ComponentFactory.Krypton.Toolkit.KryptonColorButton backgroundInput;
+    private Krypton.Toolkit.KryptonColorButton borderColorInput;
+    private Krypton.Toolkit.KryptonColorButton textColorInput;
+    private Krypton.Toolkit.KryptonColorButton backgroundInput;
     private System.Windows.Forms.TextBox titleInput;
     private System.Windows.Forms.ErrorProvider errorProvider;
   }

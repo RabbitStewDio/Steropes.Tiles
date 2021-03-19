@@ -3,9 +3,9 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using ComponentFactory.Krypton.Toolkit;
+using JetBrains.Annotations;
+using Krypton.Toolkit;
 using Steropes.Tiles.TemplateGenerator.Actions;
-using Steropes.Tiles.TemplateGenerator.Annotations;
 using Steropes.Tiles.TemplateGenerator.Editors;
 using Steropes.Tiles.TemplateGenerator.StructureTree;
 
@@ -229,14 +229,14 @@ namespace Steropes.Tiles.TemplateGenerator
 
     void RebuildRecentFilesMenu()
     {
-      recentSubMenu.MenuItems.Clear();
+      recentSubMenu.DropDownItems.Clear();
       foreach (var file in model.Preferences.RecentFiles.Reverse())
       {
-        var mi = recentSubMenu.MenuItems.Add(file);
+        var mi = recentSubMenu.DropDownItems.Add(file);
         new OpenRecentFileCommand(model, file).Install(mi);
       }
 
-      recentSubMenu.Enabled = recentSubMenu.MenuItems.Count > 0;
+      recentSubMenu.Enabled = recentSubMenu.DropDownItems.Count > 0;
     }
 
     void OnAboutClick(object sender, EventArgs e)

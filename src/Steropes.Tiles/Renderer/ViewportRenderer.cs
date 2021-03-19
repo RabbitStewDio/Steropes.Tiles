@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Sprites;
-using Steropes.Tiles.Plotter;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.Renderer
 {

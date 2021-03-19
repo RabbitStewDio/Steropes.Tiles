@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.TemplateGenerator.Model
 {

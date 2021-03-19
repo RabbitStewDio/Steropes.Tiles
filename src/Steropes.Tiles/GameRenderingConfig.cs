@@ -1,9 +1,9 @@
+using JetBrains.Annotations;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Plotter;
-using Steropes.Tiles.Properties;
 using Steropes.Tiles.Renderer;
 
 namespace Steropes.Tiles

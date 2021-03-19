@@ -1,8 +1,7 @@
+using JetBrains.Annotations;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Steropes.Tiles.Navigation;
-using Steropes.Tiles.Properties;
 
 namespace Steropes.Tiles.MonogameDemo.Gui
 {

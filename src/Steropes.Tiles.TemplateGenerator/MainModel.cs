@@ -1,13 +1,12 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Steropes.Tiles.TemplateGenerator.Actions;
-using Steropes.Tiles.TemplateGenerator.Annotations;
 using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator
