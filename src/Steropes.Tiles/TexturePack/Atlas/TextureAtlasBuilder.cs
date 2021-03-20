@@ -9,7 +9,7 @@ namespace Steropes.Tiles.TexturePack.Atlas
     ///   with textures of uniform sizes.
     /// </summary>
     public class TextureAtlasBuilder<TTexture, TColor>
-        where TTexture: ITexture
+        where TTexture : ITexture
     {
         class TreeNode
         {
@@ -66,21 +66,21 @@ namespace Steropes.Tiles.TexturePack.Atlas
                     // vertical split 
                     Left = new TreeNode(new TextureCoordinateRect(CellBounds.X, CellBounds.Y, texBounds.Width, CellBounds.Height));
                     Right = new TreeNode(new TextureCoordinateRect(CellBounds.X + padding + texBounds.Width, CellBounds.Y,
-                        CellBounds.Width - texBounds.Width - padding, CellBounds.Height));
+                                                                   CellBounds.Width - texBounds.Width - padding, CellBounds.Height));
                 }
                 else
                 {
                     Left = new TreeNode(new TextureCoordinateRect(CellBounds.X, CellBounds.Y, CellBounds.Width, texBounds.Height));
                     Right = new TreeNode(new TextureCoordinateRect(CellBounds.X, CellBounds.Y + padding + texBounds.Height,
-                        CellBounds.Width,
-                        CellBounds.Height - texBounds.Height - padding));
+                                                                   CellBounds.Width,
+                                                                   CellBounds.Height - texBounds.Height - padding));
                 }
 
                 return Left.Insert(tex, padding);
             }
 
-            public bool Harvest(ITextureOperations<TTexture,TColor> ops, 
-                                TTexture targetTexture, 
+            public bool Harvest(ITextureOperations<TTexture, TColor> ops,
+                                TTexture targetTexture,
                                 out TTexture result)
             {
                 if (HasTexture)
@@ -91,9 +91,9 @@ namespace Steropes.Tiles.TexturePack.Atlas
                         (0, 0, textureBounds.Width, textureBounds.Height);
                     var srcData = ops.ExtractData(Texture, localTextureBounds);
                     ops.MakeDebugVisible(srcData);
-                    ops.ApplyTextureData(targetTexture, srcData, 
-                        new TextureCoordinatePoint(CellBounds.X, CellBounds.Y));
-                    
+                    ops.ApplyTextureData(targetTexture, srcData,
+                                         new TextureCoordinatePoint(CellBounds.X, CellBounds.Y));
+
                     result = ops.Clip(targetTexture.Name + ":" + Texture.Name, targetTexture, CellBounds);
                     // Debug.Log("Harvest: " + result.Name + ":" + Texture.Name + " " + result.Bounds + " @ " + textureBounds);
                     return true;
@@ -104,6 +104,7 @@ namespace Steropes.Tiles.TexturePack.Atlas
                     result = l;
                     return true;
                 }
+
                 return Right.Harvest(ops, targetTexture, out result);
             }
         }
@@ -116,7 +117,7 @@ namespace Steropes.Tiles.TexturePack.Atlas
         public TTexture Texture { get; }
         public const int Padding = 2;
 
-        public TextureAtlasBuilder(ITextureOperations<TTexture, TColor> textureOperations, 
+        public TextureAtlasBuilder(ITextureOperations<TTexture, TColor> textureOperations,
                                    TTexture texture)
         {
             root = new TreeNode(texture.Bounds);

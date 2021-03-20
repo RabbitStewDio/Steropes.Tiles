@@ -55,7 +55,7 @@ namespace Steropes.Tiles.TexturePack
         {
             try
             {
-                result = File.OpenRead((string) path);
+                result = File.OpenRead((string)path);
                 return true;
             }
             catch (DirectoryNotFoundException)
@@ -77,17 +77,17 @@ namespace Steropes.Tiles.TexturePack
                 return r;
             }
 
-            throw new FileNotFoundException(null, (string) path);
+            throw new FileNotFoundException(null, (string)path);
         }
 
         public FilePath CombinePath(FilePath p1, string p2)
         {
-            return new FilePath(Path.Combine((string) p1, p2));
+            return new FilePath(Path.Combine((string)p1, p2));
         }
 
         public FilePath GetBasePath(FilePath file)
         {
-            var directoryInfo = Directory.GetParent((string) file);
+            var directoryInfo = Directory.GetParent((string)file);
             return new FilePath(directoryInfo.FullName);
         }
 

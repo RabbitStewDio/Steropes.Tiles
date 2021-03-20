@@ -6,40 +6,34 @@ using System.Xml;
 
 namespace Steropes.Tiles.TexturePack
 {
-  public class TexturePackLoaderException : IOException
-  {
-    public TexturePackLoaderException()
+    public class TexturePackLoaderException : IOException
     {
-    }
+        public TexturePackLoaderException()
+        { }
 
-    public TexturePackLoaderException(string message) : base(message)
-    {
-    }
+        public TexturePackLoaderException(string message) : base(message)
+        { }
 
-    public TexturePackLoaderException(string message, IXmlLineInfo lineInfo) : base(AppendLineInfo(message, lineInfo))
-    {
-    }
+        public TexturePackLoaderException(string message, IXmlLineInfo lineInfo) : base(AppendLineInfo(message, lineInfo))
+        { }
 
-    static string AppendLineInfo(string message, IXmlLineInfo lineInfo)
-    {
-      if (lineInfo?.HasLineInfo() == true)
-      {
-        return $"{message} [{lineInfo.LineNumber}:{lineInfo.LinePosition}]";
-      }
+        static string AppendLineInfo(string message, IXmlLineInfo lineInfo)
+        {
+            if (lineInfo?.HasLineInfo() == true)
+            {
+                return $"{message} [{lineInfo.LineNumber}:{lineInfo.LinePosition}]";
+            }
 
-      return message;
-    }
+            return message;
+        }
 
-    public TexturePackLoaderException(string message, int hresult) : base(message, hresult)
-    {
-    }
+        public TexturePackLoaderException(string message, int hresult) : base(message, hresult)
+        { }
 
-    public TexturePackLoaderException(string message, Exception innerException) : base(message, innerException)
-    {
-    }
+        public TexturePackLoaderException(string message, Exception innerException) : base(message, innerException)
+        { }
 
-    protected TexturePackLoaderException([NotNull] SerializationInfo info, StreamingContext context) : base(info, context)
-    {
+        protected TexturePackLoaderException([NotNull] SerializationInfo info, StreamingContext context) : base(info, context)
+        { }
     }
-  }
 }

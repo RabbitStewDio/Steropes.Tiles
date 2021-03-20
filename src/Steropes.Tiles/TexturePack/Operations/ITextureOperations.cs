@@ -9,9 +9,8 @@ namespace Steropes.Tiles.TexturePack.Operations
         ITextureAtlasBuilder<TTexture> CreateAtlasBuilder();
     }
 
-    public interface ITextureOperations<TTexture, TColor>: ITextureOperations<TTexture>
+    public interface ITextureOperations<TTexture, TColor> : ITextureOperations<TTexture>
     {
-
         BoundedTextureData<TColor> ExtractData(TTexture srcTexture, TextureCoordinateRect rect);
         BoundedTextureData<TColor> CombineMask(BoundedTextureData<TColor> color, BoundedTextureData<TColor> mask);
         BoundedTextureData<TColor> CombineBlend(BoundedTextureData<TColor> color, BoundedTextureData<TColor> mask);
@@ -29,8 +28,8 @@ namespace Steropes.Tiles.TexturePack.Operations
         /// <param name="name"></param>
         /// <param name="textureSize"></param>
         /// <returns></returns>
-        TTexture CreateTexture(string name, 
-                               IntDimension textureSize, 
+        TTexture CreateTexture(string name,
+                               IntDimension textureSize,
                                bool clearToTransparentBlack = true);
 
         void MakeDebugVisible(BoundedTextureData<TColor> b);

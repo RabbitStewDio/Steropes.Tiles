@@ -78,8 +78,8 @@ namespace Steropes.Tiles.Matcher.Sprites
                 var s = (idx & 4) != 0;
                 var w = (idx & 8) != 0;
 
-                tagExists[idx] = registry.TryFind(prefix, CardinalTileSelectorKey.ValueOf(n, e, s, w), 
-                    out preparedTags[idx]);
+                tagExists[idx] = registry.TryFind(prefix, CardinalTileSelectorKey.ValueOf(n, e, s, w),
+                                                  out preparedTags[idx]);
             }
         }
     }

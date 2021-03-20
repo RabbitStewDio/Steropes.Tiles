@@ -15,6 +15,7 @@ namespace Steropes.Tiles.TexturePack
         ///  Anchor is given in pixels.
         /// </summary>
         IntPoint Anchor { get; }
+
         bool HasTexture { get; }
         TTexture Texture { get; }
         string Tag { get; }

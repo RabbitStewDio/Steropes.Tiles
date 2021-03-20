@@ -11,7 +11,7 @@ namespace Steropes.Tiles.TexturePack.Atlas
         readonly List<TextureAtlasBuilder<TTexture, TColor>> builders;
         readonly ITextureOperations<TTexture, TColor> textureOperations;
 
-        public MultiTextureAtlasBuilder(ITextureOperations<TTexture, TColor> textureOperations, 
+        public MultiTextureAtlasBuilder(ITextureOperations<TTexture, TColor> textureOperations,
                                         int size = TextureAtlasBuilder<TTexture, TColor>.MaxTextureSize)
         {
             this.textureOperations = textureOperations;
@@ -30,7 +30,7 @@ namespace Steropes.Tiles.TexturePack.Atlas
             }
 
             var rt = textureOperations.CreateTexture("TextureAtlas-" + builders.Count,
-                new IntDimension(size, size), true);
+                                                     new IntDimension(size, size), true);
             var b2 = new TextureAtlasBuilder<TTexture, TColor>(textureOperations, rt);
 
             if (b2.Insert(tile, out TTexture result2))
@@ -48,6 +48,5 @@ namespace Steropes.Tiles.TexturePack.Atlas
                 yield return b.Texture;
             }
         }
-        
     }
 }

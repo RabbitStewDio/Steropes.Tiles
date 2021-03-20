@@ -4,7 +4,7 @@ using Steropes.Tiles.TexturePack;
 
 namespace Steropes.Tiles.Monogame
 {
-    public class MonoGameContentLoader: IContentLoader<XnaRawTexture>
+    public class MonoGameContentLoader : IContentLoader<XnaRawTexture>
     {
         readonly ContentManager mgr;
         readonly string basePath;
@@ -28,8 +28,6 @@ namespace Steropes.Tiles.Monogame
             }
 
             return new XnaRawTexture(path, mgr.Load<Texture2D>(path));
-
         }
-        
     }
 }

@@ -3,7 +3,7 @@ using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
 
 namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
 {
-    public class WallType: IWallType, IEquatable<WallType>
+    public class WallType : IWallType, IEquatable<WallType>
     {
         public WallType(WallTypeId id, string name, bool obstructWalking, bool obstructSight)
         {
@@ -20,7 +20,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
 
         public bool Equals(WallType other)
         {
-            return Equals((IWallType) other);
+            return Equals((IWallType)other);
         }
 
         public bool Equals(IWallType other)
@@ -55,7 +55,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
                 return false;
             }
 
-            return Equals((IWallType) obj);
+            return Equals((IWallType)obj);
         }
 
         public override int GetHashCode()

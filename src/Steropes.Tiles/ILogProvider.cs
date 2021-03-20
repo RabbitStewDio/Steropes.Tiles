@@ -8,7 +8,7 @@
     public static class LogProvider
     {
         static volatile ILogProvider logProvider;
-        static DebugLogProvider fallbackProvider = new DebugLogProvider();
+        static readonly DebugLogProvider fallbackProvider = new DebugLogProvider();
 
         public static ILogProvider Provider
         {
@@ -67,7 +67,7 @@
             {
                 System.Diagnostics.Debug.WriteLine(message, data);
             }
-#else 
+#else
             public bool IsTraceEnabled
             {
                 get

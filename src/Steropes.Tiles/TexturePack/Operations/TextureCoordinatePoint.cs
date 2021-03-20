@@ -26,7 +26,7 @@ namespace Steropes.Tiles.TexturePack.Operations
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is TextureCoordinatePoint && Equals((TextureCoordinatePoint) obj);
+            return obj is TextureCoordinatePoint && Equals((TextureCoordinatePoint)obj);
         }
 
         public override int GetHashCode()

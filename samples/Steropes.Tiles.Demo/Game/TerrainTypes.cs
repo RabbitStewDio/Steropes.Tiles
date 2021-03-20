@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Steropes.Tiles.Demo.Game
 {
-    public class TerrainTypes: IEnumerable<TerrainType>
+    public class TerrainTypes : IEnumerable<TerrainType>
     {
         public TerrainType Desert { get; }
         public TerrainType Plains { get; }

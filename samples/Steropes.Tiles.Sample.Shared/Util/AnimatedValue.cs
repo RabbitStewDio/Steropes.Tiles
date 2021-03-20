@@ -23,106 +23,106 @@
 
 namespace Steropes.Tiles.Demo.Core.Util
 {
-  public abstract class AnimatedValue: IAnimatedValue
-  {
-    double time;
-
-    public abstract float CurrentValue { get; }
-
-    public double Delay { get; set; }
-
-    public AnimationDirection Direction { get; set; }
-
-    public double Duration { get; set; }
-
-    public bool Stopped { get; set; }
-
-    public bool IsOver
+    public abstract class AnimatedValue : IAnimatedValue
     {
-      get
-      {
-        if (Loop == AnimationLoop.NoLoop)
+        double time;
+
+        public abstract float CurrentValue { get; }
+
+        public double Delay { get; set; }
+
+        public AnimationDirection Direction { get; set; }
+
+        public double Duration { get; set; }
+
+        public bool Stopped { get; set; }
+
+        public bool IsOver
         {
-          if (Direction == AnimationDirection.Forward)
-          {
-            return Time >= Delay + Duration;
-          }
-          else
-          {
-            return Time <= 0;
-          }
+            get
+            {
+                if (Loop == AnimationLoop.NoLoop)
+                {
+                    if (Direction == AnimationDirection.Forward)
+                    {
+                        return Time >= Delay + Duration;
+                    }
+                    else
+                    {
+                        return Time <= 0;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
-        else
+
+        public bool IsRunning => !Stopped && !IsOver;
+
+        public AnimationLoop Loop { get; set; }
+
+        public double Time
         {
-          return false;
+            get { return time; }
+            set
+            {
+                time = value;
+                UpdateDirection();
+            }
         }
-      }
-    }
 
-    public bool IsRunning => !Stopped && !IsOver;
-
-    public AnimationLoop Loop { get; set; }
-
-    public double Time
-    {
-      get { return time; }
-      set
-      {
-        time = value;
-        UpdateDirection();
-      }
-    }
-
-    public void Update(float gameTime)
-    {
-      if (Stopped)
-      {
-        return;
-      }
-
-      var timeInSeconds = gameTime;
-      Time += Direction == AnimationDirection.Forward ? timeInSeconds : -timeInSeconds;
-    }
-
-    protected void UpdateDirection()
-    {
-      var animTotalTime = Delay + Duration;
-      if (time >= animTotalTime)
-      {
-        switch (Loop)
+        public void Update(float gameTime)
         {
-          case AnimationLoop.NoLoop:
-            time = animTotalTime;
-            break;
-          case AnimationLoop.Loop:
-            time -= animTotalTime;
-            break;
-          case AnimationLoop.LoopBackAndForth:
-            time = animTotalTime - (Time - animTotalTime);
-            Direction = Direction == AnimationDirection.Forward
-              ? AnimationDirection.Backward
-              : AnimationDirection.Forward;
-            break;
+            if (Stopped)
+            {
+                return;
+            }
+
+            var timeInSeconds = gameTime;
+            Time += Direction == AnimationDirection.Forward ? timeInSeconds : -timeInSeconds;
         }
-      }
-      else if (Time < 0)
-      {
-        switch (Loop)
+
+        protected void UpdateDirection()
         {
-          case AnimationLoop.NoLoop:
-            time = 0;
-            break;
-          case AnimationLoop.Loop:
-            time += animTotalTime;
-            break;
-          case AnimationLoop.LoopBackAndForth:
-            time = -Time;
-            Direction = Direction == AnimationDirection.Forward
-              ? AnimationDirection.Backward
-              : AnimationDirection.Forward;
-            break;
+            var animTotalTime = Delay + Duration;
+            if (time >= animTotalTime)
+            {
+                switch (Loop)
+                {
+                    case AnimationLoop.NoLoop:
+                        time = animTotalTime;
+                        break;
+                    case AnimationLoop.Loop:
+                        time -= animTotalTime;
+                        break;
+                    case AnimationLoop.LoopBackAndForth:
+                        time = animTotalTime - (Time - animTotalTime);
+                        Direction = Direction == AnimationDirection.Forward
+                            ? AnimationDirection.Backward
+                            : AnimationDirection.Forward;
+                        break;
+                }
+            }
+            else if (Time < 0)
+            {
+                switch (Loop)
+                {
+                    case AnimationLoop.NoLoop:
+                        time = 0;
+                        break;
+                    case AnimationLoop.Loop:
+                        time += animTotalTime;
+                        break;
+                    case AnimationLoop.LoopBackAndForth:
+                        time = -Time;
+                        Direction = Direction == AnimationDirection.Forward
+                            ? AnimationDirection.Backward
+                            : AnimationDirection.Forward;
+                        break;
+                }
+            }
         }
-      }
     }
-  }
 }

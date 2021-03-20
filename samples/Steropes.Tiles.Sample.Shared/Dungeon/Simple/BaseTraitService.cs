@@ -16,7 +16,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
             this.updateableTraits = new TraitCollection<IUpdateableTrait>();
         }
 
-        public void AddTrait<T>(TItem item, T trait) where T : IItemTrait
+        public void AddTrait<T>(TItem item, T trait)
+            where T : IItemTrait
         {
             if (!traits.TryGetValue(item, out TraitRegistry tr))
             {
@@ -37,7 +38,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
             }
         }
 
-        public void RemoveTrait<T>(TItem item) where T : IItemTrait
+        public void RemoveTrait<T>(TItem item)
+            where T : IItemTrait
         {
             if (traits.TryGetValue(item, out TraitRegistry tr))
             {
@@ -54,7 +56,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
             }
         }
 
-        public bool TraitFor<T>(TItem c, out T trait) where T : IItemTrait
+        public bool TraitFor<T>(TItem c, out T trait)
+            where T : IItemTrait
         {
             if (traits.TryGetValue(c, out TraitRegistry tr))
             {

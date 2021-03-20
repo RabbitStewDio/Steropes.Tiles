@@ -79,8 +79,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
 
             var retval = new List<IPlotOperation>();
             retval.AddRange(EnableCache
-                ? agg.Select(x => CreateFromMatchControl(x, r))
-                : agg.Select(x => CreateNonCachedFromMatchControl(x, r)));
+                                ? agg.Select(x => CreateFromMatchControl(x, r))
+                                : agg.Select(x => CreateNonCachedFromMatchControl(x, r)));
 
             return retval;
         }
@@ -90,11 +90,12 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             if (tm.Cachable)
             {
                 var cache =
-                    PlotOperations.FromContext(RenderingConfig).Create(tm.Matcher)
-                        .WithCache()
-                        .ForViewport()
-                        .WithRenderer(r.CreateRenderer<Nothing>(this, Nothing.Instance))
-                        .Build();
+                    PlotOperations.FromContext(RenderingConfig)
+                                  .Create(tm.Matcher)
+                                  .WithCache()
+                                  .ForViewport()
+                                  .WithRenderer(r.CreateRenderer<Nothing>(this, Nothing.Instance))
+                                  .Build();
                 tm.CacheControl(cache);
                 return cache;
             }
@@ -105,10 +106,10 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
         IPlotOperation CreateNonCachedFromMatchControl(TileMatchControl tm, IRenderCallbackFactory<Nothing, TTile> r)
         {
             var po = PlotOperations.FromContext(RenderingConfig)
-                .Create(tm.Matcher)
-                .ForViewport()
-                .WithRenderer(r.CreateRenderer<Nothing>(this, Nothing.Instance))
-                .Build();
+                                   .Create(tm.Matcher)
+                                   .ForViewport()
+                                   .WithRenderer(r.CreateRenderer<Nothing>(this, Nothing.Instance))
+                                   .Build();
             return po;
         }
 
@@ -117,9 +118,9 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             var fogCellMatcher = new FogCellMatcher(GameData.Fog);
             var cellRegistry = new CellMapTileRegistry<TTile>(Tiles);
             var matcher = new CellMapTileSelector<TTile, Nothing>(fogCellMatcher,
-                RenderingConfig.MatcherNavigator,
-                cellRegistry,
-                "t.fog");
+                                                                  RenderingConfig.MatcherNavigator,
+                                                                  cellRegistry,
+                                                                  "t.fog");
 
             void FogCacheControl(IPlotOperation c)
             {
@@ -226,9 +227,9 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
                 if (resource.GraphicTag != null)
                 {
                     m.Add(idx, new BasicTileSelector<TTile, Nothing>(AlwaysTrue,
-                        RenderingConfig.MatcherNavigator,
-                        Tiles,
-                        resource.GraphicTag));
+                                                                     RenderingConfig.MatcherNavigator,
+                                                                     Tiles,
+                                                                     resource.GraphicTag));
                 }
             }
 
@@ -246,7 +247,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             }
 
             var cachedLookup = new LookupTable<Tuple<TTile, Nothing>>(resourceTypes.Count,
-                LookupTileFromResourceId);
+                                                                      LookupTileFromResourceId);
 
             Tuple<TTile, Nothing> QueryCachedData(int x, int y)
             {
@@ -263,8 +264,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
         TileMatchControl CreateImprovementLayer()
         {
             var improvementTypes = GameData.Rules.TerrainImprovementTypes;
-            var min = improvementTypes.Where(i => i.DataId >= 0).Select(i => (int?) i.DataId).Min() ?? 0;
-            var max = improvementTypes.Where(i => i.DataId >= 0).Select(i => (int?) i.DataId).Max() ?? 0;
+            var min = improvementTypes.Where(i => i.DataId >= 0).Select(i => (int?)i.DataId).Min() ?? 0;
+            var max = improvementTypes.Where(i => i.DataId >= 0).Select(i => (int?)i.DataId).Max() ?? 0;
             var t = GameData.Terrain;
 
             uint Query(int x, int y)
@@ -302,8 +303,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             }
 
             return new MapLookupTable<bool>(GameData.Rules.TerrainTypes.Count,
-                TerrainIndexFor,
-                matcherByTerrainIndex, false).Match;
+                                            TerrainIndexFor,
+                                            matcherByTerrainIndex, false).Match;
         }
 
         IEnumerable<TileMatchControl> CreateRiverLayer()
@@ -319,8 +320,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             var isOceanMatcher = CreateTerrainMatcher(
                 tidx =>
                     GameData.Rules.TerrainTypes[tidx]
-                        .Class
-                        .Contains(StrategyGameRules.DefinedTerrains.OceanicClass));
+                            .Class
+                            .Contains(StrategyGameRules.DefinedTerrains.OceanicClass));
 
             bool IsRiverOrOcean(int x, int y)
             {
@@ -337,7 +338,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             // outlets are rendered on top of ocean tiles.
             var outletMatcher = new RiverOutletTileSelector<TTile, Nothing>
             (IsRiver, isOceanMatcher, RenderingConfig.MatcherNavigator,
-                CardinalIndexTileRegistry<TTile>.CreateShort(Tiles), "road.river_outlet");
+             CardinalIndexTileRegistry<TTile>.CreateShort(Tiles), "road.river_outlet");
 
             return new List<TileMatchControl>
             {
@@ -390,9 +391,9 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             }
 
             return new CellMapTileSelector<TTile, Nothing>(cellRendering.CreateMatcher(layerIndex, rd),
-                RenderingConfig.MatcherNavigator,
-                new CellMapTileRegistry<TTile>(Tiles),
-                rd.Tag);
+                                                           RenderingConfig.MatcherNavigator,
+                                                           new CellMapTileRegistry<TTile>(Tiles),
+                                                           rd.Tag);
         }
 
         ITileMatcher<TTile, Nothing> GenerateCornerPairLayer(int layerIndex,
@@ -406,10 +407,10 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
 
             // binary matching 
             return new CornerTileSelector<TTile, Nothing>(boolRendering.CreateMatcher(layerIndex, rd),
-                CreateSelfMatcher(terrainIndex),
-                RenderingConfig.MatcherNavigator,
-                new CornerTileRegistry<TTile>(Tiles),
-                rd.Tag);
+                                                          CreateSelfMatcher(terrainIndex),
+                                                          RenderingConfig.MatcherNavigator,
+                                                          new CornerTileRegistry<TTile>(Tiles),
+                                                          rd.Tag);
         }
 
         ITileMatcher<TTile, Nothing> GenerateCornerLayer(int layerIndex,
@@ -422,10 +423,10 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             }
 
             return new CornerCellSelector<TTile, Nothing>(cellRendering.CreateMatcher(layerIndex, rd),
-                CreateSelfMatcher(terrainIndex),
-                RenderingConfig.MatcherNavigator,
-                new CellMapTileRegistry<TTile>(Tiles),
-                rd.Tag);
+                                                          CreateSelfMatcher(terrainIndex),
+                                                          RenderingConfig.MatcherNavigator,
+                                                          new CellMapTileRegistry<TTile>(Tiles),
+                                                          rd.Tag);
         }
 
         GridMatcher CreateSelfMatcher(byte terrainIndex)
@@ -445,15 +446,15 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
 
             return new CardinalTileSelector<TTile, Nothing>
             (boolRendering.CreateMatcher(layerIndex, rd), CreateSelfMatcher(terrainIndex),
-                RenderingConfig.MatcherNavigator,
-                new CardinalTileRegistry<TTile>(Tiles), rd.Tag);
+             RenderingConfig.MatcherNavigator,
+             new CardinalTileRegistry<TTile>(Tiles), rd.Tag);
         }
 
         ITileMatcher<TTile, Nothing> GenerateBasicLayer(byte terrainIndex, RenderLayerDefinition rd)
         {
             return new BasicTileSelector<TTile, Nothing>(CreateSelfMatcher(terrainIndex),
-                RenderingConfig.MatcherNavigator,
-                Tiles, rd.Tag);
+                                                         RenderingConfig.MatcherNavigator,
+                                                         Tiles, rd.Tag);
         }
 
         class FogCellMatcher : ICellMatcher
@@ -481,7 +482,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             public bool Match(int x, int y, out ITileTagEntrySelection result)
             {
                 var state = map[x, y];
-                result = states[(int) state];
+                result = states[(int)state];
                 return true;
             }
         }
@@ -528,7 +529,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
                         continue;
                     }
 
-                    var idx = (byte) GameData.Rules.TerrainTypes.IndexOf(t);
+                    var idx = (byte)GameData.Rules.TerrainTypes.IndexOf(t);
                     ITileMatcher<TTile, Nothing> tileMatcher;
                     switch (rd.MatchType)
                     {
@@ -567,8 +568,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
         {
             public TileMatchControl(ITileMatcher<TTile, Nothing> matcher,
                                     Action<IPlotOperation> cacheControl = null) : base(matcher, cacheControl)
-            {
-            }
+            { }
         }
     }
 }

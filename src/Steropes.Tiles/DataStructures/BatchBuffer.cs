@@ -118,7 +118,6 @@ namespace Steropes.Tiles.DataStructures
             TData tmp = data[idxA];
             data[idxA] = data[idxB];
             data[idxB] = tmp;
-
         }
     }
 }

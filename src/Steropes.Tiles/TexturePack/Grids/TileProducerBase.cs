@@ -16,7 +16,7 @@ namespace Steropes.Tiles.TexturePack.Grids
         readonly ITextureAtlasBuilder<TTexture> textureAtlas;
 
         protected TileProducerBase(ITextureOperations<TTexture> textureOperations,
-                                ITextureAtlasBuilder<TTexture> atlasBuilder)
+                                   ITextureAtlasBuilder<TTexture> atlasBuilder)
         {
             this.textureOperations = textureOperations;
             textureAtlas = atlasBuilder ?? throw new ArgumentNullException();

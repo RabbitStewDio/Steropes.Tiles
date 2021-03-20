@@ -66,7 +66,7 @@ namespace Steropes.Tiles.MonogameDemo
 
         public override void Update(GameTime elapsedTime)
         {
-            gd.Update((float) elapsedTime.TotalGameTime.TotalSeconds);
+            gd.Update((float)elapsedTime.TotalGameTime.TotalSeconds);
         }
     }
 }

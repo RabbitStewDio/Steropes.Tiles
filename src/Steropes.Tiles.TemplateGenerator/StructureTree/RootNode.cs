@@ -6,49 +6,50 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.StructureTree
 {
-  class RootNode : TreeNode
-  {
-    readonly TextureFile source;
-
-    public RootNode(TextureFile source)
+    class RootNode : TreeNode
     {
-      this.source = source ?? throw new ArgumentNullException();
-      this.source.PropertyChanged += OnPropertyChange;
-      this.source.Collections.CollectionChanged += OnCollectionChanged;
-      this.Text = UpdateName();
-      this.Tag = source;
-      this.Expand();
-      UpdateNodes();
-    }
+        readonly TextureFile source;
 
-    void UpdateNodes()
-    {
-      this.Resync(source.Collections, c => new CollectionNode(c));
-    }
+        public RootNode(TextureFile source)
+        {
+            this.source = source ?? throw new ArgumentNullException();
+            this.source.PropertyChanged += OnPropertyChange;
+            this.source.Collections.CollectionChanged += OnCollectionChanged;
+            this.Text = UpdateName();
+            this.Tag = source;
+            this.Expand();
+            UpdateNodes();
+        }
 
-    void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-      UpdateNodes();
-    }
+        void UpdateNodes()
+        {
+            this.Resync(source.Collections, c => new CollectionNode(c));
+        }
 
-    void OnPropertyChange(object sender, PropertyChangedEventArgs e)
-    {
-      this.TreeView?.BeginUpdate();
-      if (e.PropertyName == nameof(TextureFile.Name))
-      {
-        Text = UpdateName();
-      }
-      this.TreeView?.EndUpdate();
-    }
+        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            UpdateNodes();
+        }
 
-    string UpdateName()
-    {
-      if (string.IsNullOrEmpty(source.SourcePath))
-      {
-        return source.Name;
-      }
+        void OnPropertyChange(object sender, PropertyChangedEventArgs e)
+        {
+            this.TreeView?.BeginUpdate();
+            if (e.PropertyName == nameof(TextureFile.Name))
+            {
+                Text = UpdateName();
+            }
 
-      return $"{source.Name} ({source.SourcePath})";
+            this.TreeView?.EndUpdate();
+        }
+
+        string UpdateName()
+        {
+            if (string.IsNullOrEmpty(source.SourcePath))
+            {
+                return source.Name;
+            }
+
+            return $"{source.Name} ({source.SourcePath})";
+        }
     }
-  }
 }

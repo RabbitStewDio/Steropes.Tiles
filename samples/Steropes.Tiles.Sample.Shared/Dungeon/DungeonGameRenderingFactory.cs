@@ -16,7 +16,7 @@ using Steropes.Tiles.Unit2D.Demo.GameData.Dungeon;
 
 namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
 {
-    public class DungeonGameRenderingFactory<TTile>: RenderingFactoryBase<TTile>
+    public class DungeonGameRenderingFactory<TTile> : RenderingFactoryBase<TTile>
     {
         public DungeonGameRenderingFactory(GameRenderingConfig renderConfig,
                                            DungeonGameData gameData,
@@ -39,7 +39,8 @@ namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
             return new DirectMappingTileMatcher<IFloorType, TTile, Nothing>((x, y) => map[x, y], Mapper);
         }
 
-        protected static GridMatcher CreateMatcher<T>(IMap2D<T> map, T matchee) where T : IEquatable<T>
+        protected static GridMatcher CreateMatcher<T>(IMap2D<T> map, T matchee)
+            where T : IEquatable<T>
         {
             return (x, y) => map[x, y].Equals(matchee);
         }
@@ -59,11 +60,11 @@ namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
 
             var wallTypeSelector = new DistinctTileMatcher<IWallType, TTile, Nothing>((x, y) => map[x, y]);
             wallTypeSelector.Add(gd.Rules.Walls.Stone,
-                new CardinalTileSelector<TTile, Nothing>(IsWallOrPassageFn,
-                                                         CreateMatcher(map, gd.Rules.Walls.Stone),
-                                                         RenderingConfig.MatcherNavigator,
-                                                         wallsAsCardinals,
-                                                         gd.Rules.Walls.Stone.Name));
+                                 new CardinalTileSelector<TTile, Nothing>(IsWallOrPassageFn,
+                                                                          CreateMatcher(map, gd.Rules.Walls.Stone),
+                                                                          RenderingConfig.MatcherNavigator,
+                                                                          wallsAsCardinals,
+                                                                          gd.Rules.Walls.Stone.Name));
             return wallTypeSelector;
         }
 
@@ -88,10 +89,10 @@ namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
             {
                 var target = decorationType;
                 wallTypeSelector.Add(decorationType,
-                    new CardinalTileSelector<TTile, Nothing>(IsNeitherWallOrPassageFn,
-                                                             CreateMatcher(map, target),
-                                                             RenderingConfig.MatcherNavigator,
-                                                             wallsAsCardinals, target.Name));
+                                     new CardinalTileSelector<TTile, Nothing>(IsNeitherWallOrPassageFn,
+                                                                              CreateMatcher(map, target),
+                                                                              RenderingConfig.MatcherNavigator,
+                                                                              wallsAsCardinals, target.Name));
             }
 
             return wallTypeSelector;
@@ -107,17 +108,18 @@ namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
         /// </summary>
         /// <returns></returns>
         IPlotOperation CreateItemLayerPlotOperation<TRenderParameter>(IRenderCallbackFactory<TRenderParameter, TTile> rendererFactory,
-                                                                      ITileRegistry<TTile> tiles, TRenderParameter sortingLayer)
+                                                                      ITileRegistry<TTile> tiles,
+                                                                      TRenderParameter sortingLayer)
         {
             IRenderPlotOperation<TTile, Nothing> CreateWallPlotter()
             {
                 var matcher = new AggregateTileMatcher<TTile, Nothing>
-                (CreateWallMatcher(tiles), CreateDecoMatcher(tiles));
+                    (CreateWallMatcher(tiles), CreateDecoMatcher(tiles));
                 return PlotOperations.FromContext(RenderingConfig)
-                    .Create(matcher)
-                    .WithCache()
-                    .ForViewport()
-                    .Build();
+                                     .Create(matcher)
+                                     .WithCache()
+                                     .ForViewport()
+                                     .Build();
             }
 
             IRenderPlotOperation<TTile, Nothing> CreateItemPlotter()
@@ -130,10 +132,11 @@ namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
                 // This converts the context from IItem to Nothing after adjusting the coordinates.
                 var conv = new DungeonGameItemLocationResolver<TTile, Nothing>(GameData.ItemService,
                                                                                RenderingConfig.Viewport);
-                return PlotOperations.FromContext(RenderingConfig).Create(itemMatcher)
-                    .ForViewport()
-                    .WithConversion(conv)
-                    .Build();
+                return PlotOperations.FromContext(RenderingConfig)
+                                     .Create(itemMatcher)
+                                     .ForViewport()
+                                     .WithConversion(conv)
+                                     .Build();
             }
 
             var renderer = new BatchedPositionedSpriteRenderer<TTile, Nothing>(rendererFactory.CreateRenderer<Nothing>(this, sortingLayer));
@@ -143,19 +146,19 @@ namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
         }
 
         protected IPlotOperation CreatePlot<TContext, TRenderParameter>(IRenderCallbackFactory<TRenderParameter, TTile> renderer,
-                                                                        ITileMatcher<TTile, TContext> matcher, 
+                                                                        ITileMatcher<TTile, TContext> matcher,
                                                                         TRenderParameter sortingLayer)
         {
             var p = PlotOperations.FromContext(RenderingConfig)
-                .Create(matcher)
-                .WithCache()
-                .ForViewport()
-                .WithRenderer(renderer.CreateRenderer<TContext>(this, sortingLayer));
+                                  .Create(matcher)
+                                  .WithCache()
+                                  .ForViewport()
+                                  .WithRenderer(renderer.CreateRenderer<TContext>(this, sortingLayer));
             return p.Build();
         }
 
         public IEnumerable<IPlotOperation> Create<TRenderParameter>(IRenderCallbackFactory<TRenderParameter, TTile> renderer,
-                                                                    TRenderParameter floorLayer, 
+                                                                    TRenderParameter floorLayer,
                                                                     TRenderParameter itemLayer)
         {
             var r = new List<IPlotOperation>

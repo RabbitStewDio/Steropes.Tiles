@@ -5,36 +5,36 @@ using Steropes.Tiles.DataStructures;
 
 namespace Steropes.Tiles
 {
-  public class RendererControl: IRendererControl
-  {
-    Rect bounds;
-
-    public RendererControl(IntDimension tileSize, RenderType renderType)
+    public class RendererControl : IRendererControl
     {
-      TileSize = tileSize;
-      ActiveRenderType = renderType;
+        Rect bounds;
+
+        public RendererControl(IntDimension tileSize, RenderType renderType)
+        {
+            TileSize = tileSize;
+            ActiveRenderType = renderType;
+        }
+
+        public IntDimension TileSize { get; }
+        public RenderType ActiveRenderType { get; }
+
+        public Rect Bounds
+        {
+            get { return bounds; }
+            set
+            {
+                if (value.Equals(bounds)) return;
+                bounds = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
-
-    public IntDimension TileSize { get; }
-    public RenderType ActiveRenderType { get; }
-
-    public Rect Bounds
-    {
-      get { return bounds; }
-      set
-      {
-        if (value.Equals(bounds)) return;
-        bounds = value;
-        OnPropertyChanged();
-      }
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    [NotifyPropertyChangedInvocator]
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-  }
 }

@@ -24,7 +24,7 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
         public RendererControl RenderControl { get; }
         public GameRenderingConfig RenderingConfig { get; }
         public StrategyGameData GameData { get; }
-        
+
         public IPlotOperation CreateCityBarRenderer()
         {
             var map = GameData.Terrain;
@@ -54,6 +54,5 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
         }
 
         protected abstract IRenderCallback<ISettlement, Nothing> CreateRenderer();
-
     }
 }

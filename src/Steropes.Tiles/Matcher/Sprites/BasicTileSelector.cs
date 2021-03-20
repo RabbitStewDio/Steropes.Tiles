@@ -14,7 +14,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                                  ITileRegistry<TRenderTile> registry,
                                  string tag,
                                  Func<int, int, TContext> contextProvider = null) : base(matcher, gridNavigator,
-            contextProvider)
+                                                                                         contextProvider)
         {
             tileExists = registry.TryFind(tag, out tile);
         }

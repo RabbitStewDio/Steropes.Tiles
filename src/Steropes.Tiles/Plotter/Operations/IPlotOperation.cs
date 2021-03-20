@@ -17,7 +17,7 @@ namespace Steropes.Tiles.Plotter.Operations
         void InvalidateAll();
     }
 
-    public interface IPlotOperation: IPlotCacheControl
+    public interface IPlotOperation : IPlotCacheControl
     {
         void StartDrawing();
         void RenderAt(MapCoordinate screenPosition, MapCoordinate mapPosition);

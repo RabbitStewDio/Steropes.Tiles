@@ -26,8 +26,8 @@ namespace Steropes.Tiles.TexturePack
     ///  This texture type uses grid coordinates. Grid coordinates have the origin
     ///  (0,0) at the upper left corner.
     /// </summary>
-    public interface IRawTexture<TTexture> 
-        where TTexture: ITexture
+    public interface IRawTexture<TTexture>
+        where TTexture : ITexture
     {
         string Name { get; }
         IntRect Bounds { get; }

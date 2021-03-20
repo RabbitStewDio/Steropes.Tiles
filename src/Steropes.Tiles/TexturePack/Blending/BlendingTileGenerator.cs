@@ -91,7 +91,7 @@ namespace Steropes.Tiles.TexturePack.Blending
 
         bool TryFindSourceMask(CardinalIndex dir, out BoundedTextureData<TColor> colorData, out IntPoint anchor)
         {
-            var idx = (int) dir;
+            var idx = (int)dir;
             var ce = maskCache[idx];
             colorData = ce.ColorData;
             anchor = ce.Anchor;
@@ -118,7 +118,7 @@ namespace Steropes.Tiles.TexturePack.Blending
             var maskCache = new CacheEntry[4];
             for (int i = 0; i < 4; i += 1)
             {
-                var direction = (CardinalIndex) i;
+                var direction = (CardinalIndex)i;
                 maskCache[i] = CacheTryFindSourceMask(direction);
             }
 
@@ -131,8 +131,8 @@ namespace Steropes.Tiles.TexturePack.Blending
                 providedTile.HasTexture)
             {
                 return new CacheEntry(true,
-                    textureOperations.ExtractData(providedTile.Texture, providedTile.Texture.Bounds),
-                    providedTile.Anchor);
+                                      textureOperations.ExtractData(providedTile.Texture, providedTile.Texture.Bounds),
+                                      providedTile.Anchor);
             }
 
             var sourceArea = textureOperations.TileAreaForCardinalDirection(tileSize, dir);
@@ -141,8 +141,8 @@ namespace Steropes.Tiles.TexturePack.Blending
                 if (ditherMask.HasTexture)
                 {
                     return new CacheEntry(true,
-                        textureOperations.ExtractData(ditherMask.Texture, sourceArea),
-                        ditherMask.Anchor);
+                                          textureOperations.ExtractData(ditherMask.Texture, sourceArea),
+                                          ditherMask.Anchor);
                 }
             }
 

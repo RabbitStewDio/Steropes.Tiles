@@ -1,8 +1,8 @@
 ﻿namespace Steropes.Tiles.Demo.Core.GameData.Strategy
 {
-  public static class MapData
-  {
-    public static readonly string TerrainData = @"
+    public static class MapData
+    {
+        public static readonly string TerrainData = @"
       |::::::aaaaa::aaaaaa::::::::::::
       |::::::::::::::::aaaa::a:::a::::
       |::::::::::::::::::::::a::a:::::
@@ -24,7 +24,7 @@
       |:::::::::::::::::::::::::::::::
 ".Strip();
 
-    public static readonly string ResourceData = @"
+        public static readonly string ResourceData = @"
       |      f                        
       |
       |                        f      
@@ -46,7 +46,7 @@
       |
 ".Strip();
 
-    public static readonly string RoadData = @"
+        public static readonly string RoadData = @"
       |
       |
       |
@@ -68,7 +68,7 @@
       |
 ".Strip();
 
-    public static readonly string ImprovementData = @"
+        public static readonly string ImprovementData = @"
       |
       |
       |
@@ -90,7 +90,7 @@
       |
 ".Strip();
 
-    public static readonly string RiverData = @"
+        public static readonly string RiverData = @"
       |
       |
       |
@@ -112,5 +112,5 @@
       |
       |
 ".Strip();
-  }
+    }
 }

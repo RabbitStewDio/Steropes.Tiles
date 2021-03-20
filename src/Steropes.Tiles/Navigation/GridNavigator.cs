@@ -38,8 +38,8 @@ namespace Steropes.Tiles.Navigation
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
-            return true;
 
+            return true;
         }
     }
 }

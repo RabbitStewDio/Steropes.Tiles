@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Steropes.Tiles.Util
 {
-    public readonly struct ReadOnlyListWrapper<T>: IReadOnlyList<T>, ICollection<T>
+    public readonly struct ReadOnlyListWrapper<T> : IReadOnlyList<T>, ICollection<T>
     {
         readonly List<T> list;
 
@@ -25,12 +25,12 @@ namespace Steropes.Tiles.Util
 
         public bool Contains(object value)
         {
-            return ((IList) list).Contains(value);
+            return ((IList)list).Contains(value);
         }
 
         public int IndexOf(object value)
         {
-            return ((IList) list).IndexOf(value);
+            return ((IList)list).IndexOf(value);
         }
 
         public bool Contains(T item)

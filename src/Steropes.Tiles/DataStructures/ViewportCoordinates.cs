@@ -40,7 +40,7 @@ namespace Steropes.Tiles.DataStructures
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is ViewportCoordinates && Equals((ViewportCoordinates) obj);
+            return obj is ViewportCoordinates && Equals((ViewportCoordinates)obj);
         }
 
         public override int GetHashCode()
@@ -108,7 +108,7 @@ namespace Steropes.Tiles.DataStructures
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is ContinuousViewportCoordinates && Equals((ContinuousViewportCoordinates) obj);
+            return obj is ContinuousViewportCoordinates && Equals((ContinuousViewportCoordinates)obj);
         }
 
         public override int GetHashCode()
@@ -159,13 +159,13 @@ namespace Steropes.Tiles.DataStructures
         public DoublePoint ToPixels(IntDimension tileSize)
         {
             return new DoublePoint(X * tileSize.Width / Scale,
-                Y * tileSize.Height / Scale);
+                                   Y * tileSize.Height / Scale);
         }
 
         public ViewportCoordinates ToViewCoordinate()
         {
-            var sx = (int) Math.Round(X);
-            var sy = (int) Math.Round(Y);
+            var sx = (int)Math.Round(X);
+            var sy = (int)Math.Round(Y);
             return new ViewportCoordinates(sx, sy);
         }
 

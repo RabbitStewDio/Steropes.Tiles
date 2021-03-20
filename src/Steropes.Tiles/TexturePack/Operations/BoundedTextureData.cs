@@ -32,4 +32,5 @@ namespace Steropes.Tiles.TexturePack.Operations
                 return TextureData[ty * Bounds.Width + tx];
             }
         }
-    }}
+    }
+}

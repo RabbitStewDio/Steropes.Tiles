@@ -23,17 +23,17 @@ namespace Steropes.Tiles.Unit2D.Demo.GameData.Dungeon
         readonly IContentLoader<TRawTexture> loader;
         readonly ITileProducer<TTile, TTexture, TRawTexture> producer;
 
-        public DungeonTileSet(IContentLoader<TRawTexture> loader, 
+        public DungeonTileSet(IContentLoader<TRawTexture> loader,
                               ITileProducer<TTile, TTexture, TRawTexture> producer)
         {
             this.loader = loader;
             this.producer = producer;
-            
+
             TileSize = new IntDimension(50, 24);
             tp = new TexturePack<TTile>("default",
-                TileSize,
-                TextureType.Isometric,
-                LoadDecorations().ToArray());
+                                        TileSize,
+                                        TextureType.Isometric,
+                                        LoadDecorations().ToArray());
         }
 
         public IntDimension TileSize { get; }
@@ -119,42 +119,42 @@ namespace Steropes.Tiles.Unit2D.Demo.GameData.Dungeon
                 new GridTileDefinition(5, 5, FormatName("wall.stone", CardinalFlags.North | CardinalFlags.East)),
                 new GridTileDefinition(6, 5, FormatName("wall.stone", CardinalFlags.South | CardinalFlags.East)),
                 new GridTileDefinition(7, 5, FormatName("wall.stone",
-                    CardinalFlags.North |
-                    CardinalFlags.South |
-                    CardinalFlags.West)),
+                                                        CardinalFlags.North |
+                                                        CardinalFlags.South |
+                                                        CardinalFlags.West)),
                 new GridTileDefinition(8, 5, FormatName("wall.stone",
-                    CardinalFlags.North |
-                    CardinalFlags.East |
-                    CardinalFlags.West)),
+                                                        CardinalFlags.North |
+                                                        CardinalFlags.East |
+                                                        CardinalFlags.West)),
                 new GridTileDefinition(9, 5, FormatName("wall.stone",
-                    CardinalFlags.North |
-                    CardinalFlags.East |
-                    CardinalFlags.South)),
+                                                        CardinalFlags.North |
+                                                        CardinalFlags.East |
+                                                        CardinalFlags.South)),
                 new GridTileDefinition(10, 5, FormatName("wall.stone",
-                    CardinalFlags.South |
-                    CardinalFlags.East |
-                    CardinalFlags.West)),
+                                                         CardinalFlags.South |
+                                                         CardinalFlags.East |
+                                                         CardinalFlags.West)),
                 new GridTileDefinition(11, 5, FormatName("wall.stone",
-                    CardinalFlags.North |
-                    CardinalFlags.South |
-                    CardinalFlags.East |
-                    CardinalFlags.West)),
+                                                         CardinalFlags.North |
+                                                         CardinalFlags.South |
+                                                         CardinalFlags.East |
+                                                         CardinalFlags.West)),
 
                 new GridTileDefinition(11, 6, FormatName("door-closed",
-                    CardinalFlags.North | CardinalFlags.South)),
+                                                         CardinalFlags.North | CardinalFlags.South)),
 
                 new GridTileDefinition(12, 6, FormatName("door-closed",
-                    CardinalFlags.East | CardinalFlags.West)),
+                                                         CardinalFlags.East | CardinalFlags.West)),
                 new GridTileDefinition(12, 6, "door-closed"),
                 new GridTileDefinition(13, 6, FormatName("door-open",
-                    CardinalFlags.North | CardinalFlags.South)),
+                                                         CardinalFlags.North | CardinalFlags.South)),
                 new GridTileDefinition(0, 7, FormatName("door-open",
-                    CardinalFlags.East | CardinalFlags.West)),
+                                                        CardinalFlags.East | CardinalFlags.West)),
                 new GridTileDefinition(0, 7, "door-open"),
                 new GridTileDefinition(1, 7, FormatName("stairs",
-                    CardinalFlags.North | CardinalFlags.South)),
+                                                        CardinalFlags.North | CardinalFlags.South)),
                 new GridTileDefinition(2, 7, FormatName("stairs",
-                    CardinalFlags.East | CardinalFlags.West)),
+                                                        CardinalFlags.East | CardinalFlags.West)),
                 new GridTileDefinition(2, 7, "stairs")
             };
 

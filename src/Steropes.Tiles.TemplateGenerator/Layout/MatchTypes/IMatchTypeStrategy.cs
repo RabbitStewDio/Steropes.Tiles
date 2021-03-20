@@ -5,10 +5,10 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Layout.MatchTypes
 {
-  public interface IMatchTypeStrategy
-  {
-    Size GetTileArea(TextureGrid g);
+    public interface IMatchTypeStrategy
+    {
+        Size GetTileArea(TextureGrid g);
 
-    List<TextureTile> Generate(TextureGrid grid);
-  }
+        List<TextureTile> Generate(TextureGrid grid);
+    }
 }

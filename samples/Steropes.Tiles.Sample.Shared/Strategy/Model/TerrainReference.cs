@@ -2,17 +2,17 @@
 
 namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
 {
-  /// <summary>
-  ///  A reference to another terrain definition. Type safe string wrapper so that
-  /// we can let the compiler help us with the correct use of this thing.
-  /// </summary>
-  public struct TerrainReference
-  {
-    public string Target { get; }
-
-    public TerrainReference(string target)
+    /// <summary>
+    ///  A reference to another terrain definition. Type safe string wrapper so that
+    /// we can let the compiler help us with the correct use of this thing.
+    /// </summary>
+    public struct TerrainReference
     {
-      Target = target ?? throw new ArgumentNullException(nameof(target));
+        public string Target { get; }
+
+        public TerrainReference(string target)
+        {
+            Target = target ?? throw new ArgumentNullException(nameof(target));
+        }
     }
-  }
 }

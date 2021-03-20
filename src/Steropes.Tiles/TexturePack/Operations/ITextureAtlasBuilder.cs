@@ -9,7 +9,7 @@ namespace Steropes.Tiles.TexturePack.Operations
         TTexture Add(TTexture texture);
     }
 
-    public class NoOpTextureAtlasBuilder<TTexture>: ITextureAtlasBuilder<TTexture>
+    public class NoOpTextureAtlasBuilder<TTexture> : ITextureAtlasBuilder<TTexture>
     {
         public IEnumerable<TTexture> GetTextures()
         {

@@ -40,10 +40,12 @@ namespace Steropes.Tiles.Matcher.Sprites
             {
                 resultCollector(SpritePosition.Whole, tags[idx], ContextProvider(x, y));
             }
+
             return true;
         }
 
-        void FillInTags(string prefix, ITileRegistryEx<DiagonalTileSelectionKey, TRenderTile> registry,
+        void FillInTags(string prefix,
+                        ITileRegistryEx<DiagonalTileSelectionKey, TRenderTile> registry,
                         out TRenderTile[] tiles,
                         out bool[] tilesExist)
         {

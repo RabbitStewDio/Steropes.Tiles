@@ -66,6 +66,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                 {
                     resultCollector(SpritePosition.Whole, northTile, ContextProvider(x, y));
                 }
+
                 return true;
             }
 
@@ -75,6 +76,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                 {
                     resultCollector(SpritePosition.Whole, eastTile, ContextProvider(x, y));
                 }
+
                 return true;
             }
 
@@ -84,6 +86,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                 {
                     resultCollector(SpritePosition.Whole, southTile, ContextProvider(x, y));
                 }
+
                 return true;
             }
 
@@ -93,6 +96,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                 {
                     resultCollector(SpritePosition.Whole, westTile, ContextProvider(x, y));
                 }
+
                 return true;
             }
 

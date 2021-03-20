@@ -3,7 +3,7 @@
 namespace Steropes.Tiles.TexturePack
 {
     public interface ITextureFile<TTile>
-    {        
-       IEnumerable<TTile> ProduceTiles();
+    {
+        IEnumerable<TTile> ProduceTiles();
     }
 }

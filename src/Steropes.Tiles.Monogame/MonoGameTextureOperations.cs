@@ -236,7 +236,7 @@ namespace Steropes.Tiles.Monogame
                                                      offset.Y,
                                                      b.Width,
                                                      b.Height),
-                                    result.TextureData, 
+                                    result.TextureData,
                                     0, result.TextureData.Length);
             return texture;
         }

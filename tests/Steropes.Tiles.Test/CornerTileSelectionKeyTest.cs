@@ -5,15 +5,15 @@ using Steropes.Tiles.Matcher.Sprites;
 
 namespace Steropes.Tiles.Test
 {
-  public class CornerTileSelectionKeyTest
-  {
-    [Test]
-    public void TestEquals()
+    public class CornerTileSelectionKeyTest
     {
-      var r = CornerTileSelectionKey.ValueOf(Direction.Up, false, false, false);
-      var l = CornerTileSelectionKey.ValueOf(Direction.Left, false, false, false);
+        [Test]
+        public void TestEquals()
+        {
+            var r = CornerTileSelectionKey.ValueOf(Direction.Up, false, false, false);
+            var l = CornerTileSelectionKey.ValueOf(Direction.Left, false, false, false);
 
-      r.Equals(l).Should().BeFalse();
+            r.Equals(l).Should().BeFalse();
+        }
     }
-  }
 }

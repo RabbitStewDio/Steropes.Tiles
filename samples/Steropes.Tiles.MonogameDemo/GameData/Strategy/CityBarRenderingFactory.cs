@@ -7,12 +7,12 @@ using Steropes.UI.Widgets.Container;
 
 namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
 {
-    public class CityBarRenderingFactory: CityBarRenderingFactoryBase
+    public class CityBarRenderingFactory : CityBarRenderingFactoryBase
     {
         readonly Group widgetParent;
 
-        public CityBarRenderingFactory(GameRenderingConfig renderingConfig, 
-                                       StrategyGameData gameData, 
+        public CityBarRenderingFactory(GameRenderingConfig renderingConfig,
+                                       StrategyGameData gameData,
                                        IntDimension tileSize,
                                        Group widgetParent) : base(renderingConfig, gameData, tileSize)
         {

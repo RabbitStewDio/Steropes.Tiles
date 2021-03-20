@@ -21,7 +21,7 @@ namespace Steropes.Tiles.DataStructures
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is DoubleDimension && Equals((DoubleDimension) obj);
+            return obj is DoubleDimension && Equals((DoubleDimension)obj);
         }
 
         public override int GetHashCode()

@@ -5,7 +5,7 @@ using System;
 namespace Steropes.Tiles.Sample.Shared
 {
     [Obsolete]
-    public abstract class RenderingFactoryBase<TTile>: IRenderingFactoryConfig<TTile>
+    public abstract class RenderingFactoryBase<TTile> : IRenderingFactoryConfig<TTile>
     {
         protected RenderingFactoryBase(GameRenderingConfig renderConfig,
                                        ITileSet<TTile> tileSet)

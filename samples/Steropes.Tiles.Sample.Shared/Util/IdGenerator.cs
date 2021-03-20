@@ -1,19 +1,19 @@
 ﻿namespace Steropes.Tiles.Demo.Core.GameData.Util
 {
-  public class IdGenerator
-  {
-    int id;
-
-    public IdGenerator(int id = 0)
+    public class IdGenerator
     {
-      this.id = id;
-    }
+        int id;
 
-    public int Next()
-    {
-      var retval = id;
-      id += 1;
-      return retval;
+        public IdGenerator(int id = 0)
+        {
+            this.id = id;
+        }
+
+        public int Next()
+        {
+            var retval = id;
+            id += 1;
+            return retval;
+        }
     }
-  }
 }

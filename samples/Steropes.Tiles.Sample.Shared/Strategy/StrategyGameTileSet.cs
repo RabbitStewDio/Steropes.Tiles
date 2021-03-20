@@ -33,7 +33,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
             return null;
         }
 
-        public static bool FindFirstTile<TRenderTile>(this ITileRegistry<TRenderTile> tileSet, IRuleElement t,
+        public static bool FindFirstTile<TRenderTile>(this ITileRegistry<TRenderTile> tileSet,
+                                                      IRuleElement t,
                                                       out TRenderTile result)
         {
             foreach (var tg in t.AllGraphicTags())
@@ -112,68 +113,68 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
         public IEnumerable<KeyValuePair<string, RenderLayerDefinition>> DefinitionsForLayer(int layer)
         {
             return from t in Terrains
-                where t.Value.MatchRule.ContainsKey(layer)
-                select new KeyValuePair<string, RenderLayerDefinition>(t.Key, t.Value.MatchRule[layer]);
+                   where t.Value.MatchRule.ContainsKey(layer)
+                   select new KeyValuePair<string, RenderLayerDefinition>(t.Key, t.Value.MatchRule[layer]);
         }
 
         public void InitializeBlendingRules(StrategyGameRules r)
         {
             var ts = this;
             ts.Add(new TerrainGraphic("coast", false, "t.blend.coast")
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "shallow", "deep", "land")
-                .WithMatchRule(1, TerrainMatchType.Corner, "t.l1.coast_cell", "water", "ice"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "shallow", "deep", "land")
+                   .WithMatchRule(1, TerrainMatchType.Corner, "t.l1.coast_cell", "water", "ice"));
 
             ts.Add(new TerrainGraphic("floor", false, "t.blend.coast")
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "deep", "shallow", "land")
-                .WithMatchRule(1, TerrainMatchType.Corner, "t.l1.floor_cell", "water", "ice"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "deep", "shallow", "land")
+                   .WithMatchRule(1, TerrainMatchType.Corner, "t.l1.floor_cell", "water", "ice"));
 
             ts.Add(new TerrainGraphic("arctic", false, "t.blend.arctic")
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "shallow", "deep", "land")
-                .WithMatch(1, "ice")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.arctic1", "ice"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "shallow", "deep", "land")
+                   .WithMatch(1, "ice")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.arctic1", "ice"));
 
             ts.Add(new TerrainGraphic("desert", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.desert1", "land"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.desert1", "land"));
 
             ts.Add(new TerrainGraphic("forest", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.forest1", "land")
-                .WithMatchRule(3, TerrainMatchType.Cardinal, "t.l1.forest", "forest", "forest"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.forest1", "land")
+                   .WithMatchRule(3, TerrainMatchType.Cardinal, "t.l1.forest", "forest", "forest"));
 
             ts.Add(new TerrainGraphic("grassland", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.grassland1", "land"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.grassland1", "land"));
 
             ts.Add(new TerrainGraphic("hills", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.hills1", "land")
-                .WithMatchRule(3, TerrainMatchType.Cardinal, "t.l1.hills", "hills", "hills"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.hills1", "land")
+                   .WithMatchRule(3, TerrainMatchType.Cardinal, "t.l1.hills", "hills", "hills"));
 
             ts.Add(new TerrainGraphic("mountains", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.mountains1", "land")
-                .WithMatchRule(3, TerrainMatchType.Cardinal, "t.l1.mountains", "mountains", "mountains"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.mountains1", "land")
+                   .WithMatchRule(3, TerrainMatchType.Cardinal, "t.l1.mountains", "mountains", "mountains"));
 
             ts.Add(new TerrainGraphic("tundra", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.tundra1", "land"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.tundra1", "land"));
 
             ts.Add(new TerrainGraphic("plains", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.plains1", "land"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.plains1", "land"));
 
             ts.Add(new TerrainGraphic("swamp", true)
-                .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
-                .WithMatch(1, "land")
-                .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.swamp1", "land"));
+                   .WithMatchRule(0, TerrainMatchType.CellGroup, "t.l0.cellgroup", "land", "deep", "shallow")
+                   .WithMatch(1, "land")
+                   .WithMatchRule(2, TerrainMatchType.Basic, "t.l0.swamp1", "land"));
         }
     }
 }

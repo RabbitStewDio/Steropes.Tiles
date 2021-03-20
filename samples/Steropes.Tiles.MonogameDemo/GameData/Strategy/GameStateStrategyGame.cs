@@ -108,7 +108,6 @@ namespace Steropes.Tiles.MonogameDemo
         }
 
         public override void Update(GameTime elapsedTime)
-        {
-        }
+        { }
     }
 }

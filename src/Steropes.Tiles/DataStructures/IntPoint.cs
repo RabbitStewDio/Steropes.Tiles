@@ -26,7 +26,7 @@ namespace Steropes.Tiles.DataStructures
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is IntPoint && Equals((IntPoint) obj);
+            return obj is IntPoint && Equals((IntPoint)obj);
         }
 
         public override int GetHashCode()

@@ -23,24 +23,24 @@
 
 namespace Steropes.Tiles.Demo.Core.Util
 {
-  public interface IAnimatedValue
-  {
-    float CurrentValue { get; }
+    public interface IAnimatedValue
+    {
+        float CurrentValue { get; }
 
-    double Delay { get; set; }
+        double Delay { get; set; }
 
-    AnimationDirection Direction { get; set; }
+        AnimationDirection Direction { get; set; }
 
-    double Duration { get; set; }
+        double Duration { get; set; }
 
-    bool Stopped { get; set; }
+        bool Stopped { get; set; }
 
-    bool IsOver { get; }
+        bool IsOver { get; }
 
-    bool IsRunning { get; }
+        bool IsRunning { get; }
 
-    AnimationLoop Loop { get; set; }
+        AnimationLoop Loop { get; set; }
 
-    double Time { get; set; }
-  }
+        double Time { get; set; }
+    }
 }

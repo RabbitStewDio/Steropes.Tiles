@@ -7,11 +7,10 @@ namespace Steropes.Tiles.Monogame
     public class MonoGameTileProducer : TileProducerBase<MonoGameTile, XnaTexture, XnaRawTexture>
     {
         public MonoGameTileProducer(ITextureOperations<XnaTexture> textureOperations) : base(textureOperations, textureOperations.CreateAtlasBuilder())
-        {
-        }
+        { }
+
         public MonoGameTileProducer(ITextureOperations<XnaTexture> textureOperations, ITextureAtlasBuilder<XnaTexture> atlasBuilder) : base(textureOperations, atlasBuilder)
-        {
-        }
+        { }
 
         protected override MonoGameTile CreateTile(string tag, XnaTexture texture, IntDimension tileSize, IntPoint anchor)
         {

@@ -1,15 +1,15 @@
 namespace Steropes.Tiles
 {
-  public static class RenderTypeExtensions
-  {
-    public static bool IsStaggered(this RenderType t)
+    public static class RenderTypeExtensions
     {
-      return t == RenderType.IsoStaggered || t == RenderType.Hex;
-    }
+        public static bool IsStaggered(this RenderType t)
+        {
+            return t == RenderType.IsoStaggered || t == RenderType.Hex;
+        }
 
-    public static bool IsIsometric(this RenderType t)
-    {
-      return t == RenderType.IsoStaggered || t == RenderType.IsoDiamond;
+        public static bool IsIsometric(this RenderType t)
+        {
+            return t == RenderType.IsoStaggered || t == RenderType.IsoDiamond;
+        }
     }
-  }
 }

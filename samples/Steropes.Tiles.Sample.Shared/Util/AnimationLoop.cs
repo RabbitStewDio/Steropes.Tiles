@@ -23,12 +23,12 @@
 
 namespace Steropes.Tiles.Demo.Core.Util
 {
-  public enum AnimationLoop
-  {
-    NoLoop,
+    public enum AnimationLoop
+    {
+        NoLoop,
 
-    Loop,
+        Loop,
 
-    LoopBackAndForth
-  }
+        LoopBackAndForth
+    }
 }

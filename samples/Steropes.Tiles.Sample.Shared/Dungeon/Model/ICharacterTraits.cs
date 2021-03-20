@@ -1,9 +1,9 @@
 ﻿namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
 {
-  public interface ICharacterTraits : IItemTrait
-  {
-    int Strength { get; set; }
-    int Vitality { get; set; }
-    int HitPoints { get; set; }
-  }
+    public interface ICharacterTraits : IItemTrait
+    {
+        int Strength { get; set; }
+        int Vitality { get; set; }
+        int HitPoints { get; set; }
+    }
 }

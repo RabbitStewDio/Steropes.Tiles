@@ -60,6 +60,6 @@ namespace Steropes.Tiles.DataStructures
         public static implicit operator DoublePoint(IntPoint p)
         {
             return new DoublePoint(p.X, p.Y);
-        } 
+        }
     }
 }

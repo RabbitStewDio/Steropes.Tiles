@@ -17,11 +17,11 @@ namespace Steropes.Tiles.Matcher
         public BitVector32Matcher(Func<int, int, uint> queryFn,
                                   ResolveDelegate resultFn,
                                   Func<int, int, int, TContext> contextFn = null) : this(0, 31, queryFn, resultFn,
-            contextFn)
-        {
-        }
+                                                                                         contextFn)
+        { }
 
-        public BitVector32Matcher(int lowerLimit, int upperLimit,
+        public BitVector32Matcher(int lowerLimit,
+                                  int upperLimit,
                                   Func<int, int, uint> queryFn,
                                   ResolveDelegate resultFn,
                                   Func<int, int, int, TContext> contextFn = null)

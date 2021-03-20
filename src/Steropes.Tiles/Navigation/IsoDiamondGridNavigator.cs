@@ -2,7 +2,7 @@
 
 namespace Steropes.Tiles.Navigation
 {
-    public class IsoDiamondGridNavigator: IMapNavigator<GridDirection>
+    public class IsoDiamondGridNavigator : IMapNavigator<GridDirection>
     {
         public bool NavigateTo(GridDirection direction, MapCoordinate source, out MapCoordinate result, int steps = 1)
         {
@@ -11,6 +11,7 @@ namespace Steropes.Tiles.Navigation
                 result = source;
                 return true;
             }
+
             switch (direction)
             {
                 case GridDirection.None:
@@ -43,6 +44,7 @@ namespace Steropes.Tiles.Navigation
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
+
             return true;
         }
     }

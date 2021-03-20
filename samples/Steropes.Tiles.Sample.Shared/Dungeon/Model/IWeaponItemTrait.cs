@@ -1,7 +1,7 @@
 namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
 {
-  public interface IWeaponItemTrait : IItemTrait
-  {
-    int DamagePotential { get; }
-  }
+    public interface IWeaponItemTrait : IItemTrait
+    {
+        int DamagePotential { get; }
+    }
 }

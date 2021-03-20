@@ -2,8 +2,8 @@
 
 namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
 {
-  public interface IUpdateableTrait: IItemTrait
-  {
-    void Update(float t);
-  }
+    public interface IUpdateableTrait : IItemTrait
+    {
+        void Update(float t);
+    }
 }

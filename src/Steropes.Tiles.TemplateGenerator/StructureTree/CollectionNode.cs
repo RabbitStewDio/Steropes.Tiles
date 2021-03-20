@@ -6,41 +6,41 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.StructureTree
 {
-  class CollectionNode : TreeNode
-  {
-    readonly TextureCollection collection;
-
-    public CollectionNode(TextureCollection collection)
+    class CollectionNode : TreeNode
     {
-      this.collection = collection ?? throw new ArgumentNullException();
-      this.collection.Grids.CollectionChanged += OnCollectionChanged;
-      this.collection.PropertyChanged += OnPropertyChange;
-      this.Text = UpdateName();
-      this.Tag = collection;
-      this.Expand();
-      UpdateNodes();
-    }
+        readonly TextureCollection collection;
 
-    void OnPropertyChange(object sender, PropertyChangedEventArgs e)
-    {
-      TreeView?.BeginUpdate();
-      Text = UpdateName();
-      TreeView?.EndUpdate();
-    }
+        public CollectionNode(TextureCollection collection)
+        {
+            this.collection = collection ?? throw new ArgumentNullException();
+            this.collection.Grids.CollectionChanged += OnCollectionChanged;
+            this.collection.PropertyChanged += OnPropertyChange;
+            this.Text = UpdateName();
+            this.Tag = collection;
+            this.Expand();
+            UpdateNodes();
+        }
 
-    string UpdateName()
-    {
-      return collection.Id;
-    }
+        void OnPropertyChange(object sender, PropertyChangedEventArgs e)
+        {
+            TreeView?.BeginUpdate();
+            Text = UpdateName();
+            TreeView?.EndUpdate();
+        }
 
-    void UpdateNodes()
-    {
-      this.Resync(collection.Grids, c => new GridNode(c));
-    }
+        string UpdateName()
+        {
+            return collection.Id;
+        }
 
-    void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-      UpdateNodes();
+        void UpdateNodes()
+        {
+            this.Resync(collection.Grids, c => new GridNode(c));
+        }
+
+        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            UpdateNodes();
+        }
     }
-  }
 }

@@ -64,7 +64,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Util
 
     public static class TypeRegistry
     {
-        public static TypeRegistry<T> CreateFrom<T>(object o) where T : class
+        public static TypeRegistry<T> CreateFrom<T>(object o)
+            where T : class
         {
             return CreateFrom(o, v => default(T));
         }
@@ -87,7 +88,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Util
                 var mth = pi.GetMethod;
                 if (mth.IsPublic && !mth.IsAbstract && mth.GetParameters().Length == 0)
                 {
-                    var value = (T) pi.GetValue(o);
+                    var value = (T)pi.GetValue(o);
                     if (value == null || ReferenceEquals(value, defaultValue))
                     {
                         continue;
@@ -100,7 +101,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Util
             return reg;
         }
 
-        public static TypeRegistry<T> CreateFrom<T, TSource>(TSource o, Func<TSource, T> defaultFn) where T : class
+        public static TypeRegistry<T> CreateFrom<T, TSource>(TSource o, Func<TSource, T> defaultFn)
+            where T : class
         {
             var defaultValue = defaultFn(o);
             var reg = new TypeRegistry<T>(defaultValue);
@@ -108,7 +110,8 @@ namespace Steropes.Tiles.Demo.Core.GameData.Util
             return reg;
         }
 
-        public static TypeRegistry<T> CreateFrom<T>(T nothing, params T[] data) where T : class
+        public static TypeRegistry<T> CreateFrom<T>(T nothing, params T[] data)
+            where T : class
         {
             var reg = new TypeRegistry<T>(nothing);
             foreach (var d in data)

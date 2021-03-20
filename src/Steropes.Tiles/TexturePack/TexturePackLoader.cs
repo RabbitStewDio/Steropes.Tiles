@@ -11,7 +11,7 @@ namespace Steropes.Tiles.TexturePack
     public class TexturePackLoader<TTile, TTexture, TRawTexture>
         where TTile : ITexturedTile<TTexture>
         where TTexture : ITexture
-        where TRawTexture: IRawTexture<TTexture>
+        where TRawTexture : IRawTexture<TTexture>
     {
         class TexturePackLoaderContext
         {
@@ -85,11 +85,11 @@ namespace Steropes.Tiles.TexturePack
 
             path.Add(documentPath);
 
-            var width = (int?) root.AttributeLocal("width") ??
+            var width = (int?)root.AttributeLocal("width") ??
                         throw new TexturePackLoaderException("Texture pack requires width", root);
-            var height = (int?) root.AttributeLocal("height") ??
+            var height = (int?)root.AttributeLocal("height") ??
                          throw new TexturePackLoaderException("Texture pack requires height", root);
-            var textureType = ParseTextureType((string) root.AttributeLocal("type"));
+            var textureType = ParseTextureType((string)root.AttributeLocal("type"));
 
             var name = root.AttributeLocal("name")?.Value ?? "unnamed";
             var basePath = fileSystem.GetBasePath(documentPath);
@@ -118,7 +118,7 @@ namespace Steropes.Tiles.TexturePack
                                                      TexturePackLoaderContext context,
                                                      HashSet<FilePath> path)
         {
-            var file = (string) includeDirective.AttributeLocal("file");
+            var file = (string)includeDirective.AttributeLocal("file");
             if (file == null)
             {
                 return new List<ITextureFile<TTile>>();
@@ -138,9 +138,9 @@ namespace Steropes.Tiles.TexturePack
                 var doc = XDocument.Load(stream);
 
                 var root = doc.Root;
-                var width = (int?) root.AttributeLocal("width") ?? context.Width;
-                var height = (int?) root.AttributeLocal("height") ?? context.Height;
-                var textureType = ParseTextureType((string) root.AttributeLocal("type"), context.TextureType);
+                var width = (int?)root.AttributeLocal("width") ?? context.Width;
+                var height = (int?)root.AttributeLocal("height") ?? context.Height;
+                var textureType = ParseTextureType((string)root.AttributeLocal("type"), context.TextureType);
 
                 if (textureType != context.TextureType)
                 {
@@ -154,8 +154,8 @@ namespace Steropes.Tiles.TexturePack
         }
 
         IEnumerable<ITextureFile<TTile>> ReadContent(XElement root,
-                                                               TexturePackLoaderContext context,
-                                                               HashSet<FilePath> path)
+                                                     TexturePackLoaderContext context,
+                                                     HashSet<FilePath> path)
         {
             var includes =
                 from e in root.Elements()
@@ -186,36 +186,36 @@ namespace Steropes.Tiles.TexturePack
                 throw new Exception();
             }
 
-            var textureName = (string) fileSystem.CombinePath(context.BasePath, image.Value);
+            var textureName = (string)fileSystem.CombinePath(context.BasePath, image.Value);
 
             var grids =
                 from e in c.Elements()
                 where e.Name.LocalName == "grid"
                 select ParseGrid(e, context);
 
-            return new GridTextureFile<TTile,TTexture, TRawTexture>(textureName,
-                new IntDimension(context.Width, context.Height),
-                tileProducer,
-                contentLoader,
-                grids.ToArray());
+            return new GridTextureFile<TTile, TTexture, TRawTexture>(textureName,
+                                                                     new IntDimension(context.Width, context.Height),
+                                                                     tileProducer,
+                                                                     contentLoader,
+                                                                     grids.ToArray());
         }
 
         TileGrid ParseGrid(XElement grid, TexturePackLoaderContext context)
         {
-            var halfCell = (bool?) grid.Attribute("half-cell-hint") ?? false;
+            var halfCell = (bool?)grid.Attribute("half-cell-hint") ?? false;
             var defaultWidth = halfCell ? context.Width / 2 : context.Width;
             var defaultHeight = halfCell ? context.Height / 2 : context.Height;
 
-            var x = (int) grid.AttributeLocal("x");
-            var y = (int) grid.AttributeLocal("y");
-            var width = (int?) grid.AttributeLocal("cell-width") ?? (int?) grid.AttributeLocal("width") ?? defaultWidth;
-            var height = (int?) grid.AttributeLocal("cell-height") ??
-                         (int?) grid.AttributeLocal("height") ?? defaultHeight;
+            var x = (int)grid.AttributeLocal("x");
+            var y = (int)grid.AttributeLocal("y");
+            var width = (int?)grid.AttributeLocal("cell-width") ?? (int?)grid.AttributeLocal("width") ?? defaultWidth;
+            var height = (int?)grid.AttributeLocal("cell-height") ??
+                         (int?)grid.AttributeLocal("height") ?? defaultHeight;
 
-            var anchorX = (int?) grid.AttributeLocal("anchor-x") ?? width / 2;
-            var anchorY = (int?) grid.AttributeLocal("anchor-y") ?? height - defaultHeight / 2;
+            var anchorX = (int?)grid.AttributeLocal("anchor-x") ?? width / 2;
+            var anchorY = (int?)grid.AttributeLocal("anchor-y") ?? height - defaultHeight / 2;
 
-            var border = (int?) grid.AttributeLocal("cell-spacing") ?? (int?) grid.AttributeLocal("border") ?? 0;
+            var border = (int?)grid.AttributeLocal("cell-spacing") ?? (int?)grid.AttributeLocal("border") ?? 0;
 
             var tiles =
                 from e in grid.Elements()
@@ -227,18 +227,18 @@ namespace Steropes.Tiles.TexturePack
 
         static GridTileDefinition ParseTile(XElement tile)
         {
-            var x = (int?) tile.AttributeLocal("x") ??
+            var x = (int?)tile.AttributeLocal("x") ??
                     throw new TexturePackLoaderException("Mandatory attribute x is missing", tile);
-            var y = (int?) tile.AttributeLocal("y") ??
+            var y = (int?)tile.AttributeLocal("y") ??
                     throw new TexturePackLoaderException("Mandatory attribute y is missing", tile);
-            var anchorX = (int?) tile.AttributeLocal("anchor-x");
-            var anchorY = (int?) tile.AttributeLocal("anchor-y");
-            var name = (string) tile.AttributeLocal("tag") ?? (string) tile.AttributeLocal("name");
+            var anchorX = (int?)tile.AttributeLocal("anchor-x");
+            var anchorY = (int?)tile.AttributeLocal("anchor-y");
+            var name = (string)tile.AttributeLocal("tag") ?? (string)tile.AttributeLocal("name");
 
             var tags =
                 from e in tile.Elements()
                 where e.Name.LocalName == "tag"
-                select (string) e;
+                select (string)e;
 
             var tagsAsList = tags.ToList();
             if (name != null && tagsAsList.Count == 0)

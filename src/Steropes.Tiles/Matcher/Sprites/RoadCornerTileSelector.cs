@@ -31,30 +31,31 @@ namespace Steropes.Tiles.Matcher.Sprites
             FillInTags(prefix, registry, out tiles, out tileExists);
         }
 
-        protected void FillInTags(string prefix, ITileRegistryEx<Direction, TRenderTile> registry,
+        protected void FillInTags(string prefix,
+                                  ITileRegistryEx<Direction, TRenderTile> registry,
                                   out TRenderTile[] preparedTags,
                                   out bool[] preparedTagExists)
         {
             preparedTags = new TRenderTile[4];
             preparedTagExists = new bool[4];
-            preparedTagExists[(int) Direction.Up] =
-                registry.TryFind(prefix, Direction.Up, out preparedTags[(int) Direction.Up]);
-            preparedTagExists[(int) Direction.Right] =
-                registry.TryFind(prefix, Direction.Right, out preparedTags[(int) Direction.Right]);
-            preparedTagExists[(int) Direction.Down] =
-                registry.TryFind(prefix, Direction.Down, out preparedTags[(int) Direction.Down]);
-            preparedTagExists[(int) Direction.Left] =
-                registry.TryFind(prefix, Direction.Left, out preparedTags[(int) Direction.Left]);
+            preparedTagExists[(int)Direction.Up] =
+                registry.TryFind(prefix, Direction.Up, out preparedTags[(int)Direction.Up]);
+            preparedTagExists[(int)Direction.Right] =
+                registry.TryFind(prefix, Direction.Right, out preparedTags[(int)Direction.Right]);
+            preparedTagExists[(int)Direction.Down] =
+                registry.TryFind(prefix, Direction.Down, out preparedTags[(int)Direction.Down]);
+            preparedTagExists[(int)Direction.Left] =
+                registry.TryFind(prefix, Direction.Left, out preparedTags[(int)Direction.Left]);
         }
 
         public override bool Match(int x, int y, TileResultCollector<TRenderTile, TContext> resultCollector)
         {
             coordinates = GridNavigator.NavigateCardinalNeighbours(new MapCoordinate(x, y), coordinates);
 
-            var n = Matches(coordinates[(int) Direction.Up]);
-            var e = Matches(coordinates[(int) Direction.Right]);
-            var s = Matches(coordinates[(int) Direction.Down]);
-            var w = Matches(coordinates[(int) Direction.Left]);
+            var n = Matches(coordinates[(int)Direction.Up]);
+            var e = Matches(coordinates[(int)Direction.Right]);
+            var s = Matches(coordinates[(int)Direction.Down]);
+            var w = Matches(coordinates[(int)Direction.Left]);
             bool result = false;
             if (n)
             {
@@ -64,6 +65,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                     {
                         resultCollector(SpritePosition.Whole, tiles[1], ContextProvider(x, y));
                     }
+
                     result = true;
                 }
 
@@ -73,6 +75,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                     {
                         resultCollector(SpritePosition.Whole, tiles[0], ContextProvider(x, y));
                     }
+
                     result = true;
                 }
             }
@@ -85,6 +88,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                     {
                         resultCollector(SpritePosition.Whole, tiles[2], ContextProvider(x, y));
                     }
+
                     result = true;
                 }
 
@@ -94,6 +98,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                     {
                         resultCollector(SpritePosition.Whole, tiles[3], ContextProvider(x, y));
                     }
+
                     result = true;
                 }
             }

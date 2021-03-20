@@ -5,119 +5,119 @@ using Steropes.Tiles.TemplateGenerator.Model;
 
 namespace Steropes.Tiles.TemplateGenerator.Actions
 {
-  public class ModelCommand : Command
-  {
-    TextureFile content;
-
-    public ModelCommand(MainModel model)
+    public class ModelCommand : Command
     {
-      this.Model = model ?? throw new ArgumentNullException(nameof(model));
+        TextureFile content;
 
-      this.Model.PropertyChanged += OnContentChanged;
-      this.Model.Selection.CollectionChanged += OnSelectionChanged;
-    }
-
-    void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-      Enabled = RefreshEnabled();
-    }
-
-    public MainModel Model { get; }
-
-    protected TextureFile Content
-    {
-      get { return content; }
-      set
-      {
-        if (Equals(value, content))
+        public ModelCommand(MainModel model)
         {
-          return;
+            this.Model = model ?? throw new ArgumentNullException(nameof(model));
+
+            this.Model.PropertyChanged += OnContentChanged;
+            this.Model.Selection.CollectionChanged += OnSelectionChanged;
         }
 
-        var old = content;
-        content = value;
-        OnPropertyChanged();
-        NotifyContentChanged(old, content);
-      }
-    }
-
-    protected TextureFile SelectedFile
-    {
-      get
-      {
-        foreach (var s in Model.Selection)
+        void OnSelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-          if (s is TextureFile c)
-          {
-            return c;
-          }
+            Enabled = RefreshEnabled();
         }
 
-        return SelectedCollection?.Parent;
-      }
-    }
+        public MainModel Model { get; }
 
-    protected TextureCollection SelectedCollection
-    {
-      get
-      {
-        foreach (var s in Model.Selection)
+        protected TextureFile Content
         {
-          if (s is TextureCollection c)
-          {
-            return c;
-          }
+            get { return content; }
+            set
+            {
+                if (Equals(value, content))
+                {
+                    return;
+                }
+
+                var old = content;
+                content = value;
+                OnPropertyChanged();
+                NotifyContentChanged(old, content);
+            }
         }
 
-        return SelectedGrid?.Parent;
-      }
-    }
-
-    protected TextureGrid SelectedGrid
-    {
-      get
-      {
-        foreach (var s in Model.Selection)
+        protected TextureFile SelectedFile
         {
-          if (s is TextureGrid c)
-          {
-            return c;
-          }
+            get
+            {
+                foreach (var s in Model.Selection)
+                {
+                    if (s is TextureFile c)
+                    {
+                        return c;
+                    }
+                }
+
+                return SelectedCollection?.Parent;
+            }
         }
 
-        return SelectedTile?.Parent;
-      }
-    }
-
-    protected TextureTile SelectedTile
-    {
-      get
-      {
-        foreach (var s in Model.Selection)
+        protected TextureCollection SelectedCollection
         {
-          if (s is TextureTile c)
-          {
-            return c;
-          }
+            get
+            {
+                foreach (var s in Model.Selection)
+                {
+                    if (s is TextureCollection c)
+                    {
+                        return c;
+                    }
+                }
+
+                return SelectedGrid?.Parent;
+            }
         }
 
-        return null;
-      }
-    }
+        protected TextureGrid SelectedGrid
+        {
+            get
+            {
+                foreach (var s in Model.Selection)
+                {
+                    if (s is TextureGrid c)
+                    {
+                        return c;
+                    }
+                }
 
-    protected virtual void NotifyContentChanged(TextureFile old, TextureFile textureFile)
-    {
-      Enabled = RefreshEnabled();
-    }
+                return SelectedTile?.Parent;
+            }
+        }
 
-    protected virtual bool RefreshEnabled()
-    {
-      return Model.Content != null;
-    }
+        protected TextureTile SelectedTile
+        {
+            get
+            {
+                foreach (var s in Model.Selection)
+                {
+                    if (s is TextureTile c)
+                    {
+                        return c;
+                    }
+                }
 
-    void OnContentChanged(object sender, PropertyChangedEventArgs e)
-    {
-      Content = Model.Content;
+                return null;
+            }
+        }
+
+        protected virtual void NotifyContentChanged(TextureFile old, TextureFile textureFile)
+        {
+            Enabled = RefreshEnabled();
+        }
+
+        protected virtual bool RefreshEnabled()
+        {
+            return Model.Content != null;
+        }
+
+        void OnContentChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Content = Model.Content;
+        }
     }
-  }
 }

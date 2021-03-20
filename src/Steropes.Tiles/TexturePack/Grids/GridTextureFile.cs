@@ -15,13 +15,13 @@ namespace Steropes.Tiles.TexturePack.Grids
     public class GridTextureFile<TTile, TTexture, TRawTexture> : ITextureFile<TTile>
         where TTile : ITexturedTile<TTexture>
         where TTexture : ITexture
-        where TRawTexture: IRawTexture<TTexture>
+        where TRawTexture : IRawTexture<TTexture>
     {
         readonly IntDimension tileSize;
         readonly ITileProducer<TTile, TTexture, TRawTexture> producer;
         readonly IContentLoader<TRawTexture> loader;
 
-        public GridTextureFile(string name, 
+        public GridTextureFile(string name,
                                IntDimension tileSize,
                                [NotNull] ITileProducer<TTile, TTexture, TRawTexture> producer,
                                [NotNull] IContentLoader<TRawTexture> loader,

@@ -23,10 +23,10 @@
 
 namespace Steropes.Tiles.Demo.Core.Util
 {
-  public enum AnimationDirection
-  {
-    Forward,
+    public enum AnimationDirection
+    {
+        Forward,
 
-    Backward,
-  }
+        Backward,
+    }
 }

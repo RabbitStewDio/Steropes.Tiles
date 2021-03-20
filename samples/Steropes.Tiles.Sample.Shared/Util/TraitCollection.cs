@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 namespace Steropes.Tiles.Demo.Core.Util
 {
-    public class TraitCollection<T>: IEnumerable<T> where T : class
+    public class TraitCollection<T> : IEnumerable<T>
+        where T : class
     {
         readonly List<T> contents;
 
@@ -20,7 +21,7 @@ namespace Steropes.Tiles.Demo.Core.Util
                 return;
             }
 
-            var t = (T) o;
+            var t = (T)o;
             contents.Add(t);
         }
 

@@ -2,11 +2,11 @@ using System;
 
 namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
 {
-  public static class RandomHelper
-  {
-    public static double Next(this Random r, double range)
+    public static class RandomHelper
     {
-      return r.NextDouble() * range;
+        public static double Next(this Random r, double range)
+        {
+            return r.NextDouble() * range;
+        }
     }
-  }
 }

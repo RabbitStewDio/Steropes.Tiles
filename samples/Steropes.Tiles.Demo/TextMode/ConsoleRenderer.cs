@@ -6,63 +6,63 @@ using Steropes.Tiles.Renderer;
 
 namespace Steropes.Tiles.Demo.TextMode
 {
-  public class ConsoleRenderer : IRenderCallback<TextTile, Nothing>
-  {
-    int discarded;
-    int drawn;
-    IntDimension tileSize;
-
-    public void StartDrawing()
+    public class ConsoleRenderer : IRenderCallback<TextTile, Nothing>
     {
-      tileSize = new IntDimension(2, 2);
-      drawn = 0;
-      discarded = 0;
-      Console.Clear();
-    }
+        int discarded;
+        int drawn;
+        IntDimension tileSize;
 
-    public void StartLine(int line, ContinuousViewportCoordinates screenPos)
-    {
-    }
+        public void StartDrawing()
+        {
+            tileSize = new IntDimension(2, 2);
+            drawn = 0;
+            discarded = 0;
+            Console.Clear();
+        }
 
-    public void EndLine(int line, ContinuousViewportCoordinates screenPos)
-    {
-    }
+        public void StartLine(int line, ContinuousViewportCoordinates screenPos)
+        { }
 
-    public void FinishedDrawing()
-    {
-      Console.BackgroundColor = ConsoleColor.Black;
-      Console.ForegroundColor = ConsoleColor.White;
-      Console.SetCursorPosition(0, Console.WindowHeight - 2);
-      Console.Write($"Drawn: {drawn} Discarded: {discarded} Total: {drawn + discarded}");
-    }
+        public void EndLine(int line, ContinuousViewportCoordinates screenPos)
+        { }
 
-    public virtual void Draw(TextTile tile, Nothing context, SpritePosition pos, ContinuousViewportCoordinates p)
-    {
-      if (pos != SpritePosition.Whole)
-      {
-        return;
-      }
-      var pixels = p.ToPixels(tileSize);
-      DrawOnScreen(tile, (int) Math.Floor(pixels.X), (int) Math.Floor(pixels.Y));
-    }
+        public void FinishedDrawing()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(0, Console.WindowHeight - 2);
+            Console.Write($"Drawn: {drawn} Discarded: {discarded} Total: {drawn + discarded}");
+        }
 
-    protected void DrawOnScreen(TextTile tile, int screenX, int screenY)
-    {
-      if (screenX < 0 || screenX >= Console.BufferWidth)
-      {
-        discarded += 1;
-        return;
-      }
-      if (screenY < 0 || screenY >= Console.BufferHeight)
-      {
-        discarded += 1;
-        return;
-      }
+        public virtual void Draw(TextTile tile, Nothing context, SpritePosition pos, ContinuousViewportCoordinates p)
+        {
+            if (pos != SpritePosition.Whole)
+            {
+                return;
+            }
 
-      Console.SetCursorPosition(screenX, screenY);
-      Console.ForegroundColor = tile.Color;
-      Console.Write(tile.Rendering);
-      drawn += 1;
+            var pixels = p.ToPixels(tileSize);
+            DrawOnScreen(tile, (int)Math.Floor(pixels.X), (int)Math.Floor(pixels.Y));
+        }
+
+        protected void DrawOnScreen(TextTile tile, int screenX, int screenY)
+        {
+            if (screenX < 0 || screenX >= Console.BufferWidth)
+            {
+                discarded += 1;
+                return;
+            }
+
+            if (screenY < 0 || screenY >= Console.BufferHeight)
+            {
+                discarded += 1;
+                return;
+            }
+
+            Console.SetCursorPosition(screenX, screenY);
+            Console.ForegroundColor = tile.Color;
+            Console.Write(tile.Rendering);
+            drawn += 1;
+        }
     }
-  }
 }

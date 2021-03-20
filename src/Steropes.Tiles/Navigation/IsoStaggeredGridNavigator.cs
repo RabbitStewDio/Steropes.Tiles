@@ -11,6 +11,7 @@ namespace Steropes.Tiles.Navigation
                 result = source;
                 return true;
             }
+
             result = source;
             for (var i = 0; i < steps; i += 1)
             {
@@ -47,6 +48,7 @@ namespace Steropes.Tiles.Navigation
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
                 }
             }
+
             return true;
         }
     }
