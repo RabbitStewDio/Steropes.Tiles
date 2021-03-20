@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Steropes.Tiles.Matcher.TileTags;
 using Steropes.Tiles.Navigation;
 
@@ -37,14 +38,9 @@ namespace Steropes.Tiles.Matcher.Registry
                                                         TileTagEntries.CreateShortCardinalIndexTagEntries());
     }
 
-    public TRenderTile Find(string tag, CardinalIndex selector)
-    {
-      return baseRegistry.Find(string.Format(format, tag, suffixMapping.Lookup(selector).Tag));
-    }
-
     public bool TryFind(string tag, CardinalIndex selector, out TRenderTile tile)
     {
-      return baseRegistry.TryFind(string.Format(format, tag, suffixMapping.Lookup(selector).Tag), out tile);
+      return baseRegistry.TryFind(string.Format(CultureInfo.InvariantCulture, format, tag, suffixMapping.Lookup(selector).Tag), out tile);
     }
 
     public IEnumerable<string> GenerateNames(string tag)
@@ -52,7 +48,7 @@ namespace Steropes.Tiles.Matcher.Registry
       var tags = suffixMapping.ToSelectionArray();
       foreach (var selection in tags)
       {
-        yield return string.Format(format, tag, selection.Tag);
+        yield return string.Format(CultureInfo.InvariantCulture, format, tag, selection.Tag);
       }
     }
   }

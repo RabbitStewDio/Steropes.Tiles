@@ -10,11 +10,11 @@ namespace Steropes.Tiles.Matcher.Registry
     {
     }
 
-    public static readonly TraceSource MissingTilesTracer = TracingUtil.Create<TileRegistryTracing>();
+    public static readonly ILogAdapter MissingTilesTracer = LogProvider.CreateLogger<TileRegistryTracing>();
 
     public static void EmitMissingTileWarning(string tag)
     {
-      MissingTilesTracer.TraceEvent(TraceEventType.Warning, 0, "Missing tile in registry for tag ({0})", tag);
+      MissingTilesTracer.Trace( "Missing tile in registry for tag ({0})", tag);
     }
 
     public static void EmitMissingTileWarning(string tag, IReadOnlyList<string> alts)
@@ -23,10 +23,10 @@ namespace Steropes.Tiles.Matcher.Registry
       {
         EmitMissingTileWarning(tag);
       }
-      else if (MissingTilesTracer.Switch.ShouldTrace(TraceEventType.Warning))
+      else if (MissingTilesTracer.IsTraceEnabled)
       {
         var t = string.Join(",", alts);
-        MissingTilesTracer.TraceEvent(TraceEventType.Warning, 0, "Missing tile in registry for tag ({0}) or alternative tags {1}", tag, t);
+        MissingTilesTracer.Trace( "Missing tile in registry for tag ({0}) or alternative tags {1}", tag, t);
       }
     }
   }

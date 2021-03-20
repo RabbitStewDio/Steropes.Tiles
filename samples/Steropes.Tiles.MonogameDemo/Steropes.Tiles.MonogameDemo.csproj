@@ -51,6 +51,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Steropes.Tiles.Monogame\Steropes.Tiles.Monogame.csproj" />
+    <ProjectReference Include="..\Steropes.Tiles.Sample.Shared\Steropes.Tiles.Sample.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@ namespace Steropes.Tiles.Matcher.Registry
   {
     readonly List<TRenderTile> fallback;
     readonly Dictionary<string, IReadOnlyList<TRenderTile>> tilesByName;
-    readonly TraceSource logger = TileRegistryTracing.MissingTilesTracer;
+    readonly ILogAdapter logger = TileRegistryTracing.MissingTilesTracer;
 
     public MultiTileRegistry(TRenderTile fallback)
     {
@@ -34,7 +34,7 @@ namespace Steropes.Tiles.Matcher.Registry
         return tile;
       }
 
-      logger.TraceEvent(TraceEventType.Warning, 0, "Missing tile in registry for tag ({0})", tag);
+      logger.Trace("Missing tile in registry for tag ({0})", tag);
       return fallback;
     }
 

@@ -12,11 +12,11 @@ namespace Steropes.Tiles
     public RendererControl(IntDimension tileSize, RenderType renderType)
     {
       TileSize = tileSize;
-      RenderType = renderType;
+      ActiveRenderType = renderType;
     }
 
     public IntDimension TileSize { get; }
-    public RenderType RenderType { get; }
+    public RenderType ActiveRenderType { get; }
 
     public Rect Bounds
     {

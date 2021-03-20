@@ -58,12 +58,6 @@ namespace Steropes.Tiles.Matcher.Registry
       return retval;
     }
 
-    public TRenderTile Find(string tag, CornerTileSelectionKey selector)
-    {
-      var format = suffixMapping[selector.LinearIndex];
-      return baseRegistry.Find(string.Format(format, tag));
-    }
-
     public bool TryFind(string tag, CornerTileSelectionKey selector, out TRenderTile tile)
     {
       var format = suffixMapping[selector.LinearIndex];

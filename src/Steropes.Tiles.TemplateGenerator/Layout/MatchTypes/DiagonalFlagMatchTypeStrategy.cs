@@ -26,7 +26,11 @@ namespace Steropes.Tiles.TemplateGenerator.Layout.MatchTypes
       for (var index = 0; index < keys.Length; index++)
       {
         var key = keys[index];
-        var tileName = reg.Find(grid.Name, key);
+        if (!reg.TryFind(grid.Name, key, out var tileName))
+        {
+            continue;
+        }
+
         var x = index % 4;
         var y = index / 4;
         retval.Add(new TextureTile(true, x, y, tileName)

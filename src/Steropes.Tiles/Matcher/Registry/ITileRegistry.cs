@@ -12,9 +12,7 @@
     ///   Never return null. If a tile is not found, either throw an error, or return a no-op-tile.
     /// </summary>
     /// <param name="tag"></param>
-    /// <returns></returns>
-    TRenderTile Find(string tag);
-
+    /// <returns>true if the tile has been found, false otherwise</returns>
     bool TryFind(string tag, out TRenderTile tile);
   }
 }

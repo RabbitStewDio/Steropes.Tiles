@@ -13,17 +13,20 @@ namespace Steropes.Tiles
   public interface IRendererControl: INotifyPropertyChanged
   {
     IntDimension TileSize { get; }
-    RenderType RenderType { get; }
+    RenderType ActiveRenderType { get; }
     Rect Bounds { get; }
   }
 
   public static class RendererControlExtensions
   {
     /// <summary>
-    ///  The map viewport only deals with full tiles. We need to update the 
+    ///  Calculates the difference in pixels between the available space on screen
+    ///  and the numbers of tiles rendered. A MapViewPort only deals with full
+    ///  tiles, but correct rendering with smooth scrolling requires fractional
+    ///  tiles to offset the rendered content on screen.
     /// </summary>
     /// <returns></returns>
-    public static DoublePoint CalculateTileOffset(this IRendererControl viewport)
+    public static IntPoint CalculateTileOffset(this IRendererControl viewport)
     {
       var ctr = viewport.Bounds;
       var tileSize = viewport.TileSize;
@@ -38,7 +41,7 @@ namespace Steropes.Tiles
       var rdx = (int)Math.Round(rmx / 2);
       var rdy = (int)Math.Round(rmy / 2);
 
-      return new DoublePoint(-rdx + (int)ctr.X, -rdy + (int)ctr.Y);
+      return new IntPoint(-rdx + (int)ctr.X, -rdy + (int)ctr.Y);
     }
 
   }

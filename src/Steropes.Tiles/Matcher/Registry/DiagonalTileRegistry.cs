@@ -48,12 +48,6 @@ namespace Steropes.Tiles.Matcher.Registry
       return string.Format(tagFormat, n, e, s, w);
     }
 
-    public TRenderTile Find(string tag, DiagonalTileSelectionKey selector)
-    {
-      var format = suffixMapping[selector.LinearIndex];
-      return baseRegistry.Find(string.Format(format, tag));
-    }
-
     public bool TryFind(string tag, DiagonalTileSelectionKey selector, out TRenderTile tile)
     {
       var format = suffixMapping[selector.LinearIndex];

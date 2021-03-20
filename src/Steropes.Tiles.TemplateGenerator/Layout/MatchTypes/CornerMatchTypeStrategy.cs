@@ -46,14 +46,22 @@ namespace Steropes.Tiles.TemplateGenerator.Layout.MatchTypes
       }
 
       var reg = new CornerTileRegistry<string>(new ReflectorRegistry(), null, null, grid.Pattern);
-      return keys.Select(cornerKey =>
+      
+      var retval = new List<TextureTile>();
+      foreach (var name in keys)
       {
-        var tileName = reg.Find(grid.Name, cornerKey.Key);
-        return new TextureTile(true, cornerKey.Value.X, cornerKey.Value.Y, tileName)
-        {
-          SelectorHint = cornerKey.Key.ToString()
-        };
-      }).ToList();
+          if (!reg.TryFind(grid.Name, name.Key, out var tileName))
+          {
+              continue;
+          }
+
+          retval.Add(new TextureTile(true, name.Value.X, name.Value.Y, tileName)
+          {
+              SelectorHint = name.Key.ToString()
+          });
+      }
+
+      return retval;
     }
   }
 }

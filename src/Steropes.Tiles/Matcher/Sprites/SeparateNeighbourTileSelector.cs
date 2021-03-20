@@ -17,6 +17,7 @@ namespace Steropes.Tiles.Matcher.Sprites
   public class SeparateNeighbourTileSelector<TRenderTile, TContext> : BaseTileSelector<TRenderTile, TContext>
   {
     readonly TRenderTile[] tiles;
+    readonly bool[] tileExists;
     readonly NeighbourMatchPosition[] positions;
     MapCoordinate[] neighbourPositions;
 
@@ -28,19 +29,20 @@ namespace Steropes.Tiles.Matcher.Sprites
       matcher, gridNavigator, contextProvider)
     {
       positions = (NeighbourMatchPosition[]) Enum.GetValues(typeof(NeighbourMatchPosition));
-      tiles = Prepopulate(prefix, registry);
+      Prepopulate(prefix, registry, out tiles, out tileExists);
     }
 
-    TRenderTile[] Prepopulate(string tag, ITileRegistryEx<NeighbourMatchPosition, TRenderTile> reg)
+    void Prepopulate(string tag, ITileRegistryEx<NeighbourMatchPosition, TRenderTile> reg,
+                     out TRenderTile[] matches, out bool[] matchesExist)
     {
-      var matches = new TRenderTile[positions.Length];
+      matches = new TRenderTile[positions.Length];
+      matchesExist = new bool[positions.Length];
+
       for (var i = 0; i < positions.Length; i++)
       {
         var matchPos = positions[i];
-        matches[i] = reg.Find(tag, matchPos);
+        matchesExist[i] = reg.TryFind(tag, matchPos, out matches[i]);
       }
-
-      return matches;
     }
 
     public override bool Match(int x, int y, TileResultCollector<TRenderTile, TContext> resultCollector)
@@ -56,7 +58,7 @@ namespace Steropes.Tiles.Matcher.Sprites
       for (var i = 1; i < positions.Length; i++)
       {
         var mc = neighbourPositions[i - 1];
-        if (Matcher(mc.X, mc.Y))
+        if (Matcher(mc.X, mc.Y) && tileExists[i])
         {
           resultCollector(SpritePosition.Whole, tiles[i], context);
           matchedOne = true;
@@ -66,7 +68,10 @@ namespace Steropes.Tiles.Matcher.Sprites
       if (!matchedOne)
       {
         // isolated tile ..
-        resultCollector(SpritePosition.Whole, tiles[0], context);
+        if (tileExists[0])
+        {
+            resultCollector(SpritePosition.Whole, tiles[0], context);
+        }
       }
 
       return true;

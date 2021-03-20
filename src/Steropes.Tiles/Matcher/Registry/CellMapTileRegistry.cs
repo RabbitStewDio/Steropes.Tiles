@@ -13,11 +13,6 @@ namespace Steropes.Tiles.Matcher.Registry
       this.format = format;
     }
 
-    public TRenderTile Find(string tag, CellMapTileSelectorKey tileSelector)
-    {
-      return baseRegistry.Find(tileSelector.Format(tag, format));
-    }
-
     public bool TryFind(string tag, CellMapTileSelectorKey selector, out TRenderTile tile)
     {
       return baseRegistry.TryFind(selector.Format(tag, format), out tile);

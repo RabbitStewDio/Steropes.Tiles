@@ -36,7 +36,7 @@ namespace Steropes.Tiles.Monogame
       RenderControl = renderControl ?? throw new ArgumentNullException(nameof(renderControl));
       RenderControl.PropertyChanged += OnRenderPropertyChanged;
 
-      if (config.RenderType != renderControl.RenderType)
+      if (config.RenderType != renderControl.ActiveRenderType)
       {
         throw new ArgumentException("RenderConfig render type and renderControl render type must match.");
       }
@@ -65,7 +65,7 @@ namespace Steropes.Tiles.Monogame
       set { RenderControl.Bounds = value; }
     }
 
-    public RenderType RenderType
+    public RenderType ActiveRenderType
     {
       get { return config.RenderType; }
     }

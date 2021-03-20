@@ -70,11 +70,6 @@ namespace Steropes.Tiles.Matcher.Registry
       }
     }
 
-    public TRenderTile Find(string tag, NeighbourMatchPosition selector)
-    {
-      return baseRegistry.Find(string.Format(format, tag, suffixMapping.Lookup(selector).Tag));
-    }
-
     public bool TryFind(string tag, NeighbourMatchPosition selector, out TRenderTile tile)
     {
       return baseRegistry.TryFind(string.Format(format, tag, suffixMapping.Lookup(selector).Tag), out tile);

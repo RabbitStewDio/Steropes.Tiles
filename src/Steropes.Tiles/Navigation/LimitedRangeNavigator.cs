@@ -5,7 +5,7 @@ namespace Steropes.Tiles.Navigation
 {
   public class LimitedRangeNavigator<T> : IMapNavigator<T> where T : struct
   {
-    readonly TraceSource logger = TracingUtil.Create<LimitedRangeNavigator<T>>();
+    readonly ILogAdapter logger = LogProvider.CreateLogger<LimitedRangeNavigator<T>>();
     readonly int lowerX;
     readonly int lowerY;
     readonly IMapNavigator<T> parent;
@@ -35,7 +35,7 @@ namespace Steropes.Tiles.Navigation
       var validNavigation = clampedY == result.Y && clampedX == result.X;
       if (!validNavigation)
       {
-        logger.TraceEvent(TraceEventType.Verbose, 0, "Invalid navigation {0}, {1} vs {2}", clampedX ,clampedY , result);
+        logger.Trace("Invalid navigation {0}, {1} vs {2}", clampedX ,clampedY , result);
       }
       return resultFlag && validNavigation;
     }

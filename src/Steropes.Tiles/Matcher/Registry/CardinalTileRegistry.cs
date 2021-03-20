@@ -35,12 +35,6 @@ namespace Steropes.Tiles.Matcher.Registry
       this.suffixMapping = CardinalTileSelectorKey.Values.Select(e => Format(e, tags, tagFormat)).ToArray();
     }
 
-    public TRenderTile Find(string tag, CardinalTileSelectorKey selector)
-    {
-      var format = suffixMapping[selector.LinearIndex];
-      return baseRegistry.Find(string.Format(format, tag));
-    }
-
     public bool TryFind(string tag, CardinalTileSelectorKey selector, out TRenderTile tile)
     {
       var format = suffixMapping[selector.LinearIndex];

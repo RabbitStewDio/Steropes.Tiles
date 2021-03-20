@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steropes.Tiles.MonogameDemo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steropes.Tiles.TemplateGenerator", "src\Steropes.Tiles.TemplateGenerator\Steropes.Tiles.TemplateGenerator.csproj", "{3BB579A8-A0A0-4209-B9F2-EDEE833AB008}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steropes.Tiles.Sample.Shared", "samples\Steropes.Tiles.Sample.Shared\Steropes.Tiles.Sample.Shared.csproj", "{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,5 +116,17 @@ Global
 		{3BB579A8-A0A0-4209-B9F2-EDEE833AB008}.Release|x64.Build.0 = Release|Any CPU
 		{3BB579A8-A0A0-4209-B9F2-EDEE833AB008}.Release|x86.ActiveCfg = Release|Any CPU
 		{3BB579A8-A0A0-4209-B9F2-EDEE833AB008}.Release|x86.Build.0 = Release|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Debug|x64.Build.0 = Debug|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Debug|x86.Build.0 = Debug|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Release|x64.ActiveCfg = Release|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Release|x64.Build.0 = Release|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Release|x86.ActiveCfg = Release|Any CPU
+		{0AF876CD-52FC-44DE-8A7E-8E00777F4D84}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

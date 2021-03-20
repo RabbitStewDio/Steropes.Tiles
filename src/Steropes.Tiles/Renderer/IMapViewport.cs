@@ -24,7 +24,8 @@ namespace Steropes.Tiles.Renderer
     IntInsets RenderInsets { get; }
 
     /// <summary>
-    ///  The rendered area in map coordinates. This measure is given in map units.
+    ///  The rendered area in map coordinates. This measure is given in map units and contains
+    ///  the overdraw.
     /// </summary>
     IntDimension RenderedArea { get; }
   }

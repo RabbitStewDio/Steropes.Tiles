@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.TemplateGenerator.Model;
@@ -29,14 +28,22 @@ namespace Steropes.Tiles.TemplateGenerator.Layout.MatchTypes
       var reg = new CardinalIndexTileRegistry<string>(new ReflectorRegistry(), 
                                                       TileTagEntries.CreateCardinalIndexTagEntries(), 
                                                       grid.Pattern);
-      return ni.Select(name =>
+
+      var retval = new List<TextureTile>();
+      foreach (var name in ni)
       {
-        var tileName = reg.Find(grid.Name, name.Key);
-        return new TextureTile(true, name.Value.X, name.Value.Y, tileName)
-        {
-          SelectorHint = name.Key.ToString()
-        };
-      }).ToList();
+          if (!reg.TryFind(grid.Name, name.Key, out var tileName))
+          {
+              continue;
+          }
+
+          retval.Add(new TextureTile(true, name.Value.X, name.Value.Y, tileName)
+          {
+              SelectorHint = name.Key.ToString()
+          });
+      }
+
+      return retval;
     }
   }
 }

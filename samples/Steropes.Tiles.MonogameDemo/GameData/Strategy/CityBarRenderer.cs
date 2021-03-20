@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Steropes.Tiles.DataStructures;
+using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
 using Steropes.Tiles.Matcher.Sprites;
-using Steropes.Tiles.MonogameDemo.GameData.Strategy.Model;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Renderer;
 using Steropes.UI.Components;
-using Steropes.UI.Platform;
 using Steropes.UI.Widgets;
 using Steropes.UI.Widgets.Container;
 

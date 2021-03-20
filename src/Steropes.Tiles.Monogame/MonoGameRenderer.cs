@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Sprites;
-using Steropes.Tiles.Monogame.Tiles;
 using Steropes.Tiles.Renderer;
+using Steropes.Tiles.TexturePack;
 
 namespace Steropes.Tiles.Monogame
 {
@@ -18,7 +18,7 @@ namespace Steropes.Tiles.Monogame
   ///  
   /// </summary>
   /// <typeparam name="TContext"></typeparam>
-  public class MonoGameRenderer<TContext> : IRenderCallback<ITexturedTile, TContext>
+  public class MonoGameRenderer<TContext> : IRenderCallback<MonoGameTile, TContext>
   {
     public IRendererControl Viewport { get; }
     readonly TraceSource logger = TracingUtil.Create<MonoGameRenderer<TContext>>();
@@ -33,7 +33,7 @@ namespace Steropes.Tiles.Monogame
       SpriteBatch = new SpriteBatch(graphicsDeviceService.GraphicsDevice);
 
       this.GraphicsDeviceService = graphicsDeviceService;
-      offsetsBySpritePosition = SpritePositionExtensions.OffsetsFor(viewport.RenderType);
+      offsetsBySpritePosition = SpritePositionExtensions.OffsetsFor(viewport.ActiveRenderType);
       tileSize = viewport.TileSize;
       enableScissorTest = RasterizerState.CullCounterClockwise.Copy();
       enableScissorTest.ScissorTestEnable = true;
@@ -62,9 +62,9 @@ namespace Steropes.Tiles.Monogame
       SpriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)s.X * 2, (int)s.Y * 2, (int) Math.Ceiling(s.Width) * 2, (int)Math.Ceiling(s.Height) * 2);
     }
 
-    public void Draw(ITexturedTile tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates c)
+    public void Draw(MonoGameTile tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates c)
     {
-      if (tile.Texture == null)
+      if (!tile.HasTexture)
       {
         // This must be a dummy tile. Tile matchers never return null after all.
         return;
@@ -91,7 +91,7 @@ namespace Steropes.Tiles.Monogame
       }
 
       var tint = Color.White;
-      SpriteBatch.Draw(texture.Tex2D, destPos, source, tint);
+      SpriteBatch.Draw(texture.Texture, destPos, source.ToXna(), tint);
     }
 
     public void FinishedDrawing()

@@ -20,6 +20,7 @@ namespace Steropes.Tiles.Matcher.Sprites
     readonly string prefix;
     readonly Func<int, int, TContext> contextProvider;
     readonly TRenderTile[] tiles;
+    readonly bool[] tileExists;
 
     public CellMapTileSelector(ICellMatcher matchers,
                                IMapNavigator<GridDirection> gridNavigator,
@@ -32,15 +33,16 @@ namespace Steropes.Tiles.Matcher.Sprites
       this.registry = registry;
       this.prefix = prefix;
       this.contextProvider = contextProvider ?? DefaultContextProvider;
-      this.tiles = Prepare();
+      Prepare(out tiles, out tileExists);
     }
 
-    TRenderTile[] Prepare()
+    void Prepare(out TRenderTile[] tiles, out bool[] exists)
     {
       var owner = matchers.Owner;
       var card = owner.Count;
       var elements = (int) Math.Pow(card, 4);
-      var result = new TRenderTile[elements];
+      tiles = new TRenderTile[elements];
+      exists = new bool[elements];
       for (int a = 0; a < card; a += 1)
       {
         for (int b = 0; b < card; b += 1)
@@ -50,13 +52,11 @@ namespace Steropes.Tiles.Matcher.Sprites
             for (int d = 0; d < card; d += 1)
             {
               var key = new CellMapTileSelectorKey(owner[a], owner[b], owner[c], owner[d]);
-              result[key.LinearIndex] = registry.Find(prefix, key);
+              exists[key.LinearIndex] = registry.TryFind(prefix, key, out tiles[key.LinearIndex]);
             }
           }
         }
       }
-
-      return result;
     }
 
     static TContext DefaultContextProvider(int x, int y)
@@ -127,9 +127,13 @@ namespace Steropes.Tiles.Matcher.Sprites
           matchers.Match(coordC.X, coordC.Y, out ITileTagEntrySelection matchC) &&
           matchers.Match(coordD.X, coordD.Y, out ITileTagEntrySelection matchD))
       {
-        var tile = tiles[CellMapTileSelectorKey.LinearIndexOf(matchA, matchB, matchC, matchD)];
-        resultCollector(SpritePosition.CellMap, tile, contextProvider(x, y));
-        return true;
+          var linearIndex = CellMapTileSelectorKey.LinearIndexOf(matchA, matchB, matchC, matchD);
+          if (tileExists[linearIndex])
+          {
+              var tile = tiles[linearIndex];
+              resultCollector(SpritePosition.CellMap, tile, contextProvider(x, y));
+              return true;
+          }
       }
 
       return false;

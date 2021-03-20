@@ -26,7 +26,7 @@ namespace Steropes.Tiles.Plotter
   /// </summary>
   public class GridPlotter : IPlotter
   {
-    readonly TraceSource logger = TracingUtil.Create<GridPlotter>();
+    readonly ILogAdapter logger = LogProvider.CreateLogger<GridPlotter>();
     readonly IMapNavigator<GridDirection> mapAccessNavigator;
 
     /// <summary>
@@ -67,9 +67,9 @@ namespace Steropes.Tiles.Plotter
       valid &= mapAccessNavigator.NavigateTo(GridDirection.West, mapRowStart, out mapRowStart, insets.Left);
 
       var rowStart = northWest;
-      if (logger.Switch.ShouldTrace(TraceEventType.Verbose))
+      if (logger.IsTraceEnabled)
       {
-        logger.TraceEvent(TraceEventType.Verbose, 0, 
+        logger.Trace(
           "Rendering frame lines from {0} -> {1} in area {2} (Insets: {3}, ScreenOrigin: {4}, MapOrigin: {5})", 
           northWest, southWest, area, insets, screenOrigin, mapOrigin);
       }
@@ -111,12 +111,12 @@ namespace Steropes.Tiles.Plotter
                     bool firstCellValid,
                     int logicalLine)
     {
-      if (logger.Switch.ShouldTrace(TraceEventType.Verbose))
+      if (logger.IsTraceEnabled)
       {
-        logger.TraceEvent(TraceEventType.Verbose, 0, "Rendering line {0} / {1}with {2} tiles and valid={3}", rowStart, screenRowStart, width, firstCellValid);
+        logger.Trace("Rendering line {0} / {1}with {2} tiles and valid={3}", rowStart, screenRowStart, width, firstCellValid);
         var coordinateToScreenMapper = ScreenCoordinateMapping.CreateMapToScreenMapper(viewport.RenderType);
         var r = coordinateToScreenMapper(screenRowStart.X, screenRowStart.Y);
-        logger.TraceEvent(TraceEventType.Verbose, 0, "  - start of line on screen ({0},{1})", r.X, r.Y);
+        logger.Trace("  - start of line on screen ({0},{1})", r.X, r.Y);
       }
 
       plotOperation.StartLine(logicalLine, screenRowStart);
@@ -137,9 +137,9 @@ namespace Steropes.Tiles.Plotter
         }
         else
         {
-          if (logger.Switch.ShouldTrace(TraceEventType.Verbose))
+          if (logger.IsTraceEnabled)
           {
-            logger.TraceEvent(TraceEventType.Verbose, 0, "Skipping tile at {0}", currentPos);
+            logger.Trace("Skipping tile at {0}", currentPos);
           }
         }
 
@@ -152,11 +152,11 @@ namespace Steropes.Tiles.Plotter
         }
       }
 
-      if (logger.Switch.ShouldTrace(TraceEventType.Verbose))
+      if (logger.IsTraceEnabled)
       {
         var coordinateToScreenMapper = ScreenCoordinateMapping.CreateMapToScreenMapper(viewport.RenderType);
         var r = coordinateToScreenMapper(screenRowStart.X, screenRowStart.Y);
-        logger.TraceEvent(TraceEventType.Verbose, 0, "  - end of line on screen ({0},{1})", r.X, r.Y);
+        logger.Trace("  - end of line on screen ({0},{1})", r.X, r.Y);
       }
 
       plotOperation.EndLine(logicalLine, screenPos);

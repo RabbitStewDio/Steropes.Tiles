@@ -15,6 +15,7 @@ namespace Steropes.Tiles.Matcher.Sprites
     MapCoordinate[] neighbours;
     readonly ITileTagEntrySelectionFactory<Direction> directionTileTagSelection;
     readonly TRenderTile[] tiles;
+    readonly bool[] tileExists;
 
     public CornerCellSelector(ICellMatcher matchers,
                               GridMatcher selfMatcher,
@@ -33,21 +34,22 @@ namespace Steropes.Tiles.Matcher.Sprites
 
       directionTileTagSelection = TileTagEntries.CreateDirectionTagEntries();
       selectors = PrepareSelectors();
-      tiles = Prepare();
+      Prepare(out tiles, out tileExists);
     }
 
     static TContext DefaultContextProvider(int x, int y)
     {
-      return default(TContext);
+      return default;
     }
 
-
-    TRenderTile[] Prepare()
+    void Prepare(out TRenderTile[] result, out bool[] tileExists)
     {
       var owner = Matchers.Owner;
       var card = Matchers.Cardinality;
       var elements = (int)Math.Pow(card, 3) * directionTileTagSelection.Count;
-      var result = new TRenderTile[elements];
+      result = new TRenderTile[elements];
+      tileExists = new bool[elements];
+
       for (int dir = 0; dir < directionTileTagSelection.Count; dir += 1)
       {
         for (int b = 0; b < card; b += 1)
@@ -57,15 +59,12 @@ namespace Steropes.Tiles.Matcher.Sprites
             for (int d = 0; d < card; d += 1)
             {
               var key = new CellMapTileSelectorKey(directionTileTagSelection[dir], owner[b], owner[c], owner[d]);
-              result[key.LinearIndex] = registry.Find(prefix, key);
+              tileExists[key.LinearIndex] = registry.TryFind(prefix, key, out result[key.LinearIndex]);
             }
           }
         }
       }
-
-      return result;
     }
-
 
     public ICellMatcher Matchers { get; }
     public IMapNavigator<GridDirection> GridNavigator { get; }
