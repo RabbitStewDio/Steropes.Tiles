@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:Steropes.Tiles.TemplateGen.Models"
+             xmlns:views="clr-namespace:Steropes.Tiles.TemplateGen.Views"
+             xmlns:viewModels="clr-namespace:Steropes.Tiles.TemplateGen.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Steropes.Tiles.TemplateGen.Views.TextureFileView">
+    <Design.DataContext>
+        <models:TextureSetFile />
+    </Design.DataContext>
+    
+    <UserControl.Resources>
+        <viewModels:TileTypeToStringConverter x:Key="TileTypeToStringConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <Grid>
+            <Grid.Styles>
+                <Style Selector="Grid > :is(Control)">
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+                <Style Selector="Grid > TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </Grid.Styles>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="120" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0">Name</TextBlock>
+            <TextBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Name}"/>
+            
+            <TextBlock Grid.Column="0" Grid.Row="2">Tile Size</TextBlock>
+            <NumericUpDown Grid.Column="1" Grid.Row="2" Value="{Binding Width}" AllowSpin="false" ShowButtonSpinner="false" />
+            <NumericUpDown Grid.Column="2" Grid.Row="2" Value="{Binding Height}" AllowSpin="false" ShowButtonSpinner="false" />
+
+            <TextBlock Grid.Column="0" Grid.Row="6">Matcher Type</TextBlock>
+            <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" Items="{Binding AvailableTileTypes, Mode=OneTime}" SelectedItem="{Binding TileType}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource TileTypeToStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>                
+            </ComboBox>
+
+            <!-- Todo: Include-File support -->
+        </Grid>
+
+        <views:FormattingMetaDataControl DataContext="{Binding FormattingMetaData}"/>
+    </StackPanel>
+</UserControl>

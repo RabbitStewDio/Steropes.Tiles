@@ -1,4 +1,4 @@
-﻿namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+﻿namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     /// <summary>
     ///   Defines the stacking and size class of the various containers. A container item of a

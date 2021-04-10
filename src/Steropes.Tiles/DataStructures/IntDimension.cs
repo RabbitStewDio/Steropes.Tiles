@@ -2,7 +2,7 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct IntDimension : IEquatable<IntDimension>
+    public readonly struct IntDimension : IEquatable<IntDimension>
     {
         public readonly int Width;
         public readonly int Height;
@@ -22,6 +22,12 @@ namespace Steropes.Tiles.DataStructures
         {
             if (ReferenceEquals(null, obj)) return false;
             return obj is IntDimension && Equals((IntDimension)obj);
+        }
+
+        public void Deconstruct(out int width, out int height)
+        {
+            width = Width;
+            height = Height;
         }
 
         public override int GetHashCode()

@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Strategy;
 using Steropes.Tiles.Monogame;
-using Steropes.Tiles.MonogameDemo.GameData.Strategy;
 using Steropes.Tiles.MonogameDemo.Gui;
+using Steropes.Tiles.Sample.Shared.Strategy;
+using Steropes.Tiles.Sample.Shared.Strategy.Rendering;
 using Steropes.Tiles.TexturePack;
+using Steropes.Tiles.TexturePack.Grids;
 using Steropes.UI;
 using Steropes.UI.Components;
 using Steropes.UI.Platform;
@@ -12,7 +13,7 @@ using Steropes.UI.State;
 using Steropes.UI.Widgets.Container;
 using Insets = Steropes.Tiles.DataStructures.Insets;
 
-namespace Steropes.Tiles.MonogameDemo
+namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
 {
     class GameStateStrategyGame : GameStateFadeTransition
     {
@@ -31,8 +32,8 @@ namespace Steropes.Tiles.MonogameDemo
             var textureOperations = new MonoGameTextureOperations(game.GraphicsDevice);
             var tileProducer = new MonoGameTileProducer(textureOperations);
 
-            var tileSet = CreateTileSet(game, tileProducer, textureOperations);
-            var grf = CreateRenderingFactory(game, gd, tileSet, tileProducer, textureOperations);
+            var tileSet = CreateTileSet(game, tileProducer);
+            var grf = CreateRenderingFactory(gd, tileSet, tileProducer, textureOperations);
 
             var mapComponent = new Group(ui.UIStyle)
             {
@@ -63,8 +64,7 @@ namespace Steropes.Tiles.MonogameDemo
             ui.Root.Content = rootContent;
         }
 
-        StrategyGameRenderingFactory<MonoGameTile, XnaTexture, Color> CreateRenderingFactory(Game game,
-                                                                                             StrategyGameData gameData,
+        StrategyGameRenderingFactory<MonoGameTile, XnaTexture, Color> CreateRenderingFactory(StrategyGameData gameData,
                                                                                              StrategyGameTileSet<MonoGameTile> tileSet,
                                                                                              MonoGameTileProducer tileProducer,
                                                                                              MonoGameTextureOperations textureOperations)
@@ -76,8 +76,7 @@ namespace Steropes.Tiles.MonogameDemo
         }
 
         StrategyGameTileSet<MonoGameTile> CreateTileSet(Game game,
-                                                        MonoGameTileProducer tileProducer,
-                                                        MonoGameTextureOperations textureOperations)
+                                                        MonoGameTileProducer tileProducer)
         {
             var contentLoader = new MonoGameContentLoader(game.Content);
             var tp = new TexturePackLoader<MonoGameTile, XnaTexture, XnaRawTexture>(contentLoader, tileProducer).Read("Tiles/Civ/tiles.xml");
@@ -91,7 +90,7 @@ namespace Steropes.Tiles.MonogameDemo
         {
             var navigationUI = new NavigationUI(ui, gameRendering);
             var pname = nameof(NavigationUI.TileUnderMouseCursor);
-            navigationUI.PropertyChanged += (sender, args) =>
+            navigationUI.PropertyChanged += (_, args) =>
             {
                 if (args.PropertyName == pname)
                 {

@@ -1,37 +1,64 @@
-﻿using FluentAssertions;
+﻿using Avalonia.Media;
+using FluentAssertions;
 using NUnit.Framework;
+using SkiaSharp;
+using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
-using Steropes.Tiles.TemplateGenerator.Layout;
-using Steropes.Tiles.TemplateGenerator.Model;
+using Steropes.Tiles.TemplateGen.Models;
+using Steropes.Tiles.TemplateGen.Models.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Text;
+
+#pragma warning disable 618
 
 namespace Steropes.Tiles.TemplateGenerator.Test.Painter
 {
     public class GridPainterTest
     {
         readonly GeneratorPreferences prefs = new GeneratorPreferences();
-        readonly Color background = Color.Blue;
-        readonly Color border = Color.Red;
-        TextureGrid grid;
-        readonly Color outline = Color.Gray;
+        readonly Color background = Colors.Blue;
+        readonly Color border = Colors.Red;
+        readonly Color outline = Colors.Gray;
 
-        [SetUp]
-        public void SetUp()
+        public readonly struct TextureSetFixture
         {
-            var parent = new TextureCollection
+            public readonly TextureSetFile File;
+            public readonly TileTextureCollection Collection;
+            public readonly TextureGrid Grid;
+
+            public TextureSetFixture(TextureSetFile file, TileTextureCollection collection, TextureGrid grid)
             {
-                Parent = new TextureFile
-                {
-                    Width = 8,
-                    Height = 4,
-                    TileType = TileType.Isometric
-                }
+                File = file;
+                Collection = collection;
+                Grid = grid;
+            }
+
+            public void Deconstruct(out TextureSetFile file, out TileTextureCollection collection, out TextureGrid grid)
+            {
+                file = File;
+                collection = Collection;
+                grid = Grid;
+            }
+        }
+
+        public TextureSetFixture CreateTextureSet(int width = 8, int height = 4, TileType tileType = TileType.Isometric)
+        {
+            var textureSet = new TextureSetFile
+            {
+                Width = width,
+                Height = height,
+                TileType = tileType
             };
 
-            grid = new TextureGrid
+            var gridParent = new TileTextureCollection
+            {
+                Parent = textureSet
+            };
+
+            var grid = new TextureGrid
             {
                 MatcherType = MatcherType.Basic
             };
@@ -44,15 +71,16 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
             grid.TextureTileFormattingMetaData.TileOutlineColor = outline;
             grid.CellSpacing = 1;
 
-            parent.Grids.Add(grid);
+            gridParent.Grids.Add(grid);
+            return new TextureSetFixture(textureSet, gridParent, grid);
         }
 
         [Test]
         public void ValidateBitmapSize()
         {
-            var p = new GridCollectionPainter(prefs);
-            var btmp = p.Produce(grid.Parent);
-
+            var p = new TextureCollectionPainter(prefs);
+            var (_, gridParent, _) = CreateTextureSet();
+            using var btmp = p.CreateBitmap(gridParent);
             btmp.Width.Should().Be(16 + 5);
             btmp.Height.Should().Be(4 + 4);
         }
@@ -60,38 +88,49 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
         [Test]
         public void ValidateBitmapBorder()
         {
-            var p = new GridCollectionPainter(prefs);
-            var btmp = p.Produce(grid.Parent);
+            var p = new TextureCollectionPainter(prefs);
+            var (_, gridParent, _) = CreateTextureSet();
+            var btmp = p.CreateBitmap(gridParent);
+
+            var stream = btmp.Write();
+            File.WriteAllBytes("g:/tmp.png", stream.ToArray());
 
             btmp.Width.Should().Be(16 + 5);
             btmp.Height.Should().Be(4 + 4);
 
-            btmp.GetPixel(0, 5).Should().BeSameColor(border);
-            btmp.GetPixel(btmp.Width - 1, 5).Should().BeSameColor(border);
-            btmp.GetPixel(5, 0).Should().BeSameColor(border);
-            btmp.GetPixel(5, btmp.Height - 1).Should().BeSameColor(border);
+            var pixMap = btmp.PeekPixels();
+
+            pixMap.GetPixelColor(0, 5).Should().BeSameColor(border);
+            pixMap.GetPixelColor(btmp.Width - 1, 5).Should().BeSameColor(border);
+            pixMap.GetPixelColor(5, 0).Should().BeSameColor(border);
+            pixMap.GetPixelColor(5, btmp.Height - 1).Should().BeSameColor(border);
         }
 
         [Test]
         public void ValidateNoOverdrawEvenWidth()
         {
-            var p = new GridCollectionPainter(prefs);
-            var btmp = p.Produce(grid.Parent);
+            var p = new TextureCollectionPainter(prefs);
+            var (_, gridParent, _) = CreateTextureSet();
+            var btmp = p.CreateBitmap(gridParent);
+            var pixMap = btmp.PeekPixels();
 
-            var asText = Print(btmp);
+            var asText = Print(pixMap);
             Console.WriteLine(asText);
 
             btmp.Width.Should().Be(16 + 5);
             btmp.Height.Should().Be(4 + 4);
 
-            var goldenSample = "ccccccccccccccccccccc\n" +
-                               "c...................c\n" +
-                               "c.###dd###.###dd###.c\n" +
-                               "c.#dd##dd#.#dd##dd#.c\n" +
-                               "c.#dd##dd#.#dd##dd#.c\n" +
-                               "c.###dd###.###dd###.c\n" +
-                               "c...................c\n" +
-                               "ccccccccccccccccccccc\n";
+            var goldenSample = @"
+ccccccccccccccccccccc
+c...................c
+c.##dddd##.##dddd##.c
+c.dd####dd.dd####dd.c
+c.dd####dd.dd####dd.c
+c.##dddd##.##dddd##.c
+c...................c
+ccccccccccccccccccccc
+".Replace("\r\n", "\n")
+ .TrimStart();
 
             asText.Should().Be(goldenSample);
         }
@@ -99,8 +138,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
         [Test]
         public void ValidateHighlightPositions()
         {
-            grid.Parent.Parent.Width = 32;
-            grid.Parent.Parent.Height = 16;
+            var (_, _, grid) = CreateTextureSet(32, 16);
             grid.MatcherType = MatcherType.CardinalFlags;
             grid.Tiles[0].SelectorHint = "0101";
             grid.Tiles[1].SelectorHint = "1010";
@@ -108,115 +146,258 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
             var painter = new IsoTilePainter(prefs, grid);
             var area = painter.GetTileArea(grid.Tiles[0]);
             var baseShape = IsoTilePainter.CreateShape(area);
-            baseShape.GetHighlightFor(NeighbourIndex.North).Should().BeEquivalentTo(new Point(15, 0), new Point(30, 7));
-            baseShape.GetHighlightFor(NeighbourIndex.West).Should().BeEquivalentTo(new Point(1, 7), new Point(16, 0));
+            baseShape.GetHighlightFor(NeighbourIndex.North).Should().BeEquivalentTo(new IntPoint(15, 0), new IntPoint(30, 7));
+            baseShape.GetHighlightFor(NeighbourIndex.West).Should().BeEquivalentTo(new IntPoint(1, 7), new IntPoint(16, 0));
 
             var highlight = baseShape.ToHighlight();
-            highlight.GetHighlightFor(NeighbourIndex.North).Should().BeEquivalentTo(new Point(15, 2), new Point(26, 7));
-            highlight.GetHighlightFor(NeighbourIndex.West).Should().BeEquivalentTo(new Point(5, 7), new Point(16, 2));
+            highlight.GetHighlightFor(NeighbourIndex.North).Should().BeEquivalentTo(new IntPoint(15, 2), new IntPoint(26, 7));
+            highlight.GetHighlightFor(NeighbourIndex.West).Should().BeEquivalentTo(new IntPoint(5, 7), new IntPoint(16, 2));
         }
 
         [Test]
-        public void ValidateHighlightsEvenWidth_Cardinals()
+        public void ValidateHighlightsEvenWidth_Cardinals_Iso()
         {
-            var p = new GridCollectionPainter(prefs);
-            grid.Parent.Parent.Width = 16;
-            grid.Parent.Parent.Height = 8;
+            var p = new TextureCollectionPainter(prefs);
+            var (_, gridParent, grid) = CreateTextureSet(16, 8);
             grid.MatcherType = MatcherType.CardinalFlags;
             grid.Tiles[0].SelectorHint = "0101";
             grid.Tiles[1].SelectorHint = "1010";
 
-            var btmp = p.Produce(grid.Parent);
+            var btmp = p.CreateBitmap(gridParent);
+            var pixMap = btmp.PeekPixels();
 
-            var asText = Print(btmp);
+            var asText = Print(pixMap);
             Console.WriteLine(asText);
 
-            var goldenSample =
-                "ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\n" +
-                "c.....................................................................c\n" +
-                "c.#######dd#######.#######dd#######...................................c\n" +
-                "c.#####dd##dd#####.#####dd##dd#####...................................c\n" +
-                "c.###dd##ee##dd###.###dd##ee##dd###...................................c\n" +
-                "c.#dd##ee######dd#.#dd######ee##dd#...................................c\n" +
-                "c.#dd######ee##dd#.#dd##ee######dd#...................................c\n" +
-                "c.###dd##ee##dd###.###dd##ee##dd###...................................c\n" +
-                "c.#####dd##dd#####.#####dd##dd#####...................................c\n" +
-                "c.#######dd#######.#######dd#######...................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "c.....................................................................c\n" +
-                "ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\n";
+            var goldenSample = @"
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c.....................................................................c
+c.######dddd######.######dddd######...................................c
+c.####dd####dd####.####dd####dd####...................................c
+c.##dd###ee###dd##.##dd###ee###dd##...................................c
+c.dd###ee#######dd.dd#######ee###dd...................................c
+c.dd#######ee###dd.dd###ee#######dd...................................c
+c.##dd###ee###dd##.##dd###ee###dd##...................................c
+c.####dd####dd####.####dd####dd####...................................c
+c.######dddd######.######dddd######...................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+".Replace("\r\n", "\n")
+ .TrimStart();
 
             asText.Should().Be(goldenSample);
         }
 
         [Test]
-        public void ValidateNoOverdrawOddWidth()
+        public void ValidateNoOverdrawOddWidth_Iso()
         {
-            var p = new GridCollectionPainter(prefs);
+            var p = new TextureCollectionPainter(prefs);
+            var (set, gridParent, grid) = CreateTextureSet(7, 5);
 
-            grid.Parent.Parent.Width = 7;
-            grid.Parent.Parent.Height = 5;
+            set.Width = 7;
+            set.Height = 5;
             grid.CellWidth = 10;
             grid.CellHeight = 10;
-            var btmp = p.Produce(grid.Parent);
-
-            var asText = Print(btmp);
-            Console.WriteLine(asText);
-
+            var btmp = p.CreateBitmap(gridParent);
             btmp.Width.Should().Be(20 + 5);
             btmp.Height.Should().Be(10 + 4);
+            var pixMap = btmp.PeekPixels();
 
-            var goldenSample =
-                "ccccccccccccccccccccccccc\n" +
-                "c.......................c\n" +
-                "c.....d..........d......c\n" +
-                "c...dd.dd......dd.dd....c\n" +
-                "c..d.....d....d.....d...c\n" +
-                "c..ddd.ddd....ddd.ddd...c\n" +
-                "c..d..d..d....d..d..d...c\n" +
-                "c..d##d##d....d##d##d...c\n" +
-                "c..ddddddd....ddddddd...c\n" +
-                "c..d##d##d....d##d##d...c\n" +
-                "c..#ddddd#....#ddddd#...c\n" +
-                "c..###d###....###d###...c\n" +
-                "c.......................c\n" +
-                "ccccccccccccccccccccccccc\n";
+            var asText = Print(pixMap);
+            Console.WriteLine(asText);
+
+            var goldenSample = @"
+ccccccccccccccccccccccccc
+c.......................c
+c....ddd........ddd.....c
+c..dd...d.....dd...d....c
+c..dd...dd....dd...dd...c
+c..d.ddd.d....d.ddd.d...c
+c..d..d..d....d..d..d...c
+c..d#ddd#d....d#ddd#d...c
+c..dd#d#dd....dd#d#dd...c
+c..dd#d#dd....dd#d#dd...c
+c..##ddd##....##ddd##...c
+c..###d###....###d###...c
+c.......................c
+ccccccccccccccccccccccccc
+".Replace("\r\n", "\n")
+ .TrimStart();
+            /*             
+                         "ccccccccccccccccccccccccc\n" +
+                         "c.......................c\n" +
+                         "c.....d..........d......c\n" +
+                         "c...dd.dd......dd.dd....c\n" +
+                         "c..d.....d....d.....d...c\n" +
+                         "c..ddd.ddd....ddd.ddd...c\n" +
+                         "c..d..d..d....d..d..d...c\n" +
+                         "c..d##d##d....d##d##d...c\n" +
+                         "c..ddddddd....ddddddd...c\n" +
+                         "c..d##d##d....d##d##d...c\n" +
+                         "c..#ddddd#....#ddddd#...c\n" +
+                         "c..###d###....###d###...c\n" +
+                         "c.......................c\n" +
+                         "ccccccccccccccccccccccccc\n";
+         */
+            asText.Should().Be(goldenSample);
+        }
+
+        [Test]
+        [SuppressMessage("ReSharper", "StringLiteralTypo")]
+        public void ValidateHighlightsEvenWidth_Cardinals_Grid()
+        {
+            var p = new TextureCollectionPainter(prefs);
+            var (_, gridParent, grid) = CreateTextureSet(16, 8, TileType.Grid);
+            grid.MatcherType = MatcherType.CardinalFlags;
+            grid.Tiles.Add(new TextureTile(false, 2, 0));
+            grid.Tiles.Add(new TextureTile(false, 3, 0));
+            grid.Tiles[0].SelectorHint = "0101";
+            grid.Tiles[1].SelectorHint = "1010";
+            grid.Tiles[2].SelectorHint = "1100";
+            grid.Tiles[3].SelectorHint = "1011";
+
+            var btmp = p.CreateBitmap(gridParent);
+            var pixMap = btmp.PeekPixels();
+
+            var asText = Print(pixMap);
+            Console.WriteLine(asText);
+
+            var goldenSample = @"
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c.....................................................................c
+c.dddddddddddddddd.dddddddddddddddd.dddddddddddddddd.dddddddddddddddd.c
+c.d##############d.d##############d.d##############d.d##############d.c
+c.d#e##########e#d.d#eeeeeeeeeeee#d.d#eeeeeeeeeeee#d.d#eeeeeeeeeeee#d.c
+c.d#e##########e#d.d##############d.d############e#d.d#e############d.c
+c.d#e##########e#d.d##############d.d############e#d.d#e############d.c
+c.d#e##########e#d.d#eeeeeeeeeeee#d.d############e#d.d#eeeeeeeeeeee#d.c
+c.d##############d.d##############d.d##############d.d##############d.c
+c.dddddddddddddddd.dddddddddddddddd.dddddddddddddddd.dddddddddddddddd.c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+c.....................................................................c
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+".Replace("\r\n", "\n")
+ .TrimStart();
 
             asText.Should().Be(goldenSample);
         }
 
-        public string Print(Bitmap b)
+        [Test]
+        public void ValidateNoOverdrawOddWidth_Grid()
         {
-            var colorMappings = new Dictionary<int, char>
+            var p = new TextureCollectionPainter(prefs);
+            var (_, gridParent, grid) = CreateTextureSet(7, 5, TileType.Grid);
+
+            grid.CellWidth = 10;
+            grid.CellHeight = 10;
+
+            const int borderSize = 2;
+            const int paddingSize = 2;
+            const int spacing = 1;
+            
+            var btmp = p.CreateBitmap(gridParent);
+            btmp.Width.Should().Be(20 + borderSize + paddingSize + spacing);
+            btmp.Height.Should().Be(10 + borderSize + paddingSize);
+            var pixMap = btmp.PeekPixels();
+
+            var asText = Print(pixMap);
+            Console.WriteLine(asText);
+
+            var goldenSample = @"
+ccccccccccccccccccccccccc
+c.......................c
+c.......................c
+c.......................c
+c.......................c
+c.......................c
+c.......................c
+c..ddddddd....ddddddd...c
+c..d#####d....d#####d...c
+c..d#####d....d#####d...c
+c..d#####d....d#####d...c
+c..ddddddd....ddddddd...c
+c.......................c
+ccccccccccccccccccccccccc
+".Replace("\r\n", "\n")
+ .TrimStart();
+            /*             
+                         "ccccccccccccccccccccccccc\n" +
+                         "c.......................c\n" +
+                         "c.....d..........d......c\n" +
+                         "c...dd.dd......dd.dd....c\n" +
+                         "c..d.....d....d.....d...c\n" +
+                         "c..ddd.ddd....ddd.ddd...c\n" +
+                         "c..d..d..d....d..d..d...c\n" +
+                         "c..d##d##d....d##d##d...c\n" +
+                         "c..ddddddd....ddddddd...c\n" +
+                         "c..d##d##d....d##d##d...c\n" +
+                         "c..#ddddd#....#ddddd#...c\n" +
+                         "c..###d###....###d###...c\n" +
+                         "c.......................c\n" +
+                         "ccccccccccccccccccccccccc\n";
+         */
+            asText.Should().Be(goldenSample);
+        }
+
+        public string Print(SKPixmap b)
+        {
+            var colorMappings = new Dictionary<uint, char>
             {
-                [Color.Empty.ToArgb()] = '.',
-                [background.ToArgb()] = '#'
+                [0] = '.',
+                [background.ToUint32()] = '#'
             };
 
             var sb = new StringBuilder();
@@ -224,15 +405,15 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
             {
                 for (var x = 0; x < b.Width; x += 1)
                 {
-                    var c = b.GetPixel(x, y);
-                    if (colorMappings.TryGetValue(c.ToArgb(), out var p))
+                    var c = (uint)b.GetPixelColor(x, y);
+                    if (colorMappings.TryGetValue(c, out var p))
                     {
                         sb.Append(p);
                     }
                     else
                     {
                         var px = (char)('a' + colorMappings.Count);
-                        colorMappings[c.ToArgb()] = px;
+                        colorMappings[c] = px;
                         sb.Append(px);
                     }
                 }
@@ -246,45 +427,42 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
         [Test]
         public void ValidateCellSize()
         {
-            grid.Parent.Parent.Width = 32;
-            grid.Parent.Parent.Height = 16;
+            var (_, _, grid) = CreateTextureSet(32, 16);
 
             var painter = new IsoTilePainter(prefs, grid);
             var area = painter.GetTileArea(grid.Tiles[0]);
-            area.Should().Be(new Rectangle(0, 0, 32, 16));
+            area.Should().Be(new IntRect(0, 0, 32, 16));
         }
 
         [Test]
         public void ValidateIsoShape()
         {
-            grid.Parent.Parent.Width = 32;
-            grid.Parent.Parent.Height = 16;
+            var (_, _, grid) = CreateTextureSet(32, 16);
 
             var painter = new IsoTilePainter(prefs, grid);
             var area = painter.GetTileArea(grid.Tiles[0]);
             var shape = IsoTilePainter.CreateShape(area);
             shape.Should().BeAssignableTo<PixelPerfectIsoShape>();
 
-            shape.Top.Should().Be(new Point(16, 0));
-            shape.Left.Should().Be(new Point(0, 8));
-            shape.Right.Should().Be(new Point(31, 8));
-            shape.Bottom.Should().Be(new Point(16, 15));
+            shape.Top.Should().Be(new IntPoint(16, 0));
+            shape.Left.Should().Be(new IntPoint(0, 8));
+            shape.Right.Should().Be(new IntPoint(31, 8));
+            shape.Bottom.Should().Be(new IntPoint(16, 15));
         }
 
         [Test]
         public void ValidateIsoShapeNonStandard()
         {
-            grid.Parent.Parent.Width = 30;
-            grid.Parent.Parent.Height = 16;
+            var (_, _, grid) = CreateTextureSet(30, 16);
 
             var painter = new IsoTilePainter(prefs, grid);
             var area = painter.GetTileArea(grid.Tiles[0]);
             var shape = IsoTilePainter.CreateShape(area);
 
-            shape.Top.Should().Be(new Point(15, 0));
-            shape.Left.Should().Be(new Point(0, 8));
-            shape.Right.Should().Be(new Point(29, 8));
-            shape.Bottom.Should().Be(new Point(15, 15));
+            shape.Top.Should().Be(new IntPoint(15, 0));
+            shape.Left.Should().Be(new IntPoint(0, 8));
+            shape.Right.Should().Be(new IntPoint(29, 8));
+            shape.Bottom.Should().Be(new IntPoint(15, 15));
         }
     }
 }

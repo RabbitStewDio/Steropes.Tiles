@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Steropes.Tiles.Demo.Core.Util
+namespace Steropes.Tiles.Sample.Shared.Util
 {
     /// <summary>
     ///  A small helper class to make it a bit less verbose to 

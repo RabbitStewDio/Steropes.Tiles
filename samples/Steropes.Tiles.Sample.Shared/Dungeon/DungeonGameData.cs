@@ -1,13 +1,14 @@
-﻿using System;
-using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple;
-using Steropes.Tiles.Demo.Core.Util;
+﻿using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
+using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Dungeon.Simple;
+using Steropes.Tiles.Sample.Shared.Util;
 using Steropes.Tiles.Util;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Random = System.Random;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     /// <summary>
     ///   A holder for all logical game data, like rules and maps. This represents the game world
@@ -74,7 +75,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
             Map.WallLayer[12, 12] = Rules.Walls.Stone;
             Map.WallLayer[12, 10] = Rules.Walls.Stone;
 
-            var chest = CreateItemAt(Rules.Items.Chest, 5, 5);
+            CreateItemAt(Rules.Items.Chest, 5, 5);
 
             SpawnJesters(1000);
         }
@@ -128,6 +129,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
             return item;
         }
 
+        [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Local")]
         IItem CreateItemAt(IItemType itemType, double x, double y)
         {
             var item = itemService.Create(itemType);

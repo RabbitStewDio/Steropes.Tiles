@@ -1,7 +1,7 @@
-﻿using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
+﻿using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     /// <summary>
     ///   This structure encapsulates all game rules for the dungeon game. Well, as this is a tile

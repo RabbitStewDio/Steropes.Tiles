@@ -2,10 +2,10 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct IntPoint : IEquatable<IntPoint>
+    public readonly struct IntPoint : IEquatable<IntPoint>
     {
-        public int X;
-        public int Y;
+        public readonly int X;
+        public readonly int Y;
 
         public IntPoint(int x, int y)
         {
@@ -52,9 +52,19 @@ namespace Steropes.Tiles.DataStructures
             return new IntPoint(left.X + right.X, left.Y + right.Y);
         }
 
+        public static IntPoint operator +(IntPoint left, IntDimension right)
+        {
+            return new IntPoint(left.X + right.Width, left.Y + right.Height);
+        }
+
         public static IntPoint operator -(IntPoint left, IntPoint right)
         {
             return new IntPoint(left.X - right.X, left.Y - right.Y);
+        }
+
+        public static IntPoint operator -(IntPoint left, IntDimension right)
+        {
+            return new IntPoint(left.X - right.Width, left.Y - right.Height);
         }
     }
 }

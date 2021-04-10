@@ -43,25 +43,8 @@ namespace Steropes.Tiles.Matcher.Registry
                              ITileTagEntrySelectionFactory<bool> formatProvider = null,
                              string format = null)
         {
-            formatProvider = formatProvider ?? TileTagEntries.CreateFlagTagEntries();
-            format = format ?? "{{0}}_n{0}e{1}s{2}w{3}";
-            var n = formatProvider.Lookup(k.North).Tag;
-            var e = formatProvider.Lookup(k.East).Tag;
-            var s = formatProvider.Lookup(k.South).Tag;
-            var w = formatProvider.Lookup(k.West).Tag;
-            return string.Format(format, n, e, s, w);
-        }
-    }
-
-    public static class CardinalTileRegistry
-    {
-        [Obsolete]
-        public static string Format(CardinalTileSelectorKey k,
-                                    ITileTagEntrySelectionFactory<bool> formatProvider = null,
-                                    string format = null)
-        {
-            formatProvider = formatProvider ?? TileTagEntries.CreateFlagTagEntries();
-            format = format ?? "n{0}e{1}s{2}w{3}";
+            formatProvider ??= TileTagEntries.CreateFlagTagEntries();
+            format ??= "{{0}}_n{0}e{1}s{2}w{3}";
             var n = formatProvider.Lookup(k.North).Tag;
             var e = formatProvider.Lookup(k.East).Tag;
             var s = formatProvider.Lookup(k.South).Tag;

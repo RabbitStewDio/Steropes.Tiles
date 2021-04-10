@@ -1,7 +1,7 @@
-﻿using System;
-using Steropes.Tiles.Navigation;
+﻿using Steropes.Tiles.Navigation;
+using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
+namespace Steropes.Tiles.Sample.Shared.Strategy.Model
 {
     public interface ISettlement
     {

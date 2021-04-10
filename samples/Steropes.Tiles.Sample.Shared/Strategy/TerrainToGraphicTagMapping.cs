@@ -1,8 +1,8 @@
+using Steropes.Tiles.Sample.Shared.Strategy.Model;
 using System;
 using System.Collections.Generic;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy
 {
     /// <summary>
     ///  Helper class that encapsulate the precomputed forward and reverse mapping between

@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Matcher.TileTags;
+using Steropes.Tiles.Sample.Shared.Strategy.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Rendering
+namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
 {
     public class TagSetRenderingFactory : TaggedRendingFactoryBase
     {

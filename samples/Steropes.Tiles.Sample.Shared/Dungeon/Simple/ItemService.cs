@@ -1,9 +1,9 @@
-﻿using System;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
-using Steropes.Tiles.Navigation;
+﻿using Steropes.Tiles.Navigation;
+using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Simple
 {
     public class ItemService : BaseTraitService<IItem>, IItemService
     {

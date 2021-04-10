@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     public struct Weight : IEquatable<Weight>
     {

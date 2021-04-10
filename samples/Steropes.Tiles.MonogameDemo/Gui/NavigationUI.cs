@@ -84,23 +84,23 @@ namespace Steropes.Tiles.MonogameDemo.Gui
 
             var mapX = new TextField(styleSystem);
             mapX.Anchor = AnchoredRect.CreateCentered(100);
-            mapX.Content.Document.DocumentModified += (s, e) => navModel.MapXText = mapX.Text;
+            mapX.Content.Document.DocumentModified += (_, _) => navModel.MapXText = mapX.Text;
 
             var mapY = new TextField(styleSystem);
             mapY.Anchor = AnchoredRect.CreateCentered(100);
-            mapY.Content.Document.DocumentModified += (s, e) => navModel.MapYText = mapY.Text;
+            mapY.Content.Document.DocumentModified += (_, _) => navModel.MapYText = mapY.Text;
 
             var button = new Button(styleSystem, "Go!");
-            button.ActionPerformed += (sender, args) => navModel.TryNavigate(GameRendering);
-            navModel.PropertyChanged += (s, e) => button.Enabled = navModel.Valid;
+            button.ActionPerformed += (_, _) => navModel.TryNavigate(GameRendering);
+            navModel.PropertyChanged += (_, _) => button.Enabled = navModel.Valid;
 
             var rotateLeftButton = new Button(styleSystem, "Left");
             rotateLeftButton.ActionPerformed +=
-                (sender, args) => GameRendering.RotationSteps = (GameRendering.RotationSteps + 1) % 4;
+                (_, _) => GameRendering.RotationSteps = (GameRendering.RotationSteps + 1) % 4;
 
             var rotateRightButton = new Button(styleSystem, "Right");
             rotateRightButton.ActionPerformed +=
-                (sender, args) => GameRendering.RotationSteps = (GameRendering.RotationSteps - 1) % 4;
+                (_, _) => GameRendering.RotationSteps = (GameRendering.RotationSteps - 1) % 4;
 
             var hbox = new BoxGroup(styleSystem, Orientation.Horizontal, 5);
             hbox.Anchor = AnchoredRect.CreateBottomLeftAnchored();
@@ -153,53 +153,49 @@ namespace Steropes.Tiles.MonogameDemo.Gui
                 case Keys.NumPad4:
                 case Keys.Left:
                 {
-                    p.X -= StepSize;
+                    p += new ContinuousViewportCoordinates(-StepSize, 0);
                     break;
                 }
                 case Keys.NumPad6:
                 case Keys.Right:
                 {
-                    p.X += StepSize;
+                    p += new ContinuousViewportCoordinates(+StepSize, 0);
                     break;
                 }
                 case Keys.NumPad8:
                 case Keys.Up:
                 {
-                    p.Y -= StepSize;
+                    p += new ContinuousViewportCoordinates(0, -StepSize);
                     break;
                 }
                 case Keys.NumPad2:
                 case Keys.Down:
                 {
-                    p.Y += StepSize;
+                    p += new ContinuousViewportCoordinates(0, +StepSize);
                     break;
                 }
                 case Keys.Home:
                 case Keys.NumPad7:
                 {
-                    p.X -= StepSize;
-                    p.Y -= StepSize;
+                    p += new ContinuousViewportCoordinates(-StepSize, -StepSize);
                     break;
                 }
                 case Keys.PageUp:
                 case Keys.NumPad9:
                 {
-                    p.X += StepSize;
-                    p.Y -= StepSize;
+                    p += new ContinuousViewportCoordinates(+StepSize, -StepSize);
                     break;
                 }
                 case Keys.End:
                 case Keys.NumPad1:
                 {
-                    p.X -= StepSize;
-                    p.Y += StepSize;
+                    p += new ContinuousViewportCoordinates(-StepSize, +StepSize);
                     break;
                 }
                 case Keys.PageDown:
                 case Keys.NumPad3:
                 {
-                    p.X += StepSize;
-                    p.Y += StepSize;
+                    p += new ContinuousViewportCoordinates(+StepSize, +StepSize);
                     break;
                 }
             }

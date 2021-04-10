@@ -1,7 +1,7 @@
-﻿using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
+﻿using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     /// <summary>
     ///   <para>
@@ -32,9 +32,9 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
         {
             Width = width;
             Height = height;
-            FloorLayer = new Map2D<IFloorType>(width, height, (x, y) => rules.FloorTypes.DefaultValue);
-            WallLayer = new Map2D<IWallType>(width, height, (x, y) => rules.WallTypes.DefaultValue);
-            DecorationLayer = new Map2D<IDecorationType>(width, height, (x, y) => rules.DecorationTypes.DefaultValue);
+            FloorLayer = new Map2D<IFloorType>(width, height, (_, _) => rules.FloorTypes.DefaultValue);
+            WallLayer = new Map2D<IWallType>(width, height, (_, _) => rules.WallTypes.DefaultValue);
+            DecorationLayer = new Map2D<IDecorationType>(width, height, (_, _) => rules.DecorationTypes.DefaultValue);
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ using Steropes.Tiles.DataStructures;
 
 namespace Steropes.Tiles.Navigation
 {
-    internal class WrapAroundNavigator<T> : IMapNavigator<T>
+    class WrapAroundNavigator<T> : IMapNavigator<T>
         where T : struct
     {
         readonly int lowerX;
@@ -44,13 +44,12 @@ namespace Steropes.Tiles.Navigation
         public bool NavigateTo(T direction, MapCoordinate source, out MapCoordinate result, int steps)
         {
             var resultFlag = parent.NavigateTo(direction, source, out result, steps);
-            result.X = WrapX(result.X);
-            result.Y = WrapY(result.Y);
+            result = new MapCoordinate(WrapX(result.X), WrapY(result.Y));
             return resultFlag;
         }
     }
 
-    internal class WrapAroundVertical<T> : IMapNavigator<T>
+    class WrapAroundVertical<T> : IMapNavigator<T>
         where T : struct
     {
         readonly int lowerY;
@@ -79,12 +78,12 @@ namespace Steropes.Tiles.Navigation
         public bool NavigateTo(T direction, MapCoordinate source, out MapCoordinate result, int steps)
         {
             var resultFlag = parent.NavigateTo(direction, source, out result, steps);
-            result.Y = WrapY(result.Y);
+            result = result.WithY(WrapY(result.Y));
             return resultFlag;
         }
     }
 
-    internal class WrapAroundHorizontal<T> : IMapNavigator<T>
+    class WrapAroundHorizontal<T> : IMapNavigator<T>
         where T : struct
     {
         readonly int lowerX;
@@ -113,7 +112,7 @@ namespace Steropes.Tiles.Navigation
         public bool NavigateTo(T direction, MapCoordinate source, out MapCoordinate result, int steps)
         {
             var resultFlag = parent.NavigateTo(direction, source, out result, steps);
-            result.X = WrapX(result.X);
+            result = result.WithX(WrapX(result.X));
             return resultFlag;
         }
     }

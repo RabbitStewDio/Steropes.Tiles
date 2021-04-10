@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Renderer;
-using Steropes.Tiles.TexturePack;
 
 namespace Steropes.Tiles.Monogame
 {
@@ -56,7 +55,7 @@ namespace Steropes.Tiles.Monogame
             var o = Viewport.CalculateTileOffset();
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, null, enableScissorTest, null,
-                              Matrix.CreateTranslation((int)o.X, (int)o.Y, 0) * Matrix.CreateScale(0.5f));
+                              Matrix.CreateTranslation(o.X, o.Y, 0) * Matrix.CreateScale(0.5f));
             SpriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)s.X * 2, (int)s.Y * 2, (int)Math.Ceiling(s.Width) * 2, (int)Math.Ceiling(s.Height) * 2);
         }
 

@@ -2,7 +2,7 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct Range
+    public readonly struct Range
     {
         public int Min { get; }
         public int Max { get; }

@@ -1,0 +1,116 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:Steropes.Tiles.TemplateGen.Models"
+             xmlns:views="clr-namespace:Steropes.Tiles.TemplateGen.Views"
+             xmlns:viewModels="clr-namespace:Steropes.Tiles.TemplateGen.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Steropes.Tiles.TemplateGen.Views.TextureGridView">
+    <Design.DataContext>
+        <models:TextureGrid />
+    </Design.DataContext>
+    
+    <UserControl.Resources>
+        <viewModels:TileMatcherTypeToStringConverter x:Key="TileMatcherTypeToStringConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <Grid>
+            <Grid.Styles>
+                <Style Selector="Grid > :is(Control)">
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+                <Style Selector="Grid > TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </Grid.Styles>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="120" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0">Name</TextBlock>
+            <TextBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Name}"/>
+            
+            <TextBlock Grid.Column="0" Grid.Row="1">Position</TextBlock>
+            <NumericUpDown Grid.Column="1" Grid.Row="1" Value="{Binding X}" AllowSpin="false" ShowButtonSpinner="false" />
+            <NumericUpDown Grid.Column="2" Grid.Row="1" Value="{Binding Y}" AllowSpin="false" ShowButtonSpinner="false" />
+
+            <TextBlock Grid.Column="0" Grid.Row="2">Size</TextBlock>
+            <NumericUpDown Grid.Column="1" Grid.Row="2" Value="{Binding Width}" AllowSpin="false" ShowButtonSpinner="false" />
+            <NumericUpDown Grid.Column="2" Grid.Row="2" Value="{Binding Height}" AllowSpin="false" ShowButtonSpinner="false" />
+
+            <TextBlock Grid.Column="0" Grid.Row="3">Anchor</TextBlock>
+            <NumericUpDown Grid.Column="1" Grid.Row="3" Value="{Binding AnchorX}" AllowSpin="false" ShowButtonSpinner="false"/>
+            <NumericUpDown Grid.Column="2" Grid.Row="3" Value="{Binding AnchorY}" AllowSpin="false" ShowButtonSpinner="false"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="4">Cell Size</TextBlock>
+            <NumericUpDown Grid.Column="1" Grid.Row="4" Value="{Binding CellWidth}" AllowSpin="false" ShowButtonSpinner="false" />
+            <NumericUpDown Grid.Column="2" Grid.Row="4" Value="{Binding CellHeight}" AllowSpin="false" ShowButtonSpinner="false" />
+
+            <TextBlock Grid.Column="0" Grid.Row="5">Cell Spacing</TextBlock>
+            <NumericUpDown Grid.Column="1" Grid.Row="5" Value="{Binding CellSpacing}" AllowSpin="false" ShowButtonSpinner="false" />
+
+            <TextBlock Grid.Column="0" Grid.Row="6">Matcher Type</TextBlock>
+            <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" Items="{Binding AvailableMatcherTypes, Mode=OneTime}" SelectedItem="{Binding MatcherType}" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource TileMatcherTypeToStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>                
+            </ComboBox>
+            
+            <TextBlock Grid.Column="0" Grid.Row="7">Pattern</TextBlock>
+            <TextBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" Text="{Binding Pattern}"/>
+            
+            <TextBlock Grid.Column="0" Grid.Row="8">CellMap Matches</TextBlock>
+            <TextBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Text="{Binding CellMapElements}" IsEnabled="{Binding IsCellMapping}"/>
+        </Grid>
+
+        <views:FormattingMetaDataControl DataContext="{Binding FormattingMetaData}" />
+
+        <Grid>
+            <Grid.Styles>
+                <Style Selector="Grid > :is(Control)">
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+            </Grid.Styles>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="120" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0">Outline Color</TextBlock>
+            <views:ArgbColorView Grid.Row="0" Grid.Column="1" DataContext="{Binding TextureTileFormattingMetaData.TileOutlineColor, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0">Anchor Color</TextBlock>
+            <views:ArgbColorView Grid.Row="0" Grid.Column="1" DataContext="{Binding TextureTileFormattingMetaData.TileAnchorColor, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0">Highlight Color</TextBlock>
+            <views:ArgbColorView Grid.Row="1" Grid.Column="1" DataContext="{Binding TextureTileFormattingMetaData.TileHighlightColor, Mode=TwoWay}" />
+
+        </Grid>
+
+
+    </StackPanel>
+
+</UserControl>

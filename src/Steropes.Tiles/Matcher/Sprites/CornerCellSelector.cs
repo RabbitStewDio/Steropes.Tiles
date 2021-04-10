@@ -81,11 +81,17 @@ namespace Steropes.Tiles.Matcher.Sprites
             for (var index = 0; index < selectors.Length; index++)
             {
                 var d = selectors[index];
-                if (MatchAsFlag(neighbours[d.SelectorCoordinates[0]], out ITileTagEntrySelection m0) &&
-                    MatchAsFlag(neighbours[d.SelectorCoordinates[1]], out ITileTagEntrySelection m1) &&
-                    MatchAsFlag(neighbours[d.SelectorCoordinates[2]], out ITileTagEntrySelection m2))
+                if (!MatchAsFlag(neighbours[d.SelectorCoordinates[0]], out ITileTagEntrySelection m0) || 
+                    !MatchAsFlag(neighbours[d.SelectorCoordinates[1]], out ITileTagEntrySelection m1) ||
+                    !MatchAsFlag(neighbours[d.SelectorCoordinates[2]], out ITileTagEntrySelection m2))
                 {
-                    var tile = tiles[CellMapTileSelectorKey.LinearIndexOf(d.PositionEntry, m0, m1, m2)];
+                    continue;
+                }
+
+                var idx = CellMapTileSelectorKey.LinearIndexOf(d.PositionEntry, m0, m1, m2);
+                if (tileExists[idx])
+                {
+                    var tile = tiles[idx];
                     resultCollector(d.SpritePosition, tile, contextProvider(x, y));
                     result = true;
                 }
@@ -94,7 +100,7 @@ namespace Steropes.Tiles.Matcher.Sprites
             return result;
         }
 
-        bool MatchAsFlag(MapCoordinate c, out ITileTagEntrySelection s)
+        bool MatchAsFlag(in MapCoordinate c, out ITileTagEntrySelection s)
         {
             return Matchers.Match(c.X, c.Y, out s);
         }

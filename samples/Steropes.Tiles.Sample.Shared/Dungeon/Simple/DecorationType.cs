@@ -1,7 +1,7 @@
+using Steropes.Tiles.Sample.Shared.Dungeon.Model;
 using System;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Simple
 {
     public class DecorationType : IDecorationType
     {

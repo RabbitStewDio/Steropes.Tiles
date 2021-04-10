@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using System;
 using System.Collections.Generic;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Simple
 {
     public class BaseTraitService<TItem>
     {
@@ -33,7 +33,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
         {
             if (traits.TryGetValue(item, out TraitRegistry tr))
             {
-                tr.ForEachTrait((t, c) => updateableTraits.Remove(t), 0);
+                tr.ForEachTrait((t, _) => updateableTraits.Remove(t), 0);
                 traits.Remove(item);
             }
         }

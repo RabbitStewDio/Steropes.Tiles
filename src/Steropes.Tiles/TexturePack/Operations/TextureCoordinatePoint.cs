@@ -2,10 +2,10 @@
 
 namespace Steropes.Tiles.TexturePack.Operations
 {
-    public struct TextureCoordinatePoint : IEquatable<TextureCoordinatePoint>
+    public readonly struct TextureCoordinatePoint : IEquatable<TextureCoordinatePoint>
     {
-        public int X;
-        public int Y;
+        public readonly int X;
+        public readonly int Y;
 
         public TextureCoordinatePoint(int x, int y)
         {

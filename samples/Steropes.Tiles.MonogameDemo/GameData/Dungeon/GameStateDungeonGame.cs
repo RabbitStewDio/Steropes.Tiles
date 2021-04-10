@@ -1,16 +1,14 @@
 using Microsoft.Xna.Framework;
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon;
 using Steropes.Tiles.Monogame;
 using Steropes.Tiles.MonogameDemo.Gui;
-using Steropes.Tiles.Unit2D.Demo.Components.Dungeon;
-using Steropes.Tiles.Unit2D.Demo.GameData.Dungeon;
+using Steropes.Tiles.Sample.Shared.Dungeon;
 using Steropes.UI;
 using Steropes.UI.Components;
 using Steropes.UI.Platform;
 using Steropes.UI.State;
 
-namespace Steropes.Tiles.MonogameDemo
+namespace Steropes.Tiles.MonogameDemo.GameData.Dungeon
 {
     class GameStateDungeonGame : GameStateFadeTransition
     {

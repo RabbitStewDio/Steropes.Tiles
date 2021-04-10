@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Util
+namespace Steropes.Tiles.Sample.Shared.Util
 {
     public class Map2D<TEntity> : IMap2D<TEntity>
         where TEntity : class

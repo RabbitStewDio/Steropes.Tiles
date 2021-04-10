@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Simple
 {
     class TraitRegistry : IEnumerable<KeyValuePair<Type, object>>
     {

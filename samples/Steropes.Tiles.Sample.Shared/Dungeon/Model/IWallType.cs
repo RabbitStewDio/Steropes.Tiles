@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     /// <summary>
     ///   Walls are just that - walls. We only use this as selector for the tiles. If a dungeon

@@ -1,4 +1,4 @@
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     /// <summary>
     ///   Tagging interface to narrow down the possible inputs to the item-service.

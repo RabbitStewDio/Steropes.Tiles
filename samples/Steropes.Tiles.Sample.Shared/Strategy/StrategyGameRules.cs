@@ -1,8 +1,8 @@
-﻿using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
-using static Steropes.Tiles.Demo.Core.GameData.Strategy.Model.ResourcesExt;
+﻿using Steropes.Tiles.Sample.Shared.Strategy.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using static Steropes.Tiles.Sample.Shared.Strategy.Model.ResourcesExt;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy
 {
     public class StrategyGameRules
     {

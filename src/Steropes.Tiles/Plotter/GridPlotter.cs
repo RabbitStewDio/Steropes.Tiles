@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Plotter.Operations;
 using Steropes.Tiles.Renderer;

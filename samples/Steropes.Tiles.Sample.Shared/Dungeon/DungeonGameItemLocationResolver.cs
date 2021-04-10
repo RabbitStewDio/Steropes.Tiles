@@ -1,11 +1,11 @@
-﻿using System;
-using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
+﻿using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Renderer;
+using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     public class DungeonGameItemLocationResolver<TTile, TContext> : IRenderCallbackFilter<TTile, IItem, TTile, TContext>
     {

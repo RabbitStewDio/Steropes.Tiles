@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Matcher.TileTags;
 

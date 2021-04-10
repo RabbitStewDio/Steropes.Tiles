@@ -1,4 +1,4 @@
-﻿namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
+﻿namespace Steropes.Tiles.Sample.Shared.Strategy.Model
 {
     /// <summary>
     ///  Defines a resource bonus for terrain tiles. This is something like

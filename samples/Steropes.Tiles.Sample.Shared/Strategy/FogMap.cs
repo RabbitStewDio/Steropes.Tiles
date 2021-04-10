@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy
 {
     public interface IFogMap
     {

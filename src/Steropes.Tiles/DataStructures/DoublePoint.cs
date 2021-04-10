@@ -2,10 +2,10 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct DoublePoint : IEquatable<DoublePoint>
+    public readonly struct DoublePoint : IEquatable<DoublePoint>
     {
-        public double X;
-        public double Y;
+        public readonly double X;
+        public readonly double Y;
 
         public DoublePoint(double x, double y)
         {

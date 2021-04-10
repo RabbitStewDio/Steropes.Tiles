@@ -1,8 +1,8 @@
-﻿using System;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
+﻿using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Simple
 {
     public class CharacterService : BaseTraitService<ICharacter>, ICharacterService
     {
@@ -25,12 +25,12 @@ namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
 
         public bool Use(ICharacter character, IItem usable)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool Attack(ICharacter character, IItem weapon, IItem target)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool Destroy(ICharacter character)

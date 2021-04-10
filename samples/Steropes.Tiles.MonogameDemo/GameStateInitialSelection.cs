@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Steropes.UI;
 using Steropes.UI.Components;
@@ -10,7 +9,7 @@ using Steropes.UI.Widgets.Container;
 
 namespace Steropes.Tiles.MonogameDemo
 {
-    internal class GameStateInitialSelection : GameStateFadeTransition
+    class GameStateInitialSelection : GameStateFadeTransition
     {
         readonly INamedStateManager stateService;
 

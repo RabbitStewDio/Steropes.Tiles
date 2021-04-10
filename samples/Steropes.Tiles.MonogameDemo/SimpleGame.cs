@@ -1,10 +1,9 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Steropes.Tiles.Monogame;
+using Steropes.Tiles.MonogameDemo.GameData.Dungeon;
+using Steropes.Tiles.MonogameDemo.GameData.Strategy;
 using Steropes.Tiles.MonogameDemo.Gui;
-using Steropes.Tiles.TexturePack.Atlas;
-using Steropes.Tiles.TexturePack.Grids;
 using Steropes.UI;
 using Steropes.UI.Components.Window;
 using Steropes.UI.Input;
@@ -38,7 +37,7 @@ namespace Steropes.Tiles.MonogameDemo
     /// When rendering, we have to render all layers at once. So we iterate over the visible grid
     /// positions, and then for each (x,y) positon we render the ground, wall, item and air layer
     /// in that order.
-    internal class SimpleGame : Game
+    class SimpleGame : Game
     {
         readonly FrameRateCalculator frameRateCalculator;
         IGameWindowService windowService;

@@ -3,7 +3,7 @@ using Steropes.Tiles.DataStructures;
 
 namespace Steropes.Tiles.Navigation
 {
-    public struct MapCoordinate : IEquatable<MapCoordinate>
+    public readonly struct MapCoordinate : IEquatable<MapCoordinate>
     {
         public MapCoordinate(int x, int y)
         {
@@ -11,10 +11,25 @@ namespace Steropes.Tiles.Navigation
             Y = y;
         }
 
-        public int X;
+        public readonly int X;
 
-        public int Y;
+        public readonly int Y;
 
+        public MapCoordinate With(int x, int y)
+        {
+            return new MapCoordinate(x, y);
+        }
+        
+        public MapCoordinate WithY(int y)
+        {
+            return new MapCoordinate(X, y);
+        }
+        
+        public MapCoordinate WithX(int x)
+        {
+            return new MapCoordinate(x, Y);
+        }
+        
         public bool Equals(MapCoordinate other)
         {
             return X == other.X && Y == other.Y;

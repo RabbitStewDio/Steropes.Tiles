@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     /// <summary>
     ///   A crude classification system on how items can be used. An item can

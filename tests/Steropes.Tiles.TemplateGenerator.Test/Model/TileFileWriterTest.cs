@@ -1,10 +1,10 @@
-﻿using FluentAssertions;
+﻿using Avalonia.Media;
+using FluentAssertions;
 using NUnit.Framework;
-using Steropes.Tiles.TemplateGenerator.Model;
+using Steropes.Tiles.TemplateGen.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -17,8 +17,8 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void SavingEmptyTextureFileMustNotCrash()
         {
-            var f = new TextureFile();
-            var root = TextureFileWriter.GenerateRoot(f);
+            var f = new TextureSetFile();
+            var root = TextureSetFileWriter.GenerateRoot(f);
 
             root.Name.Should().Be(Namespace + "tileset");
             root.Should().HaveAttribute("width", "0");
@@ -30,8 +30,8 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateEmptyTextureFileMetadata()
         {
-            var f = new TextureFile();
-            var root = TextureFileWriter.GenerateRoot(f);
+            var f = new TextureSetFile();
+            var root = TextureSetFileWriter.GenerateRoot(f);
             var md = root.Element(Namespace + "metadata");
             md.HasAttributes.Should().Be(false);
             md.HasElements.Should().Be(false);
@@ -40,7 +40,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateTextureFileProperties()
         {
-            var f = new TextureFile
+            var f = new TextureSetFile
             {
                 Properties = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>
                 {
@@ -48,7 +48,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
                     {"pname2", "pvalue2"}
                 })
             };
-            var root = TextureFileWriter.GenerateRoot(f);
+            var root = TextureSetFileWriter.GenerateRoot(f);
             var md = root.Element(Namespace + "metadata");
             md.HasAttributes.Should().Be(false);
 
@@ -60,8 +60,8 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
 
         void SetUpMetaData(FormattingMetaData m)
         {
-            m.BackgroundColor = Color.Black;
-            m.TextColor = Color.Empty;
+            m.BackgroundColor = Colors.Black;
+            m.TextColor = null;
             m.BorderColor = Color.FromArgb(10, 16, 32, 64);
             m.Border = 1;
             m.Margin = 2;
@@ -91,14 +91,14 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateTextureFileMetadataProperties()
         {
-            AssertMetaDataHandling(new TextureFile(), TextureFileWriter.GenerateRoot);
+            AssertMetaDataHandling(new TextureSetFile(), TextureSetFileWriter.GenerateRoot);
         }
 
         [Test]
         public void ValidateEmptyTextureCollectionMetaData()
         {
-            var tc = new TextureCollection();
-            var root = TextureFileWriter.GenerateCollection(tc);
+            var tc = new TileTextureCollection();
+            var root = TextureSetFileWriter.GenerateCollection(tc);
 
             root.Name.Should().Be(Namespace + "collection");
             root.Should().HaveAttribute("id", "");
@@ -108,14 +108,14 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateTextureCollectionMetadataProperties()
         {
-            AssertMetaDataHandling(new TextureCollection(), TextureFileWriter.GenerateCollection);
+            AssertMetaDataHandling(new TileTextureCollection(), TextureSetFileWriter.GenerateCollection);
         }
 
         [Test]
         public void ValidateEmptyTextureGridMetaData()
         {
             var tc = new TextureGrid();
-            var root = TextureFileWriter.GenerateGrid(tc);
+            var root = TextureSetFileWriter.GenerateGrid(tc);
 
             root.Name.Should().Be(Namespace + "grid");
             root.Should().HaveAttribute("name", "");
@@ -136,7 +136,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
                 Width = 3,
                 Height = 4
             };
-            var root = TextureFileWriter.GenerateGrid(tc);
+            var root = TextureSetFileWriter.GenerateGrid(tc);
             root.Should().HaveAttribute("anchor-x", "1");
             root.Should().HaveAttribute("anchor-y", "2");
             root.Element(Namespace + "metadata").Should().HaveAttribute("grid-width", "3");
@@ -146,8 +146,8 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateTextureTile()
         {
-            var tt = new TextureTile(false);
-            var root = TextureFileWriter.GenerateTile(tt);
+            var tt = new TextureTile();
+            var root = TextureSetFileWriter.GenerateTile(tt);
 
             root.Name.Should().Be(Namespace + "tile");
             root.Should().HaveAttribute("x", "0");
@@ -157,9 +157,9 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateTextureTileSingleTag()
         {
-            var tt = new TextureTile(false);
+            var tt = new TextureTile();
             tt.Tags.Add("tag1");
-            var root = TextureFileWriter.GenerateTile(tt);
+            var root = TextureSetFileWriter.GenerateTile(tt);
 
             root.Name.Should().Be(Namespace + "tile");
             root.Should().HaveAttribute("tag", "tag1");
@@ -170,10 +170,10 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateTextureTileMultipleTags()
         {
-            var tt = new TextureTile(false);
+            var tt = new TextureTile();
             tt.Tags.Add("tag1");
             tt.Tags.Add("tag2");
-            var root = TextureFileWriter.GenerateTile(tt);
+            var root = TextureSetFileWriter.GenerateTile(tt);
 
             root.Name.Should().Be(Namespace + "tile");
             root.Attribute("tag").Should().BeNull();
@@ -189,7 +189,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
         [Test]
         public void ValidateTextureGridMetadataProperties()
         {
-            AssertMetaDataHandling(new TextureGrid(), TextureFileWriter.GenerateGrid);
+            AssertMetaDataHandling(new TextureGrid(), TextureSetFileWriter.GenerateGrid);
         }
     }
 }

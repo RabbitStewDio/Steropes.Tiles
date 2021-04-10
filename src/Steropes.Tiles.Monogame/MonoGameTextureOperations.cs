@@ -24,26 +24,6 @@ namespace Steropes.Tiles.Monogame
             TKey key;
             WeakReference<TCached> reference;
 
-            public bool TryGet(out TCached t)
-            {
-                if (reference == null)
-                {
-                    t = default;
-                    return false;
-                }
-
-                if (reference.TryGetTarget(out t))
-                {
-                    Hit += 1;
-                    return true;
-                }
-                else
-                {
-                    Miss += 1;
-                    return false;
-                }
-            }
-
             public bool TryGet(TKey k, out TCached t)
             {
                 if (reference == null)

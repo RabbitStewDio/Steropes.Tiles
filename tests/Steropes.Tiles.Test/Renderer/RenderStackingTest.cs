@@ -39,15 +39,6 @@ namespace Steropes.Tiles.Test.Renderer
         }
     }
 
-    class RenderFactory
-    {
-        static IRenderCallback<TRenderTile, TRenderContext> ForRenderer<TRenderTile, TRenderContext>(IRenderCallback<TRenderTile, TRenderContext> r)
-        {
-            return r;
-        }
-    }
-
-
     public class RenderStackingTest
     {
         [Test]

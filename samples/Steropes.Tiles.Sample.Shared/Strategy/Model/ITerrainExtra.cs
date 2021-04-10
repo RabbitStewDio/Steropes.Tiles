@@ -1,4 +1,4 @@
-﻿namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
+﻿namespace Steropes.Tiles.Sample.Shared.Strategy.Model
 {
     /// <summary>
     ///  Terrain extras are stored in a bit vector, and thus we 

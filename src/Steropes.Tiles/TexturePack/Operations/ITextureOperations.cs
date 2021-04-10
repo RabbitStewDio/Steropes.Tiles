@@ -27,6 +27,7 @@ namespace Steropes.Tiles.TexturePack.Operations
         /// </summary>
         /// <param name="name"></param>
         /// <param name="textureSize"></param>
+        /// <param name="clearToTransparentBlack"></param>
         /// <returns></returns>
         TTexture CreateTexture(string name,
                                IntDimension textureSize,

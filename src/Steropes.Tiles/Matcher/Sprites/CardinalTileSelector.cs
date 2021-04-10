@@ -60,8 +60,13 @@ namespace Steropes.Tiles.Matcher.Sprites
             idx += MatchAsFlag(Coordinates[CardinalIndex.South.AsInt()]) << 2;
             idx += MatchAsFlag(Coordinates[CardinalIndex.West.AsInt()]) << 3;
 
-            resultCollector(SpritePosition.Whole, tags[idx], ContextProvider(x, y));
-            return true;
+            if (tagExists[idx])
+            {
+                resultCollector(SpritePosition.Whole, tags[idx], ContextProvider(x, y));
+                return true;
+            }
+
+            return false;
         }
 
         protected void PrecomputeTags(string prefix,

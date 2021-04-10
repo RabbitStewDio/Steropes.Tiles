@@ -1,20 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
 using Steropes.Tiles.Matcher;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Plotter.Operations;
 using Steropes.Tiles.Plotter.Operations.Builder;
 using Steropes.Tiles.Renderer.Graphics;
-using Steropes.Tiles.Sample.Shared;
-using Steropes.Tiles.Unit2D.Demo.GameData.Dungeon;
+using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     public class DungeonGameRenderingFactory<TTile> : RenderingFactoryBase<TTile>
     {

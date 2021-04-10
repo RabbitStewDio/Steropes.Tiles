@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using Steropes.Tiles.DataStructures;
+﻿using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Matcher.TileTags;
 using Steropes.Tiles.TexturePack;
 using Steropes.Tiles.TexturePack.Grids;
+using System.Collections.Generic;
 
-namespace Steropes.Tiles.Unit2D.Demo.GameData.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     public interface ITileSet<TRenderTile>
     {
@@ -43,7 +43,6 @@ namespace Steropes.Tiles.Unit2D.Demo.GameData.Dungeon
         ///   Loads all tiles using the given content loader. Returns a
         ///   BasicTileRegistry to allow access to the contained tiles.
         /// </summary>
-        /// <param name="loader"></param>
         /// <returns></returns>
         public ITileRegistry<TTile> LoadTexturePack()
         {

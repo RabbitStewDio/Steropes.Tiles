@@ -1,4 +1,6 @@
-﻿namespace Steropes.Tiles
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Steropes.Tiles
 {
     public interface ILogProvider
     {
@@ -34,6 +36,7 @@
 
         class DebugLogProvider : ILogProvider
         {
+            [SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
             public ILogAdapter CreateLogger(string traceName)
             {
                 return new DebugLogAdapter(traceName);

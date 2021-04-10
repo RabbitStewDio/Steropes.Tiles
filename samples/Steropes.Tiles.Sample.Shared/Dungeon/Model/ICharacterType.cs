@@ -1,4 +1,4 @@
-﻿namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+﻿namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     /// <summary>
     ///   Provides default values for character creation.

@@ -9,6 +9,7 @@ namespace Steropes.Tiles.Matcher
     ///   recommended for large sets.
     /// </summary>
     /// <typeparam name="TRenderTile"></typeparam>
+    /// <typeparam name="TContext"></typeparam>
     public class AggregateTileMatcher<TRenderTile, TContext> : ITileMatcher<TRenderTile, TContext>, IEnumerable<ITileMatcher<TRenderTile, TContext>>
     {
         readonly List<ITileMatcher<TRenderTile, TContext>> matchers;

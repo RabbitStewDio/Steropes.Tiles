@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
+namespace Steropes.Tiles.Sample.Shared.Strategy.Model
 {
     public enum PlayerColor
     {
@@ -31,6 +31,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             PlayerColor = playerColor;
+            Culture = culture;
         }
 
         public string Name { get; }

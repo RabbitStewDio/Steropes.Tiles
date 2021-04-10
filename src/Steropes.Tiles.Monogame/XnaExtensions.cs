@@ -30,7 +30,7 @@ namespace Steropes.Tiles.Monogame
 
         public static Vector2 ToVector2(this Point point)
         {
-            return new Vector2((float)point.X, (float)point.Y);
+            return new Vector2(point.X, point.Y);
         }
 
         public static Rectangle Union(this Rectangle r1, Rectangle r2)

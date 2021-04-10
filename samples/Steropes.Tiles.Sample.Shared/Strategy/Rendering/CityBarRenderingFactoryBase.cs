@@ -1,10 +1,9 @@
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Strategy;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
 using Steropes.Tiles.Matcher;
 using Steropes.Tiles.Plotter.Operations;
 using Steropes.Tiles.Plotter.Operations.Builder;
 using Steropes.Tiles.Renderer;
+using Steropes.Tiles.Sample.Shared.Strategy.Model;
 using System;
 
 namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering

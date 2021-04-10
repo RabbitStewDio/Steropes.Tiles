@@ -2,7 +2,7 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct Insets : IEquatable<Insets>
+    public readonly struct Insets : IEquatable<Insets>
     {
         public double Top { get; }
         public double Left { get; }

@@ -1,8 +1,8 @@
-using System;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
+using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     /// <summary>
     ///   This trait manages the fine grained location of items. This allows items

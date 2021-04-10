@@ -1,7 +1,7 @@
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Strategy;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
 using Steropes.Tiles.Renderer;
+using Steropes.Tiles.Sample.Shared.Strategy;
+using Steropes.Tiles.Sample.Shared.Strategy.Model;
 using Steropes.Tiles.Sample.Shared.Strategy.Rendering;
 using Steropes.UI.Widgets.Container;
 

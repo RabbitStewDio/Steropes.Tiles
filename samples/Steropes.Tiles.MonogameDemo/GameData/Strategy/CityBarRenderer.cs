@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Renderer;
+using Steropes.Tiles.Sample.Shared.Strategy.Model;
 using Steropes.UI.Components;
 using Steropes.UI.Widgets;
 using Steropes.UI.Widgets.Container;

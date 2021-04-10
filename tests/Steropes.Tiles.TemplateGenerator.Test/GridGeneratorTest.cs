@@ -1,20 +1,20 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using Steropes.Tiles.TemplateGenerator.Layout;
-using Steropes.Tiles.TemplateGenerator.Model;
+using Steropes.Tiles.TemplateGen.Models;
+using Steropes.Tiles.TemplateGen.Models.Rendering;
 
 namespace Steropes.Tiles.TemplateGenerator.Test
 {
     public class GridGeneratorTest
     {
-        TextureCollection collection;
+        TileTextureCollection collection;
 
         [SetUp]
         public void SetUp()
         {
-            var textureCollection = new TextureCollection();
+            var textureCollection = new TileTextureCollection();
 
-            var tf = new TextureFile
+            var tf = new TextureSetFile
             {
                 Width = 64,
                 Height = 32,
@@ -35,8 +35,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test
             };
             collection.Grids.Add(grid);
 
-            var g = new GridGenerator();
-            g.Regenerate(collection);
+            TextureTileGenerator.Regenerate(collection);
 
             grid.Tiles.Count.Should().Be(32);
         }

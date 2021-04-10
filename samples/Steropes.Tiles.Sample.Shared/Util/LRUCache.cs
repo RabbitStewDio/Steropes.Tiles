@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Steropes.Tiles.Demo.Core.Util
+namespace Steropes.Tiles.Sample.Shared.Util
 {
     public class LRUCache<TKey, TValue>
     {

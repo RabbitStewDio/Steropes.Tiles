@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Util
+namespace Steropes.Tiles.Sample.Shared.Util
 {
     public interface ITypeRegistry<out T> : IEnumerable<T>
     {

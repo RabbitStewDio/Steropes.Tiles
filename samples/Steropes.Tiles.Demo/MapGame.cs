@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Demo.Game;
 using Steropes.Tiles.Demo.TextMode;
@@ -105,22 +104,22 @@ namespace Steropes.Tiles.Demo
                 var center = viewport.CenterPoint;
                 if (consoleKeyInfo.Key == ConsoleKey.LeftArrow)
                 {
-                    center.X -= 1;
+                    center += new ContinuousViewportCoordinates(-1, 0);
                 }
 
                 if (consoleKeyInfo.Key == ConsoleKey.RightArrow)
                 {
-                    center.X += 1;
+                    center += new ContinuousViewportCoordinates(+1, 0);
                 }
 
                 if (consoleKeyInfo.Key == ConsoleKey.UpArrow)
                 {
-                    center.Y -= 1;
+                    center += new ContinuousViewportCoordinates(0, -1);
                 }
 
                 if (consoleKeyInfo.Key == ConsoleKey.DownArrow)
                 {
-                    center.Y += 1;
+                    center += new ContinuousViewportCoordinates(0, +1);
                 }
 
                 viewport.CenterPoint = center;

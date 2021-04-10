@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
+﻿using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Registry;
+using Steropes.Tiles.Sample.Shared.Strategy.Model;
 using Steropes.Tiles.TexturePack;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy
 {
     public interface IStrategyGameTileSet
     {

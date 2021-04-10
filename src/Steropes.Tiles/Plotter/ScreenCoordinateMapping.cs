@@ -235,7 +235,7 @@ namespace Steropes.Tiles.Plotter
             // In Staggered maps, the underlying map is stretched on the y-axis
             // compared to normal grids. On the y-axis one map-grid-cell of 1 
             // moves the position by 2.
-            ngrid.Y *= 2;
+            ngrid = ngrid.WithY(ngrid.Y * 2);
 
             if (Math.Abs(dx) > 0.5 - Math.Abs(dy))
             {
@@ -299,8 +299,6 @@ namespace Steropes.Tiles.Plotter
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
         public static MapCoordinate HexStaggeredScreenToMapMapper(double screenX, double screenY)
         {
             var mouseGridX = (int)Math.Floor(screenX + 0.5);
@@ -365,8 +363,6 @@ namespace Steropes.Tiles.Plotter
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
         public static DoublePoint ContinuousHexStaggeredScreenToMapMapper(double screenX, double screenY)
         {
             var mouseGridX = (int)Math.Floor(screenX + 0.5);
@@ -431,8 +427,6 @@ namespace Steropes.Tiles.Plotter
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
         public static MapCoordinate HexDiamondScreenToMapMapper(double screenX, double screenY)
         {
             var mouseGridX = (int)Math.Floor(screenX + 0.5);
@@ -497,8 +491,6 @@ namespace Steropes.Tiles.Plotter
         /// </summary>
         /// <param name="screenX"></param>
         /// <param name="screenY"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
         public static DoublePoint ContinuousHexDiamondScreenToMapMapper(double screenX, double screenY)
         {
             var mouseGridX = (int)Math.Floor(screenX + 0.5);

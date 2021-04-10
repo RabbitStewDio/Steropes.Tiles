@@ -75,7 +75,7 @@ namespace Steropes.Tiles.Matcher
                     }
                 }
 
-                q = q >> 1;
+                q >>= 1;
             }
 
             return result;

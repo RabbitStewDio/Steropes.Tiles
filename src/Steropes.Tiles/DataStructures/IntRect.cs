@@ -2,7 +2,7 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct IntRect : IEquatable<IntRect>
+    public readonly struct IntRect : IEquatable<IntRect>
     {
         public readonly int X;
         public readonly int Y;

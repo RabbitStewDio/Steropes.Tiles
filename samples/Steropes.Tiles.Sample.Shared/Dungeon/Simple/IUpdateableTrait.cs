@@ -1,6 +1,6 @@
-﻿using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
+﻿using Steropes.Tiles.Sample.Shared.Dungeon.Model;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Simple
 {
     public interface IUpdateableTrait : IItemTrait
     {

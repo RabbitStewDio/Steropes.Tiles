@@ -1,0 +1,177 @@
+<v:MainWindow xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:vm="using:Steropes.Tiles.TemplateGen.ViewModels"
+              xmlns:models="using:Steropes.Tiles.TemplateGen.Models"
+              xmlns:v="using:Steropes.Tiles.TemplateGen.Views"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+              x:Class="Steropes.Tiles.TemplateGen.Views.MainWindow"
+              x:Name="_selfRef"
+              Icon="/Assets/avalonia-logo.ico"
+              Title="Tile Template Editor">
+
+    <v:MainWindow.ShutdownCommand>
+        <Binding Path="ShutDownCommand" Mode="OneWay" />
+    </v:MainWindow.ShutdownCommand>
+
+    <v:MainWindow.InitializedCommand>
+        <Binding Path="InitializeCommand" Mode="OneWay" />
+    </v:MainWindow.InitializedCommand>
+
+    <v:MainWindow.SelectedTextureCollection>
+        <Binding Path="SelectedTextureSet" Mode="TwoWay" />
+    </v:MainWindow.SelectedTextureCollection>
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Command="{Binding CreateNewCommand}" HotKey="Ctrl+N"/>
+                <MenuItem Name="OpenMenu" Header="_Open" Command="{Binding #_selfRef.OpenCommand, Mode=OneWay}" HotKey="Ctrl+O" InputGesture="Ctrl+O"/>
+                <MenuItem Header="Recent Files" Items="{Binding UserPreferences.RecentFiles}">
+                    <MenuItem.DataTemplates>
+                        <DataTemplate>
+                            <MenuItem Header="{Binding FileName}" Command="{Binding OpenFileCommand}" />
+                        </DataTemplate>
+                    </MenuItem.DataTemplates>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_Save" Command="{Binding #_selfRef.SaveCommand, Mode=OneWay}" HotKey="Ctrl+S" InputGesture="Ctrl+S"/>
+                <MenuItem Header="Save _As" Command="{Binding #_selfRef.SaveAsCommand, Mode=OneWay}" HotKey="Ctrl+Shift+S" InputGesture="Ctrl+Shift+S"/>
+                <Separator />
+                <MenuItem Header="_Export Template" Command="{Binding #_selfRef.ExportCommand}" HotKey="Ctrl+E" InputGesture="Ctrl+E"/>
+                <Separator />
+                <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Add _Collection" Command="{Binding AddCollectionCommand}" HotKey="Ctrl+Shift+1"  InputGesture="Ctrl+Shift+D1"/>
+                <MenuItem Header="Add _Grid" Command="{Binding AddGridCommand}" HotKey="Ctrl+Shift+2" InputGesture="Ctrl+Shift+D2" />
+                <MenuItem Header="Add _Tile" Command="{Binding AddTileCommand}" HotKey="Ctrl+Shift+3" InputGesture="Ctrl+Shift+D3"/>
+                <Separator />
+                <MenuItem Header="Duplicate" Command="{Binding DuplicateCommand}" HotKey="Ctrl+Shift+V"  InputGesture="Ctrl+Shift+V"/>
+                <MenuItem Header="Delete" Command="{Binding DeleteCommand}"  HotKey="Delete"  InputGesture="Delete"/>
+                <Separator />
+                <MenuItem Header="_Arrange Tiles" Command="{Binding ArrangeTilesCommand}" HotKey="Ctrl+L" InputGesture="Ctrl+L"/>
+                <MenuItem Header="_Generate Tiles" Command="{Binding GenerateTilesCommand}" HotKey="Ctrl+G"  InputGesture="Ctrl+G"/>
+            </MenuItem>
+        </Menu>
+
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Button DockPanel.Dock="Left" Command="{Binding CreateNewCommand}" ToolTip.Tip="New Document">
+                    <Image Source="/Assets/Icons/New-Document.png" Width="16" Height="16" />
+                </Button>
+                <Button DockPanel.Dock="Left" Command="{Binding #_selfRef.OpenCommand}" ToolTip.Tip="Open Document">
+                    <Image Source="/Assets/Icons/Open_48px.png" Width="16" Height="16" />
+                </Button>
+                <Button DockPanel.Dock="Left" Command="{Binding #_selfRef.SaveCommand}" ToolTip.Tip="Save Document">
+                    <Image Source="/Assets/Icons/Save_48px.png" Width="16" Height="16" />
+                </Button>
+                <Panel Width="5" />
+                <Button DockPanel.Dock="Left" Command="{Binding #_selfRef.ExportCommand}" ToolTip.Tip="Export Template">
+                    <Image Source="/Assets/Icons/Export_48px.png" Width="16" Height="16" />
+                </Button>
+                <Panel Width="5" />
+                <Button DockPanel.Dock="Left" Command="{Binding AddCollectionCommand}" ToolTip.Tip="Add Collection">
+                    <Image Source="/Assets/Icons/Add-Collection.png" Width="16" Height="16" />
+                </Button>
+                <Button DockPanel.Dock="Left" Command="{Binding AddGridCommand}" ToolTip.Tip="Add Grid">
+                    <Image Source="/Assets/Icons/Add-Grid.png" Width="16" Height="16" />
+                </Button>
+                <Button DockPanel.Dock="Left" Command="{Binding AddTileCommand}" ToolTip.Tip="Add Tile">
+                    <Image Source="/Assets/Icons/Add-Tile.png" Width="16" Height="16" />
+                </Button>
+            </DockPanel>
+
+            <Grid Margin="5" x:Name="GridOuter">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ScrollViewer Grid.Column="0">
+                    <TreeView Name="StructureTree" Items="{Binding TextureFiles}" SelectionMode="AlwaysSelected" SelectedItem="{Binding SelectedItem}">
+                        <TreeView.DataTemplates>
+                            <TreeDataTemplate DataType="models:TextureSetFile" ItemsSource="{Binding Level}">
+                                <TextBlock Text="{Binding Name}" />
+                            </TreeDataTemplate>
+                            <TreeDataTemplate DataType="models:TileTextureCollection" ItemsSource="{Binding Grids}">
+                                <TextBlock Text="{Binding Id}" />
+                            </TreeDataTemplate>
+                            <TreeDataTemplate DataType="models:TextureGrid" ItemsSource="{Binding Tiles}">
+                                <TextBlock Text="{Binding Name}" />
+                            </TreeDataTemplate>
+                            <TreeDataTemplate DataType="models:TextureTile">
+                                <TextBlock Text="{Binding TreeNodeTitle}" />
+                            </TreeDataTemplate>
+                        </TreeView.DataTemplates>
+                    </TreeView>
+                </ScrollViewer>
+                <GridSplitter HorizontalAlignment="Right"
+                              VerticalAlignment="Stretch"
+                              ResizeBehavior="PreviousAndNext"
+                              ResizeDirection="Columns"
+                              Grid.Column="1"
+                              Width="5" />
+                <ScrollViewer Grid.Column="2">
+                    <ContentControl Content="{Binding SelectedItem}" Margin="0, 0, 8, 0">
+                        <ContentControl.DataTemplates>
+                            <DataTemplate DataType="models:TextureSetFile">
+                                <v:TextureFileView />
+                            </DataTemplate>
+                            <DataTemplate DataType="models:TileTextureCollection">
+                                <v:TextureCollectionView />
+                            </DataTemplate>
+                            <DataTemplate DataType="models:TextureGrid">
+                                <v:TextureGridView />
+                            </DataTemplate>
+                            <DataTemplate DataType="models:TextureTile">
+                                <v:TextureTileView />
+                            </DataTemplate>
+                        </ContentControl.DataTemplates>
+                    </ContentControl>
+                </ScrollViewer>
+                <GridSplitter HorizontalAlignment="Right"
+                              VerticalAlignment="Stretch"
+                              ResizeDirection="Columns"
+                              ResizeBehavior="PreviousAndNext"
+                              Grid.Column="3" Width="5" />
+                <Grid Grid.Column="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <DockPanel ZIndex="1">
+                        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="5">
+                            <Button Command="{Binding ZoomInCommand}">+</Button>
+                            <Button Command="{Binding ZoomOutCommand}">-</Button>
+                            <Slider Value="{Binding ViewScaleSliderValue}" Maximum="100" Minimum="1" Width="100" />
+                            <TextBlock Text="{Binding ViewScale}" />
+                        </StackPanel>
+                        <ScrollViewer AllowAutoHide="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                            <LayoutTransformControl Name="layoutTransform" VerticalAlignment="Center" HorizontalAlignment="Center" ClipToBounds="False">
+                                <LayoutTransformControl.LayoutTransform>
+                                    <ScaleTransform ScaleX="{Binding ViewScale}" ScaleY="{Binding ViewScale}" />
+                                </LayoutTransformControl.LayoutTransform>
+                                <Image Stretch="None" Source="{Binding PreviewImage}" UseLayoutRounding="True" />
+                            </LayoutTransformControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Grid>
+            </Grid>
+        </DockPanel>
+    </DockPanel>
+
+</v:MainWindow>

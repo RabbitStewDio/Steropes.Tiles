@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Steropes.Tiles.Sample.Shared.Util;
+using System;
 using System.Text;
-using Steropes.Tiles.Demo.Core.GameData.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
+namespace Steropes.Tiles.Sample.Shared.Strategy.Model
 {
     /// <summary>
     ///  Container structure to hold all definitions of terrain data.

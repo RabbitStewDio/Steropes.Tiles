@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Steropes.Tiles.Monogame;
 using Steropes.Tiles.Renderer;
 using Steropes.Tiles.Sample.Shared;
-using Steropes.Tiles.Unit2D.Demo.Components;
 
 namespace Steropes.Tiles.MonogameDemo
 {

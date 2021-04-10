@@ -1,7 +1,7 @@
-﻿using System;
-using Steropes.Tiles.Navigation;
+﻿using Steropes.Tiles.Navigation;
+using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy
 {
     public class MapDataChangedEventArgs : EventArgs
     {

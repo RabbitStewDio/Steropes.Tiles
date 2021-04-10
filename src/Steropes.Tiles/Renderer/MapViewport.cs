@@ -178,7 +178,6 @@ namespace Steropes.Tiles.Renderer
         void RefreshViewport()
         {
             RenderInsets = MapViewportBaseCalculations.EnsureViewportValid(SizeInTiles, Overdraw);
-            ;
         }
 
         [NotifyPropertyChangedInvocator]

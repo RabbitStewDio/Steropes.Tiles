@@ -69,7 +69,6 @@ namespace Steropes.Tiles.TexturePack.Blending
                 return false;
             }
 
-            BoundedTextureData<TColor> result;
             if (!tileRegistry.TryFind(tag, out var terrain) ||
                 !terrain.HasTexture)
             {
@@ -78,7 +77,7 @@ namespace Steropes.Tiles.TexturePack.Blending
             }
 
             var data = textureOperations.ExtractData(terrain.Texture, sourceArea);
-            result = textureOperations.CombineMask(data, effectiveMask);
+            var result = textureOperations.CombineMask(data, effectiveMask);
 
             var wrappedTextureSize = new IntDimension(tileSize.Width, tileSize.Height);
             var wrappedTexture = textureOperations.CreateTexture(etag, wrappedTextureSize);
@@ -115,14 +114,14 @@ namespace Steropes.Tiles.TexturePack.Blending
 
         CacheEntry[] PopulateCache()
         {
-            var maskCache = new CacheEntry[4];
+            var cache = new CacheEntry[4];
             for (int i = 0; i < 4; i += 1)
             {
                 var direction = (CardinalIndex)i;
-                maskCache[i] = CacheTryFindSourceMask(direction);
+                cache[i] = CacheTryFindSourceMask(direction);
             }
 
-            return maskCache;
+            return cache;
         }
 
         CacheEntry CacheTryFindSourceMask(CardinalIndex dir)

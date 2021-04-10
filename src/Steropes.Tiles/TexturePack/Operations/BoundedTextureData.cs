@@ -1,5 +1,4 @@
 ﻿using System;
-using Steropes.Tiles.DataStructures;
 
 namespace Steropes.Tiles.TexturePack.Operations
 {

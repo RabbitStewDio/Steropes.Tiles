@@ -51,7 +51,8 @@ namespace Steropes.Tiles.DataStructures
         public void Consume(Action<T> a)
         {
             posComp.Sprites = values;
-            Sort(indices, 0, Count, posComp);
+            Array.Sort(indices, posComp);
+            // Sort(indices, 0, Count, posComp);
 
             for (var i = 0; i < Count; i++)
             {
@@ -80,6 +81,7 @@ namespace Steropes.Tiles.DataStructures
                 return comp.Compare(x1, x2);
             }
         }
+        /*
 
         static void Sort<TData>(TData[] array, int startIndex, int endIndex, IComparer<TData> comparer)
         {
@@ -93,9 +95,9 @@ namespace Steropes.Tiles.DataStructures
         static void SortInternal<TData>(TData[] array, int startIndex, int endIndex, IComparer<TData> comparer)
         {
             if (startIndex >= endIndex) return;
-            var partitionBoundary = Partition<TData>(array, startIndex, endIndex, comparer);
-            SortInternal(array, startIndex, endIndex - 1, comparer);
-            SortInternal(array, endIndex + 1, endIndex, comparer);
+            var partitionBoundary = Partition(array, startIndex, endIndex, comparer);
+            SortInternal(array, startIndex, partitionBoundary - 1, comparer);
+            SortInternal(array, partitionBoundary + 1, endIndex, comparer);
         }
 
         static int Partition<TData>(TData[] array, int startIndex, int endIndex, IComparer<TData> comparer)
@@ -119,5 +121,6 @@ namespace Steropes.Tiles.DataStructures
             data[idxA] = data[idxB];
             data[idxB] = tmp;
         }
+        */
     }
 }

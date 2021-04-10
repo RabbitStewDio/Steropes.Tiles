@@ -1,6 +1,6 @@
 using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon.Model
+namespace Steropes.Tiles.Sample.Shared.Dungeon.Model
 {
     /// <summary>
     ///   Decorations are immobile items. Players and NPCs can interact with them, but they cannot be moved around.

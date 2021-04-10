@@ -1,10 +1,9 @@
-using Steropes.Tiles.Demo.Core.GameData.Dungeon;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
 using Steropes.Tiles.Matcher;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Matcher.Sprites;
+using Steropes.Tiles.Sample.Shared.Dungeon.Model;
 
-namespace Steropes.Tiles.Unit2D.Demo.Components.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     public class ItemListMatcher<TTile> : ITileMatcher<TTile, IItem>
     {

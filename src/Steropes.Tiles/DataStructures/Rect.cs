@@ -2,10 +2,10 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct Rect : IEquatable<Rect>
+    public readonly struct Rect : IEquatable<Rect>
     {
-        public double X { get; set; }
-        public double Y { get; set; }
+        public double X { get; }
+        public double Y { get; }
 
         public Rect(double x, double y, double width, double height)
         {
@@ -18,24 +18,14 @@ namespace Steropes.Tiles.DataStructures
         public DoublePoint Offset
         {
             get { return new DoublePoint(X, Y); }
-            set
-            {
-                X = value.X;
-                Y = value.Y;
-            }
         }
 
-        public double Width { get; set; }
-        public double Height { get; set; }
+        public double Width { get; }
+        public double Height { get; }
 
         public DoubleDimension Size
         {
             get { return new DoubleDimension(Width, Height); }
-            set
-            {
-                Width = value.Width;
-                Height = value.Height;
-            }
         }
 
         public DoublePoint Center

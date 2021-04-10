@@ -26,9 +26,6 @@ namespace Steropes.Tiles.Renderer
         /// during the render process. The renderer may render multiple tiles at the same position.
         /// All calls will made in Z-order. All units given are tile-units.
         /// </summary>
-        /// <param name="tile"></param>
-        /// <param name="x">The x-offset of the centre point of the tile for rendering assuming (0,0) is the upper left corner of the renderable area.</param>
-        /// <param name="y">The y-offset of the centre point of the tile for rendering assuming (0,0) is the upper left corner of the renderable area.</param>
         void Draw(TRenderTileType tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates screenLocation);
 
         void EndLine(int logicalLine, ContinuousViewportCoordinates screen);

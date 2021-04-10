@@ -1,8 +1,8 @@
-﻿using Steropes.Tiles.Demo.Core.GameData.Dungeon.Model;
-using Steropes.Tiles.Demo.Core.GameData.Dungeon.Simple;
-using Steropes.Tiles.Demo.Core.GameData.Util;
+﻿using Steropes.Tiles.Sample.Shared.Dungeon.Model;
+using Steropes.Tiles.Sample.Shared.Dungeon.Simple;
+using Steropes.Tiles.Sample.Shared.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     /// <summary>
     ///   All of that should ideally come from external data files so that

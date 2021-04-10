@@ -1,6 +1,6 @@
-﻿using Steropes.Tiles.Demo.Core.GameData.Util;
+﻿using Steropes.Tiles.Sample.Shared.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
+namespace Steropes.Tiles.Sample.Shared.Strategy.Model
 {
     public interface IRoadType : ITerrainExtra
     {

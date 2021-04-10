@@ -1,6 +1,6 @@
 using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Dungeon
+namespace Steropes.Tiles.Sample.Shared.Dungeon
 {
     public static class RandomHelper
     {

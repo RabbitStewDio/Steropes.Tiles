@@ -185,6 +185,8 @@ namespace Steropes.Tiles.Plotter.Operations
             int cacheHit;
             int cacheMiss;
 
+            public (int hit, int miss) CacheStats => (cacheHit, cacheMiss);
+
             public void StartDrawing()
             {
                 tilesTouched = 0;

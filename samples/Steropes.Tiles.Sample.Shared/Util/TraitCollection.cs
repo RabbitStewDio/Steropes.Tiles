@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Steropes.Tiles.Demo.Core.Util
+namespace Steropes.Tiles.Sample.Shared.Util
 {
     public class TraitCollection<T> : IEnumerable<T>
         where T : class
@@ -40,19 +40,6 @@ namespace Steropes.Tiles.Demo.Core.Util
                     return;
                 }
             }
-        }
-
-        int FindByRef(object o)
-        {
-            for (var i = 0; i < contents.Count; i++)
-            {
-                if (ReferenceEquals(o, contents[i]))
-                {
-                    return i;
-                }
-            }
-
-            return -1;
         }
 
         public void ForAll<TContext>(Action<T, TContext> a, TContext context)

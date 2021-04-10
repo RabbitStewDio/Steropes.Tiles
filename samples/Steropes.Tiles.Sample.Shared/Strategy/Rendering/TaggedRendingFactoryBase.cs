@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Steropes.Tiles.Sample.Shared.Strategy.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
-using Steropes.Tiles.Demo.Core.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Rendering
+namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
 {
     public class TaggedRendingFactoryBase
     {

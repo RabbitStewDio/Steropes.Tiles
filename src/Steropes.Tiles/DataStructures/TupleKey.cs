@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct TupleKey<TFirst, TSecond> : IEquatable<TupleKey<TFirst, TSecond>>
+    public readonly struct TupleKey<TFirst, TSecond> : IEquatable<TupleKey<TFirst, TSecond>>
     {
         public TFirst Item1 { get; }
         public TSecond Item2 { get; }

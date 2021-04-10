@@ -1,6 +1,6 @@
 using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Model
+namespace Steropes.Tiles.Sample.Shared.Strategy.Model
 {
     /// <summary>
     ///  Defines a resource in Civ style. 

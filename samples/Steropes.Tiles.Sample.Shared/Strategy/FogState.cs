@@ -1,6 +1,6 @@
 using System;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy
 {
     [Flags]
     public enum FogState

@@ -1,7 +1,7 @@
-﻿using Steropes.Tiles.Demo.Core.GameData.Util;
-using Steropes.Tiles.Matcher;
+﻿using Steropes.Tiles.Matcher;
+using Steropes.Tiles.Sample.Shared.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Rendering
+namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
 {
     public class BoolRenderingFactory : TaggedRendingFactoryBase
     {

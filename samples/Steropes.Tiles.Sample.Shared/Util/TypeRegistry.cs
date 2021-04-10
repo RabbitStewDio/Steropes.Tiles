@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Util
+namespace Steropes.Tiles.Sample.Shared.Util
 {
     public class TypeRegistry<T> : ITypeRegistry<T>
     {
@@ -67,7 +67,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Util
         public static TypeRegistry<T> CreateFrom<T>(object o)
             where T : class
         {
-            return CreateFrom(o, v => default(T));
+            return CreateFrom(o, _ => default(T));
         }
 
         public static TypeRegistry<T> AppendFrom<T, TSource>(this TypeRegistry<T> reg, TSource o)

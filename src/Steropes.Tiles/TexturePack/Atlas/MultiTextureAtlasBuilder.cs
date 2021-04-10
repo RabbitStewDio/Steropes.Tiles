@@ -30,7 +30,7 @@ namespace Steropes.Tiles.TexturePack.Atlas
             }
 
             var rt = textureOperations.CreateTexture("TextureAtlas-" + builders.Count,
-                                                     new IntDimension(size, size), true);
+                                                     new IntDimension(size, size));
             var b2 = new TextureAtlasBuilder<TTexture, TColor>(textureOperations, rt);
 
             if (b2.Insert(tile, out TTexture result2))

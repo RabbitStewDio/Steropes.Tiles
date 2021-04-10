@@ -76,7 +76,7 @@ namespace Steropes.Tiles.Matcher.Sprites
 
         public string Format(string tag, string format = null)
         {
-            format = format ?? "{0}_{1}_{2}_{3}_{4}";
+            format ??= "{0}_{1}_{2}_{3}_{4}";
             return string.Format(format, tag, MatchA.Tag, MatchB.Tag, MatchC.Tag, MatchD.Tag);
         }
 
@@ -96,7 +96,7 @@ namespace Steropes.Tiles.Matcher.Sprites
             int card = 1;
             int index = 0;
 
-            index += a.Index * card;
+            index += a.Index;
             card *= Math.Max(1, a.Cardinality);
 
             index += b.Index * card;

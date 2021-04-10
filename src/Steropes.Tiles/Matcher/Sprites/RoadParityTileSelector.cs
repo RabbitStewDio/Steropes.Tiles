@@ -10,6 +10,7 @@ namespace Steropes.Tiles.Matcher.Sprites
     ///   neighbours. If there are no neighbours a special "isolated" tile is used.
     /// </summary>
     /// <typeparam name="TRenderTile"></typeparam>
+    /// <typeparam name="TContext"></typeparam>
     public class RoadParityTileSelector<TRenderTile, TContext> : ITileMatcher<TRenderTile, TContext>
     {
         readonly CardinalTileSelector<TRenderTile, TContext> cardinalTileSelector;

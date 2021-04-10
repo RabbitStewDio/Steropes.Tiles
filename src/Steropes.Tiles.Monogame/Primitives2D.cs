@@ -34,17 +34,17 @@ namespace Steropes.Tiles.Monogame
     {
         #region Private Members
 
-        private static readonly Dictionary<string, List<Vector2>> circleCache = new Dictionary<string, List<Vector2>>();
+        static readonly Dictionary<string, List<Vector2>> circleCache = new Dictionary<string, List<Vector2>>();
 
         //private static readonly Dictionary<String, List<Vector2>> arcCache = new Dictionary<string, List<Vector2>>();
-        private static Texture2D pixel;
+        static Texture2D pixel;
 
         #endregion
 
 
         #region Private Methods
 
-        private static void CreateThePixel(GraphicsResource spriteBatch)
+        static void CreateThePixel(GraphicsResource spriteBatch)
         {
             pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             pixel.SetData(new[] {Color.White});
@@ -59,11 +59,11 @@ namespace Steropes.Tiles.Monogame
         /// <param name="points">The points to connect with lines</param>
         /// <param name="color">The color to use</param>
         /// <param name="thickness">The thickness of the lines</param>
-        private static void DrawPoints(SpriteBatch spriteBatch,
-                                       Vector2 position,
-                                       List<Vector2> points,
-                                       Color color,
-                                       float thickness)
+        static void DrawPoints(SpriteBatch spriteBatch,
+                               Vector2 position,
+                               List<Vector2> points,
+                               Color color,
+                               float thickness)
         {
             if (points.Count < 2)
                 return;
@@ -81,7 +81,7 @@ namespace Steropes.Tiles.Monogame
         /// <param name="radius">The radius of the circle</param>
         /// <param name="sides">The number of sides to generate</param>
         /// <returns>A list of vectors that, if connected, will create a circle</returns>
-        private static List<Vector2> CreateCircle(double radius, int sides)
+        static List<Vector2> CreateCircle(double radius, int sides)
         {
             // Look for a cached version of this circle
             String circleKey = radius + "x" + sides;
@@ -118,7 +118,7 @@ namespace Steropes.Tiles.Monogame
         /// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
         /// <param name="radians">The radians to draw, clockwise from the starting angle</param>
         /// <returns>A list of vectors that, if connected, will create an arc</returns>
-        private static List<Vector2> CreateArc(float radius, int sides, float startingAngle, float radians)
+        static List<Vector2> CreateArc(float radius, int sides, float startingAngle, float radians)
         {
             List<Vector2> points = new List<Vector2>();
             points.AddRange(CreateCircle(radius, sides));

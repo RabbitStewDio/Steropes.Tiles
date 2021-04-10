@@ -2,9 +2,9 @@
 {
     public class Nothing
     {
-        public static Nothing Instance = new Nothing();
+        public static readonly Nothing Instance = new Nothing();
 
-        private Nothing()
+        Nothing()
         { }
     }
 }

@@ -1,5 +1,5 @@
 using Steropes.Tiles.Matcher.Registry;
-using Steropes.Tiles.Unit2D.Demo.GameData.Dungeon;
+using Steropes.Tiles.Sample.Shared.Dungeon;
 using System;
 
 namespace Steropes.Tiles.Sample.Shared

@@ -1,4 +1,4 @@
-﻿namespace Steropes.Tiles.Demo.Core.GameData.Strategy.Rendering
+﻿namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
 {
     public interface ITileRenderModeContext
     {

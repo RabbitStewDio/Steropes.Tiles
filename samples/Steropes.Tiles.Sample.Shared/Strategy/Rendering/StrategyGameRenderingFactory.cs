@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Rendering;
-using Steropes.Tiles.Demo.Core.GameData.Util;
+﻿using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Matcher.TileTags;
 using Steropes.Tiles.Plotter.Operations;
 using Steropes.Tiles.Plotter.Operations.Builder;
-using Steropes.Tiles.Renderer;
-using Steropes.Tiles.Sample.Shared;
+using Steropes.Tiles.Sample.Shared.Util;
 using Steropes.Tiles.TexturePack;
 using Steropes.Tiles.TexturePack.Grids;
 using Steropes.Tiles.TexturePack.Operations;
-using Steropes.Tiles.Unit2D.Demo.Components;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 // using Steropes.Tiles.Unity2D;
 // using UnityEngine;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
 {
     public class StrategyGameRenderingFactory<TTile, TTexture, TColor> : ITileRenderModeContext, IRenderingFactoryConfig<TTile>
         where TTile : ITexturedTile<TTexture>
@@ -30,7 +26,6 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
         readonly ITextureOperations<TTexture, TColor> textureOperations;
         readonly BoolRenderingFactory boolRendering;
         readonly TagSetRenderingFactory cellRendering;
-        readonly RendererControl renderControl;
 
         public StrategyGameRenderingFactory(GameRenderingConfig renderingConfig,
                                             StrategyGameData gameData,
@@ -124,7 +119,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
 
             void FogCacheControl(IPlotOperation c)
             {
-                GameData.Fog.MapDataChanged += (s, a) => c.Invalidate(a.Coordinate, a.Range + 2);
+                GameData.Fog.MapDataChanged += (_, a) => c.Invalidate(a.Coordinate, a.Range + 2);
                 RotationCacheControl(c);
             }
 
@@ -134,7 +129,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
         void RotationCacheControl(IPlotOperation c)
         {
             const string pn = nameof(GameRenderingConfig.RotationSteps);
-            RenderingConfig.PropertyChanged += (s, a) =>
+            RenderingConfig.PropertyChanged += (_, a) =>
             {
                 if (a.PropertyName == pn)
                 {
@@ -304,7 +299,7 @@ namespace Steropes.Tiles.Demo.Core.GameData.Strategy
 
             return new MapLookupTable<bool>(GameData.Rules.TerrainTypes.Count,
                                             TerrainIndexFor,
-                                            matcherByTerrainIndex, false).Match;
+                                            matcherByTerrainIndex).Match;
         }
 
         IEnumerable<TileMatchControl> CreateRiverLayer()

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<tileset tile-width="54" tile-height="27">
+<tileset width="54" height="27">
     <collection id="dg_iso32">
         <grid x="0" y="0" width="54" height="48" anchor-x="27" anchor-y="34">
             <tile x="0" y="0">

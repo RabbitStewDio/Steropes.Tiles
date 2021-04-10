@@ -1,5 +1,4 @@
-﻿using Steropes.Tiles.TexturePack;
-using Steropes.Tiles.TexturePack.Operations;
+﻿using Steropes.Tiles.TexturePack.Operations;
 
 namespace Steropes.Tiles.TexturePack.Atlas
 {

@@ -1,7 +1,6 @@
 using Steropes.Tiles.Renderer;
-using Steropes.Tiles.Sample.Shared;
 
-namespace Steropes.Tiles.Unit2D.Demo.Components
+namespace Steropes.Tiles.Sample.Shared
 {
     public interface IRenderCallbackFactory<TRenderParameter, TTile>
     {

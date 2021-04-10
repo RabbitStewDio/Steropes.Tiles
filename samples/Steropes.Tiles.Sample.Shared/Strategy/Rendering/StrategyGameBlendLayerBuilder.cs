@@ -1,14 +1,14 @@
 ﻿using Steropes.Tiles.DataStructures;
-using Steropes.Tiles.Demo.Core.GameData.Util;
 using Steropes.Tiles.Matcher;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Matcher.Sprites;
+using Steropes.Tiles.Sample.Shared.Util;
 using Steropes.Tiles.TexturePack;
 using Steropes.Tiles.TexturePack.Blending;
 using Steropes.Tiles.TexturePack.Grids;
 using Steropes.Tiles.TexturePack.Operations;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
 {
     public class StrategyGameBlendLayerBuilder<TTile, TTexture, TColor>
         where TTile : ITexturedTile<TTexture>

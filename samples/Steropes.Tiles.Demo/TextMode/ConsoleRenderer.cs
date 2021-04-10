@@ -1,7 +1,6 @@
 ﻿using System;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Sprites;
-using Steropes.Tiles.Navigation;
 using Steropes.Tiles.Renderer;
 
 namespace Steropes.Tiles.Demo.TextMode

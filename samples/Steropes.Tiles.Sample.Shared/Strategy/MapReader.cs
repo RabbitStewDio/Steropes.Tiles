@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Steropes.Tiles.Sample.Shared.Strategy.Model;
+using Steropes.Tiles.Sample.Shared.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Steropes.Tiles.Demo.Core.GameData.Strategy.Model;
-using Steropes.Tiles.Demo.Core.GameData.Util;
 
-namespace Steropes.Tiles.Demo.Core.GameData.Strategy
+namespace Steropes.Tiles.Sample.Shared.Strategy
 {
     public class MapReader
     {

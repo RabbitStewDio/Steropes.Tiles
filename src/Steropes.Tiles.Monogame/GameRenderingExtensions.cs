@@ -47,14 +47,14 @@ namespace Steropes.Tiles.Monogame
                 r.Bounds = new Rect(x, y, w, h);
             }
 
-            EventHandler handler = (s, o) => UpdateBounds();
+            void Handler(object o, EventArgs eventArgs) => UpdateBounds();
 
             var changeGuardian = WindowSizeChangeGuardian.Install(r.Game);
-            changeGuardian.WindowSizeChanged += handler;
+            changeGuardian.WindowSizeChanged += Handler;
 
             // finally initialize once 
             UpdateBounds();
-            return new ScreenTrackingSubscription(r, handler);
+            return new ScreenTrackingSubscription(r, Handler);
         }
     }
 }

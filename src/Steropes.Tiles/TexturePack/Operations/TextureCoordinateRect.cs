@@ -4,7 +4,7 @@ using Steropes.Tiles.DataStructures;
 
 namespace Steropes.Tiles.TexturePack.Operations
 {
-    public struct TextureCoordinateRect : IEquatable<TextureCoordinateRect>
+    public readonly struct TextureCoordinateRect : IEquatable<TextureCoordinateRect>
     {
         public readonly int X;
         public readonly int Y;

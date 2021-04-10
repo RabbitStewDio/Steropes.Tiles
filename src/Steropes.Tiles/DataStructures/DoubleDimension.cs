@@ -2,7 +2,7 @@
 
 namespace Steropes.Tiles.DataStructures
 {
-    public struct DoubleDimension : IEquatable<DoubleDimension>
+    public readonly struct DoubleDimension : IEquatable<DoubleDimension>
     {
         public readonly double Width;
         public readonly double Height;
