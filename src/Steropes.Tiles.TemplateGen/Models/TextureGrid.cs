@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using ReactiveUI;
 using Steropes.Tiles.DataStructures;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace Steropes.Tiles.TemplateGen.Models
 {
@@ -28,6 +30,9 @@ namespace Steropes.Tiles.TemplateGen.Models
         string? name;
         string? cellMapElements;
 
+        readonly Dictionary<string, CellMappingDeclaration> cellMappingsByKey;
+        bool cellMappingsByKeyDirty;
+        
         public TextureGrid(FormattingMetaData? md = null, TextureTileFormattingMetaData? tmd = null, TileTextureCollection? parent = null)
         {
             Parent = parent;
@@ -37,8 +42,53 @@ namespace Steropes.Tiles.TemplateGen.Models
             FormattingMetaData.PropertyChanged += OnFormattingDataChanged;
             TextureTileFormattingMetaData = tmd ?? new TextureTileFormattingMetaData();
             TextureTileFormattingMetaData.PropertyChanged += OnFormattingDataChanged;
+            CellMappings = new BulkChangeObservableCollection<CellMappingDeclaration>();
+            CellMappings.CollectionChanged += OnCellMappingsChanged;
+
+            AddCellMappingCommand = ReactiveCommand.Create(OnAddCellMapping);
+            RemoveCellMappingCommand = ReactiveCommand.Create<CellMappingDeclaration>(OnRemoveCellMapping);
+
+            cellMappingsByKey = new Dictionary<string, CellMappingDeclaration>();
+            cellMappingsByKeyDirty = true;
         }
 
+        public bool TryGetCellMapping(string key, out CellMappingDeclaration d)
+        {
+            if (cellMappingsByKeyDirty)
+            {
+                cellMappingsByKey.Clear();
+                foreach (var m in CellMappings.ToArray())
+                {
+                    if (m.Key != null)
+                    {
+                        cellMappingsByKey[m.Key] = m;
+                    } 
+                }
+            }
+
+            return cellMappingsByKey.TryGetValue(key, out d);
+        }
+        
+        void OnAddCellMapping()
+        {
+            CellMappings.Add(new CellMappingDeclaration()
+            {
+                HighlightColor = TextureParserExtensions.Colors[CellMappings.Count % TextureParserExtensions.Colors.Count]
+            });
+        }
+
+        void OnRemoveCellMapping(CellMappingDeclaration? d)
+        {
+            if (d == null)
+            {
+                return;
+            }
+
+            CellMappings.Remove(d);
+        }
+
+        public BulkChangeObservableCollection<CellMappingDeclaration> CellMappings { get; }
+        
         void OnFormattingDataChanged(object? sender, PropertyChangedEventArgs e)
         {
             FireContentsChanged();
@@ -73,6 +123,8 @@ namespace Steropes.Tiles.TemplateGen.Models
 
         public bool IsCellMapping => MatcherType == MatcherType.CellMap;
 
+        
+        [Obsolete]
         public string? CellMapElements
         {
             get { return cellMapElements; }
@@ -246,19 +298,6 @@ namespace Steropes.Tiles.TemplateGen.Models
             }
         }
 
-        public List<string> EffectiveCellMapElements
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(CellMapElements))
-                {
-                    return new List<string>();
-                }
-
-                return CellMapElements.Split(null).Distinct().ToList();
-            }
-        }
-
 
         /// <summary>
         ///  Returns the effective tile size, that is the standardized 
@@ -315,6 +354,37 @@ namespace Steropes.Tiles.TemplateGen.Models
         public event PropertyChangedEventHandler? PropertyChanged;
         public BulkChangeObservableCollection<TextureTile> Tiles { get; }
 
+        public ICommand AddCellMappingCommand { get; }
+        public ICommand RemoveCellMappingCommand { get; }
+
+
+        void OnCellMappingsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (CellMappingDeclaration item in e.OldItems)
+                {
+                    item.PropertyChanged -= OnCellMappingChanged;
+                }
+            }
+
+            if (e.NewItems != null)
+            {
+                foreach (CellMappingDeclaration item in e.NewItems)
+                {
+                    item.PropertyChanged += OnCellMappingChanged;
+                }
+            }
+            
+            FireContentsChanged();
+        }
+
+        void OnCellMappingChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            cellMappingsByKey.Clear();
+            cellMappingsByKeyDirty = true;
+        }
+
         void OnTilesChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
@@ -366,12 +436,16 @@ namespace Steropes.Tiles.TemplateGen.Models
                 MatcherType = MatcherType,
                 Pattern = Pattern,
                 Name = Name,
-                CellMapElements = CellMapElements
             };
 
             foreach (var tile in Tiles)
             {
                 retval.Tiles.Add(tile.CreateDeepCopy());
+            }
+
+            foreach (var m in CellMappings)
+            {
+                retval.CellMappings.Add(m.CreateCopy());
             }
 
             return retval;

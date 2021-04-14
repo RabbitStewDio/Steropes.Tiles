@@ -155,13 +155,13 @@
                     </Grid.RowDefinitions>
                     <DockPanel ZIndex="1">
                         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="5">
-                            <Button Command="{Binding ZoomInCommand}">+</Button>
-                            <Button Command="{Binding ZoomOutCommand}">-</Button>
+                            <Button Command="{Binding ZoomOutCommand}" HotKey="Ctrl+Subtract">-</Button>
+                            <Button Command="{Binding ZoomInCommand}" HotKey="Ctrl+Add">+</Button>
                             <Slider Value="{Binding ViewScaleSliderValue}" Maximum="100" Minimum="1" Width="100" />
                             <TextBlock Text="{Binding ViewScale}" />
                         </StackPanel>
                         <ScrollViewer AllowAutoHide="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                            <LayoutTransformControl Name="layoutTransform" VerticalAlignment="Center" HorizontalAlignment="Center" ClipToBounds="False">
+                            <LayoutTransformControl Name="layoutTransform" VerticalAlignment="Center" HorizontalAlignment="Center" ClipToBounds="False" Margin="20">
                                 <LayoutTransformControl.LayoutTransform>
                                     <ScaleTransform ScaleX="{Binding ViewScale}" ScaleY="{Binding ViewScale}" />
                                 </LayoutTransformControl.LayoutTransform>

@@ -460,7 +460,7 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
             public FogCellMatcher(IFogMap map)
             {
                 this.map = map;
-                Owner = TileTagEntrySelectionFactory.FromTags("unknown", "fog", "known");
+                Owner = TileTagEntrySelectionFactory.FromTagsAsSingleCharKey("unknown", "fog", "known");
                 states = new[]
                 {
                     Owner[0],

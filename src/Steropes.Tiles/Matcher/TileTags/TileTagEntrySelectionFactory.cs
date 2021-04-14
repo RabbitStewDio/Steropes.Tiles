@@ -1,17 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Steropes.Tiles.Matcher.TileTags
 {
     public static class TileTagEntrySelectionFactory
     {
-        public static ITileTagEntrySelectionFactory<string> FromTags(params string[] tags)
+        /// <summary>
+        ///   Creates a default set of tag entry selections from the given set of unique tags.
+        ///   This method will use the first character of the tags as selector key.
+        /// </summary>
+        /// <param name="tags"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static ITileTagEntrySelectionFactory<string> FromTagsAsSingleCharKey(params string[] tags)
         {
             try
             {
-                var tagPairs = tags.Select(t => new KeyValuePair<string, string>(t, t[0].ToString()));
-                return new TileTagEntrySelectionFactory<string>(tagPairs.ToArray());
+                var x = new List<KeyValuePair<string, string>>();
+                foreach (var tag in tags)
+                {
+                    if (string.IsNullOrWhiteSpace(tag))
+                    {
+                        continue;
+                    }
+
+                    x.Add(new KeyValuePair<string, string>(tag[0].ToString(), tag));
+                }
+                return new TileTagEntrySelectionFactory<string>(x.ToArray());
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                throw new ArgumentException("Cannot pass an empty string as tag", e);
+            }
+        }
+
+        public static ITileTagEntrySelectionFactory<string> FromTagsAsTextKey(params string[] tags)
+        {
+            try
+            {
+                var x = new List<KeyValuePair<string, string>>();
+                foreach (var tag in tags)
+                {
+                    if (string.IsNullOrWhiteSpace(tag))
+                    {
+                        continue;
+                    }
+
+                    x.Add(new KeyValuePair<string, string>(tag, tag));
+                }
+                return new TileTagEntrySelectionFactory<string>(x.ToArray());
             }
             catch (IndexOutOfRangeException e)
             {
@@ -50,7 +87,7 @@ namespace Steropes.Tiles.Matcher.TileTags
 
         public ITileTagEntrySelection<TSelector> Lookup(TSelector idx)
         {
-            return selectionsByIndex.Find(e => Equals(e.Selector, idx));
+            return selectionsByIndex.Find(e => EqualityComparer<TSelector>.Default.Equals(e.Selector, idx));
         }
 
         public int Count
@@ -71,7 +108,7 @@ namespace Steropes.Tiles.Matcher.TileTags
             }
 
             var firstChar = selector;
-            if (selectionsByIndex.Exists(e => Equals(e.Selector, firstChar)))
+            if (selectionsByIndex.Exists(e => EqualityComparer<TSelector>.Default.Equals(e.Selector, firstChar)))
             {
                 throw new ArgumentException($"duplicate character for tag {tag}");
             }
@@ -120,7 +157,7 @@ namespace Steropes.Tiles.Matcher.TileTags
                     return true;
                 }
 
-                return Owner.Equals(other.Owner) && Equals(Selector, other.Selector) && Index == other.Index;
+                return Owner.Equals(other.Owner) && EqualityComparer<TSelector>.Default.Equals(Selector, other.Selector) && Index == other.Index;
             }
 
             public override bool Equals(object obj)
@@ -147,8 +184,9 @@ namespace Steropes.Tiles.Matcher.TileTags
             {
                 unchecked
                 {
+                    var x = EqualityComparer<TSelector>.Default;
                     var hashCode = Owner.GetHashCode();
-                    hashCode = (hashCode * 397) ^ Selector.GetHashCode();
+                    hashCode = (hashCode * 397) ^ x.GetHashCode(Selector);
                     hashCode = (hashCode * 397) ^ Index.GetHashCode();
                     return hashCode;
                 }

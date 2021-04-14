@@ -13,7 +13,7 @@
 
         /// <summary>
         ///  Text representation of the tag used for a tile lookup.
-        ///  This is a documentation property.
+        ///  This property exists for documentation and ease of debugging.
         /// </summary>
         string Tag { get; }
 

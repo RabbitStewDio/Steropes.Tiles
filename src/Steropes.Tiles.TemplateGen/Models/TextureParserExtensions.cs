@@ -139,6 +139,7 @@ namespace Steropes.Tiles.TemplateGen.Models
         }
 
         static readonly Dictionary<string, Color> KnownColors;
+        public static IReadOnlyList<Color> Colors { get; }
 
         static TextureParserExtensions()
         {
@@ -278,8 +279,8 @@ namespace Steropes.Tiles.TemplateGen.Models
             KnownColors["teal"] = Color.FromArgb(255, 0, 128, 128);
             KnownColors["thistle"] = Color.FromArgb(255, 216, 191, 216);
             KnownColors["tomato"] = Color.FromArgb(255, 255, 99, 71);
-            KnownColors["transparent"] = Color.FromArgb(255, 0, 0, 0);
-            KnownColors["transparentblack"] = Color.FromArgb(255, 0, 0, 0);
+            KnownColors["transparent"] = Color.FromArgb(0, 0, 0, 0);
+            KnownColors["transparentblack"] = Color.FromArgb(0, 0, 0, 0);
             KnownColors["turquoise"] = Color.FromArgb(255, 64, 224, 208);
             KnownColors["violet"] = Color.FromArgb(255, 238, 130, 238);
             KnownColors["wheat"] = Color.FromArgb(255, 245, 222, 179);
@@ -287,6 +288,8 @@ namespace Steropes.Tiles.TemplateGen.Models
             KnownColors["whitesmoke"] = Color.FromArgb(255, 245, 245, 245);
             KnownColors["yellow"] = Color.FromArgb(255, 255, 255, 0);
             KnownColors["yellowgreen"] = Color.FromArgb(255, 154, 205, 50);
+
+            Colors = KnownColors.Values.Where(c => c.A == 255).ToArray();
         }
 
         public static Color ParseFromString(string colorAsText)

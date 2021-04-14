@@ -49,21 +49,6 @@ namespace Steropes.Tiles.TemplateGen.Models.Rendering
         protected virtual void DrawSubCell(SKCanvas g, TextureTile tile, Direction direction, Color c)
         { }
 
-        void DrawCellMap(SKCanvas g, TextureTile t)
-        {
-            var hint = (t.SelectorHint ?? "").Split(',');
-            for (var i = 0; i < hint.Length; i++)
-            {
-                if (int.TryParse(hint[i], out var colorIndex) &&
-                    colorIndex >= 0 &&
-                    colorIndex < Preferences.TileColors.Count)
-                {
-                    var c = Preferences.TileColors[colorIndex];
-                    DrawSubCell(g, t, (Direction)i, c);
-                }
-            }
-        }
-
         protected static int Lerp4(int left, int right, int quarterFraction)
         {
             return left + (right - left) * quarterFraction / 4;
@@ -96,52 +81,6 @@ namespace Steropes.Tiles.TemplateGen.Models.Rendering
             g.DrawRasterLine(pen, anchor.X + 4, anchor.Y, anchor.X + 2, anchor.Y);
             g.DrawRasterLine(pen, anchor.X, anchor.Y - 2, anchor.X, anchor.Y - 4);
             g.DrawRasterLine(pen, anchor.X, anchor.Y + 2, anchor.X, anchor.Y + 4);
-        }
-
-        void DrawCornerMap(SKCanvas g, TextureTile t)
-        {
-            var hint = (t.SelectorHint ?? "").PadLeft(5);
-
-            void IfFlagSet(int pos, Action a)
-            {
-                var c = hint[pos];
-                if (c == '1')
-                {
-                    a();
-                }
-            }
-
-            var highlightColor = t.Parent?.TextureTileFormattingMetaData.TileHighlightColor ?? Preferences.DefaultTileHighlightColor;
-            var baseColor = t.Parent?.TextureTileFormattingMetaData.TileAnchorColor ?? Preferences.DefaultTileAnchorColor;
-            var direction = hint[0];
-            if (direction == 'U')
-            {
-                DrawSubCell(g, t, Direction.Down, baseColor);
-                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Left, highlightColor));
-                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Up, highlightColor));
-                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Right, highlightColor));
-            }
-            else if (direction == 'R')
-            {
-                DrawSubCell(g, t, Direction.Left, baseColor);
-                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Up, highlightColor));
-                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Right, highlightColor));
-                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Down, highlightColor));
-            }
-            else if (direction == 'D')
-            {
-                DrawSubCell(g, t, Direction.Up, baseColor);
-                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Right, highlightColor));
-                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Down, highlightColor));
-                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Left, highlightColor));
-            }
-            else if (direction == 'L')
-            {
-                DrawSubCell(g, t, Direction.Right, baseColor);
-                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Down, highlightColor));
-                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Left, highlightColor));
-                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Up, highlightColor));
-            }
         }
 
         protected void DrawSelectorHint(SKCanvas g, TextureTile t)
@@ -220,6 +159,68 @@ namespace Steropes.Tiles.TemplateGen.Models.Rendering
             if (Enum.TryParse(text, out NeighbourIndex idx))
             {
                 DrawIndexedDirection(g, t, idx);
+            }
+        }
+        
+        void DrawCellMap(SKCanvas g, TextureTile t)
+        {
+            var selectorKeys = (t.SelectorHint ?? "").Split(null);
+            for (var i = 0; i < Math.Min(selectorKeys.Length, 4); i++)
+            {
+                var selectorKey = selectorKeys[i];
+                Color? color = null;
+                if (Grid.TryGetCellMapping(selectorKey, out var d))
+                {
+                    color = d.HighlightColor;
+                }
+                
+                DrawSubCell(g, t, (Direction)i, color ?? Colors.Magenta);
+            }
+        }
+
+        void DrawCornerMap(SKCanvas g, TextureTile t)
+        {
+            var hint = (t.SelectorHint ?? "").PadLeft(5);
+
+            void IfFlagSet(int pos, Action a)
+            {
+                var c = hint[pos];
+                if (c == '1')
+                {
+                    a();
+                }
+            }
+
+            var highlightColor = t.Parent?.TextureTileFormattingMetaData.TileHighlightColor ?? Preferences.DefaultTileHighlightColor;
+            var baseColor = t.Parent?.TextureTileFormattingMetaData.TileAnchorColor ?? Preferences.DefaultTileAnchorColor;
+            var direction = hint[0];
+            if (direction == 'U')
+            {
+                DrawSubCell(g, t, Direction.Down, baseColor);
+                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Left, highlightColor));
+                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Up, highlightColor));
+                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Right, highlightColor));
+            }
+            else if (direction == 'R')
+            {
+                DrawSubCell(g, t, Direction.Left, baseColor);
+                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Up, highlightColor));
+                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Right, highlightColor));
+                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Down, highlightColor));
+            }
+            else if (direction == 'D')
+            {
+                DrawSubCell(g, t, Direction.Up, baseColor);
+                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Right, highlightColor));
+                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Down, highlightColor));
+                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Left, highlightColor));
+            }
+            else if (direction == 'L')
+            {
+                DrawSubCell(g, t, Direction.Right, baseColor);
+                IfFlagSet(2, () => DrawSubCell(g, t, Direction.Down, highlightColor));
+                IfFlagSet(3, () => DrawSubCell(g, t, Direction.Left, highlightColor));
+                IfFlagSet(4, () => DrawSubCell(g, t, Direction.Up, highlightColor));
             }
         }
     }

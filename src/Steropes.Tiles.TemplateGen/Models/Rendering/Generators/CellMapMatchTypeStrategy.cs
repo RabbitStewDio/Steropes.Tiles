@@ -3,6 +3,7 @@ using Steropes.Tiles.Matcher.Sprites;
 using Steropes.Tiles.Matcher.TileTags;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Steropes.Tiles.TemplateGen.Models.Rendering.Generators
 {
@@ -10,12 +11,12 @@ namespace Steropes.Tiles.TemplateGen.Models.Rendering.Generators
     {
         string FormatCellMapSelectorKey(CellMapTileSelectorKey k)
         {
-            return $"{k.MatchA.Index},{k.MatchB.Index},{k.MatchC.Index},{k.MatchD.Index}";
+            return $"{k.MatchA.Tag} {k.MatchB.Tag} {k.MatchC.Tag} {k.MatchD.Tag}";
         }
 
         public IntDimension GetTileArea(TextureGrid grid)
         {
-            var cellMapCount = Math.Max(1, grid.EffectiveCellMapElements.Count);
+            var cellMapCount = Math.Max(1, grid.CellMappings.Count);
             var tileCount = Math.Pow(cellMapCount, 4);
             var width = (int)Math.Ceiling(Math.Sqrt(tileCount));
             var height = (int)Math.Ceiling(tileCount / width);
@@ -24,43 +25,40 @@ namespace Steropes.Tiles.TemplateGen.Models.Rendering.Generators
 
         public List<TextureTile> Generate(TextureGrid grid)
         {
-            var cellMapEntries = grid.EffectiveCellMapElements;
+            var cellMapEntries = grid.CellMappings.Where(e => !string.IsNullOrWhiteSpace(e.Key)).ToList();
             if (cellMapEntries.Count <= 1)
             {
-                cellMapEntries = new List<string>
-                {
-                    "0",
-                    "1"
-                };
+                return new List<TextureTile>();
             }
 
-            var selectionFactory = TileTagEntrySelectionFactory.FromTags(cellMapEntries.ToArray());
+            var selectionFactory = TileTagEntrySelectionFactory.FromTagsAsTextKey(cellMapEntries.Select(e => e.Key ?? "").ToArray());
             var selections = selectionFactory.ToSelectionArray();
             var tileCount = Math.Pow(selections.Length, 4);
             var width = (int)Math.Ceiling(Math.Sqrt(tileCount));
-            var retval = new List<TextureTile>();
-            foreach (var m4 in selections)
+
+            TextureTile Create(ITileTagEntrySelection m1,
+                               ITileTagEntrySelection m2,
+                               ITileTagEntrySelection m3,
+                               ITileTagEntrySelection m4)
             {
-                foreach (var m3 in selections)
+                var key = new CellMapTileSelectorKey(m1, m2, m3, m4);
+                var tileName = key.Format(grid.Name, grid.Pattern);
+                var x = key.LinearIndex % width;
+                var y = key.LinearIndex / width;
+                
+                return new TextureTile(true, x, y, tileName)
                 {
-                    foreach (var m2 in selections)
-                    {
-                        foreach (var m1 in selections)
-                        {
-                            var key = new CellMapTileSelectorKey(m1, m2, m3, m4);
-                            var tileName = key.Format(grid.Name, grid.Pattern);
-                            var x = key.LinearIndex % width;
-                            var y = key.LinearIndex / width;
-                            retval.Add(new TextureTile(true, x, y, tileName)
-                            {
-                                SelectorHint = FormatCellMapSelectorKey(key)
-                            });
-                        }
-                    }
-                }
+                    SelectorHint = FormatCellMapSelectorKey(key)
+                };
             }
 
-            return retval;
+            var x = from m4 in selections
+                    from m3 in selections
+                    from m2 in selections
+                    from m1 in selections
+                    select Create(m1, m2, m3, m4);
+
+            return x.ToList();
         }
     }
 }

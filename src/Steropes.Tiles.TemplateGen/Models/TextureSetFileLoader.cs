@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -9,6 +10,7 @@ namespace Steropes.Tiles.TemplateGen.Models
 {
     public static class TextureSetFileLoader
     {
+        [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
         public class TexturePackLoaderContext
         {
             public string BasePath { get; }
@@ -231,7 +233,7 @@ namespace Steropes.Tiles.TemplateGen.Models
 
                 gridValue.Width = (int?)metadata.AttributeLocal("grid-width");
                 gridValue.Height = (int?)metadata.AttributeLocal("grid-height");
-                gridValue.CellMapElements = (string?)metadata.AttributeLocal("cell-map-elements");
+                ProcessCellMapElements(gridValue, metadata);
             }
 
             var tiles =
@@ -243,6 +245,57 @@ namespace Steropes.Tiles.TemplateGen.Models
             ParseFormattingInfo(grid, gridValue.FormattingMetaData);
 
             return gridValue;
+        }
+
+        static void ProcessCellMapElements(TextureGrid grid, XElement metadata)
+        {
+            var dict = new Dictionary<string, CellMappingDeclaration>();
+
+            foreach (var t in metadata.Elements().Where(e => e.Name.LocalName == "cell-mapping"))
+            {
+                var key = (string?) t.AttributeLocal("key");
+                var name = (string?) t.AttributeLocal("name");
+                var comment = (string?) t.AttributeLocal("comment");
+                var color = t.AttributeLocal("highlight-color").AsColor();
+
+                if (string.IsNullOrWhiteSpace(key))
+                {
+                    if (string.IsNullOrWhiteSpace(name))
+                    {
+                        continue;
+                    }
+
+                    key = name.TrimStart().Substring(0, 1);
+                }
+                
+                if (!dict.TryGetValue(key, out _))
+                {
+                    dict.Add(key, new CellMappingDeclaration()
+                    {
+                        Key = key,
+                        Name = name,
+                        Comment = comment,
+                        HighlightColor = color ?? TextureParserExtensions.Colors[dict.Count % TextureParserExtensions.Colors.Count]
+                    });
+                }
+                
+            }
+            
+            var legacyCellMapElements = (string?)metadata.AttributeLocal("cell-map-elements");
+            if (!string.IsNullOrEmpty(legacyCellMapElements))
+            {
+                foreach (var element in legacyCellMapElements.Split(null))
+                {
+                    if (!dict.TryGetValue(element, out _))
+                    {
+                        dict.Add(element, new CellMappingDeclaration()
+                        {
+                            Key = element,
+                            HighlightColor = TextureParserExtensions.Colors[dict.Count % TextureParserExtensions.Colors.Count]
+                        });
+                    }
+                }
+            }
         }
 
         static MatcherType ParseMatchType(XElement lineInfo, string? t, MatcherType? defaultValue = null)

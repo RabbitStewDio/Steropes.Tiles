@@ -25,7 +25,7 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
 
             // tagname -> List of matching ITerrains
             var otherGraphicTags = ComputeMatchingTerrains(layerIndex, matchSpecs);
-            var factory = TileTagEntrySelectionFactory.FromTags(otherGraphicTags.Keys.ToArray());
+            var factory = TileTagEntrySelectionFactory.FromTagsAsSingleCharKey(otherGraphicTags.Keys.ToArray());
             var rules = Context.GameData.Rules;
             var terrainsByKey = new ITileTagEntrySelection[rules.TerrainTypes.Count];
             foreach (var pair in otherGraphicTags)

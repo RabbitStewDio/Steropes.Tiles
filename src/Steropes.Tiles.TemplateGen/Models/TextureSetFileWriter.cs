@@ -27,7 +27,7 @@ namespace Steropes.Tiles.TemplateGen.Models
             e.Add(new XAttribute("height", file.Height));
             e.Add(new XAttribute("type", file.TileType));
 
-            var metaData = GenerateMetaData(file.FormattingMetaData);
+            var metaData = GenerateFormattingMetaData(file.FormattingMetaData);
             foreach (var pair in file.Properties)
             {
                 if (!string.IsNullOrEmpty(pair.Key) && !string.IsNullOrEmpty(pair.Value))
@@ -51,7 +51,7 @@ namespace Steropes.Tiles.TemplateGen.Models
             return e;
         }
 
-        public static XElement GenerateMetaData(FormattingMetaData m)
+        public static XElement GenerateFormattingMetaData(FormattingMetaData m)
         {
             var me = new XElement(Namespace + "metadata");
             if (!string.IsNullOrEmpty(m.Title))
@@ -72,7 +72,7 @@ namespace Steropes.Tiles.TemplateGen.Models
         public static XElement GenerateCollection(TileTextureCollection tileTextureCollection)
         {
             var collectionElement = new XElement(Namespace + "collection");
-            var metaData = GenerateMetaData(tileTextureCollection.FormattingMetaData);
+            var metaData = GenerateFormattingMetaData(tileTextureCollection.FormattingMetaData);
             if (!string.IsNullOrEmpty(tileTextureCollection.LastExportLocation))
             {
                 metaData.Add(new XAttribute("last-export-location", tileTextureCollection.LastExportLocation ?? ""));
@@ -92,12 +92,16 @@ namespace Steropes.Tiles.TemplateGen.Models
         {
             var gridElement = new XElement(Namespace + "grid");
 
-            var me = GenerateMetaData(grid.FormattingMetaData);
+            var me = GenerateFormattingMetaData(grid.FormattingMetaData);
             grid.Width.ForNonNull(w => me.Add(new XAttribute("grid-width", w)));
             grid.Height.ForNonNull(h => me.Add(new XAttribute("grid-height", h)));
-            if (!string.IsNullOrWhiteSpace(grid.CellMapElements))
+            foreach (var cellMapElement in grid.CellMappings)
             {
-                me.Add(new XAttribute("cell-map-elements", grid.CellMapElements));
+                var m = new XElement(Namespace + "cell-mapping");
+                cellMapElement.Key.ForNotEmpty(e => m.Add(new XAttribute("key", e)));
+                cellMapElement.Name.ForNotEmpty(e => m.Add(new XAttribute("name", e)));
+                cellMapElement.Comment.ForNotEmpty(e => m.Add(new XAttribute("comment", e)));
+                cellMapElement.HighlightColor.AsText().ForNotEmpty(e => m.Add(new XAttribute("highlight-color", e)));
             }
 
             if (!string.IsNullOrWhiteSpace(grid.Pattern))
