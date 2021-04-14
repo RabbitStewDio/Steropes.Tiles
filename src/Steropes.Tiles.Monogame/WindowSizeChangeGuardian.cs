@@ -17,7 +17,7 @@ namespace Steropes.Tiles.Monogame
     /// </summary>
     public class WindowSizeChangeGuardian : DrawableGameComponent, IWindowSizeChangeGuardian
     {
-        readonly TraceSource logger = TracingUtil.Create<WindowSizeChangeGuardian>();
+        readonly ILogAdapter logger = LogProvider.CreateLogger<WindowSizeChangeGuardian>();
         XnaPoint currentSize;
 
         WindowSizeChangeGuardian(Game game) : base(game)
@@ -35,7 +35,10 @@ namespace Steropes.Tiles.Monogame
             var newSize = Game.Window.ClientBounds.Size;
             if (currentSize != newSize)
             {
-                logger.TraceEvent(TraceEventType.Verbose, 0, "Screen size change detected. Was {0}, now {1}", currentSize, newSize);
+                if (logger.IsTraceEnabled)
+                {
+                    logger.Trace("Screen size change detected. Was {0}, now {1}", currentSize, newSize);
+                }
                 currentSize = newSize;
                 WindowSizeChanged?.Invoke(this, EventArgs.Empty);
             }

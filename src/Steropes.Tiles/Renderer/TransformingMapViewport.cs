@@ -141,25 +141,25 @@ namespace Steropes.Tiles.Renderer
             }
         }
 
-        public DoublePoint ScreenPositionToMapPosition(ContinuousViewportCoordinates screenPosition)
+        public DoublePoint ScreenPositionToMapPosition(in ContinuousViewportCoordinates screenPosition)
         {
             EnsureValid();
             return parent.ScreenPositionToMapPosition(cachedTransformation.Transform(screenPosition));
         }
 
-        public MapCoordinate ScreenPositionToMapCoordinate(ViewportCoordinates screenPosition)
+        public MapCoordinate ScreenPositionToMapCoordinate(in ViewportCoordinates screenPosition)
         {
             EnsureValid();
             return parent.ScreenPositionToMapCoordinate(cachedTransformation.Transform(screenPosition));
         }
 
-        public ContinuousViewportCoordinates MapPositionToScreenPosition(DoublePoint mapPosition)
+        public ContinuousViewportCoordinates MapPositionToScreenPosition(in DoublePoint mapPosition)
         {
             EnsureValid();
             return cachedReverseTransformation.Transform(parent.MapPositionToScreenPosition(mapPosition));
         }
 
-        public ViewportCoordinates MapPositionToScreenPosition(MapCoordinate mapPosition)
+        public ViewportCoordinates MapPositionToScreenPosition(in MapCoordinate mapPosition)
         {
             EnsureValid();
             return cachedReverseTransformation.Transform(parent.MapPositionToScreenPosition(mapPosition));

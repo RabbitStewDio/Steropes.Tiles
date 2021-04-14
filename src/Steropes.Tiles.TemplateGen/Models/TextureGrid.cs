@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -52,7 +53,7 @@ namespace Steropes.Tiles.TemplateGen.Models
             cellMappingsByKeyDirty = true;
         }
 
-        public bool TryGetCellMapping(string key, out CellMappingDeclaration d)
+        public bool TryGetCellMapping(string key, [MaybeNullWhen(false)] out CellMappingDeclaration d)
         {
             if (cellMappingsByKeyDirty)
             {
@@ -94,7 +95,7 @@ namespace Steropes.Tiles.TemplateGen.Models
             FireContentsChanged();
         }
 
-        public TextureGrid WithTextureTile([NotNull] TextureTile t)
+        public TextureGrid WithTextureTile([JetBrains.Annotations.NotNull] TextureTile t)
         {
             if (t == null)
             {

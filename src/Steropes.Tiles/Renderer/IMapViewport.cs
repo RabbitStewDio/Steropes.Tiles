@@ -60,10 +60,10 @@ namespace Steropes.Tiles.Renderer
         /// </summary>
         IntDimension SizeInTiles { get; }
 
-        ContinuousViewportCoordinates MapPositionToScreenPosition(DoublePoint mapPosition);
-        ViewportCoordinates MapPositionToScreenPosition(MapCoordinate mapPosition);
+        ContinuousViewportCoordinates MapPositionToScreenPosition(in DoublePoint mapPosition);
+        ViewportCoordinates MapPositionToScreenPosition(in MapCoordinate mapPosition);
 
-        DoublePoint ScreenPositionToMapPosition(ContinuousViewportCoordinates screenPosition);
-        MapCoordinate ScreenPositionToMapCoordinate(ViewportCoordinates screenPosition);
+        DoublePoint ScreenPositionToMapPosition(in ContinuousViewportCoordinates screenPosition);
+        MapCoordinate ScreenPositionToMapCoordinate(in ViewportCoordinates screenPosition);
     }
 }

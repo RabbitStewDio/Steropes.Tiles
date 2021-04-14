@@ -19,8 +19,9 @@ namespace Steropes.Tiles.Monogame
     /// <typeparam name="TContext"></typeparam>
     public class MonoGameRenderer<TContext> : IRenderCallback<MonoGameTile, TContext>
     {
+        
         public IRendererControl Viewport { get; }
-        readonly TraceSource logger = TracingUtil.Create<MonoGameRenderer<TContext>>();
+        static readonly ILogAdapter Logger = LogProvider.CreateLogger<MonoGameRenderer<TContext>>(); 
         readonly ViewportCoordinates[] offsetsBySpritePosition;
         readonly RasterizerState enableScissorTest;
         readonly IntDimension tileSize;
@@ -82,10 +83,9 @@ namespace Steropes.Tiles.Monogame
                                         source.Width * 2,
                                         source.Height * 2);
 
-            if (logger.Switch.ShouldTrace(TraceEventType.Verbose))
+            if (Logger.IsTraceEnabled)
             {
-                logger.TraceEvent(TraceEventType.Verbose, 0,
-                                  "Rendering tag '{0}' at pos={1} (sprite-pos={2}), map=({3}, {4}), texture-bounds={5}", tile.Tag, destPos, pos, c.X, c.Y, source);
+                Logger.Trace("Rendering tag '{0}' at pos={1} (sprite-pos={2}), map=({3}, {4}), texture-bounds={5}", tile.Tag, destPos, pos, c.X, c.Y, source);
             }
 
             var tint = Color.White;

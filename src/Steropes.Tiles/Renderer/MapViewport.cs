@@ -133,7 +133,7 @@ namespace Steropes.Tiles.Renderer
             set { CenterPoint = MapPositionToScreenPosition(value); }
         }
 
-        public ViewportCoordinates MapPositionToScreenPosition(MapCoordinate c)
+        public ViewportCoordinates MapPositionToScreenPosition(in MapCoordinate c)
         {
             return mapToScreenMapper(c.X, c.Y);
         }
@@ -158,17 +158,17 @@ namespace Steropes.Tiles.Renderer
             }
         }
 
-        public ContinuousViewportCoordinates MapPositionToScreenPosition(DoublePoint mapPosition)
+        public ContinuousViewportCoordinates MapPositionToScreenPosition(in DoublePoint mapPosition)
         {
             return contMapToScreenMapper(mapPosition.X, mapPosition.Y);
         }
 
-        public DoublePoint ScreenPositionToMapPosition(ContinuousViewportCoordinates screenPosition)
+        public DoublePoint ScreenPositionToMapPosition(in ContinuousViewportCoordinates screenPosition)
         {
             return contMapToMapMapper(screenPosition.X, screenPosition.Y);
         }
 
-        public MapCoordinate ScreenPositionToMapCoordinate(ViewportCoordinates screenPosition)
+        public MapCoordinate ScreenPositionToMapCoordinate(in ViewportCoordinates screenPosition)
         {
             return mapToMapMapper(screenPosition.X, screenPosition.Y);
         }

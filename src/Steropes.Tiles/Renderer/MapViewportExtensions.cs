@@ -22,9 +22,8 @@ namespace Steropes.Tiles.Renderer
             return CalculateRenderCoordinateOffset(size, fractionalOffset);
         }
 
-        public static ContinuousViewportCoordinates CalculateRenderCoordinateOffset(IntDimension size,
-                                                                                    ContinuousViewportCoordinates
-                                                                                        fractionalOffset)
+        public static ContinuousViewportCoordinates CalculateRenderCoordinateOffset(in IntDimension size,
+                                                                                    in ContinuousViewportCoordinates fractionalOffset)
         {
             var w = ContinuousViewportCoordinates.FromTileCoordinates(size.Width) / 2.0;
             var h = ContinuousViewportCoordinates.FromTileCoordinates(size.Height) / 2.0;

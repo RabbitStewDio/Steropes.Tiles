@@ -12,7 +12,7 @@ namespace Steropes.Tiles.Renderer
         /// <summary>
         ///   Returns the size of the rendered area in full tiles.
         /// </summary>
-        public static IntDimension RenderedAreaOf(IntInsets viewport)
+        public static IntDimension RenderedAreaOf(in IntInsets viewport)
         {
             return new IntDimension(viewport.Left + viewport.Right + 1,
                                     viewport.Top + viewport.Bottom + 1);
@@ -23,8 +23,8 @@ namespace Steropes.Tiles.Renderer
         ///   Note that this does not include the center tile itself. So the width of the area rendered is
         ///   (1 + left + right, 1 + top + bottom).
         /// </summary>
-        public static IntInsets EnsureViewportValid(IntDimension size,
-                                                    IntInsets overdraw)
+        public static IntInsets EnsureViewportValid(in IntDimension size,
+                                                    in IntInsets overdraw)
         {
             // Uses Floor/Ceiling to resolve partial tiles to their full coordinates.
             // Even if just a part of the tile is visible, we have to render all of it.

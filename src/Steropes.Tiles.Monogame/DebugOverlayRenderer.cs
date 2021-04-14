@@ -10,7 +10,7 @@ namespace Steropes.Tiles.Monogame
     /// </summary>
     public class DebugOverlayRenderer : DrawableGameComponent
     {
-        readonly TraceSource logger = TracingUtil.Create<DebugOverlayRenderer>();
+        readonly ILogAdapter logger = LogProvider.CreateLogger<DebugOverlayRenderer>();
         readonly MetricsPrinter metricsPrinter;
         readonly int sampleFrequency;
         int frameCounter;
@@ -43,7 +43,7 @@ namespace Steropes.Tiles.Monogame
             frameCounter += 1;
             if (frameCounter > sampleFrequency)
             {
-                logger.TraceEvent(TraceEventType.Information, 0, "GraphicsDevice Profiling: {0}", metricsPrinter);
+                logger.Trace("GraphicsDevice Profiling: {0}", metricsPrinter);
                 frameCounter = 0;
             }
         }
