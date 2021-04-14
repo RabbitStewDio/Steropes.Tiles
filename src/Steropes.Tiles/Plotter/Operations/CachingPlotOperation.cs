@@ -29,7 +29,7 @@ namespace Steropes.Tiles.Plotter.Operations
 
         public IRenderCallback<TRenderTile, TContext> ActiveRenderer => recordingRenderer;
 
-        public void RenderAt(MapCoordinate screenPosition, MapCoordinate mapPosition)
+        public void RenderAt(in MapCoordinate screenPosition, in MapCoordinate mapPosition)
         {
             if (!recordingRenderer.Replay(mapPosition, screenPosition))
             {
@@ -44,12 +44,12 @@ namespace Steropes.Tiles.Plotter.Operations
             parent.FinishedDrawing();
         }
 
-        public void StartLine(int logicalLine, MapCoordinate screenPos)
+        public void StartLine(int logicalLine, in MapCoordinate screenPos)
         {
             parent.StartLine(logicalLine, screenPos);
         }
 
-        public void EndLine(int logicalLine, MapCoordinate screenPos)
+        public void EndLine(int logicalLine, in MapCoordinate screenPos)
         {
             parent.EndLine(logicalLine, screenPos);
         }
@@ -60,7 +60,7 @@ namespace Steropes.Tiles.Plotter.Operations
             set { recordingRenderer.Renderer = value; }
         }
 
-        public void Invalidate(MapCoordinate mapPosition, int range)
+        public void Invalidate(in MapCoordinate mapPosition, int range)
         {
             recordingRenderer.Invalidate(mapPosition, range);
         }
@@ -95,7 +95,7 @@ namespace Steropes.Tiles.Plotter.Operations
                     this.pos = pos;
                 }
 
-                public void Replay(IRenderCallback<TRenderTile, TContext> parent, ContinuousViewportCoordinates vp)
+                public void Replay(IRenderCallback<TRenderTile, TContext> parent, in ContinuousViewportCoordinates vp)
                 {
                     parent.Draw(tile, context, pos, vp);
                 }
@@ -112,7 +112,7 @@ namespace Steropes.Tiles.Plotter.Operations
                     Epoch = epoch;
                 }
 
-                public void Replay(IRenderCallback<TRenderTile, TContext> parent, ContinuousViewportCoordinates vp)
+                public void Replay(IRenderCallback<TRenderTile, TContext> parent, in ContinuousViewportCoordinates vp)
                 {
                     var calls = Calls;
                     for (var i = 0; i < calls.Length; i++)
@@ -162,7 +162,7 @@ namespace Steropes.Tiles.Plotter.Operations
 
             public IRenderCallback<TRenderTile, TContext> Renderer { get; set; }
 
-            public bool Replay(MapCoordinate mapPosition, MapCoordinate screenPosition)
+            public bool Replay(in MapCoordinate mapPosition, in MapCoordinate screenPosition)
             {
                 if (renderAtRecords.TryGetValue(mapPosition, out RenderAtRecord r))
                 {
@@ -196,18 +196,18 @@ namespace Steropes.Tiles.Plotter.Operations
                 Renderer.StartDrawing();
             }
 
-            public void StartLine(int logicalLine, ContinuousViewportCoordinates screenY)
+            public void StartLine(int logicalLine, in ContinuousViewportCoordinates screenY)
             {
                 Renderer.StartLine(logicalLine, screenY);
             }
 
-            public void Draw(TRenderTile tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates vp)
+            public void Draw(TRenderTile tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates vp)
             {
                 recordingBuffer.Add(new RenderAtCall(tile, context, pos));
                 Renderer.Draw(tile, context, pos, vp);
             }
 
-            public void EndLine(int logicalLine, ContinuousViewportCoordinates screenY)
+            public void EndLine(int logicalLine, in ContinuousViewportCoordinates screenY)
             {
                 Renderer.EndLine(logicalLine, screenY);
             }
@@ -229,8 +229,8 @@ namespace Steropes.Tiles.Plotter.Operations
             }
 
             public void Record(IRenderPlotOperation<TRenderTile, TContext> parent,
-                               MapCoordinate screenPosition,
-                               MapCoordinate mapPosition)
+                               in MapCoordinate screenPosition,
+                               in MapCoordinate mapPosition)
             {
                 recordingBuffer.Clear();
                 adapter.NextTile(screenPosition.X, screenPosition.Y);
@@ -245,7 +245,7 @@ namespace Steropes.Tiles.Plotter.Operations
             /// </summary>
             /// <param name="mapPosition"></param>
             /// <param name="range"></param>
-            public void Invalidate(MapCoordinate mapPosition, int range)
+            public void Invalidate(in MapCoordinate mapPosition, int range)
             {
                 navigator.NavigateTo(GridDirection.NorthWest, mapPosition, out MapCoordinate ul, range);
                 var size = range * 2 + 1;

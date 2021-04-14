@@ -20,12 +20,12 @@ namespace Steropes.Tiles.Demo.TextMode
             parent.StartDrawing();
         }
 
-        public void StartLine(int line, ContinuousViewportCoordinates screenPos)
+        public void StartLine(int line, in ContinuousViewportCoordinates screenPos)
         {
             parent.StartLine(line, screenPos);
         }
 
-        public void EndLine(int line, ContinuousViewportCoordinates screenPos)
+        public void EndLine(int line, in ContinuousViewportCoordinates screenPos)
         {
             parent.EndLine(line, screenPos);
         }
@@ -35,7 +35,7 @@ namespace Steropes.Tiles.Demo.TextMode
             parent.FinishedDrawing();
         }
 
-        public void Draw(TextTile tile, Nothing context, SpritePosition pos, ContinuousViewportCoordinates c)
+        public void Draw(TextTile tile, Nothing context, SpritePosition pos, in ContinuousViewportCoordinates c)
         {
             var x = c.X;
             var y = c.Y;

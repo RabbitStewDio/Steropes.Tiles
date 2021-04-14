@@ -5,6 +5,13 @@ using Steropes.Tiles.Matcher.Sprites;
 
 namespace Steropes.Tiles.Renderer.Graphics
 {
+    /// <summary>
+    ///    A render callback that correctly handles z-order in free moving
+    ///    sprites (like NPCs and items placed freely on the map without
+    ///    adhering to the grid). 
+    /// </summary>
+    /// <typeparam name="TRenderTile"></typeparam>
+    /// <typeparam name="TContext"></typeparam>
     public class BatchedPositionedSpriteRenderer<TRenderTile, TContext> : IRenderCallback<TRenderTile, TContext>
     {
         readonly IRenderCallback<TRenderTile, TContext> parent;
@@ -31,13 +38,13 @@ namespace Steropes.Tiles.Renderer.Graphics
             batchCounter = 0;
         }
 
-        public void StartLine(int line, ContinuousViewportCoordinates screenPos)
+        public void StartLine(int line, in ContinuousViewportCoordinates screenPos)
         {
             parent.StartLine(line, screenPos);
             batchOffset = screenPos.Y;
         }
 
-        public void EndLine(int line, ContinuousViewportCoordinates screenPos)
+        public void EndLine(int line, in  ContinuousViewportCoordinates screenPos)
         {
             spritesPreOffset.Consume(drawDelegate);
             spritesPreOffset.Clear();
@@ -47,7 +54,7 @@ namespace Steropes.Tiles.Renderer.Graphics
             parent.EndLine(line, screenPos);
         }
 
-        public void Draw(TRenderTile tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates coords)
+        public void Draw(TRenderTile tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates coords)
         {
             var posSprite = new PositionedSprite(tile, context, pos, coords, batchCounter);
             batchCounter += 1;
@@ -93,7 +100,7 @@ namespace Steropes.Tiles.Renderer.Graphics
             }
         }
 
-        struct PositionedSprite : IComparable<PositionedSprite>
+        readonly struct PositionedSprite : IComparable<PositionedSprite>
         {
             public readonly TRenderTile Tile;
             public readonly TContext Context;

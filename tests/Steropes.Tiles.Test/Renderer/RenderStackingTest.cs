@@ -18,17 +18,17 @@ namespace Steropes.Tiles.Test.Renderer
             throw new NotImplementedException();
         }
 
-        public void StartLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void StartLine(int logicalLine, in ContinuousViewportCoordinates screen)
         {
             throw new NotImplementedException();
         }
 
-        public void Draw(TTile tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates screenLocation)
+        public void Draw(TTile tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates screenLocation)
         {
             throw new NotImplementedException();
         }
 
-        public void EndLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void EndLine(int logicalLine, in ContinuousViewportCoordinates screen)
         {
             throw new NotImplementedException();
         }

@@ -18,7 +18,7 @@ namespace Steropes.Tiles.Renderer
         /// </summary>
         /// <param name="logicalLine"></param>
         /// <param name="screen"></param>
-        void StartLine(int logicalLine, ContinuousViewportCoordinates screen);
+        void StartLine(int logicalLine, in ContinuousViewportCoordinates screen);
 
         /// <summary>
         /// Draws the given tile in the actual graphics engine. This interface must be implemented
@@ -26,9 +26,9 @@ namespace Steropes.Tiles.Renderer
         /// during the render process. The renderer may render multiple tiles at the same position.
         /// All calls will made in Z-order. All units given are tile-units.
         /// </summary>
-        void Draw(TRenderTileType tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates screenLocation);
+        void Draw(TRenderTileType tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates screenLocation);
 
-        void EndLine(int logicalLine, ContinuousViewportCoordinates screen);
+        void EndLine(int logicalLine, in ContinuousViewportCoordinates screen);
 
         void FinishedDrawing();
     }

@@ -137,8 +137,7 @@ namespace Steropes.Tiles.Sample.Shared.Dungeon
             }
 
             var renderer = new BatchedPositionedSpriteRenderer<TTile, Nothing>(rendererFactory.CreateRenderer<Nothing>(this, sortingLayer));
-            var batch = new BatchedPlotOperation<TTile, Nothing>(renderer,
-                                                                 CreateWallPlotter(), CreateItemPlotter());
+            var batch = new BatchedPlotOperation<TTile, Nothing>(renderer, CreateWallPlotter(), CreateItemPlotter());
             return batch;
         }
 

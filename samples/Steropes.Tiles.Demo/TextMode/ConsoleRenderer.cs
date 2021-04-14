@@ -19,10 +19,10 @@ namespace Steropes.Tiles.Demo.TextMode
             Console.Clear();
         }
 
-        public void StartLine(int line, ContinuousViewportCoordinates screenPos)
+        public void StartLine(int line, in ContinuousViewportCoordinates screenPos)
         { }
 
-        public void EndLine(int line, ContinuousViewportCoordinates screenPos)
+        public void EndLine(int line, in ContinuousViewportCoordinates screenPos)
         { }
 
         public void FinishedDrawing()
@@ -33,7 +33,7 @@ namespace Steropes.Tiles.Demo.TextMode
             Console.Write($"Drawn: {drawn} Discarded: {discarded} Total: {drawn + discarded}");
         }
 
-        public virtual void Draw(TextTile tile, Nothing context, SpritePosition pos, ContinuousViewportCoordinates p)
+        public virtual void Draw(TextTile tile, Nothing context, SpritePosition pos, in ContinuousViewportCoordinates p)
         {
             if (pos != SpritePosition.Whole)
             {

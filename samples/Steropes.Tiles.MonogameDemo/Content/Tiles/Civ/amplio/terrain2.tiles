@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<tileset>
+<tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0">
   <collection id="amplio/terrain2">
-    <grid name="main" x="1" y="1" width="96" height="48" border="1">
+    <grid name="main" x="1" y="1" cell-width="96" cell-height="48" cell-spacing="1">
       <tile x="0" y="4">
         <tag>t.l1.forest_n0e0s0w0</tag>
       </tile>
@@ -147,6 +147,6 @@
         <tag>t.l1.hills_n1e1s1w1</tag>
       </tile>
     </grid>
-    <grid name="coasts" x="1" y="645" width="48" height="24" border="0" />
+    <grid name="coasts" x="1" y="645" cell-width="48" cell-height="24" cell-spacing="0" />
   </collection>
 </tileset>

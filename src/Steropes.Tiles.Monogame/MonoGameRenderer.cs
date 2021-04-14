@@ -42,10 +42,10 @@ namespace Steropes.Tiles.Monogame
 
         protected SpriteBatch SpriteBatch { get; }
 
-        public void StartLine(int line, ContinuousViewportCoordinates screenPos)
+        public void StartLine(int line, in ContinuousViewportCoordinates screenPos)
         { }
 
-        public void EndLine(int line, ContinuousViewportCoordinates screenPos)
+        public void EndLine(int line, in ContinuousViewportCoordinates screenPos)
         { }
 
 
@@ -59,7 +59,7 @@ namespace Steropes.Tiles.Monogame
             SpriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)s.X * 2, (int)s.Y * 2, (int)Math.Ceiling(s.Width) * 2, (int)Math.Ceiling(s.Height) * 2);
         }
 
-        public void Draw(MonoGameTile tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates c)
+        public void Draw(MonoGameTile tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates c)
         {
             if (!tile.HasTexture)
             {

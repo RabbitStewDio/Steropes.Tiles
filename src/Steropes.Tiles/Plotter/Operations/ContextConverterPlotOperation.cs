@@ -40,7 +40,7 @@ namespace Steropes.Tiles.Plotter.Operations
             op.StartDrawing();
         }
 
-        public void RenderAt(MapCoordinate screenPosition, MapCoordinate mapPosition)
+        public void RenderAt(in MapCoordinate screenPosition, in MapCoordinate mapPosition)
         {
             op.RenderAt(screenPosition, mapPosition);
         }
@@ -50,17 +50,17 @@ namespace Steropes.Tiles.Plotter.Operations
             op.FinishedDrawing();
         }
 
-        public void StartLine(int logicalLine, MapCoordinate screenPos)
+        public void StartLine(int logicalLine, in MapCoordinate screenPos)
         {
             op.StartLine(logicalLine, screenPos);
         }
 
-        public void EndLine(int logicalLine, MapCoordinate screenPos)
+        public void EndLine(int logicalLine, in MapCoordinate screenPos)
         {
             op.EndLine(logicalLine, screenPos);
         }
 
-        public void Invalidate(MapCoordinate mapPosition, int range)
+        public void Invalidate(in MapCoordinate mapPosition, int range)
         {
             op.Invalidate(mapPosition, range);
         }

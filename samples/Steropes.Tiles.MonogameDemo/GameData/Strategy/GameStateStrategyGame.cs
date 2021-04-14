@@ -79,8 +79,9 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
                                                         MonoGameTileProducer tileProducer)
         {
             var contentLoader = new MonoGameContentLoader(game.Content);
-            var tp = new TexturePackLoader<MonoGameTile, XnaTexture, XnaRawTexture>(contentLoader, tileProducer).Read("Tiles/Civ/tiles.xml");
+            var tp = new TexturePackLoader<MonoGameTile, XnaTexture, XnaRawTexture>(contentLoader, tileProducer, game.Content.RootDirectory).Read("Tiles/Civ/tiles.xml");
             var rt = tp.TextureType == TextureType.Grid ? RenderType.Grid : RenderType.IsoDiamond;
+            
             var tileSet = new StrategyGameTileSet<MonoGameTile>(tp, rt);
             tileSet.InitializeBlendingRules(gd.Rules);
             return tileSet;

@@ -35,7 +35,7 @@ namespace Steropes.Tiles.DataStructures
             }
         }
 
-        public void Add(T value)
+        public void Add(in T value)
         {
             EnsureSize();
             indices[Count] = Count;
@@ -51,7 +51,7 @@ namespace Steropes.Tiles.DataStructures
         public void Consume(Action<T> a)
         {
             posComp.Sprites = values;
-            Array.Sort(indices, posComp);
+            Array.Sort(indices, 0, Count, posComp);
             // Sort(indices, 0, Count, posComp);
 
             for (var i = 0; i < Count; i++)

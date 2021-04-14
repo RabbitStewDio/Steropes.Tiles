@@ -9,9 +9,6 @@
   <ItemGroup>
     <None Remove="Content\obj\**" />
     <None Remove="Content\bin\**" />
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -73,6 +70,10 @@
     </Content>
     <None Remove="Content\Tiles\Civ\tiles.xml" />
     <Content Include="Content\Tiles\Civ\tiles.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="appsettings.json" />
+    <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

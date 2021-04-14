@@ -43,19 +43,19 @@ namespace Steropes.Tiles.Plotter.Operations
             Renderer.StartDrawing();
         }
 
-        public void RenderAt(MapCoordinate screenPos, MapCoordinate mapPosition)
+        public void RenderAt(in MapCoordinate screenPos, in MapCoordinate mapPosition)
         {
             adapter.NextTile(screenPos.X, screenPos.Y);
             matcher.Match(mapPosition.X, mapPosition.Y, onMatchFound);
         }
 
-        public void StartLine(int logicalLine, MapCoordinate screenPos)
+        public void StartLine(int logicalLine, in MapCoordinate screenPos)
         {
             adapter.NextTile(screenPos.X, screenPos.Y);
             Renderer.StartLine(logicalLine, adapter.Screen);
         }
 
-        public void EndLine(int logicalLine, MapCoordinate screenPos)
+        public void EndLine(int logicalLine, in MapCoordinate screenPos)
         {
             adapter.NextTile(screenPos.X, screenPos.Y);
             Renderer.EndLine(logicalLine, adapter.Screen);
@@ -66,7 +66,7 @@ namespace Steropes.Tiles.Plotter.Operations
             Renderer.FinishedDrawing();
         }
 
-        public void Invalidate(MapCoordinate mapPosition, int range)
+        public void Invalidate(in MapCoordinate mapPosition, int range)
         { }
 
         public void InvalidateAll()

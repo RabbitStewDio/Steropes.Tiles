@@ -5,7 +5,8 @@ using Steropes.Tiles.Matcher.Sprites;
 namespace Steropes.Tiles.Renderer.Graphics
 {
     /// <summary>
-    ///  Used internally in conjunction with the BatchedPlotOperation.
+    ///    A render callback that immediately renders any sprite given. It
+    ///    assumes that sprites are processed in the correct rendering order. 
     /// </summary>
     /// <typeparam name="TRenderTile"></typeparam>
     /// <typeparam name="TContext"></typeparam>
@@ -42,7 +43,7 @@ namespace Steropes.Tiles.Renderer.Graphics
             childCount += 1;
         }
 
-        public void StartLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void StartLine(int logicalLine, in ContinuousViewportCoordinates screen)
         {
             if (startLineCount == 0)
             {
@@ -52,12 +53,12 @@ namespace Steropes.Tiles.Renderer.Graphics
             startLineCount += 1;
         }
 
-        public void Draw(TRenderTile tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates screenLocation)
+        public void Draw(TRenderTile tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates screenLocation)
         {
             parent.Draw(tile, context, pos, screenLocation);
         }
 
-        public void EndLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void EndLine(int logicalLine, in ContinuousViewportCoordinates screen)
         {
             if (startLineCount == 0)
             {

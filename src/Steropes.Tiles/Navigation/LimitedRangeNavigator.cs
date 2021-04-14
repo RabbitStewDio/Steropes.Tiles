@@ -24,7 +24,7 @@ namespace Steropes.Tiles.Navigation
         public LimitedRangeNavigator(IMapNavigator<T> parent, int upperX, int upperY) : this(parent, 0, 0, upperX, upperY)
         { }
 
-        public bool NavigateTo(T direction, MapCoordinate source, out MapCoordinate result, int steps)
+        public bool NavigateTo(T direction, in MapCoordinate source, out MapCoordinate result, int steps)
         {
             bool resultFlag = parent.NavigateTo(direction, source, out result, steps);
 

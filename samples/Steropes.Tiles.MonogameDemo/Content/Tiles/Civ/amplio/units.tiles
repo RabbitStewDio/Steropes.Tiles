@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<tileset>
+<tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0">
   <collection id="amplio/units">
-    <grid name="main" x="0" y="0" width="64" height="48" border="0">
+    <grid name="main" x="0" y="0" cell-width="64" cell-height="48" cell-spacing="0">
       <tile x="0" y="0">
         <tag>u.armor</tag>
       </tile>

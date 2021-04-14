@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<tileset>
+<tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0">
   <collection id="amplio/ancientcities">
-    <grid name="main" x="1" y="1" width="96" height="72" border="1">
+    <grid name="main" x="1" y="1" cell-width="96" cell-height="72" cell-spacing="1">
       <tile x="11" y="2">
         <tag>city.asian_occupied_0</tag>
         <tag>city.tropical_occupied_0</tag>

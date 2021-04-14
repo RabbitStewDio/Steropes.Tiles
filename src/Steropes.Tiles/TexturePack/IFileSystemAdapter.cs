@@ -93,7 +93,7 @@ namespace Steropes.Tiles.TexturePack
 
         public FilePath MakeAbsolute(string path)
         {
-            var combinedPath = Path.Combine(basePath, path);
+            var combinedPath = basePath == null ? path : Path.Combine(basePath, path);
             return new FilePath(Path.GetFullPath(combinedPath));
         }
     }

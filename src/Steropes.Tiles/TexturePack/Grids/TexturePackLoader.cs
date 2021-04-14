@@ -42,7 +42,13 @@ namespace Steropes.Tiles.TexturePack.Grids
 
         public TexturePackLoader([NotNull] IContentLoader<TRawTexture> contentLoader,
                                  [NotNull] ITileProducer<TTile, TTexture, TRawTexture> tileProducer,
-                                 IFileSystemAdapter fileSystem = null)
+                                 string basePath = null): this(contentLoader, tileProducer, new DefaultFileSystemAdapter(basePath))
+        {
+        }
+        
+        public TexturePackLoader([NotNull] IContentLoader<TRawTexture> contentLoader,
+                                 [NotNull] ITileProducer<TTile, TTexture, TRawTexture> tileProducer,
+                                 IFileSystemAdapter fileSystem)
         {
             this.contentLoader = contentLoader ?? throw new ArgumentNullException(nameof(contentLoader));
             this.tileProducer = tileProducer ?? throw new ArgumentNullException(nameof(tileProducer));

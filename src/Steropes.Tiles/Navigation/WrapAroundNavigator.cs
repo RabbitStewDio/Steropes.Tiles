@@ -41,7 +41,7 @@ namespace Steropes.Tiles.Navigation
         public WrapAroundNavigator(IMapNavigator<T> parent, int upperX, int upperY) : this(parent, new Range(0, upperX), new Range(0, upperY))
         { }
 
-        public bool NavigateTo(T direction, MapCoordinate source, out MapCoordinate result, int steps)
+        public bool NavigateTo(T direction, in MapCoordinate source, out MapCoordinate result, int steps)
         {
             var resultFlag = parent.NavigateTo(direction, source, out result, steps);
             result = new MapCoordinate(WrapX(result.X), WrapY(result.Y));
@@ -75,7 +75,7 @@ namespace Steropes.Tiles.Navigation
         public WrapAroundVertical(IMapNavigator<T> parent, int upperY) : this(parent, new Range(0, upperY))
         { }
 
-        public bool NavigateTo(T direction, MapCoordinate source, out MapCoordinate result, int steps)
+        public bool NavigateTo(T direction, in MapCoordinate source, out MapCoordinate result, int steps)
         {
             var resultFlag = parent.NavigateTo(direction, source, out result, steps);
             result = result.WithY(WrapY(result.Y));
@@ -109,7 +109,7 @@ namespace Steropes.Tiles.Navigation
         public WrapAroundHorizontal(IMapNavigator<T> parent, int upperX) : this(parent, new Range(0, upperX))
         { }
 
-        public bool NavigateTo(T direction, MapCoordinate source, out MapCoordinate result, int steps)
+        public bool NavigateTo(T direction, in MapCoordinate source, out MapCoordinate result, int steps)
         {
             var resultFlag = parent.NavigateTo(direction, source, out result, steps);
             result = result.WithX(WrapX(result.X));

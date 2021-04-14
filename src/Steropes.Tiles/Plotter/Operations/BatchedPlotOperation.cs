@@ -45,7 +45,7 @@ namespace Steropes.Tiles.Plotter.Operations
             }
         }
 
-        public void RenderAt(MapCoordinate screenPosition, MapCoordinate mapPosition)
+        public void RenderAt(in MapCoordinate screenPosition, in MapCoordinate mapPosition)
         {
             for (var i = 0; i < plotOperations.Count; i++)
             {
@@ -63,7 +63,7 @@ namespace Steropes.Tiles.Plotter.Operations
             }
         }
 
-        public void StartLine(int logicalLine, MapCoordinate screenPos)
+        public void StartLine(int logicalLine, in MapCoordinate screenPos)
         {
             for (var i = 0; i < plotOperations.Count; i++)
             {
@@ -72,7 +72,7 @@ namespace Steropes.Tiles.Plotter.Operations
             }
         }
 
-        public void EndLine(int logicalLine, MapCoordinate screenPos)
+        public void EndLine(int logicalLine, in MapCoordinate screenPos)
         {
             for (var i = plotOperations.Count - 1; i >= 0; i--)
             {
@@ -90,7 +90,7 @@ namespace Steropes.Tiles.Plotter.Operations
             }
         }
 
-        public void Invalidate(MapCoordinate mapPosition, int range)
+        public void Invalidate(in MapCoordinate mapPosition, int range)
         {
             for (var i = plotOperations.Count - 1; i >= 0; i--)
             {

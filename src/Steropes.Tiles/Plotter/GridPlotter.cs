@@ -104,8 +104,8 @@ namespace Steropes.Tiles.Plotter
         }
 
         void RenderLine(IPlotOperation plotOperation,
-                        MapCoordinate rowStart,
-                        MapCoordinate screenRowStart,
+                        in MapCoordinate rowStart,
+                        in MapCoordinate screenRowStart,
                         int width,
                         bool firstCellValid,
                         int logicalLine)

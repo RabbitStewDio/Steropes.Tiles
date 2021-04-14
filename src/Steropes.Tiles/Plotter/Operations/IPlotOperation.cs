@@ -12,7 +12,7 @@ namespace Steropes.Tiles.Plotter.Operations
         /// </summary>
         /// <param name="mapPosition"></param>
         /// <param name="range"></param>
-        void Invalidate(MapCoordinate mapPosition, int range);
+        void Invalidate(in MapCoordinate mapPosition, int range);
 
         void InvalidateAll();
     }
@@ -20,11 +20,11 @@ namespace Steropes.Tiles.Plotter.Operations
     public interface IPlotOperation : IPlotCacheControl
     {
         void StartDrawing();
-        void RenderAt(MapCoordinate screenPosition, MapCoordinate mapPosition);
+        void RenderAt(in MapCoordinate screenPosition, in MapCoordinate mapPosition);
         void FinishedDrawing();
 
-        void StartLine(int logicalLine, MapCoordinate screenPos);
-        void EndLine(int logicalLine, MapCoordinate screenPos);
+        void StartLine(int logicalLine, in MapCoordinate screenPos);
+        void EndLine(int logicalLine, in MapCoordinate screenPos);
     }
 
     /// <summary>

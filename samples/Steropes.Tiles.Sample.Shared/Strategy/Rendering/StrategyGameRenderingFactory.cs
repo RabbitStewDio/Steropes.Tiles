@@ -42,6 +42,7 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
             var r = new BasicTileRegistry<TTile>();
             foreach (var t in tileSet.Textures.Tiles)
             {
+                Console.WriteLine("Adding tile " + t.Tag);
                 r.Add(t.Tag, t);
             }
 

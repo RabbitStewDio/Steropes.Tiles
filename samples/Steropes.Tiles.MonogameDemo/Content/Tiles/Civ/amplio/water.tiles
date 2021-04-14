@@ -2,7 +2,7 @@
 <tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0" 
          width="96" height="48" type="Isometric">
   <collection id="amplio/water">
-    <grid name="main" x="1" y="1" width="96" height="48" border="1">
+    <grid name="main" x="1" y="1" cell-width="96" cell-height="48" cell-spacing="1">
       <tile x="0" y="2">
         <tag>road.river_s_n0e0s0w0</tag>
       </tile>
@@ -64,7 +64,7 @@
         <tag>road.river_outlet_w</tag>
       </tile>
     </grid>
-    <grid name="coasts" x="1" y="437" width="48" height="24" border="1" anchor-x="24" anchor-y="12">
+    <grid name="coasts" x="1" y="437" cell-width="48" cell-height="24" cell-spacing="1" anchor-x="24" anchor-y="12">
       <tile x="0" y="0">
         <tag>t.l1.coast_cell_u_w_w_w</tag>
         <tag>t.l1.floor_cell_u_w_w_w</tag>

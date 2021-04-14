@@ -24,7 +24,7 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Dungeon
             this.ui = ui;
             gd = new DungeonGameData();
 
-            var contentLoader = new MonoGameContentLoader(game.Content, "");
+            var contentLoader = new MonoGameContentLoader(game.Content);
             var textureOps = new MonoGameTextureOperations(game.GraphicsDevice);
             var tileProducer = new MonoGameTileProducer(textureOps);
 

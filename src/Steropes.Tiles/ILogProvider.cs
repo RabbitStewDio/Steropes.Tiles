@@ -1,18 +1,38 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Steropes.Tiles
+﻿namespace Steropes.Tiles
 {
-    public interface ILogProvider
-    {
-        ILogAdapter CreateLogger(string traceName);
-    }
+    public delegate ILogAdapter LogProviderFunction(string traceName); 
 
+    public abstract class LogAdapterBase : ILogAdapter
+    {
+        public abstract bool IsTraceEnabled { get; }
+
+        public abstract void Trace(string message);
+
+        public virtual void Trace<T>(string message, T data)
+        {
+            Trace(string.Format(message, data));
+        }
+
+        public virtual void Trace<T1, T2>(string message, T1 data1, T2 data2)
+        {
+            Trace(string.Format(message, data1, data2));
+        }
+
+        public virtual void Trace<T1, T2, T3>(string message, T1 data1, T2 data2, T3 data3)
+        {
+            Trace(string.Format(message, data1, data2, data3));
+        }
+
+        public virtual void Trace(string message, params object[] data)
+        {
+            Trace(string.Format(message, data));
+        }
+    }
+    
     public static class LogProvider
     {
-        static volatile ILogProvider logProvider;
-        static readonly DebugLogProvider fallbackProvider = new DebugLogProvider();
-
-        public static ILogProvider Provider
+        static volatile LogProviderFunction logProvider;
+        public static LogProviderFunction Provider
         {
             get { return logProvider; }
             set { logProvider = value; }
@@ -25,25 +45,21 @@ namespace Steropes.Tiles
 
         public static ILogAdapter CreateLogger(string name)
         {
-            ILogProvider l = logProvider;
+            LogProviderFunction l = logProvider;
             if (l == null)
             {
-                return fallbackProvider.CreateLogger(name);
+                return CreateFallbackLogger(name);
             }
 
-            return l.CreateLogger(name);
+            return l(name);
         }
 
-        class DebugLogProvider : ILogProvider
+        static ILogAdapter CreateFallbackLogger(string traceName)
         {
-            [SuppressMessage("ReSharper", "MemberHidesStaticFromOuterClass")]
-            public ILogAdapter CreateLogger(string traceName)
-            {
-                return new DebugLogAdapter(traceName);
-            }
+            return new DebugLogAdapter(traceName);
         }
 
-        class DebugLogAdapter : ILogAdapter
+        class DebugLogAdapter : LogAdapterBase
         {
             readonly string traceName;
 
@@ -51,9 +67,8 @@ namespace Steropes.Tiles
             {
                 this.traceName = traceName;
             }
-
 #if DEBUG
-            public bool IsTraceEnabled
+            public override bool IsTraceEnabled
             {
                 get
                 {
@@ -61,17 +76,12 @@ namespace Steropes.Tiles
                 }
             }
 
-            public void Trace(string message)
+            public override void Trace(string message)
             {
-                System.Diagnostics.Debug.WriteLine(message);
-            }
-
-            public void Trace(string message, params object[] data)
-            {
-                System.Diagnostics.Debug.WriteLine(message, data);
+                System.Diagnostics.Debug.WriteLine($"[{traceName}] {message}");
             }
 #else
-            public bool IsTraceEnabled
+            public override bool IsTraceEnabled
             {
                 get
                 {
@@ -79,11 +89,7 @@ namespace Steropes.Tiles
                 }
             }
 
-            public void Trace(string message)
-            {
-            }
-
-            public void Trace(string message, params object[] data)
+            public override void Trace(string message)
             {
             }
 #endif
@@ -94,6 +100,9 @@ namespace Steropes.Tiles
     {
         bool IsTraceEnabled { get; }
         void Trace(string message);
+        void Trace<T>(string message, T data);
+        void Trace<T1, T2>(string message, T1 data, T2 data2);
+        void Trace<T1, T2, T3>(string message, T1 data, T2 data2, T3 data3);
         void Trace(string message, params object[] data);
     }
 }

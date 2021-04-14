@@ -26,7 +26,7 @@ namespace Steropes.Tiles.Sample.Shared.Dungeon
             RenderTarget.StartDrawing();
         }
 
-        public void StartLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void StartLine(int logicalLine, in ContinuousViewportCoordinates screen)
         {
             RenderTarget.StartLine(logicalLine, screen);
         }
@@ -34,7 +34,7 @@ namespace Steropes.Tiles.Sample.Shared.Dungeon
         public void Draw(TTile tile,
                          IItem context,
                          SpritePosition pos,
-                         ContinuousViewportCoordinates screenLocation)
+                         in ContinuousViewportCoordinates screenLocation)
         {
             if (itemService.TraitFor(context, out ILocationTrait location))
             {
@@ -49,7 +49,7 @@ namespace Steropes.Tiles.Sample.Shared.Dungeon
             }
         }
 
-        public void EndLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void EndLine(int logicalLine, in ContinuousViewportCoordinates screen)
         {
             RenderTarget.EndLine(logicalLine, screen);
         }

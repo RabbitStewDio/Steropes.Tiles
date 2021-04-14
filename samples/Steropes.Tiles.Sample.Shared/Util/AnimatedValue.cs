@@ -26,6 +26,7 @@ namespace Steropes.Tiles.Sample.Shared.Util
     public abstract class AnimatedValue : IAnimatedValue
     {
         double time;
+        float lastSystemTime;
 
         public abstract float CurrentValue { get; }
 
@@ -80,8 +81,9 @@ namespace Steropes.Tiles.Sample.Shared.Util
                 return;
             }
 
-            var timeInSeconds = gameTime;
-            Time += Direction == AnimationDirection.Forward ? timeInSeconds : -timeInSeconds;
+            var deltaTimeInSeconds = gameTime - lastSystemTime;
+            lastSystemTime = gameTime;
+            Time += Direction == AnimationDirection.Forward ? deltaTimeInSeconds : -deltaTimeInSeconds;
         }
 
         protected void UpdateDirection()

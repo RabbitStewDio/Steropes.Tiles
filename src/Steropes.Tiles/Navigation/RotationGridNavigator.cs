@@ -28,7 +28,7 @@ namespace Steropes.Tiles.Navigation
             }
         }
 
-        public bool NavigateTo(GridDirection direction, MapCoordinate source, out MapCoordinate result, int steps = 1)
+        public bool NavigateTo(GridDirection direction, in MapCoordinate source, out MapCoordinate result, int steps = 1)
         {
             var d = directions[(int)direction];
             return parent.NavigateTo(d, source, out result, steps);
@@ -64,7 +64,7 @@ namespace Steropes.Tiles.Navigation
             }
         }
 
-        public bool NavigateTo(GridDirection direction, MapCoordinate source, out MapCoordinate result, int steps = 1)
+        public bool NavigateTo(GridDirection direction, in MapCoordinate source, out MapCoordinate result, int steps = 1)
         {
             var d = directions[(int)direction];
             return parent.NavigateTo(d, source, out result, steps);

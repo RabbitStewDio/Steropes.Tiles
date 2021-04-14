@@ -46,13 +46,13 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
             offset = viewport.CalculateTileOffset();
         }
 
-        public void StartLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void StartLine(int logicalLine, in ContinuousViewportCoordinates screen)
         { }
 
         public void Draw(ISettlement tile,
                          Nothing context,
                          SpritePosition pos,
-                         ContinuousViewportCoordinates screenLocation)
+                         in ContinuousViewportCoordinates screenLocation)
         {
             if (widgetsByMapPosition.TryGetValue(tile.Location, out CityBarWidget w))
             {
@@ -72,14 +72,14 @@ namespace Steropes.Tiles.MonogameDemo.GameData.Strategy
             }
         }
 
-        AnchoredRect Reposition(IVisualContent w, ContinuousViewportCoordinates screenPos)
+        AnchoredRect Reposition(IVisualContent w, in ContinuousViewportCoordinates screenPos)
         {
             var ds = w.DesiredSize;
             var renderPos = screenPos.ToPixels(viewport.TileSize) + offset;
             return AnchoredRect.CreateTopLeftAnchored((int)(renderPos.X - ds.Width / 2), (int)(renderPos.Y - ds.Height * 2));
         }
 
-        public void EndLine(int logicalLine, ContinuousViewportCoordinates screen)
+        public void EndLine(int logicalLine, in ContinuousViewportCoordinates screen)
         { }
 
         public void FinishedDrawing()

@@ -51,17 +51,17 @@ namespace Steropes.Tiles.Renderer
             renderTarget.StartDrawing();
         }
 
-        public void StartLine(int line, ContinuousViewportCoordinates screenPos)
+        public void StartLine(int line, in ContinuousViewportCoordinates screenPos)
         {
             renderTarget.StartLine(line, screenPos + offset);
         }
 
-        public void Draw(TRenderType tile, TContext context, SpritePosition pos, ContinuousViewportCoordinates s)
+        public void Draw(TRenderType tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates s)
         {
             renderTarget.Draw(tile, context, pos, s + offset);
         }
 
-        public void EndLine(int line, ContinuousViewportCoordinates screenPos)
+        public void EndLine(int line, in ContinuousViewportCoordinates screenPos)
         {
             renderTarget.EndLine(line, screenPos + offset);
         }

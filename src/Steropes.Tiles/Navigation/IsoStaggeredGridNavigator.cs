@@ -4,7 +4,7 @@ namespace Steropes.Tiles.Navigation
 {
     public class IsoStaggeredGridNavigator : IMapNavigator<GridDirection>
     {
-        public bool NavigateTo(GridDirection direction, MapCoordinate source, out MapCoordinate result, int steps = 1)
+        public bool NavigateTo(GridDirection direction, in MapCoordinate source, out MapCoordinate result, int steps = 1)
         {
             if (steps == 0)
             {
