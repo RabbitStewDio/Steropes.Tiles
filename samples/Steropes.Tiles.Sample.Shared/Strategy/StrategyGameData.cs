@@ -41,9 +41,6 @@ namespace Steropes.Tiles.Sample.Shared.Strategy
             AddSettlement(new Settlement("Capital City", new MapCoordinate(7, 13), 1, 4000, true));
             AddSettlement(new Settlement("Satellite Settlement", new MapCoordinate(20, 14), 2, 2000, false));
 
-            Console.WriteLine(MapData.RiverData);
-            Console.WriteLine(terrain.Print(t => t.Improvement.HasExtra(Rules.Roads.River) ? 'x' : ' '));
-
             // Explicitly set the initial visible tracker to the location of one of the cities 
             // here so that the visibility marking works correctly.
             Fog.MarkRangeVisible(0, 0, 2);
