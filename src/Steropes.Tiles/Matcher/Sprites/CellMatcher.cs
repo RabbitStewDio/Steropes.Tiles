@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using Steropes.Tiles.Matcher.TileTags;
 
 namespace Steropes.Tiles.Matcher.Sprites
 {
-    public interface ICellMatcher
-    {
-        bool Match(int x, int y, out ITileTagEntrySelection result);
-        int Cardinality { get; }
-        ITileTagEntrySelectionFactory Owner { get; }
-    }
-
+    [UsedImplicitly]
     public static class CellMatchers
     {
         class UniformCelLMatcher<TSelector> : ICellMatcher
@@ -37,7 +32,7 @@ namespace Steropes.Tiles.Matcher.Sprites
                     }
                 }
 
-                selection = default(ITileTagEntrySelection);
+                selection = default;
                 return false;
             }
 

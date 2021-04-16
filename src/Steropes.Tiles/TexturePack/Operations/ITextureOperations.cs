@@ -1,9 +1,10 @@
 ﻿using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
+using System;
 
 namespace Steropes.Tiles.TexturePack.Operations
 {
-    public interface ITextureOperations<TTexture>
+    public interface ITextureOperations<TTexture>: IDisposable
     {
         TextureCoordinateRect ToNative(IntDimension context, IntRect src);
         ITextureAtlasBuilder<TTexture> CreateAtlasBuilder();

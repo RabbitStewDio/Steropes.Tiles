@@ -42,19 +42,20 @@ namespace Steropes.Tiles.Monogame
                 var cb = r.Game.Window.ClientBounds;
                 var x = insets.Left;
                 var y = insets.Top;
-                var w = Math.Max(1, cb.Width - insets.Left - insets.Right);
-                var h = Math.Max(1, cb.Height - insets.Top - insets.Bottom);
+                var w = Math.Max(1, cb.Width - insets.Horizontal);
+                var h = Math.Max(1, cb.Height - insets.Vertical);
                 r.Bounds = new Rect(x, y, w, h);
             }
 
             void Handler(object o, EventArgs eventArgs) => UpdateBounds();
 
             var changeGuardian = WindowSizeChangeGuardian.Install(r.Game);
-            changeGuardian.WindowSizeChanged += Handler;
+            EventHandler handlerRef = Handler;
+            changeGuardian.WindowSizeChanged += handlerRef;
 
             // finally initialize once 
             UpdateBounds();
-            return new ScreenTrackingSubscription(r, Handler);
+            return new ScreenTrackingSubscription(r, handlerRef);
         }
     }
 }

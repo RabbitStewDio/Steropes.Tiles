@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Steropes.Tiles.DataStructures;
@@ -34,7 +33,9 @@ namespace Steropes.Tiles.Monogame
 
             this.GraphicsDeviceService = graphicsDeviceService;
             offsetsBySpritePosition = SpritePositionExtensions.OffsetsFor(viewport.ActiveRenderType);
+            
             tileSize = viewport.TileSize;
+            
             enableScissorTest = RasterizerState.CullCounterClockwise.Copy();
             enableScissorTest.ScissorTestEnable = true;
         }
@@ -57,7 +58,7 @@ namespace Steropes.Tiles.Monogame
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, null, enableScissorTest, null,
                               Matrix.CreateTranslation(o.X, o.Y, 0) * Matrix.CreateScale(0.5f));
-            SpriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)s.X * 2, (int)s.Y * 2, (int)Math.Ceiling(s.Width) * 2, (int)Math.Ceiling(s.Height) * 2);
+            SpriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle((int)s.X, (int)s.Y, (int)Math.Ceiling(s.Width), (int)Math.Ceiling(s.Height));
         }
 
         public void Draw(MonoGameTile tile, TContext context, SpritePosition pos, in ContinuousViewportCoordinates c)

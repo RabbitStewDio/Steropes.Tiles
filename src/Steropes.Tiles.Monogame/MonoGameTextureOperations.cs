@@ -6,71 +6,27 @@ using Steropes.Tiles.Navigation;
 using Steropes.Tiles.TexturePack.Atlas;
 using Steropes.Tiles.TexturePack.Operations;
 using System;
+using System.Collections.Generic;
 
 namespace Steropes.Tiles.Monogame
 {
     public class MonoGameTextureOperations : ITextureOperations<XnaTexture, Color>
     {
         readonly GraphicsDevice device;
-
-        class Cache<TCached, TKey>
-            where TCached : class
-            where TKey : IEquatable<TKey>
-        {
-            public int Miss;
-            public int Expired;
-            public int Hit;
-
-            TKey key;
-            WeakReference<TCached> reference;
-
-            public bool TryGet(TKey k, out TCached t)
-            {
-                if (reference == null)
-                {
-                    Miss += 1;
-                    t = default;
-                    return false;
-                }
-
-                if (!reference.TryGetTarget(out t))
-                {
-                    Expired += 1;
-                    t = default;
-                    return false;
-                }
-
-
-                if (k.Equals(key))
-                {
-                    Hit += 1;
-                    return true;
-                }
-                else
-                {
-                    Miss += 1;
-                    return false;
-                }
-            }
-
-            public void Put(TKey key, TCached data)
-            {
-                reference = new WeakReference<TCached>(data);
-                this.key = key;
-            }
-
-            public override string ToString()
-            {
-                return $"{nameof(Miss)}: {Miss}, {nameof(Expired)}: {Expired}, {nameof(Hit)}: {Hit}";
-            }
-        }
-
-        readonly Cache<Color[], int> clearTextureOperation;
+        readonly Dictionary<int, WeakReference<Color[]>> clearTexturesCache;
+        readonly Dictionary<Texture2D, WeakReference<Color[]>> textureData;
 
         public MonoGameTextureOperations([NotNull] GraphicsDevice device)
         {
+            this.textureData = new Dictionary<Texture2D, WeakReference<Color[]>>();
             this.device = device ?? throw new ArgumentNullException(nameof(device));
-            clearTextureOperation = new Cache<Color[], int>();
+            this.clearTexturesCache = new Dictionary<int, WeakReference<Color[]>>();
+        }
+
+        public void Dispose()
+        {
+            clearTexturesCache.Clear();
+            textureData.Clear();
         }
 
         public TextureCoordinateRect ToNative(IntDimension context, IntRect src)
@@ -83,6 +39,8 @@ namespace Steropes.Tiles.Monogame
             return new MultiTextureAtlasBuilder<XnaTexture, Color>(this);
         }
 
+        const bool UseSourceTextureCache = true;
+
         public BoundedTextureData<Color> ExtractData(XnaTexture srcTexture, TextureCoordinateRect rect)
         {
             var texture = srcTexture.Texture;
@@ -94,10 +52,40 @@ namespace Steropes.Tiles.Monogame
             var data = new Color[rect.Width * rect.Height];
             var srcBounds = srcTexture.Bounds;
             var b = srcBounds.Clip(new TextureCoordinateRect(rect.X + srcBounds.X, rect.Y + srcBounds.Y, rect.Width, rect.Height));
-            texture.GetData(0, b.ToXna(), data, 0, data.Length);
 
+            if (UseSourceTextureCache)
+            {
+                var srcLineWidth = srcTexture.Texture.Bounds.Width;
+                var raw = ExtractColorData(srcTexture);
+                for (var y = 0; y < b.Height; y += 1)
+                {
+                    var srcIdx = (b.Y + y) * srcLineWidth + b.X;
+                    var tgtIdx = y * rect.Width;
+                    Array.Copy(raw, srcIdx, data, tgtIdx, b.Width);
+                }
+            }
+            else
+            {
+                texture.GetData(0, b.ToXna(), data, 0, data.Length);
+            }
+            
             var textureBounds = new TextureCoordinateRect(rect.X, rect.Y, b.Width, b.Height);
             return new BoundedTextureData<Color>(textureBounds, data);
+        }
+
+        Color[] ExtractColorData(XnaTexture texture)
+        {
+            var tx = texture.Texture;
+            if (textureData.TryGetValue(tx, out var entry) && entry.TryGetTarget(out var color))
+            {
+                return color;
+            }
+
+            var bnd = tx.Bounds;
+            color = new Color[bnd.Width * bnd.Height];
+            tx.GetData(0, tx.Bounds, color, 0, color.Length);
+            textureData[tx] = new WeakReference<Color[]>(color);
+            return color;
         }
 
         public BoundedTextureData<Color> CombineMask(BoundedTextureData<Color> color,
@@ -126,8 +114,7 @@ namespace Steropes.Tiles.Monogame
                     var a = mask[mx, my];
 
                     var tidx = y * width + x;
-                    c.A = a.A;
-                    retval[tidx] = c;
+                    retval[tidx] = c * (a.A / 255f);
                 }
             }
 
@@ -162,7 +149,7 @@ namespace Steropes.Tiles.Monogame
 
                     var tidx = y * width + x;
 
-                    var srcW = src * (1 - tgt.A);
+                    var srcW = src; // * (1 - tgt.A);
                     var tgtW = tgt * tgt.A;
                     retval[tidx] = new Color(srcW.R + tgtW.R, srcW.G + tgtW.G, srcW.B + tgtW.B, srcW.A + tgtW.A);
                 }
@@ -270,14 +257,17 @@ namespace Steropes.Tiles.Monogame
         Color[] FillClearTextureCache(IntDimension tileSize)
         {
             var l = tileSize.Width * tileSize.Height;
-            if (clearTextureOperation.TryGet(l, out var t))
+            if (clearTexturesCache.TryGetValue(l, out var t))
             {
-                return t;
+                if (t.TryGetTarget(out var cacheColorArray))
+                {
+                    return cacheColorArray;
+                }
             }
 
-            var clearDataCache = new Color[tileSize.Width * tileSize.Height];
-            clearTextureOperation.Put(l, clearDataCache);
-            return clearDataCache;
+            var clearColorArray = new Color[tileSize.Width * tileSize.Height];
+            clearTexturesCache[l] = new WeakReference<Color[]>(clearColorArray);
+            return clearColorArray;
         }
 
 

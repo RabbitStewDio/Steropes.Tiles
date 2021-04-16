@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using NSubstitute;
 using NUnit.Framework;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher;
@@ -41,13 +40,21 @@ namespace Steropes.Tiles.Test.Renderer
 
     public class RenderStackingTest
     {
+        class DummyTileMatcher<TMatchedTile, TMatchedContext> : ITileMatcher<TMatchedTile, TMatchedContext>
+        {
+            public bool Match(int x, int y, TileResultCollector<TMatchedTile, TMatchedContext> onMatchFound)
+            {
+                return false;
+            }
+        }
+        
         [Test]
         public void RenderSetUp_With_Cache()
         {
             var rc = new GameRenderingConfig(RenderType.Grid);
             var renderer = new RendererSubstitute<MatchedTile, MatchedContext>();
 
-            var matcher = Substitute.For<ITileMatcher<MatchedTile, MatchedContext>>();
+            var matcher = new DummyTileMatcher<MatchedTile, MatchedContext>();
             var plot = PlotOperations.FromContext(rc).Create(matcher).WithCache().BuildUnsafe();
 
             Assert.IsTrue(CachingPlotOperation<MatchedTile, MatchedContext>.IsRecordingRenderer(plot.ActiveRenderer));
@@ -64,7 +71,7 @@ namespace Steropes.Tiles.Test.Renderer
             var rc = new GameRenderingConfig(RenderType.Grid);
             var renderer = new RendererSubstitute<RenderedTile, RenderedContext>();
             var conv = new ConverterProxy();
-            var matcher = Substitute.For<ITileMatcher<MatchedTile, MatchedContext>>();
+            var matcher = new DummyTileMatcher<MatchedTile, MatchedContext>();
 
             var sourceFactory = PlotOperations.FromContext(rc).Create(matcher);
             var plot = sourceFactory.WithConversion(conv).BuildUnsafe();
@@ -87,7 +94,7 @@ namespace Steropes.Tiles.Test.Renderer
             var rc = new GameRenderingConfig(RenderType.Grid);
             var renderer = new RendererSubstitute<RenderedTile, RenderedContext>();
             var conv = new ConverterProxy();
-            var matcher = Substitute.For<ITileMatcher<MatchedTile, MatchedContext>>();
+            var matcher = new DummyTileMatcher<MatchedTile, MatchedContext>();
 
             var sourceFactory = PlotOperations.FromContext(rc).Create(matcher);
             var plotFactory = sourceFactory.WithConversion(conv);
@@ -113,7 +120,7 @@ namespace Steropes.Tiles.Test.Renderer
             var rc = new GameRenderingConfig(RenderType.Grid);
             var renderer = new RendererSubstitute<RenderedTile, RenderedContext>();
             var conv = new ConverterProxy();
-            var matcher = Substitute.For<ITileMatcher<MatchedTile, MatchedContext>>();
+            var matcher = new DummyTileMatcher<MatchedTile, MatchedContext>();
 
             var sourceFactory = PlotOperations.FromContext(rc).Create(matcher);
             var plotFactory = sourceFactory.WithConversion(conv);
@@ -143,7 +150,7 @@ namespace Steropes.Tiles.Test.Renderer
             var rc = new GameRenderingConfig(RenderType.Grid);
             var renderer = new RendererSubstitute<RenderedTile, RenderedContext>();
             var conv = new ConverterProxy();
-            var matcher = Substitute.For<ITileMatcher<MatchedTile, MatchedContext>>();
+            var matcher = new DummyTileMatcher<MatchedTile, MatchedContext>();
 
             var sourceFactory = PlotOperations.FromContext(rc).Create(matcher);
             var cachedFactory = sourceFactory.WithCache();
@@ -174,7 +181,7 @@ namespace Steropes.Tiles.Test.Renderer
             var rc = new GameRenderingConfig(RenderType.Grid);
             var renderer = new RendererSubstitute<RenderedTile, RenderedContext>();
             var conv = new ConverterProxy();
-            var matcher = Substitute.For<ITileMatcher<RenderedTile, RenderedContext>>();
+            var matcher = new DummyTileMatcher<RenderedTile, RenderedContext>();
 
             var cache =
                 PlotOperations.FromContext(rc)
@@ -202,16 +209,16 @@ namespace Steropes.Tiles.Test.Renderer
             }
         }
 
-        public class RenderedTile
+        class RenderedTile
         { }
 
-        public class RenderedContext
+        class RenderedContext
         { }
 
-        public class MatchedTile
+        class MatchedTile
         { }
 
-        public class MatchedContext
+        class MatchedContext
         { }
 
         class ConverterProxy : RenderCallbackBase<MatchedTile, MatchedContext>,

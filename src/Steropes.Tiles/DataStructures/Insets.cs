@@ -9,6 +9,9 @@ namespace Steropes.Tiles.DataStructures
         public double Bottom { get; }
         public double Right { get; }
 
+        public double Horizontal => Left + Right;
+        public double Vertical => Top + Bottom;
+
         public Insets(double top, double left, double bottom, double right)
         {
             Top = top;

@@ -1,24 +1,47 @@
 using FluentAssertions;
-using NSubstitute;
 using NUnit.Framework;
 using Steropes.Tiles.Navigation;
+using System.Collections.Generic;
 
 namespace Steropes.Tiles.Test.Navigation
 {
+    class TestNavigator: IMapNavigator<GridDirection>
+    {
+        readonly Dictionary<(GridDirection, MapCoordinate, int), (bool, MapCoordinate)> expectedCalls;
+
+        public TestNavigator()
+        {
+            expectedCalls = new Dictionary<(GridDirection, MapCoordinate, int), (bool, MapCoordinate)>();
+        }
+
+        public void Expect((GridDirection direction, MapCoordinate source, int steps) parameter, (bool, MapCoordinate) result)
+        {
+            expectedCalls[parameter] = result;
+        }
+            
+        public bool NavigateTo(GridDirection direction, in MapCoordinate source, out MapCoordinate result, int steps = 1)
+        {
+            var key = (direction, source, steps);
+            if (expectedCalls.TryGetValue(key, out var r))
+            {
+                result = r.Item2;
+                return r.Item1;
+            }
+
+            throw new AssertionException("Unexpected call");
+        }
+    }
+        
     [TestFixture]
     public class LimitNavigatorTest
     {
         [Test]
         public void UpperLimitTest()
         {
-            var nav = Substitute.For<IMapNavigator<GridDirection>>();
             var input = new MapCoordinate(99, 0);
-            nav.NavigateTo(GridDirection.East, input, out var dummy)
-               .Returns(x =>
-               {
-                   x[2] = new MapCoordinate(100, 0);
-                   return true;
-               });
+            var nav = new TestNavigator();
+            nav.Expect((GridDirection.East, input, 1), 
+                       (true, new MapCoordinate(100, 0)));
 
             var w = new LimitedRangeNavigator<GridDirection>(nav, 0, 0, 100, 100);
 

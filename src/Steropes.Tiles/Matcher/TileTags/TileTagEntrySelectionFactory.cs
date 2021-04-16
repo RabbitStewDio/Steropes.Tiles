@@ -24,7 +24,7 @@ namespace Steropes.Tiles.Matcher.TileTags
                         continue;
                     }
 
-                    x.Add(new KeyValuePair<string, string>(tag[0].ToString(), tag));
+                    x.Add(new KeyValuePair<string, string>(tag, tag[0].ToString()));
                 }
                 return new TileTagEntrySelectionFactory<string>(x.ToArray());
             }
@@ -107,14 +107,14 @@ namespace Steropes.Tiles.Matcher.TileTags
                 throw new ArgumentException($"tag {tag} is already registered.");
             }
 
-            var firstChar = selector;
-            if (selectionsByIndex.Exists(e => EqualityComparer<TSelector>.Default.Equals(e.Selector, firstChar)))
+            var selectorRef = selector;
+            if (selectionsByIndex.Exists(e => EqualityComparer<TSelector>.Default.Equals(e.Selector, selectorRef)))
             {
-                throw new ArgumentException($"duplicate character for tag {tag}");
+                throw new ArgumentException($"Duplicate selector entry '{selectorRef}' for tag '{tag}'");
             }
 
             var idx = Count;
-            var v = new TileTagEntrySelection(this, firstChar, (ushort)idx, tag);
+            var v = new TileTagEntrySelection(this, selectorRef, (ushort)idx, tag);
             selectionsByIndex.Add(v);
             return v;
         }
