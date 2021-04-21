@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Steropes.Tiles.TemplateGen.Models.Rendering.Generators;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Steropes.Tiles.TemplateGen.Models.Rendering

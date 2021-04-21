@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Steropes.Tiles.TemplateGen.Models
+namespace Steropes.Tiles.TemplateGen.Models.Prefs
 {
     public class GeneratorPreferencesWriter
     {

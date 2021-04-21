@@ -4,7 +4,7 @@ using SkiaSharp;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Steropes.Tiles.TemplateGen.Models
+namespace Steropes.Tiles.TemplateGen.Models.Prefs
 {
     public class GeneratorPreferences : INotifyPropertyChanged
     {

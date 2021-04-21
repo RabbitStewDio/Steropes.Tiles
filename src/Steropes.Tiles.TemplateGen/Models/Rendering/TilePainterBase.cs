@@ -3,6 +3,7 @@ using SkiaSharp;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Navigation;
+using Steropes.Tiles.TemplateGen.Models.Prefs;
 using System;
 
 namespace Steropes.Tiles.TemplateGen.Models.Rendering
@@ -24,8 +25,11 @@ namespace Steropes.Tiles.TemplateGen.Models.Rendering
                 return default;
             }
 
+            var cellSize = Grid.EffectiveCellSize;
             var tileSize = Grid.EffectiveTileSize;
-            return new IntRect(0, 0,
+            var extraSpace = (cellSize - tileSize);
+            return new IntRect(extraSpace.Width / 2, 
+                               extraSpace.Height,
                                tileSize.Width,
                                tileSize.Height);
         }

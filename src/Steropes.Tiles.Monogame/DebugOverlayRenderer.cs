@@ -60,7 +60,7 @@ namespace Steropes.Tiles.Monogame
             public override string ToString()
             {
                 var metrics = game.GraphicsDevice.Metrics;
-                return $"ClearCount={metrics.ClearCount}, DrawCount={metrics.DrawCount}, Sprites={metrics.SpriteCount}, Targets={metrics.TargetCount}";
+                return $"ClearCount={metrics.ClearCount}, DrawCount={metrics.DrawCount}, Sprites={metrics.SpriteCount}, Targets={metrics.TargetCount}, Textures={metrics.TextureCount}";
             }
         }
     }

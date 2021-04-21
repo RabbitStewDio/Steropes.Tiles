@@ -3,6 +3,8 @@ using SkiaSharp;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Matcher.Registry;
 using Steropes.Tiles.Navigation;
+using Steropes.Tiles.TemplateGen.Models.Prefs;
+using Steropes.Tiles.TemplateGen.Models.Rendering.Shapes;
 using System;
 
 namespace Steropes.Tiles.TemplateGen.Models.Rendering

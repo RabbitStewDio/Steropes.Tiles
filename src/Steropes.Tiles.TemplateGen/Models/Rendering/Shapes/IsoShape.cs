@@ -5,7 +5,7 @@ using Steropes.Tiles.Navigation;
 using System;
 using System.Collections.Generic;
 
-namespace Steropes.Tiles.TemplateGen.Models.Rendering
+namespace Steropes.Tiles.TemplateGen.Models.Rendering.Shapes
 {
     public class IsoShape : IShape
     {
@@ -24,10 +24,10 @@ namespace Steropes.Tiles.TemplateGen.Models.Rendering
 
         public void Draw(SKCanvas g, Color pen)
         {
-            g.DrawLine(pen, Left, Top);
-            g.DrawLine(pen, Right, Top);
-            g.DrawLine(pen, Right, Bottom);
-            g.DrawLine(pen, Left, Bottom);
+            g.DrawRasterLine(pen, Left, Top);
+            g.DrawRasterLine(pen, Right, Top);
+            g.DrawRasterLine(pen, Right, Bottom);
+            g.DrawRasterLine(pen, Left, Bottom);
         }
 
         public IShape ToHighlight()

@@ -37,19 +37,14 @@ namespace Steropes.Tiles.Navigation
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            return obj is MapCoordinate && Equals((MapCoordinate)obj);
+            return obj is MapCoordinate other && Equals(other);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                return (X * 31) ^ Y;
+                return (X * 397) ^ Y;
             }
         }
 
@@ -68,7 +63,7 @@ namespace Steropes.Tiles.Navigation
             return $"{nameof(MapCoordinate)}={{{nameof(X)}: {X}, {nameof(Y)}: {Y}}}";
         }
 
-        public static MapCoordinate Normalize(DoublePoint point)
+        public static MapCoordinate Normalize(in DoublePoint point)
         {
             return new MapCoordinate((int)Math.Floor(point.X + 0.5), (int)Math.Floor(point.Y + 0.5));
         }

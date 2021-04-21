@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.TemplateGen.Models;
+using Steropes.Tiles.TemplateGen.Models.Prefs;
 using Steropes.Tiles.TemplateGen.Models.Rendering;
 
 namespace Steropes.Tiles.TemplateGenerator.Test.Model

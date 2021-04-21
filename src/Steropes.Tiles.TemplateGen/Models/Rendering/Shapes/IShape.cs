@@ -4,7 +4,7 @@ using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
 using System.Collections.Generic;
 
-namespace Steropes.Tiles.TemplateGen.Models.Rendering
+namespace Steropes.Tiles.TemplateGen.Models.Rendering.Shapes
 {
     public interface IShape
     {

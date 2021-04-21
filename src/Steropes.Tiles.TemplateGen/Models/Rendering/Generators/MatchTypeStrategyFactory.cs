@@ -1,7 +1,6 @@
-using Steropes.Tiles.TemplateGen.Models.Rendering.Generators;
 using System.Collections.Generic;
 
-namespace Steropes.Tiles.TemplateGen.Models.Rendering
+namespace Steropes.Tiles.TemplateGen.Models.Rendering.Generators
 {
     public static class MatchTypeStrategyFactory
     {

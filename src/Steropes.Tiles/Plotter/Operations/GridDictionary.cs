@@ -7,13 +7,13 @@ namespace Steropes.Tiles.Plotter.Operations
 {
     public interface IGridDictionary<TValue>
     {
-        bool TryGetValue(MapCoordinate key, out TValue value);
-        void Store(MapCoordinate key, TValue value);
+        bool TryGetValue(in MapCoordinate key, out TValue value);
+        void Store(in MapCoordinate key, TValue value);
 
-        void Remove(MapCoordinate key);
+        void Remove(in MapCoordinate key);
         void RemoveWhere(int expectedSize, Func<TValue, bool> predicate);
 
-        void UpdateBounds(MapCoordinate centerPoint, IntInsets drawArea);
+        void UpdateBounds(in MapCoordinate centerPoint, in IntInsets drawArea);
     }
 
     public class GridDictionary<TValue> : IGridDictionary<TValue>
@@ -27,7 +27,7 @@ namespace Steropes.Tiles.Plotter.Operations
             renderAtRecords = new Dictionary<MapCoordinate, TValue>();
         }
 
-        public bool TryGetValue(MapCoordinate key, out TValue value)
+        public bool TryGetValue(in MapCoordinate key, out TValue value)
         {
             return renderAtRecords.TryGetValue(key, out value);
         }
@@ -37,12 +37,12 @@ namespace Steropes.Tiles.Plotter.Operations
             get { return renderAtRecords.Count; }
         }
 
-        public void Store(MapCoordinate key, TValue value)
+        public void Store(in MapCoordinate key, TValue value)
         {
             renderAtRecords[key] = value;
         }
 
-        public void Remove(MapCoordinate key)
+        public void Remove(in MapCoordinate key)
         {
             renderAtRecords.Remove(key);
         }
@@ -73,7 +73,7 @@ namespace Steropes.Tiles.Plotter.Operations
             removeKeyBuffer.Clear();
         }
 
-        public void UpdateBounds(MapCoordinate centerPoint, IntInsets drawArea)
+        public void UpdateBounds(in MapCoordinate centerPoint, in IntInsets drawArea)
         { }
     }
 }

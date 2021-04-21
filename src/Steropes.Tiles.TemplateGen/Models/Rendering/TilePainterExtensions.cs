@@ -1,4 +1,5 @@
 ﻿using Steropes.Tiles.DataStructures;
+using Steropes.Tiles.TemplateGen.Models.Prefs;
 using System;
 
 namespace Steropes.Tiles.TemplateGen.Models.Rendering

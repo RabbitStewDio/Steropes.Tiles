@@ -319,9 +319,9 @@ namespace Steropes.Tiles.TemplateGen.Models
                 var retval = new IntDimension(textureSetFile.Width, textureSetFile.Height);
                 if (matcherType == MatcherType.Corner)
                 {
-                    retval = new IntDimension(retval.Width / 2, retval.Height / 2);
+                    return new IntDimension(retval.Width / 2, retval.Height / 2);
                 }
-
+                
                 return retval;
             }
         }

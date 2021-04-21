@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Steropes.Tiles.TemplateGen.Models;
+using Steropes.Tiles.TemplateGen.Models.Prefs;
 using Steropes.Tiles.TemplateGen.Models.Rendering;
 using System;
 using System.IO;

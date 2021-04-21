@@ -5,7 +5,7 @@ using Steropes.Tiles.Navigation;
 using System;
 using System.Collections.Generic;
 
-namespace Steropes.Tiles.TemplateGen.Models.Rendering
+namespace Steropes.Tiles.TemplateGen.Models.Rendering.Shapes
 {
     public class PixelPerfectIsoShape : IShape
     {

@@ -48,6 +48,22 @@ namespace Steropes.Tiles.DataStructures
             return !left.Equals(right);
         }
 
+        public static IntDimension operator +(IntDimension left, IntDimension right)
+        {
+            return new IntDimension(left.Width + right.Width, left.Height + right.Height);
+        }
+
+        public static IntDimension operator -(IntDimension left, IntDimension right)
+        {
+            return new IntDimension(left.Width - right.Width, left.Height - right.Height);
+        }
+
+        public IntPoint CenterPoint()
+        {
+            return new IntPoint((int)Math.Ceiling(Width / 2f),
+                                (int)Math.Ceiling(Height / 2f));
+        }
+
         public override string ToString()
         {
             return $"({nameof(Width)}: {Width}, {nameof(Height)}: {Height})";

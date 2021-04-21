@@ -2,6 +2,7 @@ using Avalonia.Media;
 using Serilog;
 using SkiaSharp;
 using Steropes.Tiles.DataStructures;
+using Steropes.Tiles.TemplateGen.Models.Prefs;
 using System;
 using System.Collections.Generic;
 using System.IO;

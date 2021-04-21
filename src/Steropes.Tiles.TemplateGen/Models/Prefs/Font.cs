@@ -1,7 +1,7 @@
 using SkiaSharp;
 using System;
 
-namespace Steropes.Tiles.TemplateGen.Models
+namespace Steropes.Tiles.TemplateGen.Models.Prefs
 {
     public readonly struct Font : IEquatable<Font>
     {

@@ -5,7 +5,9 @@ using SkiaSharp;
 using Steropes.Tiles.DataStructures;
 using Steropes.Tiles.Navigation;
 using Steropes.Tiles.TemplateGen.Models;
+using Steropes.Tiles.TemplateGen.Models.Prefs;
 using Steropes.Tiles.TemplateGen.Models.Rendering;
+using Steropes.Tiles.TemplateGen.Models.Rendering.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -44,7 +46,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
             }
         }
 
-        public TextureSetFixture CreateTextureSet(int width = 8, int height = 4, TileType tileType = TileType.Isometric)
+        public TextureSetFixture CreateTextureSet(int width, int height, TileType tileType)
         {
             var textureSet = new TextureSetFile
             {
@@ -62,6 +64,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
             {
                 MatcherType = MatcherType.Basic
             };
+            
             grid.Tiles.Add(new TextureTile(false, 0, 0));
             grid.Tiles.Add(new TextureTile(false, 1, 0));
             grid.FormattingMetaData.Border = 1;
@@ -79,7 +82,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
         public void ValidateBitmapSize()
         {
             var p = new TextureCollectionPainter(prefs);
-            var (_, gridParent, _) = CreateTextureSet();
+            var (_, gridParent, _) = CreateTextureSet(8, 4, TileType.Isometric);
             using var btmp = p.CreateBitmap(gridParent);
             btmp.Width.Should().Be(16 + 5);
             btmp.Height.Should().Be(4 + 4);
@@ -89,7 +92,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
         public void ValidateBitmapBorder()
         {
             var p = new TextureCollectionPainter(prefs);
-            var (_, gridParent, _) = CreateTextureSet();
+            var (_, gridParent, _) = CreateTextureSet(8, 4, TileType.Isometric);
             var btmp = p.CreateBitmap(gridParent);
 
             var stream = btmp.Write();
@@ -110,7 +113,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Painter
         public void ValidateNoOverdrawEvenWidth()
         {
             var p = new TextureCollectionPainter(prefs);
-            var (_, gridParent, _) = CreateTextureSet();
+            var (_, gridParent, _) = CreateTextureSet(8, 4, TileType.Isometric);
             var btmp = p.CreateBitmap(gridParent);
             var pixMap = btmp.PeekPixels();
 
@@ -138,7 +141,7 @@ ccccccccccccccccccccc
         [Test]
         public void ValidateHighlightPositions()
         {
-            var (_, _, grid) = CreateTextureSet(32, 16);
+            var (_, _, grid) = CreateTextureSet(32, 16, TileType.Isometric);
             grid.MatcherType = MatcherType.CardinalFlags;
             grid.Tiles[0].SelectorHint = "0101";
             grid.Tiles[1].SelectorHint = "1010";
@@ -158,7 +161,7 @@ ccccccccccccccccccccc
         public void ValidateHighlightsEvenWidth_Cardinals_Iso()
         {
             var p = new TextureCollectionPainter(prefs);
-            var (_, gridParent, grid) = CreateTextureSet(16, 8);
+            var (_, gridParent, grid) = CreateTextureSet(16, 8, TileType.Isometric);
             grid.MatcherType = MatcherType.CardinalFlags;
             grid.Tiles[0].SelectorHint = "0101";
             grid.Tiles[1].SelectorHint = "1010";
@@ -219,12 +222,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
         public void ValidateNoOverdrawOddWidth_Iso()
         {
             var p = new TextureCollectionPainter(prefs);
-            var (set, gridParent, grid) = CreateTextureSet(7, 5);
+            var (set, gridParent, grid) = CreateTextureSet(7, 5, TileType.Isometric);
 
             set.Width = 7;
             set.Height = 5;
             grid.CellWidth = 10;
             grid.CellHeight = 10;
+            
             var btmp = p.CreateBitmap(gridParent);
             btmp.Width.Should().Be(20 + 5);
             btmp.Height.Should().Be(10 + 4);
@@ -236,15 +240,15 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
             var goldenSample = @"
 ccccccccccccccccccccccccc
 c.......................c
-c....ddd........ddd.....c
-c..dd...d.....dd...d....c
-c..dd...dd....dd...dd...c
-c..d.ddd.d....d.ddd.d...c
+c.....d..........d......c
+c...dd.dd......dd.dd....c
+c..d.....d....d.....d...c
+c..ddd.ddd....ddd.ddd...c
 c..d..d..d....d..d..d...c
-c..d#ddd#d....d#ddd#d...c
-c..dd#d#dd....dd#d#dd...c
-c..dd#d#dd....dd#d#dd...c
-c..##ddd##....##ddd##...c
+c..d##d##d....d##d##d...c
+c..ddddddd....ddddddd...c
+c..d##d##d....d##d##d...c
+c..#ddddd#....#ddddd#...c
 c..###d###....###d###...c
 c.......................c
 ccccccccccccccccccccccccc
@@ -373,22 +377,6 @@ c.......................c
 ccccccccccccccccccccccccc
 ".Replace("\r\n", "\n")
  .TrimStart();
-            /*             
-                         "ccccccccccccccccccccccccc\n" +
-                         "c.......................c\n" +
-                         "c.....d..........d......c\n" +
-                         "c...dd.dd......dd.dd....c\n" +
-                         "c..d.....d....d.....d...c\n" +
-                         "c..ddd.ddd....ddd.ddd...c\n" +
-                         "c..d..d..d....d..d..d...c\n" +
-                         "c..d##d##d....d##d##d...c\n" +
-                         "c..ddddddd....ddddddd...c\n" +
-                         "c..d##d##d....d##d##d...c\n" +
-                         "c..#ddddd#....#ddddd#...c\n" +
-                         "c..###d###....###d###...c\n" +
-                         "c.......................c\n" +
-                         "ccccccccccccccccccccccccc\n";
-         */
             asText.Should().Be(goldenSample);
         }
 
@@ -427,7 +415,7 @@ ccccccccccccccccccccccccc
         [Test]
         public void ValidateCellSize()
         {
-            var (_, _, grid) = CreateTextureSet(32, 16);
+            var (_, _, grid) = CreateTextureSet(32, 16, TileType.Isometric);
 
             var painter = new IsoTilePainter(prefs, grid);
             var area = painter.GetTileArea(grid.Tiles[0]);
@@ -437,7 +425,7 @@ ccccccccccccccccccccccccc
         [Test]
         public void ValidateIsoShape()
         {
-            var (_, _, grid) = CreateTextureSet(32, 16);
+            var (_, _, grid) = CreateTextureSet(32, 16, TileType.Grid);
 
             var painter = new IsoTilePainter(prefs, grid);
             var area = painter.GetTileArea(grid.Tiles[0]);
@@ -453,7 +441,7 @@ ccccccccccccccccccccccccc
         [Test]
         public void ValidateIsoShapeNonStandard()
         {
-            var (_, _, grid) = CreateTextureSet(30, 16);
+            var (_, _, grid) = CreateTextureSet(30, 16, TileType.Isometric);
 
             var painter = new IsoTilePainter(prefs, grid);
             var area = painter.GetTileArea(grid.Tiles[0]);

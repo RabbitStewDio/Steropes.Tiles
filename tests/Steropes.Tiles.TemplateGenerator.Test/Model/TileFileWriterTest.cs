@@ -102,7 +102,7 @@ namespace Steropes.Tiles.TemplateGenerator.Test.Model
 
             root.Name.Should().Be(Namespace + "collection");
             root.Should().HaveAttribute("id", "");
-            root.Should().HaveElement(Namespace + "metadata");
+            root.Element(Namespace + "metadata").Should().BeNull();
         }
 
         [Test]
