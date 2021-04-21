@@ -4,7 +4,7 @@ namespace Steropes.Tiles.Navigation
 {
     public class GridNavigator : IMapNavigator<GridDirection>
     {
-        public bool NavigateTo(GridDirection direction, MapCoordinate source, out MapCoordinate result, int steps)
+        public bool NavigateTo(GridDirection direction, in MapCoordinate source, out MapCoordinate result, int steps)
         {
             switch (direction)
             {
@@ -38,8 +38,8 @@ namespace Steropes.Tiles.Navigation
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
-            return true;
 
+            return true;
         }
     }
 }

@@ -203,7 +203,7 @@ between map data and actual rendering representation.
    With all matches complete the selector will construct a 
    selector tag in the format ``{tag}_{A}_{B}_{C}_{D}``.
 
-5. Separate Neighbour Tile Selector
+5. Separate Neighbour Tile Selector and Cardinal Index Tile Selector
 
    This is a selector that matches a tile against a boolean
    predicate on all 8 direct neighbour cells. This selector
@@ -225,6 +225,14 @@ between map data and actual rendering representation.
    * ``{tag}_southwest``
    * ``{tag}_west``
    * ``{tag}_northwest``
+   * ``{tag}_isolated``
+
+   A cardinal index matcher produces the cardinal subset of:
+
+   * ``{tag}_north``
+   * ``{tag}_east``
+   * ``{tag}_south``
+   * ``{tag}_west``
    * ``{tag}_isolated``
 
 ### Special Purpose Matchers

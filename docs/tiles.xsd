@@ -21,7 +21,9 @@
         
         The selector hint attribute is used by the generator and preview code
         to provide additional hints in the output to make it easier for the 
-        artists to know what tile they are working on.
+        artists to know what tile they are working on. The contents of the selector
+        hint attribute depends on the grid's tile selector mode and is not used
+        at runtime.
       </xsd:documentation>
     </xsd:annotation>
     <xsd:attribute type="xsd:string" name="selector-hint" use="optional"/>
@@ -69,6 +71,29 @@
     </xsd:restriction>
   </xsd:simpleType>
 
+  <xsd:complexType mixed="false" name="cellMappingType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Documents a possible choice in a cell-mapping tile selector. 
+
+        A cell-mapping tile selector uses conditional expressions to
+        locate tiles for a cell. Each condition is usually keyed with 
+        a single character identifying the expression. 
+
+        When generating templates, the tile generator will produce a 
+        tile for each permutation of all cell-mapping selectors.
+
+        The runtime usually will not read this metadata entry and simply
+        assumes that the tile set creator provides valid mappings for
+        all hardcoded conditions provided by the game system.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute type="xsd:string" name="key" use="required"/>
+    <xsd:attribute type="xsd:string" name="name" use="required"/>
+    <xsd:attribute type="xsd:string" name="comment" use="optional"/>
+    <xsd:attribute type="xsd:string" name="highlight-color" use="optional"/>
+  </xsd:complexType>
+
   <xsd:complexType mixed="false" name="gridMetaDataType">
     <xsd:annotation>
       <xsd:documentation>
@@ -97,6 +122,7 @@
     <xsd:attribute type="xsd:string" name="title" use="optional"/>
     <xsd:attribute type="xsd:string" name="pattern" use="optional"/>
     <xsd:attribute type="xsd:string" name="match-type" use="optional" default="Basic"/>
+    <!-- deprecated -->
     <xsd:attribute type="xsd:string" name="cell-map-elements" use="optional"/>
 
     <xsd:attribute type="xsd:string" name="text-color" use="optional"/>
@@ -108,7 +134,10 @@
 
     <xsd:attribute type="xsd:unsignedInt" name="grid-width" use="optional"/>
     <xsd:attribute type="xsd:unsignedInt" name="grid-height" use="optional"/>
-</xsd:complexType>
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="cell-mapping" type="cellMappingType"/>
+    </xsd:choice>
+  </xsd:complexType>
 
   <xsd:complexType mixed="false" name="gridType">
     <xsd:annotation>

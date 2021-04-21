@@ -1,0 +1,12 @@
+{
+    "name": "com.rabbitstewdio.steropes.tiles.samples.shared",
+    "displayName": "Steropes.Tiles Shared Samples Library",
+    "version": "3.0.0",
+    "unity": "2018.4",
+    "description": "Steropes.Tiles shared samples library",
+    "keywords": ["Library"],
+    "category": "Libraries",
+    "dependencies": {
+		"com.rabbitstewdio.steropes.tiles": "3.0.0"
+    }
+}

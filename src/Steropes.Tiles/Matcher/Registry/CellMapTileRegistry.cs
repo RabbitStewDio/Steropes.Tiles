@@ -2,25 +2,20 @@
 
 namespace Steropes.Tiles.Matcher.Registry
 {
-  public class CellMapTileRegistry<TRenderTile> : ITileRegistryEx<CellMapTileSelectorKey, TRenderTile>
-  {
-    readonly ITileRegistry<TRenderTile> baseRegistry;
-    readonly string format;
-
-    public CellMapTileRegistry(ITileRegistry<TRenderTile> baseRegistry, string format = null)
+    public class CellMapTileRegistry<TRenderTile> : ITileRegistryEx<CellMapTileSelectorKey, TRenderTile>
     {
-      this.baseRegistry = baseRegistry;
-      this.format = format;
-    }
+        readonly ITileRegistry<TRenderTile> baseRegistry;
+        readonly string format;
 
-    public TRenderTile Find(string tag, CellMapTileSelectorKey tileSelector)
-    {
-      return baseRegistry.Find(tileSelector.Format(tag, format));
-    }
+        public CellMapTileRegistry(ITileRegistry<TRenderTile> baseRegistry, string format = null)
+        {
+            this.baseRegistry = baseRegistry;
+            this.format = format;
+        }
 
-    public bool TryFind(string tag, CellMapTileSelectorKey selector, out TRenderTile tile)
-    {
-      return baseRegistry.TryFind(selector.Format(tag, format), out tile);
+        public bool TryFind(string tag, CellMapTileSelectorKey selector, out TRenderTile tile)
+        {
+            return baseRegistry.TryFind(selector.Format(tag, format), out tile);
+        }
     }
-  }
 }

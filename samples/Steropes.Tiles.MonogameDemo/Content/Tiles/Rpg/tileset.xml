@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tileset xmlns="http://www.steropes-ui.org/namespaces/tiles/1.0"
+         width="54" height="27">
+    <collection id="dg_iso32">
+        <grid name="Default" x="0" y="0" cell-width="54" cell-height="48" anchor-x="27" anchor-y="34">
+            <tile x="0" y="0">
+                <metadata selector-hint="gras-floor"/>
+                <tag>gras</tag>
+            </tile>
+            <tile x="1" y="4">
+                <metadata selector-hint="stone-floor"/>
+                <tag>stone</tag>
+            </tile>
+            <tile x="0" y="5">
+                <metadata selector-hint="wall, single wall and catch-all for dangling entries."/>
+                <tag>wall_N0E0S0W0</tag>
+                <tag>wall_N1E0S0W0</tag>
+                <tag>wall_N0E1S0W0</tag>
+                <tag>wall_N0E0S1W0</tag>
+                <tag>wall_N0E0S0W1</tag>
+            </tile>
+            <tile x="1" y="5">
+                <tag>wall_N1E0S1W0</tag>
+            </tile>
+            <tile x="2" y="5">
+                <tag>wall_N0E1S0W1</tag>
+            </tile>
+            <tile x="3" y="5">
+                <tag>wall_N0E0S1W1</tag>
+            </tile>
+            <tile x="4" y="5">
+                <tag>wall_N1E0S0W1</tag>
+            </tile>
+            <tile x="5" y="5">
+                <tag>wall_N1E1S0W0</tag>
+            </tile>
+            <tile x="6" y="5">
+                <tag>wall_N0E1S1W0</tag>
+            </tile>
+            <tile x="7" y="5">
+                <tag>wall_N1E1S1W0</tag>
+            </tile>
+            <tile x="8" y="5">
+                <tag>wall_N1E0S1W1</tag>
+            </tile>
+            <tile x="9" y="5">
+                <tag>wall_N1E1S0W1</tag>
+            </tile>
+            <tile x="10" y="5">
+                <tag>wall_N0E1S1W1</tag>
+            </tile>
+            <tile x="11" y="5">
+                <tag>wall_N1E1S1W1</tag>
+            </tile>
+            <tile x="11" y="6">
+                <tag>door-closed_N1E0S1W0</tag>
+            </tile>
+            <tile x="12" y="6">
+                <tag>door-closed_N0E1S0W1</tag>
+            </tile>
+            <tile x="12" y="6">
+                <tag>door-closed</tag>
+            </tile>
+            <tile x="13" y="6">
+                <tag>door-open_N1E0S1W0</tag>
+            </tile>
+            <tile x="0" y="7">
+                <tag>door-open_N0E1S0W1</tag>
+            </tile>
+            <tile x="0" y="7">
+                <tag>door-open</tag>
+            </tile>
+            <tile x="1" y="7">
+                <tag>stairs_N1E0S1W0</tag>
+            </tile>
+            <tile x="2" y="7">
+                <tag>stairs_N0E1S0W1</tag>
+            </tile>
+            <tile x="2" y="7">
+                <tag>stairs</tag>
+            </tile>
+        </grid>
+    </collection>
+</tileset>

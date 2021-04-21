@@ -4,35 +4,36 @@ using Steropes.Tiles.Matcher.Sprites;
 
 namespace Steropes.Tiles.Matcher
 {
-  public class CollectionTileMatcher<TRenderTile, TContext, TData>: ITileMatcher<TRenderTile, TContext>
-  {
-    readonly Func<int, int, IEnumerable<TData>> keyFn;
-    readonly Mapper<TData, TRenderTile, TContext> mapper;
-
-    public CollectionTileMatcher(Func<int, int, IEnumerable<TData>> keyFn, Mapper<TData, TRenderTile, TContext> mapper)
+    public class CollectionTileMatcher<TRenderTile, TContext, TData> : ITileMatcher<TRenderTile, TContext>
     {
-      this.keyFn = keyFn ?? throw new ArgumentNullException(nameof(keyFn));
-      this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-    }
+        readonly Func<int, int, IEnumerable<TData>> keyFn;
+        readonly Mapper<TData, TRenderTile, TContext> mapper;
 
-    public bool Match(int x, int y, TileResultCollector<TRenderTile, TContext> onMatchFound)
-    {
-      var en = keyFn(x, y);
-      if (en == null)
-      {
-        return false;
-      }
-
-      bool found = false;
-      foreach (var data in en)
-      {
-        if (mapper(data, out TRenderTile result, out TContext context))
+        public CollectionTileMatcher(Func<int, int, IEnumerable<TData>> keyFn, Mapper<TData, TRenderTile, TContext> mapper)
         {
-          onMatchFound(SpritePosition.Whole, result, context);
-          found = true;
+            this.keyFn = keyFn ?? throw new ArgumentNullException(nameof(keyFn));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-      }
-      return found;
+
+        public bool Match(int x, int y, TileResultCollector<TRenderTile, TContext> onMatchFound)
+        {
+            var en = keyFn(x, y);
+            if (en == null)
+            {
+                return false;
+            }
+
+            bool found = false;
+            foreach (var data in en)
+            {
+                if (mapper(data, out TRenderTile result, out TContext context))
+                {
+                    onMatchFound(SpritePosition.Whole, result, context);
+                    found = true;
+                }
+            }
+
+            return found;
+        }
     }
-  }
 }

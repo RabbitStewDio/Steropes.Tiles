@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="using:Steropes.Tiles.TemplateGen.Models"
+             xmlns:views="using:Steropes.Tiles.TemplateGen.Views"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="250"
+             x:Class="Steropes.Tiles.TemplateGen.Views.FormattingMetaDataControl">
+    <Design.DataContext>
+        <models:FormattingMetaData />
+    </Design.DataContext>
+
+    <Grid Margin="0" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" MinWidth="120"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.Styles>
+            <Style Selector="Grid > :is(Control)">
+                <Setter Property="Margin" Value="2" />
+            </Style>
+            <Style Selector="Grid > TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+        </Grid.Styles>
+
+        <TextBlock Grid.Row="0" Grid.Column="0">Title</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title, Mode=TwoWay}" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0">Text Color</TextBlock>
+        <views:ArgbColorView Grid.Row="1" Grid.Column="1" DataContext="{Binding TextColor, Mode=TwoWay}"/>
+        
+        <TextBlock Grid.Row="2" Grid.Column="0">Background</TextBlock>
+        <views:ArgbColorView Grid.Row="2" Grid.Column="1" DataContext="{Binding BackgroundColor, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0">Border Size</TextBlock>
+        <NumericUpDown Grid.Row="3" Grid.Column="1" Text="{Binding Border}" AllowSpin="false" ShowButtonSpinner="false" />
+        
+        <TextBlock Grid.Row="4" Grid.Column="0">Border Color</TextBlock>
+        <views:ArgbColorView Grid.Row="4" Grid.Column="1" DataContext="{Binding BorderColor, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0">Margin</TextBlock>
+        <NumericUpDown Grid.Row="5" Grid.Column="1" Value="{Binding Margin}" AllowSpin="false" ShowButtonSpinner="false" />
+        
+        <TextBlock Grid.Row="6" Grid.Column="0">Padding</TextBlock>
+        <NumericUpDown Grid.Row="6" Grid.Column="1" Text="{Binding Padding}" AllowSpin="false" ShowButtonSpinner="false" />
+
+    </Grid>
+</UserControl>

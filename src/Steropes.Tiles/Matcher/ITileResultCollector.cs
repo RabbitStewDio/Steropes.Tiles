@@ -8,6 +8,6 @@ namespace Steropes.Tiles.Matcher
     ///  to represent them. 
     /// </summary>
     /// <typeparam name="TRenderTile">The texture or tile that represents the rendering.</typeparam>
-    /// <typeparam name="TContext">Tile context. Additional information that may be neccessary for rendering.</typeparam>
+    /// <typeparam name="TContext">Tile context. Additional information that may be necessary for rendering.</typeparam>
     public delegate void TileResultCollector<in TRenderTile, in TContext>(SpritePosition pos, TRenderTile result, TContext context);
 }

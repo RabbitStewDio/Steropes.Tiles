@@ -4,13 +4,14 @@ namespace Steropes.Tiles.Navigation
 {
     public class IsoStaggeredGridNavigator : IMapNavigator<GridDirection>
     {
-        public bool NavigateTo(GridDirection direction, MapCoordinate source, out MapCoordinate result, int steps = 1)
+        public bool NavigateTo(GridDirection direction, in MapCoordinate source, out MapCoordinate result, int steps = 1)
         {
             if (steps == 0)
             {
                 result = source;
                 return true;
             }
+
             result = source;
             for (var i = 0; i < steps; i += 1)
             {
@@ -47,6 +48,7 @@ namespace Steropes.Tiles.Navigation
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
                 }
             }
+
             return true;
         }
     }

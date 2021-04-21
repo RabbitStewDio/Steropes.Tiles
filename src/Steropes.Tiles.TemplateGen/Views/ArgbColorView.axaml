@@ -1,0 +1,73 @@
+<views:ArgbColorView x:Class="Steropes.Tiles.TemplateGen.Views.ArgbColorView"
+                     xmlns="https://github.com/avaloniaui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:views="clr-namespace:Steropes.Tiles.TemplateGen.Views"
+                     xmlns:colorPicker="clr-namespace:Steropes.Tiles.TemplateGen.ColorPicker"
+                     Name="root"
+                     mc:Ignorable="d"
+                     d:DesignWidth="500" d:DesignHeight="400">
+
+    <UserControl.Resources>
+        <colorPicker:ColorToHexConverter x:Key="ColorToHexConverter" />
+        <colorPicker:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+        
+        <VisualBrush x:Key="ColorCheckerBoard" TileMode="Tile" Stretch="None" AlignmentX="Left" AlignmentY="Top" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
+            <VisualBrush.Visual>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Rectangle Width="10" Height="10" Fill="DarkGray"/>
+                        <Rectangle Width="10" Height="10" Fill="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Rectangle Width="10" Height="10" Fill="LightGray"/>
+                        <Rectangle Width="10" Height="10" Fill="DarkGray"/>
+                    </StackPanel>
+                </StackPanel>
+            </VisualBrush.Visual>
+        </VisualBrush>
+        
+    </UserControl.Resources>
+
+    <Grid RowDefinitions="Auto" ColumnDefinitions="120,*">
+        <Grid.Styles>
+            <Style Selector="Grid > :is(Control)">
+                <Setter Property="Margin" Value="0" />
+            </Style>
+        </Grid.Styles>
+        
+        <TextBox Text="{Binding #root.Color, Mode=TwoWay, Converter={StaticResource ColorToHexConverter}}" IsReadOnly="False" Grid.Row="0" Grid.Column="0" />
+        <Grid Grid.Row="0" Grid.Column="1" Margin="5,0,0,0">
+            <ToggleButton Name="PopupButton" BorderThickness="0" Background="Transparent" Padding="0" Height="30"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ToggleButton.Styles>
+                    <Style Selector="ToggleButton">
+                        <Setter Property="RenderTransform" Value="none" />
+                        <Setter Property="Transitions" Value="{x:Null}" />
+                    </Style>
+                    <Style Selector="ToggleButton:pressed">
+                        <Setter Property="RenderTransform" Value="none" />
+                    </Style>
+                    <Style Selector="ToggleButton:checked /template/ ContentPresenter, ToggleButton:pressed /template/ ContentPresenter">
+                        <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
+                    </Style>
+                    <Style Selector="ToggleButton:checked /template/ ContentPresenter">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}" />
+                    </Style>
+                </ToggleButton.Styles>
+                <Panel Height="30" DockPanel.Dock="Top">
+                    <Border BorderThickness="0" CornerRadius="0" Background="DarkGray" />
+                    <Border BorderThickness="0" CornerRadius="0" Background="{DynamicResource ColorCheckerBoard}" />
+                    <Border BorderThickness="0" CornerRadius="0" Background="{Binding #root.Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+                </Panel>
+            </ToggleButton>
+            <Popup IsOpen="{Binding #PopupButton.IsChecked, Mode=TwoWay}" IsLightDismissEnabled="True" PlacementMode="AnchorAndGravity" PlacementGravity="BottomLeft"
+                   PlacementAnchor="BottomLeft">
+                <Border Background="{DynamicResource SystemChromeMediumColor}" CornerRadius="0">
+                    <views:ColorPicker Color="{Binding #root.Color, Mode=TwoWay}" Margin="8" />
+                </Border>
+            </Popup>
+        </Grid>
+    </Grid>
+</views:ArgbColorView>
