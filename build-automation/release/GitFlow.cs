@@ -151,6 +151,8 @@ Based on the current version information I expect to be on branch '{state.Releas
             {
                 Logger.Error("Error: Unable to build the release on the release branch. Attempting to roll back changes on release branch.");
                 GitTools.Reset(GitTools.ResetType.Hard, releaseBranchTag);
+                GitTools.Checkout(stagingBranchTag);
+                GitTools.ResetBranch(state.ReleaseStagingBranch, stagingBranchTag);
                 throw;
             }
             finally
