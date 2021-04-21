@@ -26,12 +26,18 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Steropes.UI" Version="2.2.0" />
+    <!-- 
+        System.IO.FileSystem 4.0.1 used by serilog -> Microsoft.Extensions.DependencyModel .. does not like
+        strict publish checks as it imports two versions of the same set of core APIs. 
+     -->
   </ItemGroup>
 
   <ItemGroup>
