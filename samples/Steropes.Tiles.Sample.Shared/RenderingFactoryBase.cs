@@ -22,8 +22,8 @@ namespace Steropes.Tiles.Sample.Shared
 
     public interface IRenderingFactoryConfig<TTile>
     {
-        public GameRenderingConfig RenderingConfig { get; }
-        public RendererControl RenderControl { get; }
-        public ITileRegistry<TTile> Tiles { get; }
+        GameRenderingConfig RenderingConfig { get; }
+        RendererControl RenderControl { get; }
+        ITileRegistry<TTile> Tiles { get; }
     }
 }

@@ -60,29 +60,33 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
         public ITileRegistry<TTile> Tiles { get; }
         bool EnableCache { get; }
 
-
         public virtual IEnumerable<IPlotOperation> Create(IRenderCallbackFactory<Nothing, TTile> r)
         {
-            var agg = new List<TileMatchControl>();
-            agg.AddRange(CreateTerrainLayers());
-            agg.Add(CreateResourceLayer());
-            agg.AddRange(CreateRiverLayer());
-            agg.AddRange(CreateRoadLayer());
-            agg.Add(CreateImprovementLayer());
-            agg.Add(CreateSettlementLayer());
-            agg.Add(CreateFogOfWar());
-
-            var retval = new List<IPlotOperation>();
-            retval.AddRange(EnableCache
-                                ? agg.Select(x => CreateFromMatchControl(x, r))
-                                : agg.Select(x => CreateNonCachedFromMatchControl(x, r)));
-
-            return retval;
+            foreach (var tl in CreateTerrainLayers())
+            {
+                yield return CreateFromMatchControl(tl, r);
+            }
+            
+            yield return CreateFromMatchControl(CreateResourceLayer(), r);
+            
+            foreach (var riverLayer in CreateRiverLayer())
+            {
+                yield return CreateFromMatchControl(riverLayer, r);
+            }
+            
+            foreach (var roadLayer in CreateRoadLayer())
+            {
+                yield return CreateFromMatchControl(roadLayer, r);
+            }
+            
+            yield return CreateFromMatchControl(CreateImprovementLayer(), r);
+            yield return CreateFromMatchControl(CreateSettlementLayer(), r);
+            yield return CreateFromMatchControl(CreateFogOfWar(), r);
         }
 
         IPlotOperation CreateFromMatchControl(TileMatchControl tm, IRenderCallbackFactory<Nothing, TTile> r)
         {
-            if (tm.Cachable)
+            if (EnableCache && tm.Cachable)
             {
                 var cache =
                     PlotOperations.FromContext(RenderingConfig)
@@ -497,8 +501,7 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
                 ops.Add(new TileMatchControl(tileMatcher, RotationCacheControl));
                 if (layerIndex == TileSet.BlendLayer)
                 {
-                    var builder = new StrategyGameBlendLayerBuilder<TTile, TTexture, TColor>(
-                        RenderingConfig, tileProducer, textureOperations, GameData, TileSet, Tiles);
+                    var builder = new StrategyGameBlendLayerBuilder<TTile, TTexture, TColor>(RenderingConfig, tileProducer, textureOperations, GameData, TileSet, Tiles);
                     if (builder.TryBuildBlendLayer(out var blendLayer))
                     {
                         ops.Add(new TileMatchControl(blendLayer, RotationCacheControl));

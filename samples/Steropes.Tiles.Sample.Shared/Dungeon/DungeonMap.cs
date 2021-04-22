@@ -32,9 +32,9 @@ namespace Steropes.Tiles.Sample.Shared.Dungeon
         {
             Width = width;
             Height = height;
-            FloorLayer = new Map2D<IFloorType>(width, height, (_, _) => rules.FloorTypes.DefaultValue);
-            WallLayer = new Map2D<IWallType>(width, height, (_, _) => rules.WallTypes.DefaultValue);
-            DecorationLayer = new Map2D<IDecorationType>(width, height, (_, _) => rules.DecorationTypes.DefaultValue);
+            FloorLayer = new Map2D<IFloorType>(width, height, (a, b) => rules.FloorTypes.DefaultValue);
+            WallLayer = new Map2D<IWallType>(width, height, (a, b) => rules.WallTypes.DefaultValue);
+            DecorationLayer = new Map2D<IDecorationType>(width, height, (a, b) => rules.DecorationTypes.DefaultValue);
         }
 
         /// <summary>

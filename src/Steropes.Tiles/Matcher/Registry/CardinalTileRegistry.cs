@@ -43,8 +43,8 @@ namespace Steropes.Tiles.Matcher.Registry
                              ITileTagEntrySelectionFactory<bool> formatProvider = null,
                              string format = null)
         {
-            formatProvider ??= TileTagEntries.CreateFlagTagEntries();
-            format ??= "{{0}}_n{0}e{1}s{2}w{3}";
+            formatProvider = formatProvider ?? TileTagEntries.CreateFlagTagEntries();
+            format = format ?? "{{0}}_n{0}e{1}s{2}w{3}";
             var n = formatProvider.Lookup(k.North).Tag;
             var e = formatProvider.Lookup(k.East).Tag;
             var s = formatProvider.Lookup(k.South).Tag;

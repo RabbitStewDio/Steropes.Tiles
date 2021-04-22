@@ -76,7 +76,7 @@ namespace Steropes.Tiles.Matcher.Sprites
 
         public string Format(string tag, string format = null)
         {
-            format ??= "{0}_{1}_{2}_{3}_{4}";
+            format = format ?? "{0}_{1}_{2}_{3}_{4}";
             return string.Format(format, tag, MatchA.Tag, MatchB.Tag, MatchC.Tag, MatchD.Tag);
         }
 
