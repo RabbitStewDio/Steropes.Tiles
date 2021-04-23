@@ -15,14 +15,13 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <Description>A entity based turn based role-playing game framework</Description>
+    <Description>a fast tile rendering pipeline for grid and tile based games. </Description>
     <Authors>Thomas Morgner</Authors>
-    <Copyright>Copyright $([System.DateTime]::Now.Year) Maintainers of RogueEntity</Copyright>
-    <PackageTags>game rogue</PackageTags>
-    <PackageProjectUrl>https://www.rabbit-stew-dio.com/projects/rogue-entity/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/rabbitstewdio/RogueEntity</RepositoryUrl>
+    <Copyright>Copyright $([System.DateTime]::Now.Year) Maintainers of Steropes.Tiles</Copyright>
+    <PackageTags>game 2d monogame tiles</PackageTags>
+    <PackageProjectUrl>https://www.rabbit-stew-dio.com/projects/steropes-tiles/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rabbitstewdio/Steropes.Tiles</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-<!--    <PackageIconUrl>https://raw.githubusercontent.com/github.com/rabbitstewdio/RogueEntity/icon.png</PackageIconUrl> -->
   </PropertyGroup>
 
   <ItemGroup>
