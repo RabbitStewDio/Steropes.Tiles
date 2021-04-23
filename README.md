@@ -1,4 +1,8 @@
-![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Steropes.Tiles)
+<p align="center">
+    <a href="https://www.nuget.org/packages/Steropes.Tiles/" alt="NuGet Release">
+        <img src="https://img.shields.io/nuget/vpre/Steropes.Tiles" />
+    </a>
+</p>
 
 # Steropes Tiles
 
