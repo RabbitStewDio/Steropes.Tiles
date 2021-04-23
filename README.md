@@ -1,10 +1,21 @@
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Steropes.Tiles)
+
 # Steropes Tiles
 
 Steropes.Tiles is a fast tile rendering pipeline for grid and tile based 
-games. It supports both flat tile sets as well as well as isometric tile 
-sets. This library is agnostic to how your game data is organised, as 
-long as the data can be queried in some sort of grid format 
-(using X,Y coordinates). 
+games. 
+
+This library helps you to keep your game's backend and simulation code neatly
+separate from whatever frontend renderer you are using. It supports both flat 
+tile sets as well as well as isometric tile sets out of the box. You can implement
+your own TileRenderer class to select other tile representations, such as 
+3D models or complex composite game objects. 
+
+This library is agnostic to how your game data is organised, as long as the data 
+can be queried in some sort of grid format (using X,Y coordinates).  
+
+This library here provides a MonoGame renderer. An experimental Unity3D sprite 
+renderer exists in the separate project [Steropes.Tiles.Unity2D](https://github.com/RabbitStewDio/Steropes.Tiles.Unity2D/). 
 
 ## Features
 
@@ -15,10 +26,20 @@ long as the data can be queried in some sort of grid format
 * rotated map rendering
 * map navigation independent of underlying rendering type
 * flexible rendering pipeline translates model data into rendering information
-* non-opinionated and clean separation between your model and the graphical 
-  representation
+* non-opinionated and clean separation between your model and the graphical representation
+* automatic generation of texture atlases
 * highly optimized
 * support for sprite layers and GUI integration
+
+## Status
+
+Steropes.Tiles is a functional library. However I am not quite happy with my 
+original approach to read the map data, which feels complex and cumbersome.
+Additionally, setting up the mapping between backend and rendering code is
+currently overly complex too and probably should be more declarative in nature.
+
+This should be addressed in the next major release along side making the 
+Unity3D integration a bit more approachable.
 
 ## License
 
