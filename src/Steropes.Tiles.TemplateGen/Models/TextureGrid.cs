@@ -95,7 +95,7 @@ namespace Steropes.Tiles.TemplateGen.Models
             FireContentsChanged();
         }
 
-        public TextureGrid WithTextureTile([JetBrains.Annotations.NotNull] TextureTile t)
+        public TextureGrid WithTextureTile(TextureTile t)
         {
             if (t == null)
             {

@@ -15,26 +15,6 @@ namespace Steropes.Tiles.Demo
 {
     public class MapGame
     {
-        object Old(TerrainTypes terrainTypes, TerrainMap map)
-        {
-            var desert = new TextTile("Desert", '.', ConsoleColor.DarkYellow);
-            var tileSet = new Dictionary<TerrainType, TextTile>
-            {
-                {terrainTypes.Grasland, new TextTile("Gras", 'g', ConsoleColor.DarkGreen)},
-                {terrainTypes.Desert, desert},
-                {terrainTypes.Hills, new TextTile("Hills", 'h', ConsoleColor.Gray)},
-                {terrainTypes.Plains, new TextTile("Plains", '_', ConsoleColor.Green)}
-            };
-
-            bool Mapper(TerrainType key, out TextTile result, out Nothing context)
-            {
-                context = Nothing.Instance;
-                return tileSet.TryGetValue(key, out result);
-            }
-
-            return new DirectMappingTileMatcher<TerrainType, TextTile, Nothing>(new TerrainLayer(map, terrainTypes).Read, Mapper);
-        }
-
         public static void Main(string[] args)
         {
             Console.WriteLine("Starting");
@@ -124,33 +104,6 @@ namespace Steropes.Tiles.Demo
 
                 viewport.CenterPoint = center;
             } while (true);
-        }
-
-        class TerrainLayer
-        {
-            readonly TerrainMap map;
-            readonly TerrainTypes types;
-
-            public TerrainLayer(TerrainMap map, TerrainTypes types)
-            {
-                this.map = map;
-                this.types = types;
-            }
-
-            public TerrainType Read(int x, int y)
-            {
-                if (x < 0 || x >= map.Width)
-                {
-                    return types.Desert;
-                }
-
-                if (y < 0 || y >= map.Height)
-                {
-                    return types.Desert;
-                }
-
-                return map[x, y].Terrain;
-            }
         }
     }
 }

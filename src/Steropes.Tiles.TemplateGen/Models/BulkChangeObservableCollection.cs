@@ -1,8 +1,8 @@
-﻿using JetBrains.Annotations;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Steropes.Tiles.TemplateGen.Models
 {
@@ -11,9 +11,11 @@ namespace Steropes.Tiles.TemplateGen.Models
         public BulkChangeObservableCollection()
         { }
 
+        [SuppressMessage("ReSharper", "RedundantNullableFlowAttribute")]
         public BulkChangeObservableCollection([NotNull] List<T> list) : base(list)
         { }
 
+        [SuppressMessage("ReSharper", "RedundantNullableFlowAttribute")]
         public BulkChangeObservableCollection([NotNull] IEnumerable<T> collection) : base(collection)
         { }
 

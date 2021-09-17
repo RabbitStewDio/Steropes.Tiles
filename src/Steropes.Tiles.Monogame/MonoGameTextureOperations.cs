@@ -12,6 +12,8 @@ namespace Steropes.Tiles.Monogame
 {
     public class MonoGameTextureOperations : ITextureOperations<XnaTexture, Color>
     {
+        bool UseSourceTextureCache = true;
+        
         readonly GraphicsDevice device;
         readonly Dictionary<int, WeakReference<Color[]>> clearTexturesCache;
         readonly Dictionary<Texture2D, WeakReference<Color[]>> textureData;
@@ -38,8 +40,6 @@ namespace Steropes.Tiles.Monogame
         {
             return new MultiTextureAtlasBuilder<XnaTexture, Color>(this);
         }
-
-        const bool UseSourceTextureCache = true;
 
         public BoundedTextureData<Color> ExtractData(XnaTexture srcTexture, TextureCoordinateRect rect)
         {

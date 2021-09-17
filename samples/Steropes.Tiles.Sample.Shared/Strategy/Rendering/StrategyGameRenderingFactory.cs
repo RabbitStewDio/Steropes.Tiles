@@ -35,9 +35,9 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
         {
             this.tileProducer = tileProducer;
             this.textureOperations = textureOperations;
-            RenderingConfig = renderingConfig ?? throw new ArgumentNullException(nameof(RenderingConfig));
-            GameData = gameData ?? throw new ArgumentNullException(nameof(GameData));
-            TileSet = tileSet ?? throw new ArgumentNullException(nameof(TileSet));
+            RenderingConfig = renderingConfig ?? throw new ArgumentNullException(nameof(renderingConfig));
+            GameData = gameData ?? throw new ArgumentNullException(nameof(gameData));
+            TileSet = tileSet ?? throw new ArgumentNullException(nameof(tileSet));
 
             var r = new BasicTileRegistry<TTile>();
             foreach (var t in tileSet.Textures.Tiles)

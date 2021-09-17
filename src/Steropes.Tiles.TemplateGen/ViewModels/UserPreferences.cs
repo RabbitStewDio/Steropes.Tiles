@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using ReactiveUI;
-using Steropes.Tiles.TemplateGen.Models;
 using Steropes.Tiles.TemplateGen.Models.Prefs;
 using System;
 using System.Collections.ObjectModel;
@@ -55,7 +54,7 @@ namespace Steropes.Tiles.TemplateGen.ViewModels
                         }
                     }
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
                     // ignored
                 }

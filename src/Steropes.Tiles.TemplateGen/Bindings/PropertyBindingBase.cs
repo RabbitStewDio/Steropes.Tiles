@@ -65,7 +65,7 @@ namespace Steropes.Tiles.TemplateGen.Bindings
             readonly PropertyBindingBase<TTarget> source;
             readonly IObserver<TTarget> observer;
 
-            public Subscription(int id, PropertyBindingBase<TTarget> source, [NotNull] IObserver<TTarget> observer)
+            public Subscription(int id, PropertyBindingBase<TTarget> source, IObserver<TTarget> observer)
             {
                 this.id = id;
                 this.source = source;

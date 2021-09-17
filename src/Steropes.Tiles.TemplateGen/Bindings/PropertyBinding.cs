@@ -1,7 +1,7 @@
-using JetBrains.Annotations;
 using Serilog;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Reactive.Concurrency;
 
 namespace Steropes.Tiles.TemplateGen.Bindings
@@ -15,7 +15,11 @@ namespace Steropes.Tiles.TemplateGen.Bindings
         readonly Func<TSource, TTarget?> propertyGetter;
         readonly string propertyName;
 
-        public PropertyBinding([NotNull] TSource source, [NotNull] string propertyName, [NotNull] Func<TSource, TTarget?> propertyGetter, bool autoRun = true)
+        [SuppressMessage("ReSharper", "RedundantNullableFlowAttribute")]
+        public PropertyBinding([NotNull] TSource source, 
+                               [NotNull] string propertyName, 
+                               [NotNull] Func<TSource, TTarget?> propertyGetter, 
+                               bool autoRun = true)
         {
             this.source = source ?? throw new ArgumentNullException(nameof(source));
             this.propertyName = propertyName ?? throw new ArgumentNullException(nameof(propertyName));

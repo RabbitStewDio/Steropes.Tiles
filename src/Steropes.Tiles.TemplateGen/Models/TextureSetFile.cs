@@ -47,7 +47,7 @@ namespace Steropes.Tiles.TemplateGen.Models
             TextureSetContentsChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public TextureSetFile WithTextureCollection([NotNull] TileTextureCollection c)
+        public TextureSetFile WithTextureCollection(TileTextureCollection c)
         {
             if (c == null)
             {

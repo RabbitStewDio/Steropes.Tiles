@@ -1,5 +1,4 @@
 using Avalonia.Media;
-using JetBrains.Annotations;
 using ReactiveUI;
 using Steropes.Tiles.TemplateGen.Bindings;
 
@@ -12,19 +11,19 @@ namespace Steropes.Tiles.TemplateGen.Models
         string? comment;
         Color? highlightColor;
 
-        [CanBeNull] public string? Key
+        public string? Key
         {
             get => key;
             set => this.TryRaiseAndSetIfChanged(ref key, value);
         }
 
-        [CanBeNull] public string? Name
+        public string? Name
         {
             get => name;
             set => this.TryRaiseAndSetIfChanged(ref name, value);
         }
 
-        [CanBeNull] public string? Comment
+        public string? Comment
         {
             get => comment;
             set => this.TryRaiseAndSetIfChanged(ref comment, value);

@@ -14,8 +14,8 @@ namespace Steropes.Tiles.Sample.Shared.Strategy.Rendering
                                               StrategyGameData gameData,
                                               IntDimension tileSize)
         {
-            RenderingConfig = renderingConfig ?? throw new ArgumentNullException(nameof(RenderingConfig));
-            GameData = gameData ?? throw new ArgumentNullException(nameof(GameData));
+            RenderingConfig = renderingConfig ?? throw new ArgumentNullException(nameof(renderingConfig));
+            GameData = gameData ?? throw new ArgumentNullException(nameof(gameData));
 
             RenderControl = new RendererControl(tileSize, renderingConfig.RenderType);
         }
